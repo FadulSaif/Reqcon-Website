@@ -1,19 +1,22 @@
 "use client";
 
-import { Linkedin, Facebook, Mail, Phone, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, ArrowUpRight } from "lucide-react";
+import { LinkedinIcon as Linkedin, FacebookIcon as Facebook } from "../icons/SocialIcons";
 import LogoReversed from "../logos/LogoReversed";
 import LogoSymbol from "../logos/LogoSymbol";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const FOOTER_LINKS = [
-  { label: "Home", href: "#hero" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Industries", href: "#industries" },
-  { label: "Services", href: "#services" },
-  { label: "About Us", href: "#why-agil" },
-  { label: "Contact", href: "#contact" },
+  { translationKey: "nav.home", href: "#hero" },
+  { translationKey: "footer.portfolio", href: "#portfolio" },
+  { translationKey: "footer.industries", href: "#industries" },
+  { translationKey: "nav.services", href: "#services" },
+  { translationKey: "footer.aboutUs", href: "#why-agil" },
+  { translationKey: "nav.contact", href: "/contact" },
 ];
 
 export default function Footer() {
+  const { t } = useLanguage();
   return (
     <footer className="footer-premium">
       <div className="container-wide">
@@ -33,20 +36,20 @@ export default function Footer() {
               <LogoReversed style={{ height: 40, width: "auto" }} />
             </a>
             <h3 className="footer-slogan">
-              Connecting progressive companies with <span className="text-highlight">qualified professionals.</span>
+              {t("footer.slogan")}
             </h3>
             <p className="footer-description">
-              We are Agil Arbetskraft, your premier Scandinavian partner for agile staffing and recruitment solutions. Elevating careers and businesses through precision and trust.
+              {t("footer.description")}
             </p>
           </div>
 
           {/* Column 2: Navigation */}
           <div className="footer-col">
-            <h4 className="footer-heading">Navigation</h4>
+            <h4 className="footer-heading">{t("footer.navigation")}</h4>
             <nav className="footer-nav-list">
               {FOOTER_LINKS.map((link) => (
                 <a key={link.href} href={link.href} className="footer-link group">
-                  <span>{link.label}</span>
+                  <span>{t(link.translationKey)}</span>
                   <ArrowUpRight size={14} className="link-arrow" />
                 </a>
               ))}
@@ -55,7 +58,7 @@ export default function Footer() {
 
           {/* Column 3: Contact */}
           <div className="footer-col">
-            <h4 className="footer-heading">Get in Touch</h4>
+            <h4 className="footer-heading">{t("footer.getInTouch")}</h4>
             <div className="footer-nav-list">
               <a href="mailto:info@agilarbetskraft.se" className="footer-link contact-link">
                 <div className="contact-icon-wrapper"><Mail size={16} /></div>
@@ -70,7 +73,7 @@ export default function Footer() {
 
           {/* Column 4: Socials */}
           <div className="footer-col">
-            <h4 className="footer-heading">Follow Us</h4>
+            <h4 className="footer-heading">{t("footer.followUs")}</h4>
             <div className="footer-socials-flat">
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link-flat">
                 <Linkedin size={20} />
@@ -89,13 +92,13 @@ export default function Footer() {
         <div className="footer-bottom-grid">
           <div className="footer-bottom-left">
             <p className="copyright">
-              © {new Date().getFullYear()} Agil Arbetskraft. All rights reserved.
+              © {new Date().getFullYear()} Agil Arbetskraft. {t("footer.rights")}
             </p>
             <span className="dot-separator hidden-mobile">•</span>
             <div className="footer-bottom-links">
-              <a href="#privacy">Privacy Policy</a>
+              <a href="#privacy">{t("footer.privacyPolicy")}</a>
               <span className="dot-separator">•</span>
-              <a href="#terms">Terms of Service</a>
+              <a href="#terms">{t("footer.termsOfService")}</a>
             </div>
           </div>
 

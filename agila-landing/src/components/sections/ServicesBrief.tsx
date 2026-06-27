@@ -1,29 +1,32 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const SERVICES = [
   {
-    title: "Staffing",
-    desc: "Fast and flexible workforce support during peak periods, absences, and temporary demands."
+    titleKey: "services.s1.title",
+    descKey: "services.s1.desc"
   },
   {
-    title: "Direct Recruitment",
-    desc: "Helping businesses find qualified professionals for long-term success."
+    titleKey: "services.s2.title",
+    descKey: "services.s2.desc"
   },
   {
-    title: "Hire-to-Permanent",
-    desc: "Evaluate candidates in a real working environment before making a permanent hiring decision."
+    titleKey: "services.s3.title",
+    descKey: "services.s3.desc"
   },
   {
-    title: "Project-Based Teams",
-    desc: "Deploy a specialized workforce for short-term projects with specific requirements."
+    titleKey: "services.s4.title",
+    descKey: "services.s4.desc"
   }
 ];
 
 export default function ServicesBrief() {
+  const { t } = useLanguage();
   return (
     <section id="services-brief" className="section section-bg-elevated services-section">
       <div className="container" style={{ maxWidth: 1100 }}>
@@ -46,8 +49,8 @@ export default function ServicesBrief() {
               />
               <div className="image-overlay">
                 <div className="overlay-content">
-                  <h3 className="overlay-title">Ready to scale?</h3>
-                  <p className="overlay-text">We connect businesses with elite talent.</p>
+                  <h3 className="overlay-title">{t("services.overlayTitle")}</h3>
+                  <p className="overlay-text">{t("services.overlayText")}</p>
                 </div>
               </div>
             </div>
@@ -62,10 +65,10 @@ export default function ServicesBrief() {
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
           >
             <span className="eyebrow d-block">
-              OUR SERVICES
+              {t("services.eyebrow")}
             </span>
             <h2 className="heading-tight mb-32">
-              Flexible Workforce Solutions Tailored For You.
+              {t("services.title")}
             </h2>
             
             <div className="services-list mb-40">
@@ -75,17 +78,17 @@ export default function ServicesBrief() {
                     <CheckCircle2 size={24} />
                   </div>
                   <div className="service-text">
-                    <h4 className="service-title">{service.title}</h4>
-                    <p className="service-desc">{service.desc}</p>
+                    <h4 className="service-title">{t(service.titleKey)}</h4>
+                    <p className="service-desc">{t(service.descKey)}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             <div className="btn-wrapper">
-              <a href="/services" className="btn btn-primary hover-lift">
-                View All Services
-              </a>
+              <Link href="/services" className="btn btn-primary hover-lift">
+                {t("services.cta")}
+              </Link>
             </div>
           </motion.div>
         </div>

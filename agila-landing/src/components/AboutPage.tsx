@@ -1,13 +1,18 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import Navbar from "./sections/Navbar";
 import Footer from "./sections/Footer";
 import FloatingCTA from "./sections/FloatingCTA";
-import { Clock, Briefcase, Settings } from "lucide-react";
+import { Clock, Briefcase, Settings, ArrowRight } from "lucide-react";
+import { TEAM_MEMBERS, SERVICE_OPTIONS } from "@/lib/team-data";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function AboutPage() {
+  const { t } = useLanguage();
+
   return (
     <>
       <Navbar />
@@ -22,12 +27,12 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              <span className="eyebrow d-block mb-16">OUR STORY</span>
+              <span className="eyebrow d-block mb-16">{t("about.page.hero.eyebrow")}</span>
               <h1 className="heading-xl mb-24">
-                Building Stronger Businesses Through Precision and Trust.
+                {t("about.page.hero.title")}
               </h1>
               <p className="body-lg text-secondary mx-auto" style={{ maxWidth: "800px" }}>
-                We believe a company’s greatest asset is its people. Agila was founded with a singular mission: to bridge the gap between progressive companies and elite professionals across Sweden.
+                {t("about.page.hero.desc")}
               </p>
             </motion.div>
           </div>
@@ -64,19 +69,19 @@ export default function AboutPage() {
                 transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 <h2 className="heading-lg mb-32">
-                  Driving Swedish Industry Forward.
+                  {t("about.page.vision.title")}
                 </h2>
                 <div className="body-punchy">
                   <p>
-                    Since our inception, Agila has operated on a foundational principle: modern business requires a workforce that is not only highly skilled but relentlessly adaptable. The days of static, rigid hiring models are over. Today’s market demands agility.
+                    {t("about.page.vision.p1")}
                   </p>
                   <br />
                   <p>
-                    We have positioned ourselves as the premier strategic staffing partner for companies across Sweden. By deeply analyzing the unique operational DNA of every client we serve, we deploy specialized talent that seamlessly integrates into existing teams and immediately accelerates productivity.
+                    {t("about.page.vision.p2")}
                   </p>
                   <br />
                   <p>
-                    Whether supporting rapid industrial scaling, executing critical IT deployments, or managing complex logistics, our commitment remains absolute: we deliver the exact expertise you need, precisely when you need it, ensuring your business never misses a beat.
+                    {t("about.page.vision.p3")}
                   </p>
                 </div>
               </motion.div>
@@ -124,9 +129,9 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              <h2 className="heading-lg">Why Choose Us</h2>
+              <h2 className="heading-lg">{t("about.page.why.eyebrow")}</h2>
               <p className="body-lg text-secondary mx-auto mt-16" style={{ maxWidth: "600px" }}>
-                The Right People at the Right Time.
+                {t("about.page.why.subtitle")}
               </p>
             </motion.div>
             
@@ -141,9 +146,9 @@ export default function AboutPage() {
                 <div className="pillar-icon">
                   <Clock size={32} />
                 </div>
-                <h3 className="heading-md mb-16">Fast Response Times</h3>
+                <h3 className="heading-md mb-16">{t("about.page.why.f1.title")}</h3>
                 <p className="body-md text-secondary">
-                  We understand that downtime is costly. Our streamlined recruitment processes and extensive talent network allow us to source and deploy qualified professionals rapidly to meet urgent operational demands.
+                  {t("about.page.why.f1.desc")}
                 </p>
               </motion.div>
 
@@ -157,9 +162,9 @@ export default function AboutPage() {
                 <div className="pillar-icon">
                   <Briefcase size={32} />
                 </div>
-                <h3 className="heading-md mb-16">Flexible Solutions</h3>
+                <h3 className="heading-md mb-16">{t("about.page.why.f2.title")}</h3>
                 <p className="body-md text-secondary">
-                  Whether you need short-term cover during peak seasons, direct recruitment for key roles, or hire-to-permanent arrangements, our models adapt flawlessly to your business cycle.
+                  {t("about.page.why.f2.desc")}
                 </p>
               </motion.div>
 
@@ -173,16 +178,80 @@ export default function AboutPage() {
                 <div className="pillar-icon">
                   <Settings size={32} />
                 </div>
-                <h3 className="heading-md mb-16">Industry Expertise</h3>
+                <h3 className="heading-md mb-16">{t("about.page.why.f3.title")}</h3>
                 <p className="body-md text-secondary">
-                  From construction and warehousing to IT and complex industrial operations, our recruiters possess deep sector-specific knowledge, ensuring precise placements every time.
+                  {t("about.page.why.f3.desc")}
                 </p>
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Section 4: Location & Info */}
+        {/* Section 4: Meet the Team */}
+        <section className="about-team-section section">
+          <div className="container-wide">
+            <motion.div
+              className="text-center mb-48"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.3 }}
+            >
+              <span className="label d-block mb-16">{t("about.page.team.eyebrow")}</span>
+              <h2 className="heading-lg">{t("about.page.team.title")}</h2>
+              <p className="body-lg text-secondary mx-auto mt-16" style={{ maxWidth: "600px" }}>
+                {t("about.page.team.subtitle")}
+              </p>
+            </motion.div>
+
+            <div className="about-team-grid">
+              {TEAM_MEMBERS.map((member, idx) => (
+                <motion.div
+                  key={member.id}
+                  className="about-team-card glass-panel"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.3, delay: idx * 0.08, ease: "easeOut" }}
+                >
+                  <div className="about-team-img">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="about-team-photo"
+                    />
+                  </div>
+                  <div className="about-team-info">
+                    <h3 className="heading-sm">{member.name}</h3>
+                    <p className="about-team-role">{t(member.titleKey)}</p>
+                    <p className="body-md text-secondary mb-12">{t(member.bioKey)}</p>
+                    <div className="about-team-tags">
+                      {member.services.map((slug) => {
+                        const svc = SERVICE_OPTIONS.find((s) => s.slug === slug);
+                        return (
+                          <span key={slug} className="about-team-tag">
+                            {svc?.labelKey ? t(svc.labelKey) : slug}
+                          </span>
+                        );
+                      })}
+                    </div>
+                    <a
+                      href={`/contact?service=${member.services[0]}`}
+                      className="btn btn-primary btn-sm mt-16"
+                    >
+                      {t("contact.btn.contact")} {member.name.split(" ")[0]}
+                      <ArrowRight size={14} />
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Section 5: Location & Info */}
         <section className="about-info-section section">
           <div className="container-wide">
             <div className="info-grid">
@@ -194,10 +263,10 @@ export default function AboutPage() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.4 }}
               >
-                <h2 className="heading-lg mb-32">Visit Us</h2>
+                <h2 className="heading-lg mb-32">{t("about.page.visit.title")}</h2>
                 
                 <div className="info-block mb-32">
-                  <h3 className="heading-sm mb-8 text-brand">Address</h3>
+                  <h3 className="heading-sm mb-8 text-brand">{t("about.page.visit.address")}</h3>
                   <p className="body-md text-secondary">
                     Agile Workforce<br />
                     Tullgårdsgatan 10<br />
@@ -206,16 +275,16 @@ export default function AboutPage() {
                 </div>
 
                 <div className="info-block mb-32">
-                  <h3 className="heading-sm mb-8 text-brand">Opening Hours</h3>
+                  <h3 className="heading-sm mb-8 text-brand">{t("about.page.visit.hours")}</h3>
                   <ul className="hours-list body-md text-secondary">
-                    <li><span>Sunday</span> <span>Closed</span></li>
-                    <li><span>Monday - Friday</span> <span>09:00 - 17:00</span></li>
-                    <li><span>Saturday</span> <span>Closed</span></li>
+                    <li><span>{t("about.page.visit.sun")}</span> <span>{t("about.page.visit.closed")}</span></li>
+                    <li><span>{t("about.page.visit.mon_fri")}</span> <span>09:00 - 17:00</span></li>
+                    <li><span>{t("about.page.visit.sat")}</span> <span>{t("about.page.visit.closed")}</span></li>
                   </ul>
                 </div>
 
                 <div className="info-block">
-                  <h3 className="heading-sm mb-8 text-brand">Follow Us</h3>
+                  <h3 className="heading-sm mb-8 text-brand">{t("about.page.visit.follow")}</h3>
                   <div className="social-links">
                     <a href="#" className="social-link" aria-label="Facebook">Facebook</a>
                     <a href="#" className="social-link" aria-label="LinkedIn">LinkedIn</a>
@@ -267,17 +336,17 @@ export default function AboutPage() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.4 }}
             >
-              <h2 className="heading-xl mb-16 text-white">Ready to scale your team?</h2>
+              <h2 className="heading-xl mb-16 text-white">{t("about.page.cta.title")}</h2>
               <p className="body-lg mb-40 text-white opacity-80 mx-auto" style={{ maxWidth: "600px" }}>
-                Let us handle the recruitment so you can focus on running your business.
+                {t("about.page.cta.desc")}
               </p>
               <div className="cta-button-group">
-                <a href="/services" className="btn btn-primary hover-lift">
-                  View Services
-                </a>
-                <a href="/#contact" className="btn btn-outline hover-lift dark-invert-btn">
-                  Get in Touch
-                </a>
+                <Link href="/services" className="btn btn-primary hover-lift">
+                  {t("about.page.cta.btn1")}
+                </Link>
+                <Link href="/contact" className="btn btn-outline hover-lift dark-invert-btn">
+                  {t("about.page.cta.btn2")}
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -297,7 +366,7 @@ export default function AboutPage() {
         .hero-section {
           width: 100%;
           background: var(--background);
-          padding-top: clamp(100px, 12vh, 120px);
+          padding-top: clamp(88px, 10vh, 110px);
           padding-bottom: clamp(20px, 4vw, 40px);
         }
 
@@ -310,7 +379,7 @@ export default function AboutPage() {
         .hero-image-banner {
           position: relative;
           width: 100%;
-          height: 60vh;
+          height: clamp(300px, 45vh, 500px);
           min-height: 400px;
           border-radius: var(--radius-xl);
           overflow: hidden;
@@ -404,9 +473,6 @@ export default function AboutPage() {
         }
 
         /* Pillars Section */
-        .section {
-          padding: clamp(60px, 6vw, 80px) 0; /* Reduced white space */
-        }
 
         .pillars-grid {
           display: grid;
@@ -557,6 +623,77 @@ export default function AboutPage() {
           background: rgba(255, 255, 255, 0.1) !important;
           border-color: #FAFAFA !important;
         }
+
+        /* Team Section */
+        .about-team-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        @media (min-width: 768px) {
+          .about-team-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+          .about-team-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .about-team-card {
+          border-radius: var(--radius-xl);
+          overflow: hidden;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .about-team-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+
+        .about-team-img {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 4 / 3.2;
+          overflow: hidden;
+        }
+        .about-team-photo {
+          object-fit: cover;
+          object-position: center top;
+          transition: transform 0.4s ease;
+        }
+        .about-team-card:hover .about-team-photo {
+          transform: scale(1.03);
+        }
+
+        .about-team-info {
+          padding: 24px 24px 28px;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .about-team-role {
+          font-size: 0.8125rem;
+          font-weight: 600;
+          color: var(--brand-primary);
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          margin: 4px 0 12px;
+        }
+
+        .about-team-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+          margin-bottom: 4px;
+        }
+        .about-team-tag {
+          padding: 3px 10px;
+          border-radius: 100px;
+          background: var(--accent-soft);
+          color: var(--text-secondary);
+          font-size: 0.6875rem;
+          font-weight: 600;
+          letter-spacing: 0.02em;
+        }
+
+        .mt-16 { margin-top: 16px; }
       `}</style>
     </>
   );

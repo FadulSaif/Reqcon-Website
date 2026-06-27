@@ -3,53 +3,51 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ARTICLES = [
   {
-    title: "The Future of Flexible IT Staffing in 2026",
-    excerpt:
-      "As digital transformation accelerates, companies are moving away from rigid hiring models. Discover how flexible IT staffing is allowing Swedish companies to rapidly scale infrastructure and adopt AI technologies without the overhead of permanent headcount.",
+    titleKey: "articles.a1.title",
+    excerptKey: "articles.a1.desc",
     image: "/assets/it_staffing_hero.png",
     slug: "future-flexible-it-staffing",
     date: "June 15, 2026",
-    category: "Technology",
+    categoryKey: "articles.cat.tech",
   },
   {
-    title: "Optimizing Warehouse Operations with Agile Talent",
-    excerpt:
-      "Peak seasons can break a rigid supply chain. Learn how top logistics centers are utilizing agile talent deployment to maintain extremely high throughput during critical e-commerce spikes, reducing bottlenecks and avoiding burnout.",
+    titleKey: "articles.a2.title",
+    excerptKey: "articles.a2.desc",
     image: "/assets/warehouse_agile_hero.png",
     slug: "optimizing-warehouse-operations",
     date: "May 28, 2026",
-    category: "Logistics",
+    categoryKey: "articles.cat.logistics",
   },
   {
-    title: "Sustainable Practices in Modern Construction",
-    excerpt:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    titleKey: "articles.a3.title",
+    excerptKey: "articles.a3.desc",
     image: "/assets/industry-construction.jpg",
     slug: "sustainable-practices-construction",
     date: "April 12, 2026",
-    category: "Construction",
+    categoryKey: "articles.cat.construction",
   },
   {
-    title: "The Evolution of Commercial Cleaning Standards",
-    excerpt:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    titleKey: "articles.a4.title",
+    excerptKey: "articles.a4.desc",
     image: "/assets/industry-cleaning.jpg",
     slug: "evolution-commercial-cleaning",
     date: "March 05, 2026",
-    category: "Facilities",
+    categoryKey: "articles.cat.facilities",
   },
 ];
 
 export default function ArticlesBrief() {
+  const { t } = useLanguage();
   return (
     <section className="articles-section section">
       <div className="container-wide">
         <div className="text-center mb-48">
-          <span className="eyebrow d-block mb-16">LATEST INSIGHTS</span>
-          <h2 className="heading-lg">Articles & Industry News</h2>
+          <span className="eyebrow d-block mb-16">{t("articles.eyebrow")}</span>
+          <h2 className="heading-lg">{t("articles.title")}</h2>
         </div>
 
         <div className="articles-grid">
@@ -65,21 +63,21 @@ export default function ArticlesBrief() {
               <div className="article-image-container">
                 <Image
                   src={article.image}
-                  alt={article.title}
+                  alt={t(article.titleKey)}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="article-image"
                 />
-                <div className="article-category">{article.category}</div>
+                <div className="article-category">{t(article.categoryKey)}</div>
               </div>
               <div className="article-content">
                 <div className="article-meta">
                   <span>{article.date}</span>
                 </div>
-                <h3 className="article-title">{article.title}</h3>
-                <p className="article-excerpt">{article.excerpt}</p>
+                <h3 className="article-title">{t(article.titleKey)}</h3>
+                <p className="article-excerpt">{article.excerptKey ? t(article.excerptKey) : ""}</p>
                 <a href={`/articles/${article.slug}`} className="btn btn-primary btn-sm inline-flex">
-                  Read Article <ArrowRight size={16} />
+                  {t("articles.read")} <ArrowRight size={16} />
                 </a>
               </div>
             </motion.div>

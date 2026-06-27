@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function AboutBrief() {
+  const { t } = useLanguage();
   return (
     <section id="about-brief" className="section section-bg-muted about-section">
       <div className="container-wide">
@@ -16,23 +18,23 @@ export default function AboutBrief() {
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
             <span className="eyebrow d-block">
-              WHO WE ARE
+              {t("about.eyebrow")}
             </span>
             <h2 className="heading-tight mb-20">
-              Strategic Recruitment & Comprehensive Staffing Solutions.
+              {t("about.title")}
             </h2>
             <div className="body-punchy mb-24">
               <p>
-                Agil Arbetskraft is more than a traditional staffing agency; we are your strategic partner in recruitment and workforce scaling. We specialize in sourcing, vetting, and deploying highly driven professionals across diverse industries to meet your exact operational demands.
+                {t("about.p1")}
               </p>
               <br />
               <p>
-                Our precision-matching process ensures you secure the elite talent needed to scale your business, conquer new markets, and drive innovation. By focusing on long-term compatibility and technical excellence, we bridge the gap between progressive companies and top-tier expertise, allowing you to dominate your industry without the overhead of traditional hiring.
+                {t("about.p2")}
               </p>
             </div>
             <div className="btn-wrapper">
               <a href="/about" className="btn btn-secondary hover-lift">
-                Learn More
+                {t("about.cta")}
               </a>
             </div>
           </motion.div>

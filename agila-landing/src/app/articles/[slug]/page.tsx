@@ -4,9 +4,18 @@ import Image from "next/image";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import FloatingCTA from "@/components/sections/FloatingCTA";
+import Link from "next/link";
 
 // Static data generation for prototype
-const ARTICLES_DATA: Record<string, any> = {
+interface ArticleData {
+  title: string;
+  category: string;
+  date: string;
+  heroImage: string;
+  author: string;
+  content: React.ReactNode;
+}
+const ARTICLES_DATA: Record<string, ArticleData> = {
   "future-flexible-it-staffing": {
     title: "The Future of Flexible IT Staffing in 2026",
     category: "Technology",
@@ -24,7 +33,7 @@ const ARTICLES_DATA: Record<string, any> = {
           For decades, the standard approach to corporate IT was the monolithic department—a massive, static team of generalists handling everything from password resets to enterprise architecture. Today, that model is failing. The sheer velocity of technological advancement, particularly in artificial intelligence and edge computing, means that holding onto permanent generalists is less effective than deploying temporary specialists.
         </p>
         <p>
-          We are seeing a massive shift. Organizations are reducing their core IT headcount by up to 30%, instead choosing to partner with agile staffing agencies to inject high-level expertise exactly when a project demands it. This isn't downsizing; it's right-sizing.
+          We are seeing a massive shift. Organizations are reducing their core IT headcount by up to 30%, instead choosing to partner with agile staffing agencies to inject high-level expertise exactly when a project demands it. This isn&apos;t downsizing; it&apos;s right-sizing.
         </p>
 
         <figure className="inline-figure">
@@ -36,10 +45,10 @@ const ARTICLES_DATA: Record<string, any> = {
 
         <h2>Artificial Intelligence as a Catalyst</h2>
         <p>
-          The integration of AI into enterprise software isn't just a trend—it's a fundamental restructuring of business operations. However, the engineers capable of building and maintaining these systems are rare and expensive. A rigid hiring model attempts to secure these engineers full-time, often leading to massive overhead when the heavy lifting of the integration is complete.
+          The integration of AI into enterprise software isn&apos;t just a trend—it&apos;s a fundamental restructuring of business operations. However, the engineers capable of building and maintaining these systems are rare and expensive. A rigid hiring model attempts to secure these engineers full-time, often leading to massive overhead when the heavy lifting of the integration is complete.
         </p>
         <blockquote>
-          "Agility is no longer a buzzword. In 2026, it is the fundamental metric of survival. If your workforce cannot pivot in 30 days, your technology will be obsolete in 60."
+          &quot;Agility is no longer a buzzword. In 2026, it is the fundamental metric of survival. If your workforce cannot pivot in 30 days, your technology will be obsolete in 60.&quot;
         </blockquote>
         <p>
           Flexible IT staffing solves this problem perfectly. Companies can bring in an elite strike team of machine learning engineers for a 6-month sprint. Once the models are trained and integrated, the team rolls off, leaving a lean, permanent operations crew to manage the day-to-day. This optimizes both the budget and the technological output.
@@ -47,7 +56,7 @@ const ARTICLES_DATA: Record<string, any> = {
 
         <h2>Building the Agile Tech Ecosystem</h2>
         <p>
-          How do you transition to this model? It requires a strategic partner. You need an agency that doesn't just read resumes, but understands technical stacks. At Agila, our IT recruitment division is staffed by former developers and system architects. When a client needs a Kubernetes expert, we don't send them a general sysadmin—we send exactly what the infrastructure requires.
+          How do you transition to this model? It requires a strategic partner. You need an agency that doesn&apos;t just read resumes, but understands technical stacks. At Agila, our IT recruitment division is staffed by former developers and system architects. When a client needs a Kubernetes expert, we don&apos;t send them a general sysadmin—we send exactly what the infrastructure requires.
         </p>
         <p>
           The future belongs to the flexible. As we look toward the end of the decade, the companies that thrive will be those that view their workforce not as a static resource, but as a dynamic, scalable tool.
@@ -114,7 +123,7 @@ const ARTICLES_DATA: Record<string, any> = {
           With agile talent systems, warehouse managers can quickly reassign workers to areas experiencing high demand. For example, if order picking becomes a bottleneck, additional staff can be redirected from less critical tasks.
         </p>
         <blockquote>
-          "In logistics, a bottleneck is a death sentence. The ability to drop 50 trained operators into a facility within 48 hours is the ultimate competitive advantage."
+          &quot;In logistics, a bottleneck is a death sentence. The ability to drop 50 trained operators into a facility within 48 hours is the ultimate competitive advantage.&quot;
         </blockquote>
 
         <h3>2. Enhanced Throughput During Spikes</h3>
@@ -197,7 +206,7 @@ const ARTICLES_DATA: Record<string, any> = {
           Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.
         </p>
         <blockquote>
-          "Consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+          &quot;Consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.&quot;
         </blockquote>
         <h2>Ut enim ad minima veniam</h2>
         <p>
@@ -248,7 +257,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
         <main className="article-not-found">
           <div className="container text-center">
             <h1>Article Not Found</h1>
-            <a href="/" className="btn btn-primary mt-32">Return Home</a>
+            <Link href="/" className="btn btn-primary mt-32">Return Home</Link>
           </div>
         </main>
         <Footer />
@@ -311,7 +320,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
 
         /* Hero */
         .article-hero {
-          padding-top: clamp(120px, 15vh, 160px);
+          padding-top: clamp(88px, 10vh, 110px);
           padding-bottom: 40px;
         }
 
@@ -348,7 +357,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
         .article-hero-image-wrapper {
           position: relative;
           width: 100%;
-          height: 50vh;
+          height: clamp(300px, 45vh, 500px);
           min-height: 400px;
           border-radius: var(--radius-xl);
           overflow: hidden;

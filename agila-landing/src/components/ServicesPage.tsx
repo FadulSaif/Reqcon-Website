@@ -1,105 +1,18 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import Navbar from "./sections/Navbar";
 import Footer from "./sections/Footer";
 import FloatingCTA from "./sections/FloatingCTA";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-
-const IN_DEPTH_SERVICES = [
-  {
-    title: "Hire-to-Permanent",
-    tagline: "Evaluate before you commit",
-    description:
-      "Mitigate hiring risks by evaluating candidates in a real working environment before making a permanent offer. This model gives both you and the candidate the opportunity to ensure perfect alignment in skills, culture, and expectations.",
-    bullets: [
-      "Risk-free evaluation period",
-      "Seamless transition to permanent contracts",
-      "Ensured cultural and technical fit",
-    ],
-    image: "/assets/service-hirepurchase.jpg",
-  },
-  {
-    title: "Construction & Building",
-    tagline: "Skilled labor for demanding sites",
-    description: "We supply experienced construction workers, carpenters, and general laborers who prioritize safety and efficiency on site. Our personnel are vetted for reliability and practical experience.",
-    bullets: [
-      "Certified professionals", 
-      "Safety-first approach", 
-      "Scalable crews for large projects"
-    ],
-    image: "/assets/industry-construction.jpg",
-  },
-  {
-    title: "Logistics & Transportation",
-    tagline: "Keeping your supply chain moving",
-    description: "Our vetted drivers and logistics personnel ensure that your goods are transported safely and reliably across the region. We support your operations during peak seasons and staff shortages.",
-    bullets: [
-      "Licensed and experienced drivers", 
-      "Route optimization support", 
-      "Reliable and punctual scheduling"
-    ],
-    image: "/assets/industry-transport.jpg",
-  },
-  {
-    title: "Warehouse & Distribution",
-    tagline: "Efficient operations talent",
-    description: "From forklift operators to inventory specialists, we provide the workforce needed to maintain high-speed distribution operations without bottlenecks.",
-    bullets: [
-      "Certified machinery operators", 
-      "Inventory management specialists", 
-      "Peak season rapid scaling"
-    ],
-    image: "/assets/industry-warehous.jpg",
-  },
-  {
-    title: "IT & Technology",
-    tagline: "Digital expertise on demand",
-    description: "We connect you with top-tier IT professionals, developers, and support staff to drive your digital transformation initiatives and maintain critical systems.",
-    bullets: [
-      "Software development and engineering", 
-      "System and network administrators", 
-      "Helpdesk and technical support"
-    ],
-    image: "/assets/industry-it.jpg",
-  },
-  {
-    title: "Cleaning Services",
-    tagline: "Professional hygiene standards",
-    description: "Dedicated and thorough cleaning staff for corporate offices, industrial sites, and commercial facilities. We ensure your environments remain pristine and compliant.",
-    bullets: [
-      "Commercial office cleaning", 
-      "Industrial site sanitation", 
-      "Flexible out-of-hours scheduling"
-    ],
-    image: "/assets/industry-cleaning.jpg",
-  },
-  {
-    title: "Moving & Installation",
-    tagline: "Precision handling and setup",
-    description: "Expert personnel for commercial relocation, furniture installation, and delicate equipment handling. We ensure smooth transitions with minimal downtime.",
-    bullets: [
-      "Commercial office relocation", 
-      "Technical equipment installation", 
-      "Careful and secure handling"
-    ],
-    image: "/assets/industry-moving.jpg",
-  },
-  {
-    title: "Workshop & Manufacturing",
-    tagline: "Industrial production talent",
-    description: "Skilled operators, technicians, and assembly workers ready to maintain your manufacturing quality and output, integrating seamlessly into your production lines.",
-    bullets: [
-      "Skilled machine operators", 
-      "Assembly line workers", 
-      "Quality assurance and control"
-    ],
-    image: "/assets/industry-workshop.jpg",
-  }
-];
+import { useLanguage } from "@/contexts/LanguageContext";
+import { SERVICES_LIST } from "@/lib/services-data";
 
 export default function ServicesPage() {
+  const { t, language } = useLanguage();
+
   return (
     <>
       <Navbar />
@@ -114,12 +27,12 @@ export default function ServicesPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              <span className="eyebrow d-block mb-16">OUR SERVICES</span>
+              <span className="eyebrow d-block mb-16">{t("services.eyebrow")}</span>
               <h1 className="heading-xl mb-24">
-                Staffing the Future
+                {t("services.page.title")}
               </h1>
               <p className="body-lg text-secondary mx-auto" style={{ maxWidth: "800px" }}>
-                Reliable Workforce Solutions for Modern Businesses. We connect companies with qualified professionals to meet exact operational demands.
+                {t("hero.subtitle")}
               </p>
             </motion.div>
           </div>
@@ -156,15 +69,15 @@ export default function ServicesPage() {
                 transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 <h2 className="heading-lg mb-32">
-                  Agility in Every Placement.
+                  {t("about.title")}
                 </h2>
                 <div className="body-punchy">
                   <p>
-                    A dynamic market requires a dynamic workforce. We don't just fill seats; we provide strategic workforce solutions that allow your business to remain agile, competitive, and highly efficient.
+                    {t("about.p1")}
                   </p>
                   <br />
                   <p>
-                    By analyzing your unique operational DNA, we deploy specialized talent that seamlessly integrates into your existing teams. Our robust vetting process ensures that every professional we provide brings not only the required skills but also the drive to accelerate your productivity from day one.
+                    {t("about.p2")}
                   </p>
                 </div>
               </motion.div>
@@ -181,7 +94,7 @@ export default function ServicesPage() {
                   <div className="intro-img-1 glass-panel">
                     <Image
                       src="/assets/industry-workshop.jpg"
-                      alt="Agila Industrial Professional"
+                      alt={t("services.it.imgAlt")}
                       fill
                       sizes="(max-width: 1024px) 50vw, 25vw"
                       className="intro-image"
@@ -190,7 +103,7 @@ export default function ServicesPage() {
                   <div className="intro-img-2 glass-panel">
                     <Image
                       src="/assets/industry-transport.jpg"
-                      alt="Agila Logistics Professional"
+                      alt={t("services.transport.imgAlt")}
                       fill
                       sizes="(max-width: 1024px) 50vw, 25vw"
                       className="intro-image"
@@ -207,13 +120,13 @@ export default function ServicesPage() {
         <section className="in-depth-services section section-bg-muted">
           <div className="container-wide">
             <div className="text-center mb-64">
-              <h2 className="heading-xl">Our Services</h2>
+              <h2 className="heading-xl">{t("services.page.title")}</h2>
             </div>
 
             <div className="services-stack">
-              {IN_DEPTH_SERVICES.map((service, idx) => (
+              {SERVICES_LIST.map((service, idx) => (
                 <motion.div
-                  key={service.title}
+                  key={service.slug}
                   className={`service-block ${idx % 2 !== 0 ? "reversed" : ""}`}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -223,7 +136,7 @@ export default function ServicesPage() {
                   <div className="service-block-image-container">
                     <Image
                       src={service.image}
-                      alt={service.title}
+                      alt={t(`services.${service.slug}.imgAlt`)}
                       fill
                       sizes="(max-width: 1024px) 100vw, 50vw"
                       className="service-block-image"
@@ -231,22 +144,26 @@ export default function ServicesPage() {
                   </div>
                   
                   <div className="service-block-content">
-                    <h3 className="heading-lg mb-8">{service.title}</h3>
-                    <p className="eyebrow text-brand mb-24">{service.tagline}</p>
-                    <p className="body-lg mb-32">{service.description}</p>
+                    <h3 className="heading-lg mb-8">{t(`services.${service.slug}.title`)}</h3>
+                    <p className="body-lg mb-24">{t(`services.${service.slug}.cardDesc`)}</p>
                     
-                    <ul className="service-bullets mb-40">
-                      {service.bullets.map((bullet, bIdx) => (
+                    <ul className="service-bullets mb-32">
+                      {service.specs[language as keyof typeof service.specs]?.slice(0, 4).map((bullet, bIdx) => (
                         <li key={bIdx} className="bullet-item">
                           <CheckCircle2 size={20} className="bullet-icon" />
                           <span>{bullet}</span>
                         </li>
                       ))}
                     </ul>
-
-                    <a href={`/?service=${encodeURIComponent(service.title)}#contact`} className="btn btn-secondary btn-sm hover-lift inline-flex">
-                      Request this service <ArrowRight size={16} />
-                    </a>
+                    
+                    <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+                      <a href={`/services/${service.slug}`} className="btn btn-secondary btn-sm hover-lift inline-flex">
+                        {t("services.btn.readMore")}
+                      </a>
+                      <Link href={`/contact?service=${service.slug}`} className="btn btn-primary btn-sm hover-lift inline-flex">
+                        {t("services.btn.request")} <ArrowRight size={16} style={{ marginLeft: 8 }} />
+                      </Link>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -274,14 +191,14 @@ export default function ServicesPage() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.4 }}
             >
-              <h2 className="heading-xl mb-16 text-white">Need Staff Quickly?</h2>
+              <h2 className="heading-xl mb-16 text-white">{t("cta.title")}</h2>
               <p className="body-lg mb-40 text-white opacity-80 mx-auto" style={{ maxWidth: "600px" }}>
-                Tell us what you need and our team will get back to you with a workforce solution tailored to your business.
+                {t("cta.desc")}
               </p>
               <div className="cta-button-group">
-                <a href="/contact" className="btn btn-primary btn-hero-xl hover-lift">
-                  Request Staff
-                </a>
+                <Link href="/contact" className="btn btn-primary btn-hero-xl hover-lift">
+                  {t("cta.requestCall")}
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -301,7 +218,7 @@ export default function ServicesPage() {
         .hero-section {
           width: 100%;
           background: var(--background);
-          padding-top: clamp(100px, 12vh, 120px);
+          padding-top: clamp(88px, 10vh, 110px);
           padding-bottom: clamp(20px, 4vw, 40px);
         }
 
@@ -312,7 +229,7 @@ export default function ServicesPage() {
         .hero-image-banner {
           position: relative;
           width: 100%;
-          height: 60vh;
+          height: clamp(300px, 45vh, 500px);
           min-height: 400px;
           border-radius: var(--radius-xl);
           overflow: hidden;
@@ -421,31 +338,31 @@ export default function ServicesPage() {
           max-width: 560px;
         }
 
+        .inline-flex {
+          display: inline-flex;
+          align-items: center;
+        }
+
         .service-bullets {
           list-style: none;
           padding: 0;
           margin: 0;
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 12px;
         }
 
         .bullet-item {
           display: flex;
           align-items: center;
-          gap: 16px;
-          font-size: 1.0625rem;
+          gap: 12px;
+          font-size: 1rem;
           color: var(--text-secondary);
         }
 
         .bullet-icon {
           color: var(--brand-primary);
           flex-shrink: 0;
-        }
-
-        .inline-flex {
-          display: inline-flex;
-          align-items: center;
         }
 
         /* CTA Section */

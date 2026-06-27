@@ -1,9 +1,13 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
+import CompanyLogoStrip from "../CompanyLogoStrip";
 
 export default function HeroSection() {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -53,9 +57,9 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
           >
-            The Right People.
+            {t("hero.title1")}
             <br />
-            <span className="text-brand">At The Right Time.</span>
+            <span className="text-brand">{t("hero.title2")}</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -65,8 +69,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.2, ease: "easeOut" }}
           >
-            Reliable workforce solutions for modern businesses.
-            Connecting companies with qualified professionals across Sweden.
+            {t("hero.subtitle")}
           </motion.p>
 
           {/* CTAs */}
@@ -76,14 +79,23 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.3, ease: "easeOut" }}
           >
-            <a href="/#contact" className="btn btn-primary btn-hero-xl hover-lift">
-              Find the Right Talent
-            </a>
-            <a href="/services" className="btn btn-outline-hero btn-hero-xl hover-lift">
-              View Services
-            </a>
+            <Link href="/#contact" className="btn btn-primary btn-hero-xl hover-lift">
+              {t("hero.ctaPrimary")}
+            </Link>
+            <Link href="/services" className="btn btn-outline-hero btn-hero-xl hover-lift">
+              {t("hero.ctaSecondary")}
+            </Link>
           </motion.div>
         </motion.div>
+      </motion.div>
+
+      {/* Static Logo Strip below the hero video card */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
+      >
+        <CompanyLogoStrip />
       </motion.div>
 
       <style jsx global>{`
@@ -91,27 +103,31 @@ export default function HeroSection() {
           position: relative;
           width: 100%;
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
           background: var(--background);
-          padding-top: clamp(100px, 12vh, 140px);
-          padding-bottom: clamp(40px, 8vh, 80px);
+          padding-top: clamp(88px, 10vh, 110px);
+          padding-bottom: clamp(60px, 10vh, 100px);
         }
 
         .hero-video-card {
           position: relative;
-          width: calc(100% - 2rem);
+          width: calc(100% - clamp(2rem, 4vw, 4rem));
           max-width: 1800px;
-          height: 85vh;
-          min-height: 600px;
-          max-height: 960px;
-          border-radius: var(--radius-xl);
+          min-height: clamp(520px, 65vh, 720px);
+          height: auto;
+          padding: clamp(60px, 8vh, 120px) 0;
+          border-top-left-radius: var(--radius-xl);
+          border-top-right-radius: var(--radius-xl);
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
           overflow: hidden;
           margin: 0 auto;
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 32px 80px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.06);
+          box-shadow: 0 -4px 30px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(255,255,255,0.06);
         }
 
         .hero-video-bg {
@@ -133,7 +149,7 @@ export default function HeroSection() {
           position: relative;
           z-index: 2;
           width: 100%;
-          max-width: 860px;
+          max-width: 1100px;
           padding: 0 24px;
           display: flex;
           flex-direction: column;
@@ -147,7 +163,7 @@ export default function HeroSection() {
         }
 
         .hero-subtitle {
-          max-width: 580px;
+          max-width: 680px;
           color: var(--text-overlay);
           opacity: 0.8;
           margin-bottom: clamp(32px, 4vw, 48px);

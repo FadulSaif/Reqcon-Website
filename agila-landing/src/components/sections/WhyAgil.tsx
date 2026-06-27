@@ -1,36 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const FEATURES = [
   {
-    title: "Fast Response Times",
-    desc: "We deploy qualified personnel rapidly, ensuring your operations never skip a beat even during unexpected surges.",
+    titleKey: "why.f1.title",
+    descKey: "why.f1.desc",
     icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
   },
   {
-    title: "Reliable Workforce Solutions",
-    desc: "Every candidate is thoroughly vetted, referenced, and tested for reliability and peak performance.",
+    titleKey: "why.f2.title",
+    descKey: "why.f2.desc",
     icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>,
   },
   {
-    title: "Industry Expertise",
-    desc: "Our specialists deeply understand the specific operational demands and strict compliance requirements of your sector.",
+    titleKey: "why.f3.title",
+    descKey: "why.f3.desc",
     icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1z"/></svg>,
   },
   {
-    title: "Flexible Hiring Models",
-    desc: "Scale your team up or down seamlessly. From short-term project support to permanent strategic hires.",
+    titleKey: "why.f4.title",
+    descKey: "why.f4.desc",
     icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>,
   },
   {
-    title: "Cost-Effective Recruitment",
-    desc: "Optimize your workforce budget with our streamlined hiring process, eliminating downtime and hidden costs.",
+    titleKey: "why.f5.title",
+    descKey: "why.f5.desc",
     icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>,
   },
 ];
 
 export default function WhyAgil() {
+  const { t } = useLanguage();
   return (
     <section
       id="why-agil"
@@ -53,16 +55,15 @@ export default function WhyAgil() {
               style={{ position: "sticky", top: "20vh" }}
             >
               <span className="label mb-16" style={{ display: "block" }}>
-                Why Agil
+                {t("why.eyebrow")}
               </span>
               <h2 className="heading-xl mb-24">
-                Elevating
+                {t("why.title1")}
               <br />
-              <span className="text-brand">Workforce Quality</span>
+              <span className="text-brand">{t("why.title2")}</span>
               </h2>
               <p className="body-lg" style={{ maxWidth: 400 }}>
-                We don&apos;t just fill seats. We partner with you to deliver 
-                highly skilled, reliable professionals that drive your business forward.
+                {t("why.desc")}
               </p>
             </motion.div>
           </div>
@@ -87,10 +88,10 @@ export default function WhyAgil() {
                 </div>
                 <div>
                   <h3 className="heading-md" style={{ marginBottom: 12 }}>
-                    {feature.title}
+                    {t(feature.titleKey)}
                   </h3>
                   <p className="body-md" style={{ margin: 0 }}>
-                    {feature.desc}
+                    {t(feature.descKey)}
                   </p>
                 </div>
               </motion.div>
