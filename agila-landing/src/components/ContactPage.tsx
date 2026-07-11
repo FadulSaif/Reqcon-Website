@@ -128,30 +128,11 @@ export default function ContactPage() {
           <ContactFormInner onServiceFromUrl={handleServiceFromUrl} />
         </Suspense>
 
-        {/* ── Section 1: Contact Hero ── */}
-        <section className="cp-hero">
-          <div className="container-wide">
-            <motion.div
-              className="cp-hero-inner"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-            >
-              <span className="label d-block mb-16">{t("contact.eyebrow")}</span>
-              <h1 className="heading-xl mb-24">{t("contact.title")}</h1>
-              <p className="body-lg text-secondary cp-hero-subtitle">
-                {t("contact.desc")}
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ── Section 2: Meet the Team ── */}
-        <section className="section section-bg-muted">
+        {/* ── Section 1: Meet the Team (first section — carries navbar clearance) ── */}
+        <section className="section section-bg-muted cp-first-section">
           <div className="container-wide">
             <div className="text-center mb-48">
-              <span className="label d-block mb-16">{t("contact.team.eyebrow")}</span>
-              <h2 className="heading-lg">{t("contact.team.title")}</h2>
+              <h1 className="heading-lg">{t("contact.team.title")}</h1>
             </div>
 
             <div className="grid-3-col">
@@ -517,20 +498,13 @@ export default function ContactPage() {
         /* ─── Page ─── */
         .contact-page-wrapper { width: 100%; }
 
-        .cp-hero {
-          background: var(--background);
-          padding-top: clamp(88px, 10vh, 110px);
-          padding-bottom: clamp(20px, 3vw, 40px);
+        /* First section clears the fixed navbar (the removed hero used to do this) */
+        .cp-first-section {
+          padding-top: clamp(104px, 12vh, 130px) !important;
         }
-        .cp-hero-inner {
-          text-align: center;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        .cp-hero-subtitle {
-          max-width: 680px;
-          margin: 0 auto;
+        /* When arriving via /contact#contact-form, keep the form below the fixed navbar */
+        #contact-form {
+          scroll-margin-top: 90px;
         }
 
         /* ─── Team Cards — Flip Card System ─── */

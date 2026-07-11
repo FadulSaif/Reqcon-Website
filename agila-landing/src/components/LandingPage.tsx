@@ -18,8 +18,8 @@ export default function LandingPage() {
         <HeroSection />
         <AboutBrief />
         <ServicesBrief />
-        <ArticlesBrief />
         <WhyAgil />
+        <ArticlesBrief />
         <LandingContact />
       </main>
       <Footer />

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../components/theme-provider";
 import { LanguageProvider } from "../contexts/LanguageContext";
+import StyledJsxRegistry from "../components/StyledJsxRegistry";
 import { SITE_CONFIG, absoluteUrl } from "../lib/site-config";
 
 const inter = Inter({
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s – Agil Arbetskraft",
   },
   description:
-    "Agil Arbetskraft är ett bemannings- och rekryteringsföretag i Sverige. Vi hjälper företag inom IT, bygg, lager och logistik, transport samt flytt och montage att hitta rätt personal — snabbt och tillförlitligt.",
+    "Agil Arbetskraft är ett bemannings- och rekryteringsföretag i Sverige. Vi hjälper företag inom IT, bygg, lager och logistik, transport samt flytt och montage att hitta rätt personal, snabbt och tillförlitligt.",
   keywords: [
     "bemanningsföretag", "bemanningsföretag Sverige", "rekrytering", "bemanning",
     "IT-bemanning", "IT-rekrytering", "bemanningsföretag Stockholm",
@@ -30,10 +31,6 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.domain),
   alternates: {
     canonical: "/",
-    languages: {
-      "sv": "/",
-      "en": "/",
-    },
   },
   openGraph: {
     siteName: SITE_CONFIG.companyName,
@@ -127,10 +124,8 @@ export default function RootLayout({
   return (
     <html lang="sv" suppressHydrationWarning>
       <head>
-        {/* Hreflang — both languages share the same URLs (client-side switching) */}
-        <link rel="alternate" hrefLang="sv" href={SITE_CONFIG.domain} />
-        <link rel="alternate" hrefLang="en" href={SITE_CONFIG.domain} />
-        <link rel="alternate" hrefLang="x-default" href={SITE_CONFIG.domain} />
+        {/* Swedish-only site (English is a client-side translation toggle, not a
+            separately indexed URL), so no hreflang — just the canonical in metadata. */}
 
         {/* Organization + LocalBusiness schema — content is hardcoded, safeJsonLd escapes <>/& */}
         <script
@@ -141,11 +136,13 @@ export default function RootLayout({
         {/* TODO: Client must provide licensed Konnect Medium font files before production */}
       </head>
       <body className={`${inter.variable} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <LanguageProvider>
-            {children}
-          </LanguageProvider>
-        </ThemeProvider>
+        <StyledJsxRegistry>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+            <LanguageProvider>
+              {children}
+            </LanguageProvider>
+          </ThemeProvider>
+        </StyledJsxRegistry>
       </body>
     </html>
   );

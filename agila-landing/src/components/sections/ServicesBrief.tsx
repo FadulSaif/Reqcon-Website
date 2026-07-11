@@ -40,8 +40,8 @@ export default function ServicesBrief() {
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <div className="image-container">
-              <Image 
-                src="/assets/service-recruitment.jpg" 
+              <Image
+                src="/assets/service-recruitment.jpg"
                 alt="Agil Arbetskraft Services"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -70,12 +70,12 @@ export default function ServicesBrief() {
             <h2 className="heading-tight mb-32">
               {t("services.title")}
             </h2>
-            
+
             <div className="services-list mb-40">
               {SERVICES.map((service, idx) => (
                 <div key={idx} className="service-item">
                   <div className="service-icon">
-                    <CheckCircle2 size={24} />
+                    <CheckCircle2 size={20} />
                   </div>
                   <div className="service-text">
                     <h4 className="service-title">{t(service.titleKey)}</h4>
@@ -150,17 +150,11 @@ export default function ServicesBrief() {
           color: var(--text-primary);
         }
 
+        /* Single-column checklist — same design as the service page bullet list */
         .services-list {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-
-        @media (min-width: 640px) {
-          .services-list {
-            grid-template-columns: 1fr 1fr;
-            gap: 24px 20px;
-          }
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
         }
 
         .service-item {
@@ -172,15 +166,14 @@ export default function ServicesBrief() {
         .service-icon {
           color: var(--brand-primary);
           flex-shrink: 0;
-          margin-top: 2px;
+          margin-top: 3px;
         }
 
         .service-title {
-          font-family: var(--font-heading);
-          font-size: 1.0625rem;
+          font-size: 1rem;
           font-weight: 600;
           color: var(--text-primary);
-          margin-bottom: 6px;
+          margin-bottom: 2px;
         }
 
         .service-desc {

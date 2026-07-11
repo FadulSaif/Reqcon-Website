@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import LogoReversed from "../logos/LogoReversed";
-import { Menu, X, Sun, Moon, Globe } from "lucide-react";
+import { Menu, X, Sun, Moon, ChevronDown, Check } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SERVICES_CONFIG } from "@/lib/services-data";
 
@@ -16,12 +18,59 @@ const NAV_LINKS = [
   { translationKey: "nav.contact", href: "/contact" },
 ];
 
+/* Next.js Link with framer-motion animation support (for the mobile menu) */
+const MotionLink = motion.create(Link);
+
+/* Flag icons drawn as inline SVG (emoji flags don't render on Windows browsers) */
+const FlagSE = () => (
+  <svg width="20" height="14" viewBox="0 0 16 10" aria-hidden="true" style={{ borderRadius: 2, flexShrink: 0 }}>
+    <rect width="16" height="10" fill="#006AA7" />
+    <rect x="5" width="2" height="10" fill="#FECC00" />
+    <rect y="4" width="16" height="2" fill="#FECC00" />
+  </svg>
+);
+const FlagGB = () => (
+  <svg width="20" height="14" viewBox="0 0 60 30" aria-hidden="true" style={{ borderRadius: 2, flexShrink: 0 }}>
+    <rect width="60" height="30" fill="#012169" />
+    <path d="M0,0 60,30 M60,0 0,30" stroke="#ffffff" strokeWidth="6" />
+    <path d="M0,0 60,30 M60,0 0,30" stroke="#C8102E" strokeWidth="2.5" />
+    <path d="M30,0 V30 M0,15 H60" stroke="#ffffff" strokeWidth="10" />
+    <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" strokeWidth="6" />
+  </svg>
+);
+
+/* Language list — add a new entry here to support more languages later */
+const LANGUAGES: Array<{ code: "sv" | "en"; label: string; flag: React.ReactNode }> = [
+  { code: "sv", label: "Svenska", flag: <FlagSE /> },
+  { code: "en", label: "English", flag: <FlagGB /> },
+];
+
 export default function Navbar({ forceTransparentWhite = false }: { forceTransparentWhite?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
   const { theme, setTheme, systemTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
   const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+
+  // True when the link points to the page the user is currently on.
+  // "/services" also counts for "/services/it" etc.; external links never match.
+  const isActive = (href: string) => {
+    if (!href.startsWith("/")) return false;
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(href + "/");
+  };
+
+  const currentLang = LANGUAGES.find((l) => l.code === language) ?? LANGUAGES[0];
+
+  // Close the language dropdown when clicking anywhere outside it
+  useEffect(() => {
+    if (!langOpen) return;
+    const close = () => setLangOpen(false);
+    document.addEventListener("click", close);
+    return () => document.removeEventListener("click", close);
+  }, [langOpen]);
 
   useEffect(() => {
     const timer = setTimeout(() => setMounted(true), 0);
@@ -59,10 +108,10 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
     <>
       <div className={`navbar-wrapper ${scrolled ? "scrolled" : ""}`}>
         <nav className={`navbar-pill ${scrolled ? "glass-panel" : "transparent"} ${forceTransparentWhite && !scrolled ? "force-white" : ""}`}>
-          {/* Logo */}
-          <a href="#hero" className="navbar-brand hover-lift">
+          {/* Logo — links to home page */}
+          <Link href="/" className="navbar-brand hover-lift" aria-label="Agil Arbetskraft – Hem">
             <LogoReversed className="navbar-logo" />
-          </a>
+          </Link>
 
           {/* Desktop Links */}
           <ul className="navbar-links">
@@ -70,40 +119,67 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
               if (link.translationKey === "nav.services") {
                 return (
                   <li key={link.href} className="nav-item-dropdown">
-                    <a href={link.href} className="nav-link">
+                    <Link href={link.href} className={`nav-link ${isActive(link.href) ? "active" : ""}`}>
                       {t(link.translationKey)}
-                    </a>
+                    </Link>
                     <div className="dropdown-menu glass-panel">
                       {Object.keys(SERVICES_CONFIG).map((slug) => (
-                        <a key={slug} href={`/services/${slug}`} className="dropdown-item">
+                        <Link key={slug} href={`/services/${slug}`} className="dropdown-item">
                           {t(`services.${slug}.title`)}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </li>
                 );
               }
+              // External links (e.g. the jobs site) keep a plain <a>; internal pages use <Link>
+              const isExternal = !link.href.startsWith("/");
               return (
                 <li key={link.href}>
-                  <a href={link.href} className="nav-link">
-                    {t(link.translationKey)}
-                  </a>
+                  {isExternal ? (
+                    <a href={link.href} className="nav-link" target="_blank" rel="noopener noreferrer">
+                      {t(link.translationKey)}
+                    </a>
+                  ) : (
+                    <Link href={link.href} className={`nav-link ${isActive(link.href) ? "active" : ""}`}>
+                      {t(link.translationKey)}
+                    </Link>
+                  )}
                 </li>
               );
             })}
           </ul>
 
           <div className="navbar-actions">
-            {/* Language Toggle */}
+            {/* Language Dropdown (flag + code, expandable for more languages) */}
             {mounted && (
-              <button
-                onClick={() => setLanguage(language === "sv" ? "en" : "sv")}
-                className="navbar-icon-btn desktop-cta"
-                aria-label="Toggle language"
-              >
-                <Globe size={18} />
-                <span>{language.toUpperCase()}</span>
-              </button>
+              <div className="lang-dropdown desktop-cta">
+                <button
+                  onClick={(e) => { e.stopPropagation(); setLangOpen(!langOpen); }}
+                  className="navbar-icon-btn lang-btn"
+                  aria-label="Select language"
+                  aria-expanded={langOpen}
+                >
+                  {currentLang.flag}
+                  <span>{currentLang.code.toUpperCase()}</span>
+                  <ChevronDown size={14} className={`lang-chevron ${langOpen ? "open" : ""}`} />
+                </button>
+                {langOpen && (
+                  <div className="lang-menu glass-panel">
+                    {LANGUAGES.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => { setLanguage(lang.code); setLangOpen(false); }}
+                        className={`lang-item ${language === lang.code ? "active" : ""}`}
+                      >
+                        {lang.flag}
+                        <span>{lang.label}</span>
+                        {language === lang.code && <Check size={14} className="lang-check" />}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             )}
 
             {/* Theme Toggle */}
@@ -118,9 +194,9 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
             )}
 
             {/* CTA */}
-            <a href="/contact" className="btn btn-primary btn-sm desktop-cta hover-lift">
+            <Link href="/contact#contact-form" className="btn btn-primary btn-sm desktop-cta hover-lift">
               {t("nav.requestStaff")}
-            </a>
+            </Link>
 
             {/* Mobile Hamburger */}
             <button
@@ -144,21 +220,37 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
             transition={{ duration: 0.2 }}
             className="mobile-menu-overlay glass-panel"
           >
-            {NAV_LINKS.map((link, i) => (
-              <motion.a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.05 + i * 0.04, duration: 0.3, ease: "easeOut" }}
-                className="mobile-nav-link"
-              >
-                {t(link.translationKey)}
-              </motion.a>
-            ))}
-            <motion.a
-              href="/contact"
+            {NAV_LINKS.map((link, i) =>
+              link.href.startsWith("/") ? (
+                <MotionLink
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05 + i * 0.04, duration: 0.3, ease: "easeOut" }}
+                  className={`mobile-nav-link ${isActive(link.href) ? "active" : ""}`}
+                >
+                  {t(link.translationKey)}
+                </MotionLink>
+              ) : (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileOpen(false)}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05 + i * 0.04, duration: 0.3, ease: "easeOut" }}
+                  className="mobile-nav-link"
+                >
+                  {t(link.translationKey)}
+                </motion.a>
+              )
+            )}
+            <MotionLink
+              href="/contact#contact-form"
               onClick={() => setMobileOpen(false)}
               className="btn btn-primary"
               initial={{ opacity: 0, y: 16 }}
@@ -166,7 +258,7 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
               transition={{ delay: 0.3, duration: 0.3 }}
             >
               {t("nav.requestStaff")}
-            </motion.a>
+            </MotionLink>
             
             {mounted && (
               <motion.div
@@ -175,13 +267,24 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
                 transition={{ delay: 0.4, duration: 0.3 }}
                 style={{ display: "flex", gap: "24px", marginTop: "16px" }}
               >
-                <button
-                  onClick={() => setLanguage(language === "sv" ? "en" : "sv")}
-                  className="theme-toggle-btn"
-                  style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "1.25rem", fontWeight: 500 }}
-                >
-                  <Globe size={24} /> {language.toUpperCase()}
-                </button>
+                <div style={{ display: "flex", gap: "12px" }}>
+                  {LANGUAGES.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => setLanguage(lang.code)}
+                      className="theme-toggle-btn"
+                      style={{
+                        display: "flex", alignItems: "center", gap: "8px",
+                        fontSize: "1.1rem", fontWeight: 500,
+                        padding: "8px 14px", borderRadius: "100px",
+                        border: language === lang.code ? "2px solid var(--primary)" : "2px solid var(--border-subtle)",
+                        color: language === lang.code ? "var(--primary)" : "var(--text-primary)",
+                      }}
+                    >
+                      {lang.flag} {lang.code.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
                 <button
                   onClick={() => setTheme(isDark ? "light" : "dark")}
                   className="theme-toggle-btn"
@@ -230,6 +333,10 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
         }
         .navbar-pill.transparent.force-white {
           --nav-text: #ffffff;
+        }
+        /* White logo only — NOT the whole navbar, otherwise the dropdown menus
+           inherit white text on their white panels and become invisible */
+        .navbar-pill.transparent.force-white .navbar-brand {
           --text-primary: #ffffff;
         }
         .navbar-pill.glass-panel {
@@ -341,6 +448,86 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
         }
         .nav-link:hover::after {
           transform: scaleX(1);
+        }
+
+        /* Current page — fixed orange highlight + underline */
+        .nav-link.active {
+          color: var(--primary);
+        }
+        .nav-link.active::after {
+          transform: scaleX(1);
+        }
+        .mobile-nav-link.active {
+          color: var(--primary);
+        }
+
+        /* Language dropdown */
+        .lang-dropdown {
+          position: relative;
+        }
+        .lang-btn {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          background: transparent;
+          border: none;
+          color: var(--nav-text);
+          cursor: pointer;
+          font-size: 0.875rem;
+          font-weight: 600;
+          padding: 6px 8px;
+          transition: color var(--duration-fast) var(--ease-out);
+        }
+        .lang-btn:hover {
+          color: var(--primary);
+        }
+        .lang-chevron {
+          transition: transform var(--duration-fast) var(--ease-out);
+        }
+        .lang-chevron.open {
+          transform: rotate(180deg);
+        }
+        .lang-menu {
+          position: absolute;
+          top: calc(100% + 8px);
+          right: 0;
+          background: var(--surface-elevated);
+          border: 1px solid var(--border-subtle);
+          border-radius: var(--radius-md);
+          padding: 6px;
+          min-width: 160px;
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          z-index: 110;
+        }
+        .lang-item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 9px 12px;
+          background: transparent;
+          border: none;
+          border-radius: var(--radius-sm, 8px);
+          color: var(--text-primary);
+          font-family: var(--font-body);
+          font-size: 0.9rem;
+          font-weight: 500;
+          cursor: pointer;
+          text-align: left;
+          transition: background var(--duration-fast), color var(--duration-fast);
+        }
+        .lang-item:hover {
+          background: var(--background-muted);
+          color: var(--primary);
+        }
+        .lang-item.active {
+          color: var(--primary);
+          font-weight: 600;
+        }
+        .lang-check {
+          margin-left: auto;
         }
 
         .theme-toggle-btn {

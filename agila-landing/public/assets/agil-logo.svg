@@ -2,8 +2,8 @@
   <defs>
     <style>
       .l-text { fill: #111113; stroke-width: 0px; }
-      .l-primary { fill: #F2683E; stroke-width: 0px; }
-      .l-accent { fill: #D55430; stroke-width: 0px; }
+      .l-primary { fill: #FAA632; stroke-width: 0px; }
+      .l-accent { fill: #F2683E; stroke-width: 0px; }
     </style>
   </defs>
   <g>

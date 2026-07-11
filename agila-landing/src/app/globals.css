@@ -860,6 +860,17 @@ body {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
+/* Navbar only: light mode gets the same frosted transparency as dark mode.
+   Scoped to .navbar-pill so cards/forms using .glass-panel stay solid. */
+.navbar-pill.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+}
+.dark .navbar-pill.glass-panel {
+  background: rgba(34, 34, 37, 0.75);
+}
+
 .navbar-icon-btn {
   display: inline-flex !important;
   flex-direction: row !important;

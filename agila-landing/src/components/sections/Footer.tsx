@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Mail, Phone, ArrowUpRight } from "lucide-react";
 import { LinkedinIcon as Linkedin, FacebookIcon as Facebook } from "../icons/SocialIcons";
 import LogoReversed from "../logos/LogoReversed";
@@ -8,11 +9,9 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { SITE_CONFIG } from "@/lib/site-config";
 
 const FOOTER_LINKS = [
-  { translationKey: "nav.home", href: "#hero" },
-  { translationKey: "footer.portfolio", href: "#portfolio" },
-  { translationKey: "footer.industries", href: "#industries" },
-  { translationKey: "nav.services", href: "#services" },
-  { translationKey: "footer.aboutUs", href: "#why-agil" },
+  { translationKey: "nav.home", href: "/" },
+  { translationKey: "nav.services", href: "/services" },
+  { translationKey: "footer.aboutUs", href: "/about" },
   { translationKey: "nav.contact", href: "/contact" },
 ];
 
@@ -27,15 +26,15 @@ export default function Footer() {
           
           {/* Column 1: Brand Anchor (max 30%) */}
           <div className="footer-col brand-col">
-            <a href="#hero" style={{ 
-              display: "inline-block", 
+            <Link href="/" style={{
+              display: "inline-block",
               marginBottom: "24px",
               "--text-primary": "#ffffff",
               "--brand-primary": "#ffffff",
               "--brand-accent": "rgba(255,255,255,0.8)"
             } as React.CSSProperties}>
               <LogoReversed style={{ height: 40, width: "auto" }} />
-            </a>
+            </Link>
             <h3 className="footer-slogan">
               {t("footer.slogan")}
             </h3>
@@ -49,10 +48,10 @@ export default function Footer() {
             <h4 className="footer-heading">{t("footer.navigation")}</h4>
             <nav className="footer-nav-list">
               {FOOTER_LINKS.map((link) => (
-                <a key={link.href} href={link.href} className="footer-link group">
+                <Link key={link.href} href={link.href} className="footer-link group">
                   <span>{t(link.translationKey)}</span>
                   <ArrowUpRight size={14} className="link-arrow" />
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
@@ -104,7 +103,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-bottom-right">
-            <a href="#hero" aria-label="Back to top" style={{
+            <a href="#" aria-label="Back to top" style={{
               display: "inline-flex",
               opacity: 0.5,
               transition: "opacity 0.3s ease",

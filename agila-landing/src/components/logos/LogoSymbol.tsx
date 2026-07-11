@@ -9,9 +9,11 @@ export default function LogoSymbol({ className = "", style }: { className?: stri
       aria-label="Agil symbol"
     >
       <defs>
+        {/* Official brand colors from the original logo files (02. WEB):
+            orange #F2683E + golden #FAA632 — fixed, not theme-dependent */}
         <style>{`
-          .ls-1 { fill: var(--brand-primary); stroke-width: 0px; }
-          .ls-2 { fill: var(--brand-accent); stroke-width: 0px; }
+          .ls-1 { fill: #FAA632; stroke-width: 0px; }
+          .ls-2 { fill: #F2683E; stroke-width: 0px; }
         `}</style>
       </defs>
       <path className="ls-2" d="M61.1455,10.4168c-13.1549,0-24.993,5.7304-33.1609,14.8217,7.2843-6.8045,17.0529-10.9811,27.7835-10.9811,22.4658,0,40.7426,18.2768,40.7426,40.7426,0,5.6493-1.1577,11.0328-3.2451,15.9283l-17.3923-38.8156h-12.5394l-26.4285,58.9815c-3.2571-1.711-6.2586-3.8453-8.9246-6.3363,8.168,9.0938,20.0079,14.826,33.1646,14.826,24.5836,0,44.5836-20,44.5836-44.5836S85.7292,10.4168,61.1455,10.4168ZM55.7682,95.7426c-3.5418,0-6.9754-.4637-10.253-1.3181l8.2288-18.3645h26.9576l-4.1305-9.2183h-18.6965l11.431-25.5108h.5964l17.572,39.2163c-7.4747,9.2585-18.9073,15.1953-31.7057,15.1953Z"/>

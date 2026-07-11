@@ -47,13 +47,13 @@ export default function LandingContact() {
             {/* Buttons */}
             <div className="lc-button-group">
               <a
-                href="/contact?service=staffing"
+                href="/contact?service=staffing#contact-form"
                 className="btn btn-primary btn-lg hover-lift"
               >
                 {t("nav.requestStaff")}
                 <ArrowRight size={18} />
               </a>
-              <a href="/contact" className="btn btn-secondary btn-lg hover-lift">
+              <a href="/contact#contact-form" className="btn btn-secondary btn-lg hover-lift">
                 {t("footer.getInTouch")}
                 <ArrowRight size={18} />
               </a>

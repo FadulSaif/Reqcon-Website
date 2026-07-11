@@ -1,17 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import Navbar from "./sections/Navbar";
 import Footer from "./sections/Footer";
 import FloatingCTA from "./sections/FloatingCTA";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ARTICLES } from "@/lib/articles-data";
+import ArticleCard from "@/components/ArticleCard";
 
 export default function ArticlesListPage() {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <>
@@ -31,38 +28,14 @@ export default function ArticlesListPage() {
           <div className="container-wide">
             <div className="al-grid">
               {ARTICLES.map((article, idx) => (
-                <motion.article
+                <ArticleCard
                   key={article.slug}
-                  className="al-card glass-panel hover-lift"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.5, delay: (idx % 3) * 0.1, ease: "easeOut" }}
-                >
-                  <div className="al-image-container">
-                    <Image
-                      src={article.image}
-                      alt={t(article.titleKey)}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="al-image"
-                      style={{ objectFit: "cover" }}
-                    />
-                    <span className="al-category">{t(article.categoryKey)}</span>
-                  </div>
-                  <div className="al-content">
-                    <div className="al-meta">
-                      <span>{language === "sv" ? article.dateSv : article.dateEn}</span>
-                    </div>
-                    <h2 className="al-card-title">
-                      <Link href={`/articles/${article.slug}`}>{t(article.titleKey)}</Link>
-                    </h2>
-                    <p className="al-excerpt">{t(article.excerptKey)}</p>
-                    <Link href={`/articles/${article.slug}`} className="btn btn-primary btn-sm inline-flex">
-                      {t("articles.read")} <ArrowRight size={16} />
-                    </Link>
-                  </div>
-                </motion.article>
+                  article={article}
+                  headingLevel="h2"
+                  linkTitle
+                  imageSizes="(max-width: 768px) 100vw, 33vw"
+                  animationDelay={(idx % 3) * 0.1}
+                />
               ))}
             </div>
           </div>
@@ -118,70 +91,7 @@ export default function ArticlesListPage() {
           .al-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
-        .al-card {
-          display: flex;
-          flex-direction: column;
-          overflow: hidden;
-          padding: 0;
-          border-radius: var(--radius-xl);
-          background: var(--bg-elevated);
-        }
-        .al-image-container {
-          position: relative;
-          width: 100%;
-          aspect-ratio: 16 / 9;
-          overflow: hidden;
-          display: block;
-        }
-        .al-image { object-fit: cover; transition: transform 0.6s ease; }
-        .al-card:hover .al-image { transform: scale(1.05); }
-        .al-category {
-          position: absolute;
-          top: 16px;
-          left: 16px;
-          background: var(--brand-primary);
-          color: #fff;
-          padding: 4px 12px;
-          border-radius: 100px;
-          font-size: 0.75rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          z-index: 2;
-        }
-        .al-content {
-          padding: 28px;
-          display: flex;
-          flex-direction: column;
-          flex-grow: 1;
-        }
-        .al-meta {
-          font-size: 0.875rem;
-          color: var(--text-secondary);
-          margin-bottom: 12px;
-        }
-        .al-card-title {
-          font-family: var(--font-heading);
-          font-size: 1.35rem;
-          font-weight: 700;
-          line-height: 1.3;
-          margin-bottom: 14px;
-          color: var(--text-primary);
-        }
-        .al-card-title a { color: inherit; text-decoration: none; }
-        .al-card-title a:hover { color: var(--brand-primary); }
-        .al-excerpt {
-          color: var(--text-secondary);
-          line-height: 1.6;
-          margin-bottom: 28px;
-          flex-grow: 1;
-        }
-        .inline-flex {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          align-self: flex-start;
-        }
+        /* Card styling lives in ArticleCard.tsx (shared with the homepage). */
       `}</style>
     </>
   );

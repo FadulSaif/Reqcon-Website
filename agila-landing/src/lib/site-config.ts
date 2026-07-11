@@ -58,3 +58,13 @@ export function absoluteUrl(path: string): string {
   const clean = path.startsWith("/") ? path : `/${path}`;
   return `${SITE_CONFIG.domain}${clean}`;
 }
+
+/**
+ * Open Graph / social-share image array for a page's `openGraph.images`.
+ * Next.js does NOT inherit the layout's OG image once a page defines its own
+ * `openGraph`, so every page must set this explicitly. Pass a page-specific
+ * image (e.g. a service or article hero) or omit for the site default.
+ */
+export function ogImages(path: string = SITE_CONFIG.ogImagePath) {
+  return [{ url: absoluteUrl(path), width: 1200, height: 630, alt: SITE_CONFIG.companyName }];
+}

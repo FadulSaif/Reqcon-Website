@@ -9,10 +9,12 @@ export default function LogoReversed({ className = "", style }: { className?: st
       aria-label="Agil Arbetskraft"
     >
       <defs>
+        {/* Symbol uses the official brand colors (orange #F2683E + golden #FAA632).
+            Only the text color stays theme-aware (dark/light/white navbar). */}
         <style>{`
-          .lr-1 { fill: var(--brand-primary); stroke-width: 0px; }
+          .lr-1 { fill: #FAA632; stroke-width: 0px; }
           .lr-2 { fill: var(--text-primary); stroke-width: 0px; }
-          .lr-3 { fill: var(--brand-accent); stroke-width: 0px; }
+          .lr-3 { fill: #F2683E; stroke-width: 0px; }
         `}</style>
       </defs>
       <g>

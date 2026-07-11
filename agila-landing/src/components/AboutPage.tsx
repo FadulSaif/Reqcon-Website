@@ -239,7 +239,7 @@ export default function AboutPage() {
                       })}
                     </div>
                     <a
-                      href={`/contact?service=${member.services[0]}`}
+                      href={`/contact?service=${member.services[0]}#contact-form`}
                       className="btn btn-primary btn-sm mt-16"
                     >
                       {t("contact.btn.contact")} {member.name.split(" ")[0]}
@@ -345,7 +345,7 @@ export default function AboutPage() {
                 <Link href="/services" className="btn btn-primary hover-lift">
                   {t("about.page.cta.btn1")}
                 </Link>
-                <Link href="/contact" className="btn btn-outline hover-lift dark-invert-btn">
+                <Link href="/contact#contact-form" className="btn btn-outline hover-lift dark-invert-btn">
                   {t("about.page.cta.btn2")}
                 </Link>
               </div>

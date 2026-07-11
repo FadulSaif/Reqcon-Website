@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ArticlesListPage from "@/components/ArticlesListPage";
 import { ARTICLES } from "@/lib/articles-data";
-import { SITE_CONFIG, absoluteUrl } from "@/lib/site-config";
+import { SITE_CONFIG, absoluteUrl, ogImages } from "@/lib/site-config";
 
 /* ─── Safe JSON-LD serializer ─── */
 function safeJsonLd(data: object): string {
@@ -17,7 +17,6 @@ export const metadata: Metadata = {
     "Läs artiklar och branschinsikter från Agil Arbetskraft om bemanning och rekrytering inom IT, bygg, logistik, transport och städ i Sverige.",
   alternates: {
     canonical: "/articles",
-    languages: { sv: "/articles", en: "/articles" },
   },
   openGraph: {
     title: "Artiklar & Branschinsikter – Agil Arbetskraft",
@@ -26,6 +25,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "sv_SE",
     url: absoluteUrl("/articles"),
+    images: ogImages(),
   },
 };
 

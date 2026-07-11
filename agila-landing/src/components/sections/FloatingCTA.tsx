@@ -37,7 +37,7 @@ export default function FloatingCTA() {
           <AnimatePresence>
             {expanded && (
               <motion.a
-                href="/contact"
+                href="/contact#contact-form"
                 initial={{ opacity: 0, scale: 0.9, y: 8 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 8 }}

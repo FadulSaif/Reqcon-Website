@@ -18,7 +18,7 @@ export interface ServiceData {
 export const SERVICES_CONFIG: Record<string, ServiceData> = {
   it: {
     slug: "it",
-    image: "/assets/industry-it.jpg",
+    image: "/assets/it-team-software-development.jpg",
     specs: {
       sv: [
         "Kravanalytiker",
@@ -79,7 +79,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
       sv: [
         {
           q: "Hur snabbt kan ni leverera IT-personal?",
-          a: "För standardroller som testare, junior systemutvecklare och IT-support kan vi vanligtvis presentera kandidater inom 24–72 timmar. För specialiserade eller seniora roller — exempelvis IT-arkitekter eller erfarna projektledare — räknar vi normalt med 1–2 veckors rekryteringstid."
+          a: "För standardroller som testare, junior systemutvecklare och IT-support kan vi vanligtvis presentera kandidater inom 24 till 72 timmar. För specialiserade eller seniora roller, exempelvis IT-arkitekter eller erfarna projektledare, räknar vi normalt med 1 till 2 veckors rekryteringstid."
         },
         {
           q: "Erbjuder ni både bemanning och direktrekrytering inom IT?",
@@ -101,7 +101,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
       en: [
         {
           q: "How quickly can you deliver IT staff?",
-          a: "For standard roles such as testers, junior developers, and IT support, we can typically present candidates within 24–72 hours. For specialised or senior roles — such as IT architects or experienced project managers — we normally allow 1–2 weeks for the recruitment process."
+          a: "For standard roles such as testers, junior developers, and IT support, we can typically present candidates within 24 to 72 hours. For specialised or senior roles, such as IT architects or experienced project managers, we normally allow 1 to 2 weeks for the recruitment process."
         },
         {
           q: "Do you offer both staffing and direct recruitment in IT?",
@@ -163,7 +163,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
         "Terminalarbetare sorterar, lastar och hanterar gods i logistik- och fraktterminaler i högt tempo. Vi levererar terminalpersonal till speditörer och transportföretag i hela Sverige.",
         "Personal för lastning och lossning hanterar gods vid lastkajer, containrar och fordon på ett säkert och effektivt sätt. Vi bemannar fysiskt vana medarbetare som känner till gällande arbetsmiljö- och säkerhetsrutiner.",
         "Inventeringspersonal genomför lagerräkning och avstämning för att säkerställa korrekta lagersaldon. Vi tillhandahåller personal för både löpande cykelinventering och stora årsinventeringar.",
-        "Medarbetare inom returhantering tar emot, bedömer och registrerar returnerade varor enligt företagets rutiner. Vi bemannar personal som hanterar returflöden snabbt och korrekt — en allt viktigare del av e-handeln.",
+        "Medarbetare inom returhantering tar emot, bedömer och registrerar returnerade varor enligt företagets rutiner. Vi bemannar personal som hanterar returflöden snabbt och korrekt, en allt viktigare del av e-handeln.",
         "Team- och arbetsledare planerar det dagliga arbetet, fördelar resurser och driver produktiviteten på lagergolvet. Vi rekryterar ledare med erfarenhet av att leda lagerteam och nå uppsatta mål.",
         "Lager- och logistikchefer ansvarar för hela lagerverksamheten, från bemanning och flöden till budget och leveransprecision. Vi rekryterar erfarna chefer som optimerar logistiken och sänker kostnaderna."
       ],
@@ -176,7 +176,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
         "Terminal workers sort, load, and handle goods in logistics and freight terminals at high tempo. We deliver terminal staff to freight forwarders and transport companies across Sweden.",
         "Loading and unloading staff handle goods at loading docks, containers, and vehicles safely and efficiently. We staff physically capable employees who know current work-environment and safety routines.",
         "Inventory staff carry out stock counts and reconciliation to ensure accurate inventory balances. We provide personnel for both ongoing cycle counts and large annual inventories.",
-        "Returns-handling staff receive, assess, and register returned goods according to company routines. We staff personnel who handle return flows quickly and accurately — an increasingly important part of e-commerce.",
+        "Returns-handling staff receive, assess, and register returned goods according to company routines. We staff personnel who handle return flows quickly and accurately, an increasingly important part of e-commerce.",
         "Team leaders and supervisors plan daily work, allocate resources, and drive productivity on the warehouse floor. We recruit leaders experienced in leading warehouse teams and meeting targets.",
         "Warehouse and logistics managers are responsible for the entire warehouse operation, from staffing and flows to budget and delivery precision. We recruit experienced managers who optimise logistics and reduce costs."
       ]
@@ -185,7 +185,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
       sv: [
         {
           q: "Hur snabbt kan ni leverera lagerpersonal?",
-          a: "För standardroller som lagerarbetare, orderplockare och truckförare kan vi ofta presentera kandidater inom 24–72 timmar. Inför kända säsongstoppar som Black Friday och julhandeln rekommenderar vi att planera bemanningen 4–6 veckor i förväg."
+          a: "För standardroller som lagerarbetare, orderplockare och truckförare kan vi ofta presentera kandidater inom 24 till 72 timmar. Inför kända säsongstoppar som Black Friday och julhandeln rekommenderar vi att planera bemanningen 4 till 6 veckor i förväg."
         },
         {
           q: "Har era truckförare giltiga truckkort?",
@@ -207,7 +207,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
       en: [
         {
           q: "How quickly can you deliver warehouse staff?",
-          a: "For standard roles such as warehouse workers, order pickers, and forklift operators, we can often present candidates within 24–72 hours. Ahead of known seasonal peaks like Black Friday and Christmas, we recommend planning staffing 4–6 weeks in advance."
+          a: "For standard roles such as warehouse workers, order pickers, and forklift operators, we can often present candidates within 24 to 72 hours. Ahead of known seasonal peaks like Black Friday and Christmas, we recommend planning staffing 4 to 6 weeks in advance."
         },
         {
           q: "Do your forklift operators hold valid licences?",
@@ -291,7 +291,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
         },
         {
           q: "Hur lång framförhållning behöver ni för byggbemanning?",
-          a: "För standardroller kan vi ofta leverera inom några dagar. För specialiserade kompetenser som certifierade maskinförare eller saneringspersonal rekommenderar vi 6–8 veckors framförhållning."
+          a: "För standardroller kan vi ofta leverera inom några dagar. För specialiserade kompetenser som certifierade maskinförare eller saneringspersonal rekommenderar vi 6 till 8 veckors framförhållning."
         },
         {
           q: "Kan ni bemanna både korta och långa byggprojekt?",
@@ -313,7 +313,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
         },
         {
           q: "How much lead time do you need for construction staffing?",
-          a: "For standard roles we can often deliver within a few days. For specialised competencies such as certified machine operators or remediation staff, we recommend 6–8 weeks' lead time."
+          a: "For standard roles we can often deliver within a few days. For specialised competencies such as certified machine operators or remediation staff, we recommend 6 to 8 weeks' lead time."
         },
         {
           q: "Can you staff both short and long construction projects?",

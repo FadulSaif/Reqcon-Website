@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import ServiceDetailPage from "@/components/ServiceDetailPage";
 import { SERVICES_CONFIG } from "@/lib/services-data";
 import { translations } from "@/lib/translations";
+import { SITE_CONFIG, ogImages } from "@/lib/site-config";
 
 /* ─── Safe JSON-LD serializer ─── */
 function safeJsonLd(data: object): string {
@@ -17,26 +18,26 @@ const SERVICE_META: Record<string, { titleSv: string; titleEn: string; descSv: s
   it: {
     titleSv: "IT-bemanning & IT-rekrytering i Sverige",
     titleEn: "IT Staffing & IT Recruitment in Sweden",
-    descSv: "Agil Arbetskraft rekryterar och bemannar IT-specialister i hela Sverige — systemutvecklare, UX-designers, Scrum Masters, projektledare och IT-arkitekter. Kontakta oss för snabb leverans.",
-    descEn: "Agil Arbetskraft recruits and staffs IT specialists across Sweden — systems developers, UX designers, Scrum Masters, project managers, and IT architects. Contact us for fast delivery.",
+    descSv: "Agil Arbetskraft rekryterar och bemannar IT-specialister i hela Sverige: systemutvecklare, UX-designers, Scrum Masters, projektledare och IT-arkitekter. Kontakta oss för snabb leverans.",
+    descEn: "Agil Arbetskraft recruits and staffs IT specialists across Sweden: systems developers, UX designers, Scrum Masters, project managers, and IT architects. Contact us for fast delivery.",
   },
   logistics: {
     titleSv: "Lager- & logistikbemanning i Sverige",
     titleEn: "Warehouse & Logistics Staffing in Sweden",
-    descSv: "Vi bemannar och rekryterar lager- och logistikpersonal för svenska företag — lagerarbetare, truckförare, terminalarbetare och logistikchefer. Snabb leverans i hela Sverige.",
-    descEn: "We staff and recruit warehouse and logistics personnel for Swedish companies — warehouse workers, forklift operators, terminal workers, and logistics managers. Fast delivery across Sweden.",
+    descSv: "Vi bemannar och rekryterar lager- och logistikpersonal för svenska företag: lagerarbetare, truckförare, terminalarbetare och logistikchefer. Snabb leverans i hela Sverige.",
+    descEn: "We staff and recruit warehouse and logistics personnel for Swedish companies: warehouse workers, forklift operators, terminal workers, and logistics managers. Fast delivery across Sweden.",
   },
   construction: {
     titleSv: "Byggbemanning & rekrytering i Sverige",
     titleEn: "Construction Staffing & Recruitment in Sweden",
-    descSv: "Agil Arbetskraft levererar yrkeskvalificerade byggarbetare och platschefer till svenska byggföretag — snickare, betongarbetare, maskinförare och arbetsledare.",
-    descEn: "Agil Arbetskraft delivers qualified construction workers and site managers to Swedish construction companies — carpenters, concrete workers, machine operators, and supervisors.",
+    descSv: "Agil Arbetskraft levererar yrkeskvalificerade byggarbetare och platschefer till svenska byggföretag: snickare, betongarbetare, maskinförare och arbetsledare.",
+    descEn: "Agil Arbetskraft delivers qualified construction workers and site managers to Swedish construction companies: carpenters, concrete workers, machine operators, and supervisors.",
   },
   transport: {
     titleSv: "Transportbemanning & chaufförsrekrytering i Sverige",
     titleEn: "Transport Staffing & Driver Recruitment in Sweden",
-    descSv: "Vi rekryterar och bemannar chaufförer och transportpersonal för svenska företag — B-, C- och CE-chaufförer, ADR-chaufförer, distributionschaufförer och fjärrchaufförer.",
-    descEn: "We recruit and staff drivers and transport personnel for Swedish companies — B, C, and CE drivers, ADR drivers, distribution drivers, and long-distance drivers.",
+    descSv: "Vi rekryterar och bemannar chaufförer och transportpersonal för svenska företag: B-, C- och CE-chaufförer, ADR-chaufförer, distributionschaufförer och fjärrchaufförer.",
+    descEn: "We recruit and staff drivers and transport personnel for Swedish companies: B, C, and CE drivers, ADR drivers, distribution drivers, and long-distance drivers.",
   },
   moving: {
     titleSv: "Flytt- och montagebemanning i Sverige",
@@ -62,17 +63,14 @@ export async function generateMetadata(
     description: svDesc,
     alternates: {
       canonical: `/services/${slug}`,
-      languages: {
-        sv: `/services/${slug}`,
-        en: `/services/${slug}`,
-      },
     },
     openGraph: {
       title: `${svTitle} – Agil Arbetskraft`,
       description: svDesc,
       type: "website",
       locale: "sv_SE",
-      url: `https://agilarbetskraft.se/services/${slug}`,
+      url: `${SITE_CONFIG.domain}/services/${slug}`,
+      images: ogImages(service.image),
     },
   };
 }
