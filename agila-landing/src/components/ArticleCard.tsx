@@ -69,12 +69,12 @@ export default function ArticleCard({
           {linkTitle ? <Link href={href}>{title}</Link> : title}
         </Heading>
         <p className="article-excerpt">{article.excerptKey ? t(article.excerptKey) : ""}</p>
-        <Link href={href} className="btn btn-primary btn-sm inline-flex">
+        <Link href={href} className="btn btn-primary btn-sm article-read-btn">
           {t("articles.read")} <ArrowRight size={16} />
         </Link>
       </div>
 
-      <style jsx>{`
+      <style jsx global>{`
         .article-card {
           display: flex;
           flex-direction: column;
@@ -144,11 +144,11 @@ export default function ArticleCard({
           margin-bottom: 14px;
           color: var(--text-primary);
         }
-        .article-title :global(a) {
+        .article-title a {
           color: inherit;
           text-decoration: none;
         }
-        .article-title :global(a:hover) {
+        .article-title a:hover {
           color: var(--brand-primary);
         }
 
@@ -159,7 +159,7 @@ export default function ArticleCard({
           flex-grow: 1; /* fills leftover space, pushing the button to the bottom */
         }
 
-        .inline-flex {
+        .article-read-btn {
           display: inline-flex;
           align-items: center;
           gap: 8px;

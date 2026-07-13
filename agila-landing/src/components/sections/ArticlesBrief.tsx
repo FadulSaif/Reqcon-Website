@@ -64,6 +64,7 @@ export default function ArticlesBrief() {
           display: grid;
           grid-template-columns: 1fr;
           gap: 32px;
+          align-items: stretch; /* every card fills its row height so buttons align */
         }
 
         @media (min-width: 768px) {

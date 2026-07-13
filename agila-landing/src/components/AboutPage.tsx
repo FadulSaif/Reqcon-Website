@@ -240,7 +240,7 @@ export default function AboutPage() {
                     </div>
                     <a
                       href={`/contact?service=${member.services[0]}#contact-form`}
-                      className="btn btn-primary btn-sm mt-16"
+                      className="btn btn-primary btn-sm about-team-btn"
                     >
                       {t("contact.btn.contact")} {member.name.split(" ")[0]}
                       <ArrowRight size={14} />
@@ -642,6 +642,9 @@ export default function AboutPage() {
           border-radius: var(--radius-xl);
           overflow: hidden;
           transition: transform 0.2s ease, box-shadow 0.2s ease;
+          display: flex;
+          flex-direction: column;
+          height: 100%; /* fill the equal-height grid cell so every card (and button) aligns */
         }
         .about-team-card:hover {
           transform: translateY(-4px);
@@ -653,6 +656,7 @@ export default function AboutPage() {
           width: 100%;
           aspect-ratio: 4 / 3.2;
           overflow: hidden;
+          flex-shrink: 0; /* keep the photo its natural size as the card stretches */
         }
         .about-team-photo {
           object-fit: cover;
@@ -667,6 +671,7 @@ export default function AboutPage() {
           padding: 24px 24px 28px;
           display: flex;
           flex-direction: column;
+          flex: 1; /* grow to fill the card so the button can pin to the bottom */
         }
 
         .about-team-role {
@@ -682,7 +687,7 @@ export default function AboutPage() {
           display: flex;
           flex-wrap: wrap;
           gap: 6px;
-          margin-bottom: 4px;
+          margin-bottom: 20px; /* consistent gap before the button, matching the contact page */
         }
         .about-team-tag {
           padding: 3px 10px;
@@ -692,6 +697,11 @@ export default function AboutPage() {
           font-size: 0.6875rem;
           font-weight: 600;
           letter-spacing: 0.02em;
+        }
+
+        .about-team-btn {
+          margin-top: auto; /* pin the button to the card bottom so every card's button aligns */
+          align-self: stretch; /* keep the existing full-width button look */
         }
 
         .mt-16 { margin-top: 16px; }

@@ -108,8 +108,19 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
     <>
       <div className={`navbar-wrapper ${scrolled ? "scrolled" : ""}`}>
         <nav className={`navbar-pill ${scrolled ? "glass-panel" : "transparent"} ${forceTransparentWhite && !scrolled ? "force-white" : ""}`}>
-          {/* Logo — links to home page */}
-          <Link href="/" className="navbar-brand hover-lift" aria-label="Agil Arbetskraft – Hem">
+          {/* Logo — links to home from any page; scrolls to top when already home */}
+          <Link
+            href="/"
+            className="navbar-brand hover-lift"
+            aria-label="Agil Arbetskraft – gå till startsidan"
+            onClick={(e) => {
+              setMobileOpen(false);
+              if (pathname === "/") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+          >
             <LogoReversed className="navbar-logo" />
           </Link>
 

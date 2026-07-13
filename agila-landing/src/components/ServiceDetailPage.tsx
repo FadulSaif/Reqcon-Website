@@ -90,13 +90,13 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
               {t(`services.${slug}.title`)}
             </h1>
 
-            <p className="body-lg mb-40" style={{ color: "#ffffff", opacity: 0.9, maxWidth: 700, margin: "0 auto" }}>
+            <p className="body-lg" style={{ color: "#ffffff", opacity: 0.9, maxWidth: 700, margin: "0 auto 44px" }}>
               {t(`services.${slug}.cardDesc`)}
             </p>
 
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-              <a href="#request-service" className="btn btn-primary btn-lg hover-lift inline-flex">
-                {t("services.detail.reqBtn")} <ArrowRight size={20} style={{ marginLeft: 8 }} />
+              <a href="#request-service" className="btn btn-primary hover-lift inline-flex">
+                {t("services.detail.reqBtn")} <ArrowRight size={18} style={{ marginLeft: 8 }} />
               </a>
             </div>
           </div>

@@ -514,6 +514,7 @@ export default function ContactPage() {
         .cp-card-flipper {
           position: relative;
           width: 100%;
+          height: 100%; /* fill the equal-height grid cell so every card (and its button) aligns */
           transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
           transform-style: preserve-3d;
         }
@@ -603,6 +604,7 @@ export default function ContactPage() {
           flex-wrap: wrap;
           gap: 6px;
           min-height: 52px;
+          margin-bottom: 20px; /* guaranteed gap before the button, even with 2 rows of tags (e.g. Johan) */
         }
         .cp-service-tag {
           padding: 3px 10px;
@@ -617,8 +619,7 @@ export default function ContactPage() {
 
         .cp-card-btn {
           width: 100%;
-          margin-top: auto;
-          padding-top: 12px;
+          margin-top: auto; /* pins the button to the card bottom so all cards align */
         }
 
         /* ─── Team Card — Back Face ─── */
