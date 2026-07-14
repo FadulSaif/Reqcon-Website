@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
-import { Send } from "lucide-react";
-import { motion } from "framer-motion";
+import { Send, Check, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   SERVICE_OPTIONS,
   getTeamMemberForService,
@@ -15,14 +15,34 @@ interface ContactFormProps {
   defaultService?: string;
   defaultMessage?: string;
   onServiceChange?: (slug: string) => void;
+  lockedService?: boolean;
+  specializations?: string[];
+  preSelectedSpecs?: string[];
+  /** If true, the service dropdown is completely hidden. */
+  hideServiceDropdown?: boolean;
+  /** If true, the routing badge is hidden. */
+  hideRoutingBadge?: boolean;
 }
 
-export default function ContactForm({ defaultService = "general", defaultMessage = "", onServiceChange }: ContactFormProps) {
+export default function ContactForm({
+  defaultService = "general",
+  defaultMessage = "",
+  onServiceChange,
+  lockedService = false,
+  specializations,
+  preSelectedSpecs,
+  hideServiceDropdown = false,
+  hideRoutingBadge = false,
+}: ContactFormProps) {
   const { language, t } = useLanguage();
   const [selectedService, setSelectedService] = useState(defaultService);
   const [message, setMessage] = useState(defaultMessage);
+  const [checkedSpecs, setCheckedSpecs] = useState<Set<string>>(new Set());
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [prevDefaultService, setPrevDefaultService] = useState(defaultService);
   const [prevDefaultMessage, setPrevDefaultMessage] = useState(defaultMessage);
+  const [prevPreSelectedSpecs, setPrevPreSelectedSpecs] = useState(preSelectedSpecs);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   if (defaultService !== prevDefaultService) {
     setPrevDefaultService(defaultService);
@@ -34,6 +54,44 @@ export default function ContactForm({ defaultService = "general", defaultMessage
     setMessage(defaultMessage);
   }
 
+  if (preSelectedSpecs !== prevPreSelectedSpecs) {
+    setPrevPreSelectedSpecs(preSelectedSpecs);
+    if (preSelectedSpecs && preSelectedSpecs.length > 0) {
+      setCheckedSpecs(new Set(preSelectedSpecs));
+    }
+  }
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const buildSpecsSummary = useCallback((specs: Set<string>) => {
+    if (specs.size === 0) return "";
+    const prefix = t("contact.form.specsSummaryPrefix");
+    const items = Array.from(specs).map((s) => `• ${s}`).join("\n");
+    return `\n\n${prefix}\n${items}`;
+  }, [t]);
+
+  useEffect(() => {
+    if (!specializations || specializations.length === 0) return;
+    const baseMsg = defaultMessage || (
+      selectedService !== "general"
+        ? (language === "sv"
+          ? `Hej, jag är intresserad av tjänsten ${t(getServiceLabelKey(selectedService))} och vill gärna få mer information.`
+          : `Hello, I am interested in the ${t(getServiceLabelKey(selectedService))} service and would like to receive more information.`)
+        : ""
+    );
+    const specsSummary = buildSpecsSummary(checkedSpecs);
+    setMessage(baseMsg + specsSummary);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [checkedSpecs]);
+
   const assignedMember = useMemo(
     () => getTeamMemberForService(selectedService),
     [selectedService]
@@ -44,10 +102,9 @@ export default function ContactForm({ defaultService = "general", defaultMessage
     if (onServiceChange) {
       onServiceChange(slug);
     } else {
-      // If no external handler, we still pre-fill a basic message
       if (slug !== "general") {
         setMessage(
-          language === "sv" 
+          language === "sv"
             ? `Hej, jag är intresserad av tjänsten ${t(getServiceLabelKey(slug))} och vill gärna få mer information.`
             : `Hello, I am interested in the ${t(getServiceLabelKey(slug))} service and would like to receive more information.`
         );
@@ -56,6 +113,41 @@ export default function ContactForm({ defaultService = "general", defaultMessage
       }
     }
   };
+
+  const handleToggleSpec = (spec: string) => {
+    setCheckedSpecs((prev) => {
+      const next = new Set(prev);
+      if (next.has(spec)) next.delete(spec);
+      else next.add(spec);
+      return next;
+    });
+  };
+
+  const handleToggleAll = () => {
+    if (!specializations) return;
+    if (checkedSpecs.size === specializations.length) {
+      setCheckedSpecs(new Set());
+    } else {
+      setCheckedSpecs(new Set(specializations));
+    }
+  };
+
+  const allChecked = specializations ? checkedSpecs.size === specializations.length : false;
+
+  // Summary text for the trigger button
+  const triggerLabel = (() => {
+    if (checkedSpecs.size === 0) {
+      return t("contact.form.selectSpecs");
+    }
+    if (allChecked) {
+      return language === "sv"
+        ? `Alla ${specializations!.length} tjänster valda`
+        : `All ${specializations!.length} services selected`;
+    }
+    return language === "sv"
+      ? `${checkedSpecs.size} tjänst${checkedSpecs.size > 1 ? "er" : ""} vald${checkedSpecs.size > 1 ? "a" : ""}`
+      : `${checkedSpecs.size} service${checkedSpecs.size > 1 ? "s" : ""} selected`;
+  })();
 
   return (
     <form
@@ -67,25 +159,13 @@ export default function ContactForm({ defaultService = "general", defaultMessage
           <label className="form-label" htmlFor="contact-name">
             {t("contact.form.name")}
           </label>
-          <input
-            className="form-input"
-            id="contact-name"
-            type="text"
-            placeholder={t("contact.form.phName")}
-            required
-          />
+          <input className="form-input" id="contact-name" type="text" placeholder={t("contact.form.phName")} required />
         </div>
         <div className="form-group">
           <label className="form-label" htmlFor="contact-email">
             {t("contact.form.email")}
           </label>
-          <input
-            className="form-input"
-            id="contact-email"
-            type="email"
-            placeholder={t("contact.form.phEmail")}
-            required
-          />
+          <input className="form-input" id="contact-email" type="email" placeholder={t("contact.form.phEmail")} required />
         </div>
       </div>
 
@@ -94,47 +174,38 @@ export default function ContactForm({ defaultService = "general", defaultMessage
           <label className="form-label" htmlFor="contact-company">
             {t("contact.form.company")}
           </label>
-          <input
-            className="form-input"
-            id="contact-company"
-            type="text"
-            placeholder={t("contact.form.phCompany")}
-            required
-          />
+          <input className="form-input" id="contact-company" type="text" placeholder={t("contact.form.phCompany")} required />
         </div>
         <div className="form-group">
           <label className="form-label" htmlFor="contact-phone">
             {t("contact.form.phone")}
           </label>
-          <input
-            className="form-input"
-            id="contact-phone"
-            type="tel"
-            placeholder={t("contact.form.phPhone")}
-          />
+          <input className="form-input" id="contact-phone" type="tel" placeholder={t("contact.form.phPhone")} />
         </div>
       </div>
 
-      <div className="form-group">
-        <label className="form-label" htmlFor="contact-service">
-          {t("contact.form.service")}
-        </label>
-        <select
-          className="form-input cp-select"
-          id="contact-service"
-          value={selectedService}
-          onChange={(e) => handleServiceChange(e.target.value)}
-        >
-          {SERVICE_OPTIONS.map((svc) => (
-            <option key={svc.slug} value={svc.slug}>
-              {t(svc.labelKey)}
-            </option>
-          ))}
-        </select>
-      </div>
+      {/* Service dropdown */}
+      {!hideServiceDropdown && (
+        <div className="form-group">
+          <label className="form-label" htmlFor="contact-service">
+            {t("contact.form.service")}
+          </label>
+          <select
+            className={`form-input cp-select${lockedService ? " cp-select-locked" : ""}`}
+            id="contact-service"
+            value={selectedService}
+            onChange={(e) => handleServiceChange(e.target.value)}
+            disabled={lockedService}
+          >
+            {SERVICE_OPTIONS.map((svc) => (
+              <option key={svc.slug} value={svc.slug}>{t(svc.labelKey)}</option>
+            ))}
+          </select>
+        </div>
+      )}
 
       {/* Routing Badge */}
-      {assignedMember && (
+      {!hideRoutingBadge && assignedMember && (
         <motion.div
           className="cp-routing-badge"
           initial={{ opacity: 0, height: 0 }}
@@ -144,27 +215,66 @@ export default function ContactForm({ defaultService = "general", defaultMessage
         >
           <div className="cp-routing-inner">
             <div className="cp-routing-avatar">
-              <Image
-                src={assignedMember.image}
-                alt={assignedMember.name}
-                width={44}
-                height={44}
-                className="cp-routing-img"
-              />
+              <Image src={assignedMember.image} alt={assignedMember.name} width={44} height={44} className="cp-routing-img" />
             </div>
             <div className="cp-routing-info">
-              <span className="cp-routing-name">
-                {assignedMember.name}
-              </span>
-              <span className="cp-routing-title">
-                {t(assignedMember.titleKey)}
-              </span>
+              <span className="cp-routing-name">{assignedMember.name}</span>
+              <span className="cp-routing-title">{t(assignedMember.titleKey)}</span>
             </div>
-            <span className="cp-routing-label">
-              {t("contact.form.yourContact")}
-            </span>
+            <span className="cp-routing-label">{t("contact.form.yourContact")}</span>
           </div>
         </motion.div>
+      )}
+
+      {/* Multi-select dropdown for specializations */}
+      {specializations && specializations.length > 0 && (
+        <div className="form-group" ref={dropdownRef}>
+          <label className="form-label">
+            {t("contact.form.selectSpecs")}
+          </label>
+          <button
+            type="button"
+            className={`form-input cp-multiselect-trigger${isDropdownOpen ? " cp-ms-open" : ""}${checkedSpecs.size > 0 ? " cp-ms-active" : ""}`}
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          >
+            <span className="cp-ms-label">{triggerLabel}</span>
+            <ChevronDown size={16} className={`cp-ms-chevron${isDropdownOpen ? " cp-ms-chevron-open" : ""}`} />
+          </button>
+
+          <AnimatePresence>
+            {isDropdownOpen && (
+              <motion.div
+                className="cp-ms-dropdown"
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={{ duration: 0.15 }}
+              >
+                {/* Select all / Clear all */}
+                <button type="button" className="cp-ms-item cp-ms-item-all" onClick={handleToggleAll}>
+                  <span className={`cp-ms-check${allChecked ? " cp-ms-checked" : ""}`}>
+                    {allChecked && <Check size={12} />}
+                  </span>
+                  <span>{allChecked ? (language === "sv" ? "Rensa alla" : "Clear all") : t("contact.form.selectAll")}</span>
+                </button>
+                <div className="cp-ms-divider" />
+
+                {/* Spec items */}
+                {specializations.map((spec, idx) => {
+                  const isChecked = checkedSpecs.has(spec);
+                  return (
+                    <button key={idx} type="button" className="cp-ms-item" onClick={() => handleToggleSpec(spec)}>
+                      <span className={`cp-ms-check${isChecked ? " cp-ms-checked" : ""}`}>
+                        {isChecked && <Check size={12} />}
+                      </span>
+                      <span>{spec}</span>
+                    </button>
+                  );
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       )}
 
       <div className="form-group">
@@ -172,7 +282,7 @@ export default function ContactForm({ defaultService = "general", defaultMessage
           {t("contact.form.message")}
         </label>
         <textarea
-          className="form-textarea"
+          className="form-textarea form-textarea-compact"
           id="contact-message"
           placeholder={t("contact.form.placeholderMsg")}
           required
@@ -181,10 +291,7 @@ export default function ContactForm({ defaultService = "general", defaultMessage
         />
       </div>
 
-      <button
-        type="submit"
-        className="btn btn-primary btn-lg cp-submit-btn"
-      >
+      <button type="submit" className="btn btn-primary btn-lg cp-submit-btn">
         <Send size={16} />
         {t("contact.btn.sendMsg")}
       </button>
@@ -199,8 +306,137 @@ export default function ContactForm({ defaultService = "general", defaultMessage
           padding-right: 44px;
         }
 
-        .cp-submit-btn {
+        .cp-select-locked {
+          opacity: 0.7;
+          cursor: not-allowed;
+          background-color: var(--bg-elevated, #f3f4f6);
+        }
+
+        .cp-submit-btn { width: 100%; }
+
+        .form-textarea-compact {
+          min-height: 120px !important;
+          max-height: 180px;
+        }
+
+        /* Tighter spacing inside service page form */
+        .cp-form-wrapper .form-group {
+          margin-bottom: 14px;
+        }
+
+        .cp-form-wrapper .grid-2-col {
+          gap: 14px;
+        }
+
+        .cp-form-wrapper .cp-routing-badge {
+          margin-bottom: 14px;
+        }
+
+        /* ─── Multi-Select Trigger ─── */
+        .cp-multiselect-trigger {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          cursor: pointer;
+          text-align: left;
+          background: var(--bg-input);
+        }
+
+        .cp-ms-label {
+          flex: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          color: var(--text-muted);
+          font-size: 0.9375rem;
+        }
+
+        .cp-ms-active .cp-ms-label {
+          color: var(--text-primary);
+          font-weight: 500;
+        }
+
+        .cp-ms-chevron {
+          flex-shrink: 0;
+          color: var(--text-muted);
+          transition: transform 0.2s ease;
+        }
+
+        .cp-ms-chevron-open {
+          transform: rotate(180deg);
+        }
+
+        .cp-ms-open {
+          border-color: var(--brand-orange) !important;
+          box-shadow: 0 0 0 3px rgba(250, 166, 50, 0.1);
+        }
+
+        /* ─── Multi-Select Dropdown ─── */
+        .cp-ms-dropdown {
+          position: absolute;
+          left: 0;
+          right: 0;
+          margin-top: 4px;
+          max-height: 220px;
+          overflow-y: auto;
+          background: var(--bg-card, #fff);
+          border: 1px solid var(--border, #e5e7eb);
+          border-radius: var(--radius-md, 8px);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+          z-index: 50;
+        }
+
+        .cp-ms-item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
           width: 100%;
+          text-align: left;
+          padding: 9px 14px;
+          font-size: 0.8125rem;
+          color: var(--text-primary);
+          background: none;
+          border: none;
+          cursor: pointer;
+          transition: background 0.12s ease;
+        }
+
+        .cp-ms-item:hover {
+          background: rgba(250, 166, 50, 0.06);
+        }
+
+        .cp-ms-item-all {
+          font-weight: 600;
+          color: var(--brand-primary);
+          font-size: 0.8125rem;
+        }
+
+        .cp-ms-divider {
+          height: 1px;
+          background: var(--border-subtle, #f0f0f0);
+        }
+
+        .cp-ms-check {
+          width: 18px;
+          height: 18px;
+          border-radius: 4px;
+          border: 2px solid var(--border, #d1d5db);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          transition: all 0.15s ease;
+        }
+
+        .cp-ms-checked {
+          background: var(--brand-primary);
+          border-color: var(--brand-primary);
+          color: #fff;
+        }
+
+        /* Ensure the form-group holding the dropdown has relative positioning */
+        .form-group {
+          position: relative;
         }
 
         /* ─── Routing Badge ─── */

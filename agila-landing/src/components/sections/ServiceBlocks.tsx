@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+// Link import preserved for potential future use
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
@@ -18,49 +19,63 @@ export default function ServiceBlocks() {
   return (
     <>
       <div className="services-stack">
-        {SERVICES_LIST.map((service, idx) => (
-          <motion.div
-            key={service.slug}
-            className={`service-block ${idx % 2 !== 0 ? "reversed" : ""}`}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <div className="service-block-image-container">
-              <Image
-                src={service.image}
-                alt={t(`services.${service.slug}.imgAlt`)}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="service-block-image"
-              />
-            </div>
+        {SERVICES_LIST.map((service, idx) => {
+          const categoryName = t(`services.${service.slug}.title`);
+          const allSpecs = service.specs[language as keyof typeof service.specs] || [];
+          const remainingCount = Math.max(0, allSpecs.length - 4);
 
-            <div className="service-block-content">
-              <h3 className="heading-lg mb-8">{t(`services.${service.slug}.title`)}</h3>
-              <p className="body-lg mb-24">{t(`services.${service.slug}.cardDesc`)}</p>
-
-              <ul className="service-bullets mb-32">
-                {service.specs[language as keyof typeof service.specs]?.slice(0, 4).map((bullet, bIdx) => (
-                  <li key={bIdx} className="bullet-item">
-                    <CheckCircle2 size={20} className="bullet-icon" />
-                    <span>{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-                <a href={`/services/${service.slug}`} className="btn btn-secondary btn-sm hover-lift inline-flex">
-                  {t("services.btn.readMore")}
-                </a>
-                <Link href={`/contact?service=${service.slug}#contact-form`} className="btn btn-primary btn-sm hover-lift inline-flex">
-                  {t("services.btn.request")} <ArrowRight size={16} style={{ marginLeft: 8 }} />
-                </Link>
+          return (
+            <motion.div
+              key={service.slug}
+              className={`service-block ${idx % 2 !== 0 ? "reversed" : ""}`}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="service-block-image-container">
+                <Image
+                  src={service.image}
+                  alt={t(`services.${service.slug}.imgAlt`)}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="service-block-image"
+                />
               </div>
-            </div>
-          </motion.div>
-        ))}
+
+              <div className="service-block-content">
+                <h3 className="heading-lg" style={{ marginBottom: "6px" }}>{categoryName}</h3>
+                <p className="body-lg" style={{ marginBottom: "14px" }}>{t(`services.${service.slug}.cardDesc`)}</p>
+
+                <p className="text-muted" style={{ fontSize: "0.8125rem", fontWeight: 500, marginBottom: "8px" }}>
+                  {t("services.roles.header")}
+                </p>
+
+                <ul className="service-bullets">
+                  {allSpecs.slice(0, 4).map((bullet, bIdx) => (
+                    <li key={bIdx} className="bullet-item">
+                      <CheckCircle2 size={20} className="bullet-icon" />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                  {remainingCount > 0 && (
+                    <li className="bullet-item-more">
+                      {remainingCount === 1 
+                        ? t("services.roles.moreSingular") 
+                        : t("services.roles.morePlural").replace("{count}", remainingCount.toString())}
+                    </li>
+                  )}
+                </ul>
+
+                <div className="service-actions">
+                  <a href={`/services/${service.slug}`} className="btn btn-primary btn-sm hover-lift inline-flex">
+                    {t("services.btn.viewAllRoles")}
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
 
       <style jsx global>{`
@@ -73,7 +88,7 @@ export default function ServiceBlocks() {
         .service-block {
           display: grid;
           grid-template-columns: 1fr;
-          gap: clamp(40px, 6vw, 80px);
+          gap: clamp(32px, 4vw, 48px);
           align-items: center;
         }
 
@@ -108,23 +123,24 @@ export default function ServiceBlocks() {
         }
 
         .service-block-content {
-          max-width: 560px;
+          display: flex;
+          flex-direction: column;
         }
 
         .service-bullets {
           list-style: none;
           padding: 0;
-          margin: 0;
+          margin: 0 0 16px 0;
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 8px;
         }
 
         .bullet-item {
           display: flex;
           align-items: center;
-          gap: 12px;
-          font-size: 1rem;
+          gap: 10px;
+          font-size: 0.9375rem;
           color: var(--text-secondary);
         }
 
@@ -135,6 +151,19 @@ export default function ServiceBlocks() {
 
         .service-block .inline-flex {
           display: inline-flex;
+          align-items: center;
+        }
+
+        .bullet-item-more {
+          padding-left: 30px;
+          font-style: italic;
+          color: var(--text-muted);
+          font-size: 0.875rem;
+          list-style: none;
+        }
+
+        .service-actions {
+          display: flex;
           align-items: center;
         }
       `}</style>

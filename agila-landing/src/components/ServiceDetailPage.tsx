@@ -5,9 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SERVICES_CONFIG } from "@/lib/services-data";
-import { SITE_CONFIG } from "@/lib/site-config";
-import { CheckCircle2, ArrowRight, MapPin, Map, Mail, Phone, Plus, Minus } from "lucide-react";
-import { LinkedinIcon as Linkedin, FacebookIcon as Facebook } from "./icons/SocialIcons";
+import { getTeamMemberForService, SERVICE_OPTIONS, getServiceLabelKey } from "@/lib/team-data";
+import { CheckCircle2, ArrowRight, Mail, Phone, Plus, Minus, Send } from "lucide-react";
+import { LinkedinIcon as Linkedin } from "./icons/SocialIcons";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "./sections/Navbar";
 import Footer from "./sections/Footer";
@@ -16,8 +16,8 @@ import ContactForm from "./sections/ContactForm";
 
 export default function ServiceDetailPage({ slug }: { slug: string }) {
   const { t, language } = useLanguage();
-  const [isFlipped, setIsFlipped] = useState(false);
   const [openSpec, setOpenSpec] = useState<number | null>(null);
+  const [preSelectedSpecs, setPreSelectedSpecs] = useState<string[]>([]);
   const data = SERVICES_CONFIG[slug];
 
   useEffect(() => {
@@ -222,9 +222,15 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
                         >
                           <div className="accordion-inner">
                             <p className="accordion-desc">{desc}</p>
-                            <a href="#request-service" className="acc-cta">
+                            <button
+                              className="acc-cta"
+                              onClick={() => {
+                                setPreSelectedSpecs([spec]);
+                                document.getElementById("request-service")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                              }}
+                            >
                               {t("services.btn.request")} <ArrowRight size={14} />
-                            </a>
+                            </button>
                           </div>
                         </motion.div>
                       )}
@@ -272,134 +278,89 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
         )}
 
         {/* E. Request Service / Contact Form */}
-        <section id="request-service" className="section section-bg-muted" style={{ padding: "80px 0" }}>
+        <section id="request-service" className="section section-bg-muted" style={{ padding: "40px 0" }}>
           <div className="container-wide">
-            <div className="text-center mb-48">
-              <span className="label d-block mb-16">{t("contact.form.eyebrow")}</span>
+            <div className="text-center mb-24">
+              <span className="label d-block mb-12">{t("contact.form.eyebrow")}</span>
               <h2 className="heading-lg">{t("contact.form.title")}</h2>
             </div>
 
-            <div className="cp-contact-grid">
-              {/* Left: Form */}
-              <motion.div
-                className="cp-form-wrapper glass-panel"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-              >
-                <ContactForm
-                  defaultService={slug}
-                  defaultMessage={language === "sv"
-                    ? `Hej, jag är intresserad av tjänsten ${t(`services.${slug}.title`)} och vill gärna få mer information.`
-                    : `Hello, I am interested in the ${t(`services.${slug}.title`)} service and would like to receive more information.`
-                  }
-                />
-              </motion.div>
+            <div className="sdp-contact-wrap">
+              <div className="sdp-contact-grid">
+                {/* Left: Form */}
+                <motion.div
+                  className="sdp-form-col"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                >
+                  <ContactForm
+                    defaultService={slug}
+                    lockedService={true}
+                    hideServiceDropdown={true}
+                    hideRoutingBadge={true}
+                    specializations={specializations}
+                    preSelectedSpecs={preSelectedSpecs}
+                    defaultMessage={language === "sv"
+                      ? `Hej, jag är intresserad av tjänsten ${t(`services.${slug}.title`)} och vill gärna få mer information.`
+                      : `Hello, I am interested in the ${t(`services.${slug}.title`)} service and would like to receive more information.`
+                    }
+                  />
+                </motion.div>
 
-              {/* Right: Flip Card */}
-              <motion.div
-                className={`cp-flip-container ${isFlipped ? "flipped" : ""}`}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.3, delay: 0.08, ease: "easeOut" }}
-              >
-                <div className="cp-flipper">
-                  {/* Front */}
-                  <div className="cp-front">
-                    <h3 className="heading-lg mb-32 text-white">
-                      {t("contact.flip.title")}
-                    </h3>
-                    <p className="body-lg mb-40" style={{ color: "rgba(255,255,255,0.8)" }}>
-                      {t("contact.flip.desc")}
-                    </p>
-
-                    <div className="cp-info-list">
-                      <div className="cp-info-item">
-                        <div className="cp-info-icon">
-                          <MapPin size={22} />
-                        </div>
-                        <div>
-                          <h4 className="cp-info-label">{t("contact.flip.headOffice")}</h4>
-                          <p className="cp-info-text">
-                            {SITE_CONFIG.address.full}
-                          </p>
-                          <button
-                            onClick={() => setIsFlipped(true)}
-                            className="btn btn-sm cp-map-btn"
-                          >
-                            <Map size={14} /> {t("contact.flip.viewMap")}
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="cp-info-item">
-                        <div className="cp-info-icon">
-                          <Mail size={22} />
-                        </div>
-                        <div>
-                          <h4 className="cp-info-label">{t("contact.flip.emailUs")}</h4>
-                          <p className="cp-info-text">
-                            <a href={`mailto:${SITE_CONFIG.email}`} style={{ color: "#fff", textDecoration: "none" }}>
-                              {SITE_CONFIG.email}
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="cp-info-item">
-                        <div className="cp-info-icon">
-                          <Phone size={22} />
-                        </div>
-                        <div>
-                          <h4 className="cp-info-label">{t("contact.flip.callUs")}</h4>
-                          <p className="cp-info-text">
-                            <a href={SITE_CONFIG.phoneHref} style={{ color: "#fff", textDecoration: "none" }}>
-                              {SITE_CONFIG.phone}
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div style={{ marginTop: "auto", paddingTop: "40px" }}>
-                      <h4 className="cp-info-label mb-16">{t("contact.flip.followUs")}</h4>
-                      <div className="cp-social-row">
-                        <a href={SITE_CONFIG.socials.linkedin} target="_blank" rel="noopener noreferrer" className="cp-social-btn">
-                          <Linkedin size={20} />
-                          <span>LinkedIn</span>
-                        </a>
-                        <a href={SITE_CONFIG.socials.facebook} target="_blank" rel="noopener noreferrer" className="cp-social-btn">
-                          <Facebook size={20} />
-                          <span>Facebook</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Back: Map */}
-                  <div className="cp-back">
-                    <iframe
-                      src={SITE_CONFIG.mapsEmbedUrl}
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      title="Agil Arbetskraft Office Location"
-                    />
-                    <button
-                      onClick={() => setIsFlipped(false)}
-                      className="btn btn-secondary btn-sm cp-back-btn"
-                      style={{ position: "absolute", bottom: "24px", left: "24px", zIndex: 10 }}
+                {/* Right: Team member card */}
+                {(() => {
+                  const member = getTeamMemberForService(slug);
+                  if (!member) return null;
+                  return (
+                    <motion.div
+                      className="sdp-member-card"
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-80px" }}
+                      transition={{ duration: 0.3, delay: 0.08, ease: "easeOut" }}
                     >
-                      {t("contact.btn.back")}
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
+                      <div className="sdp-member-avatar-wrap">
+                        <Image
+                          src={member.image}
+                          alt={member.name}
+                          width={80}
+                          height={80}
+                          className="sdp-member-avatar"
+                        />
+                      </div>
+                      <h3 className="sdp-member-name">{member.name}</h3>
+                      <p className="sdp-member-role">{t(member.titleKey)}</p>
+                      <p className="sdp-member-bio">{t(member.bioKey)}</p>
+
+                      <div className="sdp-member-contacts">
+                        <a href={`mailto:${member.email}`} className="sdp-member-contact-row">
+                          <div className="sdp-member-icon"><Mail size={16} /></div>
+                          <div>
+                            <span className="sdp-member-contact-label">{t("contact.lbl.email")}</span>
+                            <span className="sdp-member-contact-value">{member.email}</span>
+                          </div>
+                        </a>
+                        <a href={`tel:${member.phone.replace(/\s/g, "")}`} className="sdp-member-contact-row">
+                          <div className="sdp-member-icon"><Phone size={16} /></div>
+                          <div>
+                            <span className="sdp-member-contact-label">{t("contact.lbl.phone")}</span>
+                            <span className="sdp-member-contact-value">{member.phone}</span>
+                          </div>
+                        </a>
+                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="sdp-member-contact-row">
+                          <div className="sdp-member-icon"><Linkedin size={16} /></div>
+                          <div>
+                            <span className="sdp-member-contact-label">{t("contact.lbl.linkedin")}</span>
+                            <span className="sdp-member-contact-value">{t("contact.lbl.viewProfile")}</span>
+                          </div>
+                        </a>
+                      </div>
+                    </motion.div>
+                  );
+                })()}
+              </div>
             </div>
           </div>
         </section>
@@ -564,110 +525,173 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
           padding-left: 30px;
         }
 
-        /* ─── Contact Grid ─── */
-        .cp-contact-grid {
+        /* ─── Contact Section (Service Detail) ─── */
+        .sdp-contact-wrap {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+          border-radius: var(--radius-xl);
+          overflow: hidden;
+        }
+
+        .sdp-contact-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: clamp(32px, 5vw, 48px);
-          align-items: stretch;
+          gap: 6px;
+          background: var(--border, #e5e7eb);
         }
         @media (min-width: 1024px) {
-          .cp-contact-grid {
-            grid-template-columns: 1.2fr 1fr;
+          .sdp-contact-grid {
+            grid-template-columns: 1fr 300px;
           }
         }
 
-        .cp-form-wrapper {
-          padding: clamp(28px, 4vw, 44px);
-          border-radius: var(--radius-xl);
+        .sdp-form-col {
+          padding: clamp(18px, 2.5vw, 28px);
+          background: var(--surface);
+          border-radius: var(--radius-xl) var(--radius-xl) var(--radius-xl) var(--radius-xl);
         }
 
-        /* ─── Flip Card ─── */
-        .cp-flip-container {
-          perspective: 1500px;
-          border-radius: var(--radius-xl);
+        @media (min-width: 1024px) {
+          .sdp-form-col {
+            border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+          }
         }
-        .cp-flipper {
-          width: 100%;
-          height: 100%;
-          transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-          transform-style: preserve-3d;
-          position: relative;
-          min-height: 580px;
-        }
-        .cp-flip-container.flipped .cp-flipper {
-          transform: rotateY(180deg);
-        }
-        .cp-flip-container.flipped .cp-front { pointer-events: none; }
-        .cp-flip-container:not(.flipped) .cp-back { pointer-events: none; }
 
-        .cp-front, .cp-back {
-          position: absolute;
-          inset: 0;
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-          border-radius: var(--radius-xl);
-          overflow: hidden;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-        }
-        .cp-front {
-          background: linear-gradient(145deg, #1A1F2B 0%, #11151D 100%);
+        /* ─── Team Member Card (right column) ─── */
+        .sdp-member-card {
           display: flex;
           flex-direction: column;
-          padding: clamp(28px, 4vw, 44px);
-          z-index: 2;
+          align-items: center;
+          text-align: center;
+          padding: 28px 20px;
+          background: linear-gradient(145deg, #1A1F2B 0%, #11151D 100%);
+          position: relative;
+          overflow: hidden;
+          border-radius: var(--radius-xl);
         }
-        .cp-front::before {
+
+        @media (min-width: 1024px) {
+          .sdp-member-card {
+            border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+          }
+        }
+
+        .sdp-member-card::before {
           content: '';
           position: absolute;
-          top: 0; right: 0;
-          width: 280px; height: 280px;
-          background: radial-gradient(circle, rgba(242,104,62,0.12) 0%, transparent 70%);
+          top: -40px;
+          right: -40px;
+          width: 180px;
+          height: 180px;
+          background: radial-gradient(circle, rgba(242,104,62,0.15) 0%, transparent 70%);
           pointer-events: none;
         }
-        .cp-back {
-          background: var(--bg-elevated);
-          transform: rotateY(180deg);
-        }
-        .cp-back-btn {
-          position: absolute;
-          bottom: 28px;
-          left: 50%;
-          transform: translateX(-50%);
-          z-index: 10;
-          box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+
+        .sdp-member-avatar-wrap {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          overflow: hidden;
+          border: 3px solid var(--brand-red-orange);
+          margin-bottom: 14px;
+          position: relative;
+          z-index: 1;
         }
 
-        .cp-info-list { display: flex; flex-direction: column; gap: 32px; }
-        .cp-info-item { display: flex; gap: 16px; align-items: flex-start; }
-        .cp-info-icon {
-          display: flex; align-items: center; justify-content: center;
-          width: 44px; height: 44px; border-radius: 50%;
-          background: rgba(242,104,62,0.15); color: var(--brand-red-orange); flex-shrink: 0;
+        .sdp-member-avatar {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
         }
-        .cp-info-label {
-          font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
-          font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-bottom: 6px;
+
+        .sdp-member-name {
+          font-family: var(--font-heading);
+          font-size: 1.125rem;
+          font-weight: 700;
+          color: #FAFAFA;
+          margin-bottom: 4px;
+          position: relative;
+          z-index: 1;
         }
-        .cp-info-text { font-size: 1rem; color: #ffffff; line-height: 1.5; }
-        .cp-map-btn {
-          margin-top: 10px;
-          background: rgba(255,255,255,0.08) !important;
-          color: white !important;
-          border: 1px solid rgba(255,255,255,0.15) !important;
+
+        .sdp-member-role {
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: var(--brand-red-orange);
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          margin-bottom: 12px;
+          position: relative;
+          z-index: 1;
         }
-        .cp-map-btn:hover { background: var(--brand-primary) !important; border-color: var(--brand-primary) !important; }
-        .cp-social-row { display: flex; gap: 12px; flex-wrap: wrap; }
-        .cp-social-btn {
-          display: inline-flex; align-items: center; gap: 10px;
-          padding: 10px 20px; background: rgba(255,255,255,0.06);
-          border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm);
-          color: #ffffff; text-decoration: none; font-size: 0.875rem; font-weight: 500;
+
+        .sdp-member-bio {
+          font-size: 0.8125rem;
+          line-height: 1.5;
+          color: rgba(255,255,255,0.65);
+          margin-bottom: 20px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .sdp-member-contacts {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-bottom: 0;
+          position: relative;
+          z-index: 1;
+        }
+
+        .sdp-member-contact-row {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 10px 14px;
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: var(--radius-sm);
+          text-decoration: none;
           transition: all 0.2s ease;
         }
-        .cp-social-btn:hover { background: var(--brand-primary); border-color: var(--brand-primary); }
 
-        /* ─── Overview Section ─── */
+        .sdp-member-contact-row:hover {
+          background: rgba(242,104,62,0.12);
+          border-color: rgba(242,104,62,0.3);
+        }
+
+        .sdp-member-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: rgba(242,104,62,0.15);
+          color: var(--brand-red-orange);
+          flex-shrink: 0;
+        }
+
+        .sdp-member-contact-label {
+          display: block;
+          font-size: 0.5625rem;
+          font-weight: 600;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.4);
+        }
+
+        .sdp-member-contact-value {
+          display: block;
+          font-size: 0.8125rem;
+          color: #FAFAFA;
+          font-weight: 500;
+        }
+
+
         .overview-grid {
           display: grid; grid-template-columns: 1fr; gap: 60px; align-items: center;
         }
@@ -716,6 +740,10 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
 
         /* ─── Misc ─── */
         .inline-flex { display: inline-flex; align-items: center; }
+
+        #request-service {
+          scroll-margin-top: 100px;
+        }
         .mb-16 { margin-bottom: 16px; }
         .mb-24 { margin-bottom: 24px; }
         .mb-32 { margin-bottom: 32px; }
