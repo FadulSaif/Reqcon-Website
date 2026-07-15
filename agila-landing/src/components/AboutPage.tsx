@@ -28,7 +28,7 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              <span className="eyebrow d-block mb-16">{t("about.page.hero.eyebrow")}</span>
+              <span className="section-eyebrow">{t("about.page.hero.eyebrow")}</span>
               <h1 className="heading-xl mb-24">
                 {t("about.page.hero.title")}
               </h1>
@@ -198,7 +198,7 @@ export default function AboutPage() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.3 }}
             >
-              <span className="label d-block mb-16">{t("about.page.team.eyebrow")}</span>
+              <span className="section-eyebrow">{t("about.page.team.eyebrow")}</span>
               <h2 className="heading-lg">{t("about.page.team.title")}</h2>
               <p className="body-lg text-secondary mx-auto mt-16" style={{ maxWidth: "600px" }}>
                 {t("about.page.team.subtitle")}
@@ -390,14 +390,6 @@ export default function AboutPage() {
         .hero-image-content {
           object-fit: cover;
           object-position: center;
-        }
-
-        .eyebrow {
-          font-weight: 700;
-          text-transform: uppercase;
-          color: var(--brand-primary);
-          letter-spacing: 0.1em;
-          font-size: 0.875rem;
         }
 
         .mb-8 { margin-bottom: 8px; }

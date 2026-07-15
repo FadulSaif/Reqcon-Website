@@ -257,7 +257,7 @@ export default function ContactPage() {
         <section id="contact-form" className="section" ref={formRef}>
           <div className="container-wide">
             <div className="text-center mb-48">
-              <span className="label d-block mb-16">{t("contact.form.eyebrow")}</span>
+              <span className="section-eyebrow">{t("contact.form.eyebrow")}</span>
               <h2 className="heading-lg">{t("contact.form.title")}</h2>
             </div>
 
@@ -397,7 +397,7 @@ export default function ContactPage() {
         <section className="section section-bg-muted">
           <div className="container-wide">
             <div className="text-center mb-48">
-              <span className="label d-block mb-16">{t("contact.office.eyebrow")}</span>
+              <span className="section-eyebrow">{t("contact.office.eyebrow")}</span>
               <h2 className="heading-lg">{t("contact.office.title")}</h2>
             </div>
 

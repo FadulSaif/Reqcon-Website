@@ -17,7 +17,7 @@ export default function AboutBrief() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            <span className="eyebrow d-block">
+            <span className="section-eyebrow">
               {t("about.eyebrow")}
             </span>
             <h2 className="heading-tight mb-20">
@@ -111,15 +111,6 @@ export default function AboutBrief() {
           .about-brief-visual {
             order: 2;
           }
-        }
-
-        .eyebrow {
-          font-weight: 700;
-          text-transform: uppercase;
-          color: var(--brand-primary);
-          letter-spacing: 0.1em;
-          font-size: 0.875rem;
-          margin-bottom: 16px;
         }
 
         .heading-tight {

@@ -17,7 +17,7 @@ export default function ArticlesListPage() {
         {/* Hero */}
         <header className="al-hero">
           <div className="container-wide text-center">
-            <span className="eyebrow d-block mb-16">{t("articles.eyebrow")}</span>
+            <span className="section-eyebrow">{t("articles.eyebrow")}</span>
             <h1 className="al-title">{t("articles.page.title")}</h1>
             <p className="al-subtitle">{t("articles.page.subtitle")}</p>
           </div>
@@ -50,13 +50,6 @@ export default function ArticlesListPage() {
         .al-hero {
           padding-top: clamp(120px, 16vh, 180px);
           padding-bottom: clamp(40px, 6vw, 64px);
-        }
-        .eyebrow {
-          font-weight: 700;
-          text-transform: uppercase;
-          color: var(--brand-primary);
-          letter-spacing: 0.1em;
-          font-size: 0.875rem;
         }
         .d-block { display: block; }
         .mb-16 { margin-bottom: 16px; }

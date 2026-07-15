@@ -331,7 +331,7 @@ export default function ArticleClientPage({ slug }: { slug: string }) {
         <header className="article-hero">
           <div className="container-wide">
             <div className="article-hero-content">
-              <span className="eyebrow">{article.category} • {article.date}</span>
+              <span className="section-eyebrow">{article.category} • {article.date}</span>
               <h1 className="article-title-main">{article.title}</h1>
               <p className="article-author">{article.author} · {article.authorRole}</p>
             </div>
@@ -369,7 +369,6 @@ export default function ArticleClientPage({ slug }: { slug: string }) {
         .article-page { width: 100%; background: var(--background); }
         .article-hero { padding-top: clamp(88px, 10vh, 110px); padding-bottom: 40px; }
         .article-hero-content { max-width: 800px; margin: 0 auto; text-align: center; }
-        .eyebrow { font-weight: 700; text-transform: uppercase; color: var(--brand-primary); letter-spacing: 0.1em; font-size: 0.875rem; display: block; margin-bottom: 24px; }
         .article-title-main { font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; line-height: 1.15; color: var(--text-primary); margin-bottom: 20px; }
         .article-author { font-size: 1rem; color: var(--text-secondary); font-style: italic; }
         .article-hero-image-wrapper { position: relative; width: 100%; height: clamp(300px, 45vh, 500px); min-height: 400px; border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }

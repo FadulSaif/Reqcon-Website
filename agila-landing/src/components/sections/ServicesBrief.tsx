@@ -64,7 +64,7 @@ export default function ServicesBrief() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
           >
-            <span className="eyebrow d-block">
+            <span className="section-eyebrow">
               {t("services.eyebrow")}
             </span>
             <h2 className="heading-tight mb-32">
@@ -131,15 +131,6 @@ export default function ServicesBrief() {
           display: flex;
           justify-content: center;
           align-items: center;
-        }
-
-        .eyebrow {
-          font-weight: 700;
-          text-transform: uppercase;
-          color: var(--brand-primary);
-          letter-spacing: 0.1em;
-          font-size: 0.875rem;
-          margin-bottom: 16px;
         }
 
         .heading-tight {

@@ -29,9 +29,10 @@
   --brand-orange: #FAA632;
   --brand-red-orange: #F2683E;
 
-  /* Typography Fallbacks */
-  --font-brand: "Konnect", var(--font-inter), "Inter", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
-  --font-body: var(--font-inter), "Inter", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  /* Typography Fallbacks. Konnect is licensed and not yet supplied, so Outfit
+     stands in — nothing else changes when the real files arrive. */
+  --font-brand: "Konnect", var(--font-outfit), "Outfit", var(--font-inter), "Inter", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Konnect", var(--font-outfit), "Outfit", var(--font-inter), "Inter", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
   --font-heading: var(--font-brand);
 
   /* Light Mode Semantic Tokens */
@@ -180,11 +181,11 @@ body {
 
 /* ─── Typography ─── */
 .font-display {
-  font-family: 'Outfit', 'Inter', sans-serif;
+  font-family: var(--font-heading);
 }
 
 .heading-hero {
-  font-family: 'Outfit', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.5rem, 5.5vw, 5.5rem);
   font-weight: 700;
   line-height: 1.1;
@@ -192,7 +193,7 @@ body {
 }
 
 .heading-display {
-  font-family: 'Outfit', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.25rem, 4.5vw, 4.5rem);
   font-weight: 700;
   line-height: 1.05;
@@ -200,7 +201,7 @@ body {
 }
 
 .heading-xl {
-  font-family: 'Outfit', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 600;
   line-height: 1.1;
@@ -208,7 +209,7 @@ body {
 }
 
 .heading-lg {
-  font-family: 'Outfit', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.5rem, 2.8vw, 2.25rem);
   font-weight: 600;
   line-height: 1.15;
@@ -216,7 +217,7 @@ body {
 }
 
 .heading-md {
-  font-family: 'Outfit', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.25rem, 2vw, 1.75rem);
   font-weight: 600;
   line-height: 1.2;
@@ -224,19 +225,24 @@ body {
 }
 
 .heading-sm {
-  font-family: 'Outfit', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.0625rem, 1.5vw, 1.375rem);
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.01em;
 }
 
-.label {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
+/* Single source of truth for every section label. Spacing is built in, so
+   call sites need no d-block/mb-* utilities alongside it. */
+.section-eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--brand-primary);
+  display: block;
+  margin-bottom: 16px;
 }
 
 .body-xl {
@@ -264,7 +270,7 @@ body {
   justify-content: center;
   gap: 8px;
   padding: 14px 32px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -479,7 +485,7 @@ body {
 
 .mosaic-title {
   color: var(--text-overlay);
-  font-family: 'Outfit', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(1rem, 1.5vw, 1.375rem);
   font-weight: 600;
   margin-bottom: 4px;
@@ -559,7 +565,7 @@ body {
 }
 
 .why-text {
-  font-family: 'Outfit', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 600;
   line-height: 1.2;
@@ -634,7 +640,7 @@ body {
   color: var(--bg-card);
   border: none;
   border-radius: 100px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.04em;

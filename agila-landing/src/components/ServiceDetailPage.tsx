@@ -115,7 +115,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
               >
-                <span className="eyebrow d-block mb-16" style={{ color: "var(--brand-primary)" }}>
+                <span className="section-eyebrow">
                   {t("services.detail.overviewEyebrow")}
                 </span>
                 <h2 className="heading-lg mb-24">{t("services.detail.overviewHeading")}</h2>
@@ -247,7 +247,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
           <section className="section" style={{ background: "var(--background)", padding: "80px 0 100px" }}>
             <div className="container-wide">
               <div className="text-center mb-56">
-                <span className="eyebrow d-block mb-16" style={{ color: "var(--brand-primary)" }}>
+                <span className="section-eyebrow">
                   {faqLabel}
                 </span>
                 <h2 className="heading-lg">{faqHeading}</h2>
@@ -281,7 +281,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
         <section id="request-service" className="section section-bg-muted" style={{ padding: "40px 0" }}>
           <div className="container-wide">
             <div className="text-center mb-24">
-              <span className="label d-block mb-12">{t("contact.form.eyebrow")}</span>
+              <span className="section-eyebrow">{t("contact.form.eyebrow")}</span>
               <h2 className="heading-lg">{t("contact.form.title")}</h2>
             </div>
 

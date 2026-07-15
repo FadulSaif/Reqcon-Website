@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../components/theme-provider";
 import { LanguageProvider } from "../contexts/LanguageContext";
@@ -10,6 +10,15 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
+});
+
+// Interim stand-in for Konnect, which is licensed and not yet supplied by the
+// client. Geometric sans, closest free match. Konnect precedes it in the
+// --font-brand/--font-body stacks, so it takes over once the files land.
+const outfit = Outfit({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-outfit",
 });
 
 export const metadata: Metadata = {
@@ -133,9 +142,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: safeJsonLd(organizationSchema) }}
         />
 
-        {/* TODO: Client must provide licensed Konnect Medium font files before production */}
+        {/* TODO: Client must supply licensed Konnect woff2 files (400/500/600/700).
+            Drop them in, add a next/font/local block exposing --font-konnect, and
+            Outfit stops being used — no other change needed. */}
       </head>
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${inter.variable} ${outfit.variable} antialiased`}>
         <StyledJsxRegistry>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <LanguageProvider>

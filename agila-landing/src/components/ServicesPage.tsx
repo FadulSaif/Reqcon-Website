@@ -153,13 +153,6 @@ export default function ServicesPage() {
         .opacity-80 { opacity: 0.8; }
         .relative { position: relative; }
         .z-10 { z-index: 10; }
-        .eyebrow {
-          font-weight: 700;
-          text-transform: uppercase;
-          color: var(--brand-primary);
-          letter-spacing: 0.1em;
-          font-size: 0.875rem;
-        }
       `}</style>
     </>
   );

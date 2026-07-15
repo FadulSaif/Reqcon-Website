@@ -54,7 +54,7 @@ export default function WhyAgil() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               style={{ position: "sticky", top: "20vh" }}
             >
-              <span className="label mb-16" style={{ display: "block" }}>
+              <span className="section-eyebrow">
                 {t("why.eyebrow")}
               </span>
               <h2 className="heading-xl mb-24">

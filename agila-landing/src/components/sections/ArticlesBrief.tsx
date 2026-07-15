@@ -12,7 +12,7 @@ export default function ArticlesBrief() {
     <section className="articles-section section">
       <div className="container-wide">
         <div className="text-center mb-48">
-          <span className="eyebrow d-block mb-16">{t("articles.eyebrow")}</span>
+          <span className="section-eyebrow">{t("articles.eyebrow")}</span>
           <h2 className="heading-lg">{t("articles.title")}</h2>
         </div>
 
@@ -51,14 +51,6 @@ export default function ArticlesBrief() {
         .mb-48 { margin-bottom: 48px; }
         .d-block { display: block; }
         .text-center { text-align: center; }
-
-        .eyebrow {
-          font-weight: 700;
-          text-transform: uppercase;
-          color: var(--brand-primary);
-          letter-spacing: 0.1em;
-          font-size: 0.875rem;
-        }
 
         .articles-grid {
           display: grid;
