@@ -21,7 +21,7 @@ export default function HeroSection() {
     <section id="hero" ref={ref} className="hero-section">
       {/* Floating Contained Video Card */}
       <motion.div
-        className="hero-video-card"
+        className="hero-video-card hero-shell"
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
@@ -91,6 +91,7 @@ export default function HeroSection() {
 
       {/* Static Logo Strip below the hero video card */}
       <motion.div
+        className="hero-strip-slot"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
@@ -111,10 +112,9 @@ export default function HeroSection() {
           padding-bottom: clamp(60px, 10vh, 100px);
         }
 
+        /* Width/alignment come from .hero-shell — see globals.css */
         .hero-video-card {
           position: relative;
-          width: calc(100% - clamp(2rem, 4vw, 4rem));
-          max-width: 1800px;
           min-height: clamp(520px, 65vh, 720px);
           height: auto;
           padding: clamp(60px, 8vh, 120px) 0;
@@ -123,11 +123,17 @@ export default function HeroSection() {
           border-bottom-left-radius: 0;
           border-bottom-right-radius: 0;
           overflow: hidden;
-          margin: 0 auto;
           display: flex;
           align-items: center;
           justify-content: center;
           box-shadow: 0 -4px 30px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(255,255,255,0.06);
+        }
+
+        /* .hero-section centers its children, so this reveal wrapper would
+           otherwise shrink to fit and the strip's .hero-shell percentage would
+           resolve against it instead of the section, insetting it twice. */
+        .hero-strip-slot {
+          width: 100%;
         }
 
         .hero-video-bg {

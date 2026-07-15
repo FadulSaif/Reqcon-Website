@@ -367,19 +367,14 @@ body {
 
 
 
-/* ─── Hero (Floating Video Card) ─── */
-.hero-video-card {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 24px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.04);
+/* ─── Hero shell ───
+   The hero video card and the trust-logo strip below it stack into a single
+   visual card, so their left/right edges must line up exactly. Both apply
+   this class and neither sets its own width, so the two cannot drift apart. */
+.hero-shell {
+  width: calc(100% - clamp(2rem, 4vw, 4rem));
+  max-width: 1800px;
+  margin-inline: auto;
 }
 
 /* ─── Split Section ─── */
@@ -823,10 +818,6 @@ body {
 
   .mosaic-item.wide {
     grid-column: span 1;
-  }
-
-  .hero-video-card {
-    border-radius: 16px;
   }
 
   .navbar-scrolled {

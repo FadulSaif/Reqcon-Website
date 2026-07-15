@@ -29,7 +29,7 @@ function LogoRow({ logos, reverse }: { logos: typeof COMPANY_LOGOS; reverse?: bo
 export default function CompanyLogoStrip() {
   const { t } = useLanguage();
   return (
-    <div className="logo-strip-wrapper">
+    <div className="logo-strip-wrapper hero-shell">
       <div className="logo-strip-label">
         <span className="label-line" aria-hidden="true" />
         <span className="label-dot" aria-hidden="true" />
@@ -44,10 +44,8 @@ export default function CompanyLogoStrip() {
       </div>
 
       <style jsx global>{`
+        /* Width/alignment come from .hero-shell — see globals.css */
         .logo-strip-wrapper {
-          width: calc(100% - clamp(2rem, 4vw, 4rem));
-          max-width: 1800px;
-          margin: 0 auto;
           background: var(--bg-card);
           border: 1px solid var(--border-subtle);
           border-top: none;
@@ -110,21 +108,25 @@ export default function CompanyLogoStrip() {
           gap: clamp(12px, 1.5vw, 16px);
         }
 
+        /* Fade the marquee out at both ends so chips cut by the card edge read
+           as intentional. Sized in px, not %, so the fade stays about one chip
+           wide instead of collapsing to half a chip on narrow screens. */
         .logo-row {
           overflow: hidden;
+          --logo-fade: clamp(112px, 15%, 280px);
           mask-image: linear-gradient(
             to right,
-            transparent,
-            black 10%,
-            black 90%,
-            transparent
+            transparent 0,
+            black var(--logo-fade),
+            black calc(100% - var(--logo-fade)),
+            transparent 100%
           );
           -webkit-mask-image: linear-gradient(
             to right,
-            transparent,
-            black 10%,
-            black 90%,
-            transparent
+            transparent 0,
+            black var(--logo-fade),
+            black calc(100% - var(--logo-fade)),
+            transparent 100%
           );
         }
 
