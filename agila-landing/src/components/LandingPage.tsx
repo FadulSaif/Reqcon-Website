@@ -6,7 +6,6 @@ import AboutBrief from "./sections/AboutBrief";
 import ServicesBrief from "./sections/ServicesBrief";
 import ArticlesBrief from "./sections/ArticlesBrief";
 import WhyAgil from "./sections/WhyAgil";
-import LandingContact from "./sections/LandingContact";
 import Footer from "./sections/Footer";
 import FloatingCTA from "./sections/FloatingCTA";
 
@@ -20,7 +19,6 @@ export default function LandingPage() {
         <ServicesBrief />
         <WhyAgil />
         <ArticlesBrief />
-        <LandingContact />
       </main>
       <Footer />
       <FloatingCTA />

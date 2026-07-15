@@ -34,7 +34,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
         "IT-arkitekt"
       ],
       en: [
-        "Requirements Analyst",
+        "Business Analyst",
         "Test Management",
         "Scrum Master",
         "Product Owner",
@@ -62,7 +62,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
         "En IT-arkitekt designar och definierar teknisk infrastruktur och lösningsarkitektur för att stödja verksamhetens långsiktiga mål. Vi rekryterar seniora IT-arkitekter med bred teknikerfarenhet och strategisk kompetens anpassad för din organisations behov."
       ],
       en: [
-        "A requirements analyst maps and documents business needs, translating them into concrete system requirements for development teams. We help you recruit or staff requirements analysts experienced in IT projects across both the private and public sectors in Sweden.",
+        "A business analyst maps and documents business needs, translating them into concrete system requirements for development teams. We help you recruit or staff business analysts experienced in IT projects across both the private and public sectors in Sweden.",
         "Test managers and test specialists are responsible for ensuring software quality through structured testing and risk-based quality control. Agil Arbetskraft delivers test experts experienced in manual testing, test automation, and agile working methods.",
         "A Scrum Master facilitates agile teams, removes obstacles, and ensures the Scrum process is followed effectively. We recruit and staff Scrum Masters with documented experience leading agile teams and driving continuous improvements in Swedish organisations.",
         "A product owner prioritises the product backlog and ensures business value is clearly represented to the development team. We match you with product owners who combine strong business insight with technical understanding, fitting your organisation's product strategy.",

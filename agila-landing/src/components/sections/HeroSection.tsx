@@ -79,7 +79,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.3, ease: "easeOut" }}
           >
-            <Link href="/#contact" className="btn btn-primary btn-hero-xl hover-lift">
+            <Link href="/contact#contact-form" className="btn btn-primary btn-hero-xl hover-lift">
               {t("hero.ctaPrimary")}
             </Link>
             <Link href="/services" className="btn btn-outline-hero btn-hero-xl hover-lift">
