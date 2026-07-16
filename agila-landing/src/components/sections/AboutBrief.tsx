@@ -41,7 +41,7 @@ export default function AboutBrief() {
 
           {/* Column 2: Logo Graphic */}
           <motion.div
-            className="about-brief-visual"
+            className="about-brief-visual eyebrow-offset"
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -82,7 +82,9 @@ export default function AboutBrief() {
 
         @media (min-width: 1024px) {
           .about-brief-grid {
-            grid-template-columns: 1.1fr 0.9fr; 
+            grid-template-columns: 1.1fr 0.9fr;
+            /* Graphic top meets the heading; .eyebrow-offset clears the eyebrow. */
+            align-items: start;
           }
         }
 

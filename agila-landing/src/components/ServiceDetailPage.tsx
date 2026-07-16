@@ -140,7 +140,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
 
               {/* Right Column: Service Card */}
               <motion.div
-                className="overview-visual"
+                className="overview-visual eyebrow-offset"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -696,7 +696,8 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
           display: grid; grid-template-columns: 1fr; gap: 60px; align-items: center;
         }
         @media (min-width: 1024px) {
-          .overview-grid { grid-template-columns: 45% 55%; }
+          /* Image top meets the heading; .eyebrow-offset clears the eyebrow. */
+          .overview-grid { grid-template-columns: 45% 55%; align-items: start; }
         }
 
         .value-highlights-list { display: flex; flex-direction: column; gap: 24px; }

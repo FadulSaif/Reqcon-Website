@@ -33,7 +33,7 @@ export default function ServicesBrief() {
         <div className="services-brief-grid">
           {/* Column 1: Visual */}
           <motion.div
-            className="services-brief-visual"
+            className="services-brief-visual eyebrow-offset"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -114,6 +114,8 @@ export default function ServicesBrief() {
         @media (min-width: 1024px) {
           .services-brief-grid {
             grid-template-columns: 1fr 1fr;
+            /* Image top meets the heading; .eyebrow-offset clears the eyebrow. */
+            align-items: start;
           }
         }
 

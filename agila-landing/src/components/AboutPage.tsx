@@ -418,8 +418,11 @@ export default function AboutPage() {
         }
 
         @media (min-width: 1024px) {
+          /* No eyebrow here, so the heading is the column's first line and
+             start-alignment lands the image top on it without an offset. */
           .vision-grid {
             grid-template-columns: 1fr 1fr;
+            align-items: start;
           }
         }
 

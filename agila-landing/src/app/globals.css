@@ -238,11 +238,31 @@ body {
   font-family: var(--font-heading);
   font-size: 0.875rem;
   font-weight: 500;
+  /* explicit so --section-eyebrow-offset below stays exact */
+  line-height: 1.6;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--brand-primary);
   display: block;
   margin-bottom: 16px;
+}
+
+/* Height of one .section-eyebrow line box plus its margin. Two-column
+   image/text sections offset the image column by this so the image's top edge
+   meets the heading rather than the eyebrow sitting above it. Keep in sync
+   with the font-size/line-height/margin above. */
+:root {
+  --section-eyebrow-offset: calc(0.875rem * 1.6 + 16px);
+}
+
+/* Put this on the image column of a two-column image/text section whose text
+   column starts with a .section-eyebrow. Lives here rather than in each
+   component because the image columns are motion.div's, which scoped
+   <style jsx> does not reach. Desktop only — the columns stack below 1024px. */
+@media (min-width: 1024px) {
+  .eyebrow-offset {
+    margin-top: var(--section-eyebrow-offset);
+  }
 }
 
 .body-xl {
