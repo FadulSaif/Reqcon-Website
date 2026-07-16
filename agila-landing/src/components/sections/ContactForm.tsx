@@ -2,14 +2,17 @@
 
 import { useState, useMemo, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
-import { Send, Check, ChevronDown } from "lucide-react";
+import { Send, Check, ChevronDown, CheckCircle2, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   SERVICE_OPTIONS,
   getTeamMemberForService,
   getServiceLabelKey,
 } from "@/lib/team-data";
+import { submitWeb3Form } from "@/lib/forms";
 import { useLanguage } from "@/contexts/LanguageContext";
+
+type SubmitStatus = "idle" | "sending" | "success" | "error";
 
 interface ContactFormProps {
   defaultService?: string;
@@ -39,6 +42,7 @@ export default function ContactForm({
   const [message, setMessage] = useState(defaultMessage);
   const [checkedSpecs, setCheckedSpecs] = useState<Set<string>>(new Set());
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [status, setStatus] = useState<SubmitStatus>("idle");
   const [prevDefaultService, setPrevDefaultService] = useState(defaultService);
   const [prevDefaultMessage, setPrevDefaultMessage] = useState(defaultMessage);
   const [prevPreSelectedSpecs, setPrevPreSelectedSpecs] = useState(preSelectedSpecs);
@@ -149,23 +153,72 @@ export default function ContactForm({
       : `${checkedSpecs.size} service${checkedSpecs.size > 1 ? "s" : ""} selected`;
   })();
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (status === "sending") return;
+    const fd = new FormData(e.currentTarget);
+    if (fd.get("botcheck")) return; // honeypot tripped — silently drop
+    setStatus("sending");
+    const serviceLabel = t(getServiceLabelKey(selectedService));
+    const { success } = await submitWeb3Form({
+      subject: `${language === "sv" ? "Ny förfrågan via webbplatsen" : "New website enquiry"} – ${serviceLabel}`,
+      from_name: "Agil Arbetskraft",
+      name: String(fd.get("name") || ""),
+      email: String(fd.get("email") || ""),
+      company: String(fd.get("company") || ""),
+      phone: String(fd.get("phone") || ""),
+      service: serviceLabel,
+      message,
+    });
+    setStatus(success ? "success" : "error");
+  };
+
+  const resetForm = () => {
+    setStatus("idle");
+    setCheckedSpecs(new Set());
+    setMessage(defaultMessage);
+  };
+
   return (
-    <form
-      onSubmit={(e) => e.preventDefault()}
-      className="contact-form w-full"
-    >
+    <form onSubmit={handleSubmit} className="contact-form w-full">
+      {status === "success" ? (
+      <motion.div
+        className="cf-success"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      >
+        <div className="cf-success-icon">
+          <CheckCircle2 size={30} />
+        </div>
+        <h3 className="cf-success-title">{t("contact.form.successTitle")}</h3>
+        <p className="cf-success-desc">{t("contact.form.successDesc")}</p>
+        <button type="button" className="btn btn-secondary" onClick={resetForm}>
+          {t("contact.form.sendAnother")}
+        </button>
+      </motion.div>
+      ) : (
+      <>
+      <input
+        type="checkbox"
+        name="botcheck"
+        className="cf-honeypot"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
       <div className="grid-2-col mb-0">
         <div className="form-group">
           <label className="form-label" htmlFor="contact-name">
             {t("contact.form.name")}
           </label>
-          <input className="form-input" id="contact-name" type="text" placeholder={t("contact.form.phName")} required />
+          <input className="form-input" id="contact-name" name="name" type="text" placeholder={t("contact.form.phName")} required />
         </div>
         <div className="form-group">
           <label className="form-label" htmlFor="contact-email">
             {t("contact.form.email")}
           </label>
-          <input className="form-input" id="contact-email" type="email" placeholder={t("contact.form.phEmail")} required />
+          <input className="form-input" id="contact-email" name="email" type="email" placeholder={t("contact.form.phEmail")} required />
         </div>
       </div>
 
@@ -174,13 +227,13 @@ export default function ContactForm({
           <label className="form-label" htmlFor="contact-company">
             {t("contact.form.company")}
           </label>
-          <input className="form-input" id="contact-company" type="text" placeholder={t("contact.form.phCompany")} required />
+          <input className="form-input" id="contact-company" name="company" type="text" placeholder={t("contact.form.phCompany")} required />
         </div>
         <div className="form-group">
           <label className="form-label" htmlFor="contact-phone">
             {t("contact.form.phone")}
           </label>
-          <input className="form-input" id="contact-phone" type="tel" placeholder={t("contact.form.phPhone")} />
+          <input className="form-input" id="contact-phone" name="phone" type="tel" placeholder={t("contact.form.phPhone")} />
         </div>
       </div>
 
@@ -291,10 +344,23 @@ export default function ContactForm({
         />
       </div>
 
-      <button type="submit" className="btn btn-primary btn-lg cp-submit-btn">
+      {status === "error" && (
+        <div className="cf-error-banner" role="alert">
+          <AlertCircle size={16} />
+          <span>{t("contact.form.errorMsg")}</span>
+        </div>
+      )}
+
+      <button
+        type="submit"
+        className="btn btn-primary btn-lg cp-submit-btn"
+        disabled={status === "sending"}
+      >
         <Send size={16} />
-        {t("contact.btn.sendMsg")}
+        {status === "sending" ? t("contact.form.sending") : t("contact.btn.sendMsg")}
       </button>
+      </>
+      )}
 
       <style jsx global>{`
         .cp-select {
@@ -313,6 +379,68 @@ export default function ContactForm({
         }
 
         .cp-submit-btn { width: 100%; }
+
+        .cp-submit-btn:disabled {
+          opacity: 0.65;
+          cursor: wait;
+          transform: none;
+        }
+
+        .cf-honeypot {
+          display: none !important;
+        }
+
+        /* ─── Submit Feedback ─── */
+        .cf-error-banner {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 12px 16px;
+          margin-bottom: 16px;
+          border-radius: var(--radius-sm);
+          background: rgba(220, 53, 69, 0.08);
+          border: 1px solid rgba(220, 53, 69, 0.25);
+          color: #c0392b;
+          font-size: 0.875rem;
+          font-weight: 500;
+        }
+
+        .cf-success {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          gap: 8px;
+          padding: 48px 24px;
+        }
+
+        .cf-success-icon {
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          background: var(--accent-soft);
+          color: var(--brand-primary);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 8px;
+        }
+
+        .cf-success-title {
+          font-family: var(--font-heading);
+          font-size: 1.375rem;
+          font-weight: 700;
+          color: var(--text-primary);
+        }
+
+        .cf-success-desc {
+          color: var(--text-secondary);
+          font-size: 0.9375rem;
+          line-height: 1.7;
+          max-width: 420px;
+          margin-bottom: 16px;
+        }
 
         .form-textarea-compact {
           min-height: 120px !important;
