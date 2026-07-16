@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SERVICES_CONFIG } from "@/lib/services-data";
 import { getTeamMemberForService, SERVICE_OPTIONS, getServiceLabelKey } from "@/lib/team-data";
-import { CheckCircle2, ArrowRight, Mail, Phone, Send } from "lucide-react";
+import { CheckCircle2, ArrowRight, Mail, Phone, Plus, Send } from "lucide-react";
 import { LinkedinIcon as Linkedin } from "./icons/SocialIcons";
 import { motion } from "framer-motion";
 import Navbar from "./sections/Navbar";
@@ -17,6 +17,7 @@ import ContactForm from "./sections/ContactForm";
 export default function ServiceDetailPage({ slug }: { slug: string }) {
   const { t, language } = useLanguage();
   const [preSelectedSpecs, setPreSelectedSpecs] = useState<string[]>([]);
+  const [customRoleRequested, setCustomRoleRequested] = useState(false);
   const data = SERVICES_CONFIG[slug];
 
   useEffect(() => {
@@ -37,6 +38,11 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
 
   const requestSpec = (spec: string) => {
     setPreSelectedSpecs([spec]);
+    document.getElementById("request-service")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const requestCustomRole = () => {
+    setCustomRoleRequested(true);
     document.getElementById("request-service")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
@@ -212,6 +218,24 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
                   </motion.div>
                 );
               })}
+
+              {/* Custom role request card */}
+              <motion.div
+                className="spec-card spec-card-custom"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.35, delay: (specializations.length % 3) * 0.05, ease: "easeOut" }}
+              >
+                <div className="spec-custom-icon">
+                  <Plus size={20} />
+                </div>
+                <h3 className="spec-title">{t("specs.custom.title")}</h3>
+                <p className="spec-desc">{t("specs.custom.desc")}</p>
+                <button className="spec-cta" onClick={requestCustomRole}>
+                  {t("specs.custom.cta")} <ArrowRight size={14} />
+                </button>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -276,6 +300,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
                     hideRoutingBadge={true}
                     specializations={specializations}
                     preSelectedSpecs={preSelectedSpecs}
+                    requestCustomRole={customRoleRequested}
                     defaultMessage={language === "sv"
                       ? `Hej, jag är intresserad av tjänsten ${t(`services.${slug}.title`)} och vill gärna få mer information.`
                       : `Hello, I am interested in the ${t(`services.${slug}.title`)} service and would like to receive more information.`
@@ -440,6 +465,29 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
 
         .spec-cta:hover {
           gap: 10px;
+        }
+
+        .spec-card-custom {
+          border: 1.5px dashed rgba(250, 166, 50, 0.5);
+          background: var(--accent-soft);
+        }
+
+        .spec-card-custom:hover {
+          transform: translateY(-4px);
+          border-color: var(--brand-primary);
+          box-shadow: 0 10px 30px rgba(250, 166, 50, 0.1);
+        }
+
+        .spec-custom-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: var(--brand-primary);
+          color: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 14px;
         }
 
         /* ─── FAQ Grid ─── */

@@ -25,6 +25,8 @@ interface ContactFormProps {
   hideServiceDropdown?: boolean;
   /** If true, the routing badge is hidden. */
   hideRoutingBadge?: boolean;
+  /** Set to true by the parent to reveal the custom-role input (e.g. from a "request a custom role" CTA). */
+  requestCustomRole?: boolean;
 }
 
 export default function ContactForm({
@@ -36,6 +38,7 @@ export default function ContactForm({
   preSelectedSpecs,
   hideServiceDropdown = false,
   hideRoutingBadge = false,
+  requestCustomRole = false,
 }: ContactFormProps) {
   const { language, t } = useLanguage();
   const [selectedService, setSelectedService] = useState(defaultService);
@@ -43,10 +46,14 @@ export default function ContactForm({
   const [checkedSpecs, setCheckedSpecs] = useState<Set<string>>(new Set());
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [customRoleActive, setCustomRoleActive] = useState(requestCustomRole);
+  const [customRole, setCustomRole] = useState("");
   const [prevDefaultService, setPrevDefaultService] = useState(defaultService);
   const [prevDefaultMessage, setPrevDefaultMessage] = useState(defaultMessage);
   const [prevPreSelectedSpecs, setPrevPreSelectedSpecs] = useState(preSelectedSpecs);
+  const [prevRequestCustomRole, setPrevRequestCustomRole] = useState(requestCustomRole);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const customRoleInputRef = useRef<HTMLInputElement>(null);
 
   if (defaultService !== prevDefaultService) {
     setPrevDefaultService(defaultService);
@@ -64,6 +71,19 @@ export default function ContactForm({
       setCheckedSpecs(new Set(preSelectedSpecs));
     }
   }
+
+  if (requestCustomRole !== prevRequestCustomRole) {
+    setPrevRequestCustomRole(requestCustomRole);
+    if (requestCustomRole) {
+      setCustomRoleActive(true);
+    }
+  }
+
+  useEffect(() => {
+    if (customRoleActive) {
+      customRoleInputRef.current?.focus({ preventScroll: true });
+    }
+  }, [customRoleActive]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -168,6 +188,7 @@ export default function ContactForm({
       company: String(fd.get("company") || ""),
       phone: String(fd.get("phone") || ""),
       service: serviceLabel,
+      ...(customRole.trim() ? { custom_role: customRole.trim() } : {}),
       message,
     });
     setStatus(success ? "success" : "error");
@@ -177,6 +198,8 @@ export default function ContactForm({
     setStatus("idle");
     setCheckedSpecs(new Set());
     setMessage(defaultMessage);
+    setCustomRole("");
+    setCustomRoleActive(false);
   };
 
   return (
@@ -324,11 +347,53 @@ export default function ContactForm({
                     </button>
                   );
                 })}
+
+                {/* Custom role entry */}
+                <div className="cp-ms-divider" />
+                <button
+                  type="button"
+                  className="cp-ms-item cp-ms-item-all"
+                  onClick={() => {
+                    setCustomRoleActive(true);
+                    setIsDropdownOpen(false);
+                  }}
+                >
+                  <span className="cp-ms-plus">＋</span>
+                  <span>{t("contact.form.customRoleOption")}</span>
+                </button>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
       )}
+
+      {/* Custom role input */}
+      <AnimatePresence initial={false}>
+        {customRoleActive && (
+          <motion.div
+            className="form-group cf-custom-role"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            style={{ overflow: "hidden" }}
+          >
+            <label className="form-label" htmlFor="contact-custom-role">
+              {t("contact.form.customRoleLabel")}
+            </label>
+            <input
+              ref={customRoleInputRef}
+              className="form-input cf-custom-role-input"
+              id="contact-custom-role"
+              type="text"
+              placeholder={t("contact.form.customRolePh")}
+              value={customRole}
+              onChange={(e) => setCustomRole(e.target.value)}
+            />
+            <span className="cf-custom-role-hint">{t("contact.form.customRoleHint")}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="form-group">
         <label className="form-label" htmlFor="contact-message">
@@ -388,6 +453,29 @@ export default function ContactForm({
 
         .cf-honeypot {
           display: none !important;
+        }
+
+        /* ─── Custom Role Input ─── */
+        .cp-ms-plus {
+          width: 18px;
+          height: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          font-weight: 700;
+        }
+
+        .cf-custom-role-input {
+          border-color: rgba(250, 166, 50, 0.45) !important;
+          background: var(--accent-soft);
+        }
+
+        .cf-custom-role-hint {
+          display: block;
+          margin-top: 6px;
+          font-size: 0.75rem;
+          color: var(--text-muted);
         }
 
         /* ─── Submit Feedback ─── */
