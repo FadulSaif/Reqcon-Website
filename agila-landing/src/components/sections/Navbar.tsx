@@ -325,11 +325,15 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
           padding: 12px 16px;
         }
 
+        /* 3-column grid with equal side columns (1fr auto 1fr) so the links
+           column is centred on the pill regardless of how wide the logo or the
+           actions cluster are. justify-content:space-between only looked centred
+           when both sides matched, which they don't (actions ~2x the logo). */
         .navbar-pill {
           pointer-events: auto;
-          display: flex;
+          display: grid;
+          grid-template-columns: 1fr auto 1fr;
           align-items: center;
-          justify-content: space-between;
           width: 100%;
           max-width: 100%;
           height: 72px; /* Fixed initial height */
@@ -358,6 +362,8 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
         }
 
         .navbar-brand {
+          grid-column: 1; /* explicit so actions stays in col 3 when links (col 2) is hidden on mobile */
+          justify-self: start; /* stay natural width at the left of its column */
           display: flex;
           align-items: center;
           gap: 10px;
@@ -374,6 +380,8 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
         }
 
         .navbar-links {
+          grid-column: 2;
+          justify-self: center; /* centred column */
           display: flex;
           align-items: center;
           gap: 32px;
@@ -426,6 +434,8 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
         }
 
         .navbar-actions {
+          grid-column: 3; /* stays at the right even when links (col 2) is hidden */
+          justify-self: end; /* stay natural width at the right of its column */
           display: flex;
           align-items: center;
           gap: 8px;
