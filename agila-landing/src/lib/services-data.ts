@@ -1,6 +1,8 @@
 export interface ServiceData {
   slug: string;
   image: string;
+  /** Indices into the positional `specs` arrays for roles that get a "most requested" tag. */
+  popularSpecs?: number[];
   specs: {
     sv: string[];
     en: string[];
@@ -19,6 +21,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
   it: {
     slug: "it",
     image: "/assets/it-team-software-development.jpg",
+    popularSpecs: [8, 7, 4],
     specs: {
       sv: [
         "Kravanalytiker",
@@ -125,6 +128,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
   logistics: {
     slug: "logistics",
     image: "/assets/industry-warehous.jpg",
+    popularSpecs: [0, 4],
     specs: {
       sv: [
         "Lagerarbete och orderplock",
@@ -231,6 +235,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
   construction: {
     slug: "construction",
     image: "/assets/industry-construction.jpg",
+    popularSpecs: [0, 3],
     specs: {
       sv: [
         "Snickare och träarbetare",
@@ -333,6 +338,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
   transport: {
     slug: "transport",
     image: "/assets/industry-transport.jpg",
+    popularSpecs: [2, 4],
     specs: {
       sv: [
         "B-chaufförer",
@@ -431,6 +437,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
   moving: {
     slug: "moving",
     image: "/assets/industry-moving.jpg",
+    popularSpecs: [0, 1],
     specs: {
       sv: [
         "Flyttpersonal",

@@ -6,9 +6,9 @@ import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SERVICES_CONFIG } from "@/lib/services-data";
 import { getTeamMemberForService, SERVICE_OPTIONS, getServiceLabelKey } from "@/lib/team-data";
-import { CheckCircle2, ArrowRight, Mail, Phone, Plus, Minus, Send } from "lucide-react";
+import { CheckCircle2, ArrowRight, Mail, Phone, Send } from "lucide-react";
 import { LinkedinIcon as Linkedin } from "./icons/SocialIcons";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Navbar from "./sections/Navbar";
 import Footer from "./sections/Footer";
 import FloatingCTA from "./sections/FloatingCTA";
@@ -16,7 +16,6 @@ import ContactForm from "./sections/ContactForm";
 
 export default function ServiceDetailPage({ slug }: { slug: string }) {
   const { t, language } = useLanguage();
-  const [openSpec, setOpenSpec] = useState<number | null>(null);
   const [preSelectedSpecs, setPreSelectedSpecs] = useState<string[]>([]);
   const data = SERVICES_CONFIG[slug];
 
@@ -36,8 +35,9 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
   const faqLabel = language === "sv" ? "VANLIGA FRÅGOR" : "FREQUENTLY ASKED QUESTIONS";
   const faqHeading = language === "sv" ? "Frågor och svar" : "Questions & Answers";
 
-  const toggleSpec = (idx: number) => {
-    setOpenSpec(openSpec === idx ? null : idx);
+  const requestSpec = (spec: string) => {
+    setPreSelectedSpecs([spec]);
+    document.getElementById("request-service")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
@@ -174,7 +174,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
         {/* Visual Connector */}
         <div className="section-connector" />
 
-        {/* C. Specialisations Accordion */}
+        {/* C. Specialisations Grid */}
         <section id="specialisations" className="section section-bg-muted" style={{ padding: "80px 0 100px" }}>
           <div className="container-wide">
             <div className="text-center mb-48">
@@ -184,57 +184,31 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
               </p>
             </div>
 
-            <div className="specs-accordion">
+            <div className="specs-grid">
               {specializations.map((spec, idx) => {
-                const isOpen = openSpec === idx;
                 const desc = specDescriptions?.[idx];
+                const isPopular = data.popularSpecs?.includes(idx);
                 return (
                   <motion.div
                     key={idx}
                     id={spec.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}
-                    className={`accordion-item${isOpen ? " accordion-open" : ""}`}
+                    className="spec-card glass-panel"
                     initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
-                    transition={{ duration: 0.35, delay: idx * 0.04, ease: "easeOut" }}
+                    transition={{ duration: 0.35, delay: (idx % 3) * 0.05, ease: "easeOut" }}
                   >
-                    <button
-                      className="accordion-trigger"
-                      onClick={() => toggleSpec(idx)}
-                      aria-expanded={isOpen}
-                    >
-                      <span className="acc-number">{(idx + 1).toString().padStart(2, "0")}</span>
-                      <span className="acc-title">{spec}</span>
-                      <span className="acc-icon-wrap">
-                        {isOpen ? <Minus size={16} /> : <Plus size={16} />}
-                      </span>
-                    </button>
-
-                    <AnimatePresence initial={false}>
-                      {isOpen && desc && (
-                        <motion.div
-                          className="accordion-content"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.28, ease: "easeInOut" }}
-                          style={{ overflow: "hidden" }}
-                        >
-                          <div className="accordion-inner">
-                            <p className="accordion-desc">{desc}</p>
-                            <button
-                              className="acc-cta"
-                              onClick={() => {
-                                setPreSelectedSpecs([spec]);
-                                document.getElementById("request-service")?.scrollIntoView({ behavior: "smooth", block: "start" });
-                              }}
-                            >
-                              {t("services.btn.request")} <ArrowRight size={14} />
-                            </button>
-                          </div>
-                        </motion.div>
+                    <div className="spec-card-head">
+                      <span className="spec-number">{(idx + 1).toString().padStart(2, "0")}</span>
+                      {isPopular && (
+                        <span className="spec-tag">{t("services.detail.popularTag")}</span>
                       )}
-                    </AnimatePresence>
+                    </div>
+                    <h3 className="spec-title">{spec}</h3>
+                    {desc && <p className="spec-desc">{desc}</p>}
+                    <button className="spec-cta" onClick={() => requestSpec(spec)}>
+                      {t("services.detail.requestRole")} <ArrowRight size={14} />
+                    </button>
                   </motion.div>
                 );
               })}
@@ -369,109 +343,102 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
       <FloatingCTA />
 
       <style jsx global>{`
-        /* ─── Accordion ─── */
-        .specs-accordion {
-          max-width: 860px;
-          margin: 0 auto;
+        /* ─── Specialisations Grid ─── */
+        .specs-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 20px;
+          align-items: stretch;
+        }
+
+        @media (min-width: 768px) {
+          .specs-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (min-width: 1200px) {
+          .specs-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+
+        .spec-card {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          padding: 28px;
+          border-radius: var(--radius-lg);
+          scroll-margin-top: 100px;
+          transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
         }
 
-        .accordion-item {
-          background: var(--bg-card);
-          border: 1px solid var(--border-subtle);
-          border-radius: var(--radius-md);
-          overflow: hidden;
-          transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .accordion-item.accordion-open {
+        .spec-card:hover {
+          transform: translateY(-4px);
           border-color: rgba(250, 166, 50, 0.45);
-          box-shadow: 0 4px 20px rgba(250, 166, 50, 0.07);
+          box-shadow: 0 10px 30px rgba(250, 166, 50, 0.08);
         }
 
-        .accordion-trigger {
-          width: 100%;
+        .spec-card-head {
           display: flex;
           align-items: center;
-          gap: 16px;
-          padding: 20px 24px;
-          background: none;
-          border: none;
-          cursor: pointer;
-          text-align: left;
-          color: var(--text-primary);
-          transition: background 0.15s ease;
+          justify-content: space-between;
+          gap: 10px;
+          margin-bottom: 14px;
         }
 
-        .accordion-trigger:hover {
-          background: rgba(250, 166, 50, 0.04);
-        }
-
-        .acc-number {
+        .spec-number {
           font-family: var(--font-brand);
           font-size: 0.8125rem;
           font-weight: 700;
           color: var(--text-muted);
           opacity: 0.45;
-          flex-shrink: 0;
-          width: 22px;
         }
 
-        .acc-title {
-          flex: 1;
+        .spec-tag {
+          background: var(--accent-soft);
+          color: var(--brand-primary);
+          font-size: 0.6875rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          padding: 4px 10px;
+          border-radius: 100px;
+          white-space: nowrap;
+        }
+
+        .spec-title {
           font-family: var(--font-heading);
-          font-size: 1.0625rem;
+          font-size: 1.125rem;
           font-weight: 600;
           color: var(--text-primary);
-          line-height: 1.4;
+          line-height: 1.35;
+          margin-bottom: 10px;
         }
 
-        .acc-icon-wrap {
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          background: rgba(250, 166, 50, 0.1);
-          color: var(--brand-primary);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          transition: background 0.2s ease, color 0.2s ease;
-        }
-
-        .accordion-open .acc-icon-wrap {
-          background: var(--brand-primary);
-          color: #ffffff;
-        }
-
-        .accordion-inner {
-          padding: 4px 24px 24px 62px;
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-        }
-
-        .accordion-desc {
+        .spec-desc {
           color: var(--text-secondary);
-          line-height: 1.75;
-          font-size: 0.9375rem;
-          margin: 0;
+          font-size: 0.9rem;
+          line-height: 1.7;
+          margin: 0 0 20px;
         }
 
-        .acc-cta {
+        .spec-cta {
+          margin-top: auto;
+          align-self: flex-start;
           display: inline-flex;
           align-items: center;
           gap: 6px;
           color: var(--brand-primary);
           font-size: 0.875rem;
           font-weight: 600;
-          text-decoration: none;
+          background: none;
+          border: none;
+          padding: 0;
+          cursor: pointer;
           transition: gap 0.2s ease;
         }
 
-        .acc-cta:hover {
+        .spec-cta:hover {
           gap: 10px;
         }
 
