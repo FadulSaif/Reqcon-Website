@@ -16,10 +16,6 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
   --color-focus-ring: var(--focus-ring);
-
-  --font-brand: var(--font-brand);
-  --font-body: var(--font-body);
-  --font-heading: var(--font-heading);
 }
 
 /* ─── Brand Tokens ─── */

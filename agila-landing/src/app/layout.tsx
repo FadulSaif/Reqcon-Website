@@ -130,8 +130,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // The font vars belong on <html>, not <body>: :root declares --font-brand and
+  // --font-body in terms of them, and a var() that is undefined on the element
+  // being resolved voids the whole declaration.
   return (
-    <html lang="sv" suppressHydrationWarning>
+    <html lang="sv" className={`${inter.variable} ${outfit.variable}`} suppressHydrationWarning>
       <head>
         {/* Swedish-only site (English is a client-side translation toggle, not a
             separately indexed URL), so no hreflang — just the canonical in metadata. */}
@@ -146,7 +149,7 @@ export default function RootLayout({
             Drop them in, add a next/font/local block exposing --font-konnect, and
             Outfit stops being used — no other change needed. */}
       </head>
-      <body className={`${inter.variable} ${outfit.variable} antialiased`}>
+      <body className="antialiased">
         <StyledJsxRegistry>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <LanguageProvider>
