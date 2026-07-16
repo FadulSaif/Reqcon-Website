@@ -111,7 +111,7 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
           {/* Logo — links to home from any page; scrolls to top when already home */}
           <Link
             href="/"
-            className="navbar-brand hover-lift"
+            className="navbar-brand"
             aria-label="Agil Arbetskraft – gå till startsidan"
             onClick={(e) => {
               setMobileOpen(false);
