@@ -365,9 +365,9 @@ function FullTeamStyles() {
         position: relative;
         overflow: hidden;
         border-radius: var(--radius-xl);
-        background: linear-gradient(145deg, #1a1f2b 0%, #11151d 100%);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+        background: linear-gradient(135deg, #fffaf3 0%, #fff1e0 60%, #ffe9d2 100%);
+        border: 1px solid rgba(250, 166, 50, 0.35);
+        box-shadow: 0 18px 44px rgba(242, 104, 62, 0.08);
         padding: clamp(28px, 4vw, 52px);
         display: grid;
         grid-template-columns: 1fr;
@@ -382,7 +382,7 @@ function FullTeamStyles() {
         right: -80px;
         width: 340px;
         height: 340px;
-        background: radial-gradient(circle, rgba(242, 104, 62, 0.18) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(242, 104, 62, 0.12) 0%, transparent 70%);
         pointer-events: none;
       }
 
@@ -393,8 +393,14 @@ function FullTeamStyles() {
         left: -60px;
         width: 300px;
         height: 300px;
-        background: radial-gradient(circle, rgba(250, 166, 50, 0.1) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(250, 166, 50, 0.12) 0%, transparent 70%);
         pointer-events: none;
+      }
+
+      .dark .ft-compact {
+        background: linear-gradient(135deg, #1f1a14 0%, #191410 60%, #141110 100%);
+        border-color: rgba(250, 166, 50, 0.28);
+        box-shadow: 0 18px 44px rgba(0, 0, 0, 0.3);
       }
 
       @media (min-width: 1024px) {
@@ -416,7 +422,7 @@ function FullTeamStyles() {
         font-weight: 600;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: var(--brand-orange);
+        color: var(--brand-primary);
         margin-bottom: 12px;
       }
 
@@ -425,12 +431,12 @@ function FullTeamStyles() {
         font-size: clamp(1.5rem, 2.2vw, 1.875rem);
         font-weight: 700;
         line-height: 1.2;
-        color: #fafafa;
+        color: var(--text-primary);
         margin-bottom: 12px;
       }
 
       .ft-compact-desc {
-        color: rgba(255, 255, 255, 0.72);
+        color: var(--text-secondary);
         font-size: 0.9375rem;
         line-height: 1.7;
         max-width: 560px;
@@ -449,24 +455,34 @@ function FullTeamStyles() {
         gap: 7px;
         padding: 8px 14px;
         border-radius: 100px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        color: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(17, 17, 19, 0.08);
+        color: var(--text-primary);
         font-size: 0.8125rem;
         font-weight: 500;
         white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(242, 104, 62, 0.06);
+      }
+
+      .dark .ftc-chip {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.12);
       }
 
       .ftc-chip svg {
-        color: var(--brand-orange);
+        color: var(--brand-primary);
         flex-shrink: 0;
       }
 
       .ftc-chip-extra {
-        border: 1.5px dashed rgba(250, 166, 50, 0.55);
-        background: rgba(250, 166, 50, 0.08);
-        color: var(--brand-orange);
+        border: 1.5px dashed rgba(242, 104, 62, 0.55);
+        background: rgba(242, 104, 62, 0.07);
+        color: var(--brand-primary);
         font-weight: 600;
+      }
+
+      .dark .ftc-chip-extra {
+        background: rgba(242, 104, 62, 0.12);
       }
 
       .ft-compact-side {
@@ -490,18 +506,18 @@ function FullTeamStyles() {
         align-items: flex-start;
         gap: 10px;
         font-size: 0.875rem;
-        color: rgba(255, 255, 255, 0.68);
+        color: var(--text-secondary);
         line-height: 1.55;
       }
 
       .ft-compact-points li svg {
         flex-shrink: 0;
-        color: var(--brand-orange);
+        color: var(--brand-primary);
         margin-top: 2px;
       }
 
       .ft-compact-points li strong {
-        color: #fafafa;
+        color: var(--text-primary);
         font-weight: 600;
       }
     `}</style>
