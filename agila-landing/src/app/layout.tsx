@@ -134,7 +134,7 @@ export default function RootLayout({
   // --font-body in terms of them, and a var() that is undefined on the element
   // being resolved voids the whole declaration.
   return (
-    <html lang="sv" className={`${inter.variable} ${outfit.variable}`} suppressHydrationWarning>
+    <html lang="sv" className={`${inter.variable} ${outfit.variable}`} data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         {/* Swedish-only site (English is a client-side translation toggle, not a
             separately indexed URL), so no hreflang — just the canonical in metadata. */}

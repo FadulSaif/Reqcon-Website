@@ -225,6 +225,7 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            key="mobile-menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

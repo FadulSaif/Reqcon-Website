@@ -28,6 +28,7 @@ export default function FloatingCTA() {
     <AnimatePresence>
       {visible && (
         <motion.div
+          key="floating-cta"
           className="floating-cta"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
