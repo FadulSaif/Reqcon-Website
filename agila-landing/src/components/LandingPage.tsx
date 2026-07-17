@@ -4,6 +4,7 @@ import Navbar from "./sections/Navbar";
 import HeroSection from "./sections/HeroSection";
 import AboutBrief from "./sections/AboutBrief";
 import ServicesBrief from "./sections/ServicesBrief";
+import FullTeamSection from "./sections/FullTeamSection";
 import ArticlesBrief from "./sections/ArticlesBrief";
 import WhyAgil from "./sections/WhyAgil";
 import Footer from "./sections/Footer";
@@ -17,6 +18,7 @@ export default function LandingPage() {
         <HeroSection />
         <AboutBrief />
         <ServicesBrief />
+        <FullTeamSection />
         <WhyAgil />
         <ArticlesBrief />
       </main>

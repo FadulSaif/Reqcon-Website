@@ -7,6 +7,7 @@ import Navbar from "./sections/Navbar";
 import Footer from "./sections/Footer";
 import FloatingCTA from "./sections/FloatingCTA";
 import ServiceBlocks from "./sections/ServiceBlocks";
+import FullTeamSection from "./sections/FullTeamSection";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ServicesPage() {
@@ -42,6 +43,9 @@ export default function ServicesPage() {
             <ServiceBlocks />
           </div>
         </section>
+
+        {/* Section 3: Full team banner */}
+        <FullTeamSection variant="compact" />
 
         {/* Section 4: Conversion CTA */}
         <section className="services-cta-section">

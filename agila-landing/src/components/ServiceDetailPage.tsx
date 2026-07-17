@@ -237,6 +237,29 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
                 </button>
               </motion.div>
             </div>
+
+            {/* Full team strip */}
+            <motion.div
+              className="full-team-strip"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
+            >
+              <div className="fts-text">
+                <span className="fts-eyebrow">{t("fullteam.eyebrow")}</span>
+                <h3 className="fts-title">{t("fullteam.strip.title")}</h3>
+                <p className="fts-desc">{t("fullteam.strip.desc")}</p>
+              </div>
+              <button
+                className="btn btn-primary hover-lift"
+                onClick={() => {
+                  document.getElementById("request-service")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+              >
+                {t("fullteam.strip.cta")}
+              </button>
+            </motion.div>
           </div>
         </section>
 
@@ -488,6 +511,69 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
           align-items: center;
           justify-content: center;
           margin-bottom: 14px;
+        }
+
+        /* ─── Full Team Strip ─── */
+        .full-team-strip {
+          margin-top: 48px;
+          padding: clamp(28px, 4vw, 44px);
+          border-radius: var(--radius-xl);
+          background: linear-gradient(145deg, #1a1f2b 0%, #11151d 100%);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 28px;
+          flex-wrap: wrap;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .full-team-strip::before {
+          content: "";
+          position: absolute;
+          top: -60px;
+          right: -60px;
+          width: 240px;
+          height: 240px;
+          background: radial-gradient(circle, rgba(242, 104, 62, 0.18) 0%, transparent 70%);
+          pointer-events: none;
+        }
+
+        .fts-text {
+          max-width: 640px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .fts-eyebrow {
+          display: block;
+          font-size: 0.75rem;
+          font-weight: 700;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--brand-orange);
+          margin-bottom: 10px;
+        }
+
+        .fts-title {
+          font-family: var(--font-heading);
+          font-size: clamp(1.375rem, 2vw, 1.75rem);
+          font-weight: 700;
+          color: #fafafa;
+          margin-bottom: 8px;
+        }
+
+        .fts-desc {
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 0.9375rem;
+          line-height: 1.7;
+          margin: 0;
+        }
+
+        .full-team-strip .btn {
+          position: relative;
+          z-index: 1;
+          flex-shrink: 0;
         }
 
         /* ─── FAQ Grid ─── */
