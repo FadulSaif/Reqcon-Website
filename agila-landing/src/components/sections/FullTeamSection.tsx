@@ -42,18 +42,45 @@ export default function FullTeamSection({ variant = "full" }: FullTeamSectionPro
       <section className="ft-compact-section">
         <div className="container-wide">
           <motion.div
-            className="ft-compact glass-panel"
+            className="ft-compact"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.45, ease: "easeOut" }}
           >
             <div className="ft-compact-text">
-              <span className="section-eyebrow" style={{ marginBottom: 10 }}>
-                {t("fullteam.eyebrow")}
-              </span>
+              <span className="ftc-eyebrow">{t("fullteam.eyebrow")}</span>
               <h3 className="ft-compact-title">{t("fullteam.title")}</h3>
               <p className="ft-compact-desc">{t("fullteam.desc")}</p>
+
+              <div className="ftc-chips">
+                {ROLES.map((role, idx) => {
+                  const Icon = role.icon;
+                  return (
+                    <motion.span
+                      key={idx}
+                      className="ftc-chip"
+                      initial={{ opacity: 0, y: 8 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-60px" }}
+                      transition={{ duration: 0.3, delay: 0.2 + idx * 0.06, ease: "easeOut" }}
+                    >
+                      <Icon size={14} />
+                      {t(role.key)}
+                    </motion.span>
+                  );
+                })}
+                <motion.span
+                  className="ftc-chip ftc-chip-extra"
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.3, delay: 0.2 + ROLES.length * 0.06, ease: "easeOut" }}
+                >
+                  <Plus size={14} />
+                  {t("fullteam.roleExtra")}
+                </motion.span>
+              </div>
             </div>
             <div className="ft-compact-side">
               <ul className="ft-compact-points">
@@ -328,25 +355,69 @@ function FullTeamStyles() {
         color: #ffffff;
       }
 
-      /* ─── Compact variant (banner) ─── */
+      /* ─── Compact variant (dark banner) ─── */
       .ft-compact-section {
         padding: clamp(24px, 4vw, 48px) 0 clamp(48px, 6vw, 72px);
         background: var(--background);
       }
 
       .ft-compact {
+        position: relative;
+        overflow: hidden;
         border-radius: var(--radius-xl);
-        padding: clamp(28px, 4vw, 48px);
+        background: linear-gradient(145deg, #1a1f2b 0%, #11151d 100%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+        padding: clamp(28px, 4vw, 52px);
         display: grid;
         grid-template-columns: 1fr;
-        gap: clamp(24px, 4vw, 48px);
+        gap: clamp(28px, 4vw, 56px);
         align-items: center;
+      }
+
+      .ft-compact::before {
+        content: "";
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 340px;
+        height: 340px;
+        background: radial-gradient(circle, rgba(242, 104, 62, 0.18) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .ft-compact::after {
+        content: "";
+        position: absolute;
+        bottom: -100px;
+        left: -60px;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(250, 166, 50, 0.1) 0%, transparent 70%);
+        pointer-events: none;
       }
 
       @media (min-width: 1024px) {
         .ft-compact {
-          grid-template-columns: 1.1fr 1fr;
+          grid-template-columns: 1.15fr 1fr;
         }
+      }
+
+      .ft-compact-text,
+      .ft-compact-side {
+        position: relative;
+        z-index: 1;
+      }
+
+      .ftc-eyebrow {
+        display: block;
+        font-family: var(--font-heading);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--brand-orange);
+        margin-bottom: 12px;
       }
 
       .ft-compact-title {
@@ -354,20 +425,54 @@ function FullTeamStyles() {
         font-size: clamp(1.5rem, 2.2vw, 1.875rem);
         font-weight: 700;
         line-height: 1.2;
-        color: var(--text-primary);
+        color: #fafafa;
         margin-bottom: 12px;
       }
 
       .ft-compact-desc {
-        color: var(--text-secondary);
+        color: rgba(255, 255, 255, 0.72);
         font-size: 0.9375rem;
         line-height: 1.7;
+        max-width: 560px;
+      }
+
+      .ftc-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 24px;
+      }
+
+      .ftc-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 8px 14px;
+        border-radius: 100px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .ftc-chip svg {
+        color: var(--brand-orange);
+        flex-shrink: 0;
+      }
+
+      .ftc-chip-extra {
+        border: 1.5px dashed rgba(250, 166, 50, 0.55);
+        background: rgba(250, 166, 50, 0.08);
+        color: var(--brand-orange);
+        font-weight: 600;
       }
 
       .ft-compact-side {
         display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: 26px;
         align-items: flex-start;
       }
 
@@ -377,7 +482,7 @@ function FullTeamStyles() {
         padding: 0;
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 14px;
       }
 
       .ft-compact-points li {
@@ -385,18 +490,18 @@ function FullTeamStyles() {
         align-items: flex-start;
         gap: 10px;
         font-size: 0.875rem;
-        color: var(--text-secondary);
-        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.68);
+        line-height: 1.55;
       }
 
       .ft-compact-points li svg {
         flex-shrink: 0;
-        color: var(--brand-primary);
+        color: var(--brand-orange);
         margin-top: 2px;
       }
 
       .ft-compact-points li strong {
-        color: var(--text-primary);
+        color: #fafafa;
         font-weight: 600;
       }
     `}</style>
