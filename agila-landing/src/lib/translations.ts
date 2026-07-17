@@ -52,7 +52,7 @@ export const translations: Record<Language, Record<string, string>> = {
 
     "fullteam.eyebrow": "FULL TEAMS",
     "fullteam.title": "Build your entire team with us",
-    "fullteam.desc": "We don't just provide individual specialists. We assemble complete cross-functional teams, from project management and development to UX, QA, and product ownership, ready to deliver from day one.",
+    "fullteam.desc": "We don't just provide individual specialists, we build complete, cross-functional teams tailored to your goals. From planning and coordination to development and delivery, our teams are ready to integrate quickly and start delivering value from day one.",
     "fullteam.v1Title": "Flexibility",
     "fullteam.v1Desc": "Scale the team up or down as the project evolves.",
     "fullteam.v2Title": "Speed",
@@ -231,6 +231,7 @@ export const translations: Record<Language, Record<string, string>> = {
 
     // Services & Team Roles
     "svc.general": "General Inquiry",
+    "svc.fullteam": "Build Your Team",
     "svc.staffing": "Temporary Staffing",
     "svc.recruitment": "Direct Recruitment",
     "svc.hireToPerm": "Hire-to-Permanent",
@@ -332,7 +333,7 @@ export const translations: Record<Language, Record<string, string>> = {
 
     "fullteam.eyebrow": "KOMPLETTA TEAM",
     "fullteam.title": "Bygg hela ditt team med oss",
-    "fullteam.desc": "Vi levererar inte bara enskilda specialister. Vi sätter ihop kompletta, tvärfunktionella team, från projektledning och utveckling till UX, test och produktägarskap, som är redo att leverera från dag ett.",
+    "fullteam.desc": "Vi levererar inte bara enskilda specialister, vi bygger kompletta, tvärfunktionella team anpassade efter era mål. Från planering och samordning till utveckling och leverans är våra team redo att snabbt komma på plats och skapa värde från dag ett.",
     "fullteam.v1Title": "Flexibilitet",
     "fullteam.v1Desc": "Skala teamet upp eller ner i takt med projektet.",
     "fullteam.v2Title": "Snabbhet",
@@ -511,6 +512,7 @@ export const translations: Record<Language, Record<string, string>> = {
 
     // Services & Team Roles
     "svc.general": "Allmän Förfrågan",
+    "svc.fullteam": "Bygg Ditt Team",
     "svc.staffing": "Tillfällig Bemanning",
     "svc.recruitment": "Direktrekrytering",
     "svc.hireToPerm": "Hyrköp av personal",

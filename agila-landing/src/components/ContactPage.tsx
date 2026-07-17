@@ -24,6 +24,7 @@ import {
 } from "@/lib/team-data";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SITE_CONFIG } from "@/lib/site-config";
+import { buildServiceMessage } from "@/lib/forms";
 import ContactForm from "./sections/ContactForm";
 
 // ─── Inner component to read searchParams inside Suspense ───
@@ -75,11 +76,7 @@ export default function ContactPage() {
       if (member && member.services.length > 0) {
         const slug = member.services[0];
         setSelectedService(slug);
-        setMessage(
-          language === "sv" 
-            ? `Hej, jag är intresserad av tjänsten ${t(getServiceLabelKey(slug))} och vill gärna få mer information.`
-            : `Hello, I am interested in the ${t(getServiceLabelKey(slug))} service and would like to receive more information.`
-        );
+        setMessage(buildServiceMessage(slug, language, t(getServiceLabelKey(slug))));
       }
       setFlippedCard(null);
       setTimeout(scrollToForm, 80);
@@ -91,11 +88,7 @@ export default function ContactPage() {
   const handleServiceFromUrl = useCallback(
     (slug: string) => {
       setSelectedService(slug);
-      setMessage(
-        language === "sv" 
-          ? `Hej, jag är intresserad av tjänsten ${t(getServiceLabelKey(slug))} och vill gärna få mer information.`
-          : `Hello, I am interested in the ${t(getServiceLabelKey(slug))} service and would like to receive more information.`
-      );
+      setMessage(buildServiceMessage(slug, language, t(getServiceLabelKey(slug))));
       setTimeout(scrollToForm, 400);
     },
     [scrollToForm, language, t]
@@ -104,15 +97,7 @@ export default function ContactPage() {
   // When dropdown changes manually, update message too
   const handleServiceChange = (slug: string) => {
     setSelectedService(slug);
-    if (slug !== "general") {
-      setMessage(
-        language === "sv" 
-          ? `Hej, jag är intresserad av tjänsten ${t(getServiceLabelKey(slug))} och vill gärna få mer information.`
-          : `Hello, I am interested in the ${t(getServiceLabelKey(slug))} service and would like to receive more information.`
-      );
-    } else {
-      setMessage("");
-    }
+    setMessage(buildServiceMessage(slug, language, t(getServiceLabelKey(slug))));
   };
 
   // Toggle flip on a team card

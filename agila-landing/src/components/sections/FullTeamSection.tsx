@@ -66,7 +66,7 @@ export default function FullTeamSection({ variant = "full" }: FullTeamSectionPro
                   </li>
                 ))}
               </ul>
-              <Link href="/contact#contact-form" className="btn btn-primary hover-lift">
+              <Link href="/contact?service=fullteam#contact-form" className="btn btn-primary hover-lift">
                 {t("fullteam.cta")}
               </Link>
             </div>
@@ -111,7 +111,7 @@ export default function FullTeamSection({ variant = "full" }: FullTeamSectionPro
             </div>
 
             <div className="ft-btn-wrapper">
-              <Link href="/contact#contact-form" className="btn btn-primary hover-lift">
+              <Link href="/contact?service=fullteam#contact-form" className="btn btn-primary hover-lift">
                 {t("fullteam.cta")}
               </Link>
             </div>
@@ -330,8 +330,8 @@ function FullTeamStyles() {
 
       /* ─── Compact variant (banner) ─── */
       .ft-compact-section {
-        padding: 0 0 clamp(60px, 8vw, 100px);
-        background: var(--background-muted);
+        padding: clamp(24px, 4vw, 48px) 0 clamp(48px, 6vw, 72px);
+        background: var(--background);
       }
 
       .ft-compact {

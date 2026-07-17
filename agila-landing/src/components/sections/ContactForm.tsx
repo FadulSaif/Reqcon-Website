@@ -9,7 +9,7 @@ import {
   getTeamMemberForService,
   getServiceLabelKey,
 } from "@/lib/team-data";
-import { submitWeb3Form } from "@/lib/forms";
+import { submitWeb3Form, buildFullTeamMessage, buildServiceMessage } from "@/lib/forms";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 type SubmitStatus = "idle" | "sending" | "success" | "error";
@@ -27,6 +27,8 @@ interface ContactFormProps {
   hideRoutingBadge?: boolean;
   /** Set to true by the parent to reveal the custom-role input (e.g. from a "request a custom role" CTA). */
   requestCustomRole?: boolean;
+  /** Increment this counter to switch the form into full-team mode (e.g. from a "request a full team" CTA). */
+  requestFullTeamSignal?: number;
 }
 
 export default function ContactForm({
@@ -39,6 +41,7 @@ export default function ContactForm({
   hideServiceDropdown = false,
   hideRoutingBadge = false,
   requestCustomRole = false,
+  requestFullTeamSignal = 0,
 }: ContactFormProps) {
   const { language, t } = useLanguage();
   const [selectedService, setSelectedService] = useState(defaultService);
@@ -48,6 +51,8 @@ export default function ContactForm({
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const [customRoleActive, setCustomRoleActive] = useState(requestCustomRole);
   const [customRole, setCustomRole] = useState("");
+  const [fullTeamActive, setFullTeamActive] = useState(false);
+  const [prevFullTeamSignal, setPrevFullTeamSignal] = useState(requestFullTeamSignal);
   const [prevDefaultService, setPrevDefaultService] = useState(defaultService);
   const [prevDefaultMessage, setPrevDefaultMessage] = useState(defaultMessage);
   const [prevPreSelectedSpecs, setPrevPreSelectedSpecs] = useState(preSelectedSpecs);
@@ -69,6 +74,20 @@ export default function ContactForm({
     setPrevPreSelectedSpecs(preSelectedSpecs);
     if (preSelectedSpecs && preSelectedSpecs.length > 0) {
       setCheckedSpecs(new Set(preSelectedSpecs));
+      setFullTeamActive(false);
+    }
+  }
+
+  if (requestFullTeamSignal !== prevFullTeamSignal) {
+    setPrevFullTeamSignal(requestFullTeamSignal);
+    if (requestFullTeamSignal > 0) {
+      setFullTeamActive(true);
+      setMessage(
+        buildFullTeamMessage(
+          language,
+          selectedService !== "general" ? t(getServiceLabelKey(selectedService)) : undefined
+        )
+      );
     }
   }
 
@@ -123,18 +142,11 @@ export default function ContactForm({
 
   const handleServiceChange = (slug: string) => {
     setSelectedService(slug);
+    setFullTeamActive(slug === "fullteam");
     if (onServiceChange) {
       onServiceChange(slug);
     } else {
-      if (slug !== "general") {
-        setMessage(
-          language === "sv"
-            ? `Hej, jag är intresserad av tjänsten ${t(getServiceLabelKey(slug))} och vill gärna få mer information.`
-            : `Hello, I am interested in the ${t(getServiceLabelKey(slug))} service and would like to receive more information.`
-        );
-      } else {
-        setMessage("");
-      }
+      setMessage(buildServiceMessage(slug, language, t(getServiceLabelKey(slug))));
     }
   };
 
@@ -180,6 +192,7 @@ export default function ContactForm({
     if (fd.get("botcheck")) return; // honeypot tripped — silently drop
     setStatus("sending");
     const serviceLabel = t(getServiceLabelKey(selectedService));
+    const isFullTeam = fullTeamActive || selectedService === "fullteam";
     const { success } = await submitWeb3Form({
       subject: `${language === "sv" ? "Ny förfrågan via webbplatsen" : "New website enquiry"} – ${serviceLabel}`,
       from_name: "Agil Arbetskraft",
@@ -188,6 +201,7 @@ export default function ContactForm({
       company: String(fd.get("company") || ""),
       phone: String(fd.get("phone") || ""),
       service: serviceLabel,
+      ...(isFullTeam ? { request_type: language === "sv" ? "Komplett team" : "Full team" } : {}),
       ...(customRole.trim() ? { custom_role: customRole.trim() } : {}),
       message,
     });
@@ -278,6 +292,29 @@ export default function ContactForm({
             ))}
           </select>
         </div>
+      )}
+
+      {/* Full-team indicator (when the service dropdown is hidden, e.g. on service pages) */}
+      {hideServiceDropdown && fullTeamActive && (
+        <motion.div
+          className="form-group"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
+          style={{ overflow: "hidden" }}
+        >
+          <label className="form-label" htmlFor="contact-request-type">
+            {t("contact.form.service")}
+          </label>
+          <input
+            className="form-input cf-fullteam-input"
+            id="contact-request-type"
+            type="text"
+            value={`${t("svc.fullteam")}: ${t(getServiceLabelKey(selectedService))}`}
+            readOnly
+            tabIndex={-1}
+          />
+        </motion.div>
       )}
 
       {/* Routing Badge */}
@@ -469,6 +506,15 @@ export default function ContactForm({
         .cf-custom-role-input {
           border-color: rgba(250, 166, 50, 0.45) !important;
           background: var(--accent-soft);
+        }
+
+        .cf-fullteam-input {
+          border-color: rgba(250, 166, 50, 0.45) !important;
+          background: var(--accent-soft);
+          font-weight: 600;
+          color: var(--text-primary);
+          cursor: default;
+          pointer-events: none;
         }
 
         .cf-custom-role-hint {

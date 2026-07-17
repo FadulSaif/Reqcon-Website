@@ -5,6 +5,31 @@
  */
 const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
+type FormLanguage = "sv" | "en";
+
+/** Structured template used when the visitor asks for a complete team. */
+export function buildFullTeamMessage(language: FormLanguage, serviceLabel?: string): string {
+  if (language === "sv") {
+    const intro = serviceLabel
+      ? `Hej! Vi vill bygga ett komplett team inom ${serviceLabel}.`
+      : "Hej! Vi vill bygga ett komplett team.";
+    return `${intro}\n\nRoller vi behöver: \nAntal personer: \nÖnskad start: \nUppdragets längd: `;
+  }
+  const intro = serviceLabel
+    ? `Hello! We would like to build a complete team within ${serviceLabel}.`
+    : "Hello! We would like to build a complete team.";
+  return `${intro}\n\nRoles we need: \nNumber of people: \nDesired start date: \nAssignment length: `;
+}
+
+/** Default message prefill for a chosen service (empty for general enquiries). */
+export function buildServiceMessage(slug: string, language: FormLanguage, serviceLabel: string): string {
+  if (slug === "fullteam") return buildFullTeamMessage(language);
+  if (slug === "general") return "";
+  return language === "sv"
+    ? `Hej, jag är intresserad av tjänsten ${serviceLabel} och vill gärna få mer information.`
+    : `Hello, I am interested in the ${serviceLabel} service and would like to receive more information.`;
+}
+
 export async function submitWeb3Form(
   payload: Record<string, string>
 ): Promise<{ success: boolean }> {

@@ -37,15 +37,15 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Section 2: In-Depth Services Core (shared layout with homepage) */}
+        {/* Section 2: Full team banner */}
+        <FullTeamSection variant="compact" />
+
+        {/* Section 3: In-Depth Services Core (shared layout with homepage) */}
         <section className="in-depth-services section section-bg-muted">
           <div className="container-wide">
             <ServiceBlocks />
           </div>
         </section>
-
-        {/* Section 3: Full team banner */}
-        <FullTeamSection variant="compact" />
 
         {/* Section 4: Conversion CTA */}
         <section className="services-cta-section">

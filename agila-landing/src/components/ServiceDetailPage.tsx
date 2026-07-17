@@ -18,6 +18,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
   const { t, language } = useLanguage();
   const [preSelectedSpecs, setPreSelectedSpecs] = useState<string[]>([]);
   const [customRoleRequested, setCustomRoleRequested] = useState(false);
+  const [fullTeamSignal, setFullTeamSignal] = useState(0);
   const data = SERVICES_CONFIG[slug];
 
   useEffect(() => {
@@ -254,6 +255,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
               <button
                 className="btn btn-primary hover-lift"
                 onClick={() => {
+                  setFullTeamSignal((n) => n + 1);
                   document.getElementById("request-service")?.scrollIntoView({ behavior: "smooth", block: "start" });
                 }}
               >
@@ -324,6 +326,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
                     specializations={specializations}
                     preSelectedSpecs={preSelectedSpecs}
                     requestCustomRole={customRoleRequested}
+                    requestFullTeamSignal={fullTeamSignal}
                     defaultMessage={language === "sv"
                       ? `Hej, jag är intresserad av tjänsten ${t(`services.${slug}.title`)} och vill gärna få mer information.`
                       : `Hello, I am interested in the ${t(`services.${slug}.title`)} service and would like to receive more information.`

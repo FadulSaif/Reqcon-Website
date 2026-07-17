@@ -13,7 +13,7 @@ Goal: a visitor should understand within seconds that Agil Arbetskraft can assem
 |---|---|---|---|
 | **Homepage hero** | One added phrase in the subtitle: "…as individual specialists or complete teams." | Minimal | Plants the message in the first 3 seconds without new UI or clutter. |
 | **Homepage, new "Full Teams" section** (between the services overview and "Why Agil") | Full `FullTeamSection`: headline, 2-line description, 3 value points, team-composition visual, CTA | Medium | The hero states the core promise and the services overview lists engagement models (incl. project-based teams); this section immediately elevates the strongest differentiator before the trust arguments. |
-| **/services**, between the five category blocks and the conversion CTA | Compact banner variant: eyebrow, headline, description, 3 checkmark value points, CTA | Short–medium | The visitor has just scanned five categories of *individual* roles. This is the natural moment for "or take the whole team", and the existing "Let's Build Your Team" CTA then lands as the close. |
+| **/services**, directly under the hero (above the five category blocks) | Compact banner variant: eyebrow, headline, description, 3 checkmark value points, CTA | Short–medium | High visibility at the top of the page: the visitor learns "you can take the whole team" before scanning the individual categories. |
 | **/services/[slug]** (IT, Logistics, Construction, Transport, Moving), dark strip directly under the specialisations grid | One-liner + "Request a full team" button that scrolls to the on-page request form | Short | Reinforcement at the exact moment the user is mentally composing needs from individual roles. Same strip on all five categories keeps the message consistent. |
 | **Specialisations section itself** | Covered by the strip + the custom-role card | One line | Avoids crowding the role grid. |
 
@@ -23,12 +23,13 @@ Goal: a visitor should understand within seconds that Agil Arbetskraft can assem
 
 - **Eyebrow:** KOMPLETTA TEAM / FULL TEAMS
 - **Headline:** Bygg hela ditt team med oss / Build your entire team with us
-- **Description:** Vi levererar inte bara enskilda specialister. Vi sätter ihop kompletta, tvärfunktionella team, från projektledning och utveckling till UX, test och produktägarskap, som är redo att leverera från dag ett. / We don't just provide individual specialists. We assemble complete cross-functional teams, from project management and development to UX, QA, and product ownership, ready to deliver from day one.
+- **Description:** Vi levererar inte bara enskilda specialister, vi bygger kompletta, tvärfunktionella team anpassade efter era mål. Från planering och samordning till utveckling och leverans är våra team redo att snabbt komma på plats och skapa värde från dag ett. / We don't just provide individual specialists, we build complete, cross-functional teams tailored to your goals. From planning and coordination to development and delivery, our teams are ready to integrate quickly and start delivering value from day one.
 - **Value points:**
   - Flexibilitet – Skala teamet upp eller ner i takt med projektet. / Flexibility – Scale the team up or down as the project evolves.
   - Snabbhet – Ett komplett team på plats på veckor, inte månader. / Speed – A complete team in place in weeks, not months.
   - Skalbarhet – Börja med en roll och väx till ett helt team, med samma partner hela vägen. / Scalability – Start with one role and grow into a full team, with one partner throughout.
 - **CTAs:** Bygg ditt team / Build your team (homepage + /services); Begär ett helt team / Request a full team (service pages)
+- **Request flow:** every full-team CTA leads to a form in full-team mode. The contact page's Service Requested dropdown has a "Bygg Ditt Team" option (pre-selected when arriving via a full-team CTA); on service pages the form shows a locked "Bygg Ditt Team: [service]" field. The message pre-fills a structured template (roles needed, number of people, desired start, assignment length) and the email is tagged with a request_type of "Komplett team".
 - **Strip:** Behöver du mer än en roll? Vi sätter ihop hela teamet åt dig: kompetenserna ovan och allt däremellan. / Need more than one role? We'll assemble the entire team for you: the roles above and everything in between.
 
 ### Visual: team composition

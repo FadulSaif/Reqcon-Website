@@ -58,6 +58,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
 
 export const SERVICE_OPTIONS: ServiceOption[] = [
   { slug: "general",           labelKey: "svc.general",            memberId: null },
+  { slug: "fullteam",          labelKey: "svc.fullteam",           memberId: null },
   { slug: "staffing",          labelKey: "svc.staffing",           memberId: "lars" },
   { slug: "recruitment",       labelKey: "svc.recruitment",        memberId: "ebba" },
   { slug: "hire-to-permanent", labelKey: "svc.hireToPerm",         memberId: "ebba" },
