@@ -43,8 +43,8 @@ export const SITE_CONFIG = {
   },
 
   socials: {
-    linkedin: "https://www.linkedin.com/company/agil-arbetskraft",
-    facebook: "https://www.facebook.com/agilarbetskraft",
+    linkedin: "https://www.linkedin.com/company/agilarbetskraft-sverige-gf-ab/",
+    facebook: "https://www.facebook.com/profile.php?id=61586557422822",
   },
 
   /** Static logo file for schema.org `logo`, OG/Twitter images, etc. */
