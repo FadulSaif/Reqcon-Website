@@ -421,14 +421,23 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
           flex-direction: column;
           padding: 28px;
           border-radius: var(--radius-lg);
+          background: linear-gradient(135deg, #fffdf9 0%, #fff4e6 100%);
+          border: 1px solid rgba(250, 166, 50, 0.28);
+          box-shadow: 0 4px 16px rgba(242, 104, 62, 0.05);
           scroll-margin-top: 100px;
           transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
         }
 
+        .dark .spec-card {
+          background: linear-gradient(135deg, #1d1915 0%, #171310 100%);
+          border-color: rgba(250, 166, 50, 0.22);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        }
+
         .spec-card:hover {
           transform: translateY(-4px);
-          border-color: rgba(250, 166, 50, 0.45);
-          box-shadow: 0 10px 30px rgba(250, 166, 50, 0.08);
+          border-color: rgba(250, 166, 50, 0.55);
+          box-shadow: 0 10px 30px rgba(250, 166, 50, 0.12);
         }
 
         .spec-card-head {
@@ -448,7 +457,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
         }
 
         .spec-tag {
-          background: var(--accent-soft);
+          background: rgba(250, 166, 50, 0.18);
           color: var(--brand-primary);
           font-size: 0.6875rem;
           font-weight: 700;
@@ -496,8 +505,12 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
         }
 
         .spec-card-custom {
-          border: 1.5px dashed rgba(250, 166, 50, 0.5);
-          background: var(--accent-soft);
+          border: 1.5px dashed rgba(250, 166, 50, 0.55);
+          background: linear-gradient(135deg, #fff4e2 0%, #ffe9cd 100%);
+        }
+
+        .dark .spec-card-custom {
+          background: linear-gradient(135deg, #241d13 0%, #1b1510 100%);
         }
 
         .spec-card-custom:hover {
