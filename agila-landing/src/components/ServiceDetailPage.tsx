@@ -17,7 +17,7 @@ import ContactForm from "./sections/ContactForm";
 export default function ServiceDetailPage({ slug }: { slug: string }) {
   const { t, language } = useLanguage();
   const [preSelectedSpecs, setPreSelectedSpecs] = useState<string[]>([]);
-  const [customRoleRequested, setCustomRoleRequested] = useState(false);
+  const [customRoleSignal, setCustomRoleSignal] = useState(0);
   const [fullTeamSignal, setFullTeamSignal] = useState(0);
   const data = SERVICES_CONFIG[slug];
 
@@ -43,7 +43,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
   };
 
   const requestCustomRole = () => {
-    setCustomRoleRequested(true);
+    setCustomRoleSignal((n) => n + 1);
     document.getElementById("request-service")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
@@ -67,6 +67,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
               src={data.image}
               alt={t(`services.${slug}.imgAlt`)}
               fill
+              sizes="100vw"
               style={{ objectFit: "cover", objectPosition: "center 20%" }}
               priority
             />
@@ -159,6 +160,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
                       src={data.image}
                       alt=""
                       fill
+                      sizes="(max-width: 1023px) 100vw, 55vw"
                       style={{ objectFit: "cover", objectPosition: "center" }}
                     />
                     <div className="psc-overlay" />
@@ -325,7 +327,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
                     hideRoutingBadge={true}
                     specializations={specializations}
                     preSelectedSpecs={preSelectedSpecs}
-                    requestCustomRole={customRoleRequested}
+                    requestCustomRoleSignal={customRoleSignal}
                     requestFullTeamSignal={fullTeamSignal}
                     defaultMessage={language === "sv"
                       ? `Hej, jag är intresserad av tjänsten ${t(`services.${slug}.title`)} och vill gärna få mer information.`

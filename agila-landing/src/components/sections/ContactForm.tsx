@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useMemo, useEffect, useCallback, useRef } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import Image from "next/image";
-import { Send, Check, ChevronDown, CheckCircle2, AlertCircle } from "lucide-react";
+import { Send, Check, ChevronDown, CheckCircle2, AlertCircle, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   SERVICE_OPTIONS,
@@ -25,8 +25,8 @@ interface ContactFormProps {
   hideServiceDropdown?: boolean;
   /** If true, the routing badge is hidden. */
   hideRoutingBadge?: boolean;
-  /** Set to true by the parent to reveal the custom-role input (e.g. from a "request a custom role" CTA). */
-  requestCustomRole?: boolean;
+  /** Increment this counter to reveal the custom-role input (e.g. from a "request a custom role" CTA). */
+  requestCustomRoleSignal?: number;
   /** Increment this counter to switch the form into full-team mode (e.g. from a "request a full team" CTA). */
   requestFullTeamSignal?: number;
 }
@@ -40,7 +40,7 @@ export default function ContactForm({
   preSelectedSpecs,
   hideServiceDropdown = false,
   hideRoutingBadge = false,
-  requestCustomRole = false,
+  requestCustomRoleSignal = 0,
   requestFullTeamSignal = 0,
 }: ContactFormProps) {
   const { language, t } = useLanguage();
@@ -49,14 +49,15 @@ export default function ContactForm({
   const [checkedSpecs, setCheckedSpecs] = useState<Set<string>>(new Set());
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [status, setStatus] = useState<SubmitStatus>("idle");
-  const [customRoleActive, setCustomRoleActive] = useState(requestCustomRole);
-  const [customRole, setCustomRole] = useState("");
+  const [customRoleActive, setCustomRoleActive] = useState(false);
+  const [customRoles, setCustomRoles] = useState<string[]>([]);
+  const [customRoleInput, setCustomRoleInput] = useState("");
   const [fullTeamActive, setFullTeamActive] = useState(false);
   const [prevFullTeamSignal, setPrevFullTeamSignal] = useState(requestFullTeamSignal);
   const [prevDefaultService, setPrevDefaultService] = useState(defaultService);
   const [prevDefaultMessage, setPrevDefaultMessage] = useState(defaultMessage);
   const [prevPreSelectedSpecs, setPrevPreSelectedSpecs] = useState(preSelectedSpecs);
-  const [prevRequestCustomRole, setPrevRequestCustomRole] = useState(requestCustomRole);
+  const [prevCustomRoleSignal, setPrevCustomRoleSignal] = useState(requestCustomRoleSignal);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const customRoleInputRef = useRef<HTMLInputElement>(null);
 
@@ -82,18 +83,12 @@ export default function ContactForm({
     setPrevFullTeamSignal(requestFullTeamSignal);
     if (requestFullTeamSignal > 0) {
       setFullTeamActive(true);
-      setMessage(
-        buildFullTeamMessage(
-          language,
-          selectedService !== "general" ? t(getServiceLabelKey(selectedService)) : undefined
-        )
-      );
     }
   }
 
-  if (requestCustomRole !== prevRequestCustomRole) {
-    setPrevRequestCustomRole(requestCustomRole);
-    if (requestCustomRole) {
+  if (requestCustomRoleSignal !== prevCustomRoleSignal) {
+    setPrevCustomRoleSignal(requestCustomRoleSignal);
+    if (requestCustomRoleSignal > 0) {
       setCustomRoleActive(true);
     }
   }
@@ -114,26 +109,23 @@ export default function ContactForm({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const buildSpecsSummary = useCallback((specs: Set<string>) => {
-    if (specs.size === 0) return "";
-    const prefix = t("contact.form.specsSummaryPrefix");
-    const items = Array.from(specs).map((s) => `• ${s}`).join("\n");
-    return `\n\n${prefix}\n${items}`;
-  }, [t]);
-
   useEffect(() => {
     if (!specializations || specializations.length === 0) return;
-    const baseMsg = defaultMessage || (
-      selectedService !== "general"
-        ? (language === "sv"
-          ? `Hej, jag är intresserad av tjänsten ${t(getServiceLabelKey(selectedService))} och vill gärna få mer information.`
-          : `Hello, I am interested in the ${t(getServiceLabelKey(selectedService))} service and would like to receive more information.`)
-        : ""
-    );
-    const specsSummary = buildSpecsSummary(checkedSpecs);
-    setMessage(baseMsg + specsSummary);
+    const serviceLabel = t(getServiceLabelKey(selectedService));
+    const baseMsg = fullTeamActive
+      ? buildFullTeamMessage(language, selectedService !== "general" ? serviceLabel : undefined)
+      : defaultMessage || buildServiceMessage(selectedService, language, serviceLabel);
+    const requestedRoles = [
+      ...Array.from(checkedSpecs),
+      ...customRoles,
+      ...(customRoleInput.trim() ? [customRoleInput.trim()] : []),
+    ];
+    const summary = requestedRoles.length > 0
+      ? `\n\n${t("contact.form.specsSummaryPrefix")}\n${requestedRoles.map((r) => `• ${r}`).join("\n")}`
+      : "";
+    setMessage(baseMsg + summary);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [checkedSpecs]);
+  }, [checkedSpecs, customRoles, customRoleInput, fullTeamActive]);
 
   const assignedMember = useMemo(
     () => getTeamMemberForService(selectedService),
@@ -148,6 +140,24 @@ export default function ContactForm({
     } else {
       setMessage(buildServiceMessage(slug, language, t(getServiceLabelKey(slug))));
     }
+  };
+
+  const addCustomRole = () => {
+    const value = customRoleInput.trim();
+    if (!value) return;
+    setCustomRoles((prev) => (prev.includes(value) ? prev : [...prev, value]));
+    setCustomRoleInput("");
+    customRoleInputRef.current?.focus({ preventScroll: true });
+  };
+
+  const removeCustomRole = (role: string) => {
+    setCustomRoles((prev) => prev.filter((r) => r !== role));
+  };
+
+  const closeCustomRoles = () => {
+    setCustomRoleActive(false);
+    setCustomRoles([]);
+    setCustomRoleInput("");
   };
 
   const handleToggleSpec = (spec: string) => {
@@ -193,6 +203,10 @@ export default function ContactForm({
     setStatus("sending");
     const serviceLabel = t(getServiceLabelKey(selectedService));
     const isFullTeam = fullTeamActive || selectedService === "fullteam";
+    const allCustomRoles = [
+      ...customRoles,
+      ...(customRoleInput.trim() ? [customRoleInput.trim()] : []),
+    ];
     const { success } = await submitWeb3Form({
       subject: `${language === "sv" ? "Ny förfrågan via webbplatsen" : "New website enquiry"} – ${serviceLabel}`,
       from_name: "Agil Arbetskraft",
@@ -202,7 +216,7 @@ export default function ContactForm({
       phone: String(fd.get("phone") || ""),
       service: serviceLabel,
       ...(isFullTeam ? { request_type: language === "sv" ? "Komplett team" : "Full team" } : {}),
-      ...(customRole.trim() ? { custom_role: customRole.trim() } : {}),
+      ...(allCustomRoles.length > 0 ? { custom_role: allCustomRoles.join(", ") } : {}),
       message,
     });
     setStatus(success ? "success" : "error");
@@ -212,8 +226,10 @@ export default function ContactForm({
     setStatus("idle");
     setCheckedSpecs(new Set());
     setMessage(defaultMessage);
-    setCustomRole("");
+    setCustomRoles([]);
+    setCustomRoleInput("");
     setCustomRoleActive(false);
+    setFullTeamActive(false);
   };
 
   return (
@@ -295,27 +311,33 @@ export default function ContactForm({
       )}
 
       {/* Full-team indicator (when the service dropdown is hidden, e.g. on service pages) */}
-      {hideServiceDropdown && fullTeamActive && (
-        <motion.div
-          className="form-group"
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          style={{ overflow: "hidden" }}
-        >
-          <label className="form-label" htmlFor="contact-request-type">
-            {t("contact.form.service")}
-          </label>
-          <input
-            className="form-input cf-fullteam-input"
-            id="contact-request-type"
-            type="text"
-            value={`${t("svc.fullteam")}: ${t(getServiceLabelKey(selectedService))}`}
-            readOnly
-            tabIndex={-1}
-          />
-        </motion.div>
-      )}
+      <AnimatePresence initial={false}>
+        {hideServiceDropdown && fullTeamActive && (
+          <motion.div
+            key="fullteam-field"
+            className="form-group"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            style={{ overflow: "hidden" }}
+          >
+            <label className="form-label">{t("contact.form.service")}</label>
+            <div className="form-input cf-fullteam-field">
+              <span>{`${t("svc.fullteam")}: ${t(getServiceLabelKey(selectedService))}`}</span>
+              <button
+                type="button"
+                className="cf-clear-btn"
+                onClick={() => setFullTeamActive(false)}
+                aria-label={t("contact.form.remove")}
+                title={t("contact.form.remove")}
+              >
+                <X size={14} />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Routing Badge */}
       {!hideRoutingBadge && assignedMember && (
@@ -357,6 +379,7 @@ export default function ContactForm({
           <AnimatePresence>
             {isDropdownOpen && (
               <motion.div
+                key="specs-dropdown"
                 className="cp-ms-dropdown"
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -408,6 +431,7 @@ export default function ContactForm({
       <AnimatePresence initial={false}>
         {customRoleActive && (
           <motion.div
+            key="custom-role"
             className="form-group cf-custom-role"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
@@ -415,18 +439,63 @@ export default function ContactForm({
             transition={{ duration: 0.2, ease: "easeOut" }}
             style={{ overflow: "hidden" }}
           >
-            <label className="form-label" htmlFor="contact-custom-role">
-              {t("contact.form.customRoleLabel")}
-            </label>
-            <input
-              ref={customRoleInputRef}
-              className="form-input cf-custom-role-input"
-              id="contact-custom-role"
-              type="text"
-              placeholder={t("contact.form.customRolePh")}
-              value={customRole}
-              onChange={(e) => setCustomRole(e.target.value)}
-            />
+            <div className="cf-custom-role-head">
+              <label className="form-label" htmlFor="contact-custom-role" style={{ marginBottom: 0 }}>
+                {t("contact.form.customRoleLabel")}
+              </label>
+              <button
+                type="button"
+                className="cf-clear-btn"
+                onClick={closeCustomRoles}
+                aria-label={t("contact.form.remove")}
+                title={t("contact.form.remove")}
+              >
+                <X size={14} />
+              </button>
+            </div>
+
+            {customRoles.length > 0 && (
+              <div className="cf-role-chips">
+                {customRoles.map((role) => (
+                  <span key={role} className="cf-role-chip">
+                    {role}
+                    <button
+                      type="button"
+                      onClick={() => removeCustomRole(role)}
+                      aria-label={t("contact.form.remove")}
+                    >
+                      <X size={12} />
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <div className="cf-custom-role-row">
+              <input
+                ref={customRoleInputRef}
+                className="form-input cf-custom-role-input"
+                id="contact-custom-role"
+                type="text"
+                placeholder={t("contact.form.customRolePh")}
+                value={customRoleInput}
+                onChange={(e) => setCustomRoleInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    addCustomRole();
+                  }
+                }}
+              />
+              <button
+                type="button"
+                className="btn btn-secondary btn-sm cf-add-role-btn"
+                onClick={addCustomRole}
+                disabled={!customRoleInput.trim()}
+              >
+                {t("contact.form.customRoleAdd")}
+              </button>
+            </div>
             <span className="cf-custom-role-hint">{t("contact.form.customRoleHint")}</span>
           </motion.div>
         )}
@@ -508,13 +577,101 @@ export default function ContactForm({
           background: var(--accent-soft);
         }
 
-        .cf-fullteam-input {
+        .cf-fullteam-field {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
           border-color: rgba(250, 166, 50, 0.45) !important;
           background: var(--accent-soft);
           font-weight: 600;
           color: var(--text-primary);
           cursor: default;
-          pointer-events: none;
+        }
+
+        .cf-clear-btn {
+          flex-shrink: 0;
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: none;
+          border: none;
+          color: var(--text-muted);
+          cursor: pointer;
+          transition: color 0.15s ease, background 0.15s ease;
+        }
+
+        .cf-clear-btn:hover {
+          color: var(--brand-primary);
+          background: rgba(250, 166, 50, 0.15);
+        }
+
+        .cf-custom-role-head {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+          margin-bottom: 8px;
+        }
+
+        .cf-role-chips {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          margin-bottom: 10px;
+        }
+
+        .cf-role-chip {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 12px;
+          border-radius: 100px;
+          background: var(--accent-soft);
+          border: 1px solid rgba(250, 166, 50, 0.35);
+          color: var(--text-primary);
+          font-size: 0.8125rem;
+          font-weight: 600;
+        }
+
+        .cf-role-chip button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: none;
+          border: none;
+          padding: 0;
+          color: var(--text-muted);
+          cursor: pointer;
+          transition: color 0.15s ease;
+        }
+
+        .cf-role-chip button:hover {
+          color: var(--brand-primary);
+        }
+
+        .cf-custom-role-row {
+          display: flex;
+          gap: 8px;
+          align-items: stretch;
+        }
+
+        .cf-custom-role-row .cf-custom-role-input {
+          flex: 1;
+          min-width: 0;
+        }
+
+        .cf-add-role-btn {
+          flex-shrink: 0;
+        }
+
+        .cf-add-role-btn:disabled {
+          opacity: 0.45;
+          cursor: not-allowed;
+          transform: none;
         }
 
         .cf-custom-role-hint {
