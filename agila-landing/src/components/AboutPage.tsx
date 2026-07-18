@@ -389,7 +389,7 @@ export default function AboutPage() {
 
         .hero-image-content {
           object-fit: cover;
-          object-position: center;
+          object-position: center 25%;
         }
 
         .mb-8 { margin-bottom: 8px; }

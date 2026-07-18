@@ -60,7 +60,7 @@ export default function ContactPage() {
   // Scroll to form with navbar offset
   const scrollToForm = useCallback(() => {
     if (formRef.current) {
-      const navbarHeight = 100;
+      const navbarHeight = 180;
       const top =
         formRef.current.getBoundingClientRect().top +
         window.scrollY -
@@ -328,7 +328,7 @@ export default function ContactPage() {
                       </div>
                     </div>
 
-                    <div style={{ marginTop: "auto", paddingTop: "40px" }}>
+                    <div style={{ marginTop: "auto", paddingTop: "40px", paddingBottom: "16px" }}>
                       <h4 className="cp-info-label mb-16">{t("contact.flip.followUs")}</h4>
                       <div className="cp-social-row">
                         <a
@@ -845,8 +845,10 @@ export default function ContactPage() {
         .cp-back-btn {
           position: absolute;
           bottom: 28px;
-          left: 50%;
-          transform: translateX(-50%);
+          left: 0;
+          right: 0;
+          margin: 0 auto;
+          width: fit-content;
           z-index: 10;
           box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         }
