@@ -1,0 +1,288 @@
+{
+  "nav": {
+    "home": "Hem",
+    "services": "Våra tjänster",
+    "about": "Om oss",
+    "careers": "Arbeta hos oss",
+    "contact": "Kontakta oss"
+  },
+  "hero": {
+    "badge": "REQCON CONSULTING",
+    "title": "Vi bygger smartare lösningar genom expertis och samarbete.",
+    "subtitle": "Vi hjälper organisationer att omvandla komplexa krav till effektiva lösningar genom expertis inom kravhantering, teknik och agil utveckling.",
+    "cta_primary": "Kontakta oss",
+    "cta_secondary": "Våra tjänster"
+  },
+  "clients": {
+    "badge": "FÖRTROENDE & SAMARBETEN",
+    "title": "Några av våra kunder",
+    "subtitle": "Vi är stolta över att samarbeta med ledande organisationer och myndigheter i Sverige."
+  },
+  "services": {
+    "badge": "Expertis",
+    "title": "Våra kompetensområden",
+    "subtitle": "REQCON erbjuder specialister inom hela IT-utvecklingskedjan, från de första strategiska visionerna till löpande testning och kvalitetssäkring.",
+    "cta_discuss": "Diskutera ert behov",
+    "cta_more": "Läs mer",
+    "learn_more": "Läs mer",
+    "deliverables_label": "Våra leveranser inkluderar:",
+    "cta_cta_title": "Behöver ni förstärkning i ett pågående projekt?",
+    "cta_cta_desc": "Våra konsulter är vana vid att snabbt sätta sig in i befintliga kodbaser, datastrukturer och komplexa organisationer för att leverera resultat från dag ett.",
+    "cta_cta_btn": "Kontakta våra konsultchefer",
+    "items": {
+      "krav": {
+        "title": "Kravanalys (Business Analysis)",
+        "intro": "Grunden för varje framgångsrikt IT-projekt ligger i att förstå det verkliga affärsbehovet.",
+        "desc": "Våra kravanalytiker är experter på att översätta komplexa visioner till strukturerade kravspecifikationer. Vi underlättar kommunikationen mellan verksamhet och IT, vilket eliminerar missförstånd och minskar risken för dyra felutvecklingar.",
+        "bullets": ["Kravkartläggning & visualisering", "Verksamhetsanalys & processmodellering", "System- och dataanalys", "Kravhanteringsverktyg (t.ex. Jira, Azure DevOps)"],
+        "button_text": "Mer om Kravanalys"
+      },
+      "test": {
+        "title": "Testning & QA",
+        "intro": "Kvalitetssäkring är inte ett slutsteg – det är en integrerad del av hela livscykeln.",
+        "desc": "Vi hjälper er att sätta upp strukturerade testprocesser och utför grundliga funktionella tester, användbarhetstester samt acceptanstester. Vi säkerställer att systemet presterar säkert, snabbt och exakt som förväntat.",
+        "bullets": ["Testplanering & testledning", "Manuella och automatiserade funktionstester", "Acceptanstester (UAT) med slutanvändare", "Felrapportering och buggspårning"],
+        "button_text": "Mer om Testning & QA"
+      },
+      "pm": {
+        "title": "Projektledning",
+        "intro": "Vi styr projektet mot era affärsmål, oavsett om ni arbetar agilt eller traditionellt.",
+        "desc": "Med ett tryggt och metodiskt ledarskap ser vi till att tidplaner, budgetar och kvalitetskrav efterlevs. Vi koordinerar teamet, hanterar intressenter och skapar transparens under hela utvecklingens gång.",
+        "bullets": ["Agil projektledning (Scrum Master, RTE)", "Traditionell projektledning", "Budget- och riskhantering", "Intressenthantering & rapportering"],
+        "button_text": "Mer om Projektledning"
+      },
+      "info": {
+        "title": "Informationshantering",
+        "intro": "Skapa struktur, säkerhet och tillgänglighet i organisationens informationsflöden.",
+        "desc": "Vi hjälper er att strukturera, organisera och lagra kritisk projektinformation. Med expertis inom datasamordning och dokumenthantering (t.ex. i SharePoint) ser vi till att rätt information når rätt person i rätt tid.",
+        "bullets": ["Datasamordning & metadata-struktur", "SharePoint-arkitektur & administration", "Behörighets- och säkerhetsstruktur", "Digitaliserings- och arkiveringsstrategier"],
+        "button_text": "Mer om Informationshantering"
+      },
+      "ux": {
+        "title": "UX-design",
+        "intro": "Användarvänliga lösningar skapas i skärningspunkten mellan form och funktion.",
+        "desc": "Vi tar reda på vad era användare faktiskt behöver genom research och tester. Därefter designar vi intuitiva gränssnitt, flöden och interaktiva prototyper som engagerar, förenklar och levererar resultat.",
+        "bullets": ["Användarresearch & intervjuer", "Wireframes & interaktiva prototyper", "UI-design & grafiska gränssnitt", "Användbarhetstester (Usability Testing)"],
+        "button_text": "Mer om UX-design"
+      },
+      "agile": {
+        "title": "Agila metoder",
+        "intro": "Vi coachar och hjälper er organisation att anpassa agila principer efter era behov.",
+        "desc": "Oavsett om ni vill implementera Scrum på teamnivå eller skala upp till SAFe (Scaled Agile Framework) på organisationsnivå, hjälper vi er att bygga effektiva, självstyrande team och transparenta arbetssätt.",
+        "bullets": ["Införande av Scrum & Kanban", "Skalad agilitet (SAFe-konsultation)", "Agil coachning på individ- & teamnivå", "Facilitering av agila ceremonier"],
+        "button_text": "Mer om Agila metoder"
+      }
+    }
+  },
+  "why": {
+    "badge": "Mervärde",
+    "title": "Varför välja REQCON?",
+    "subtitle": "Vi är inte bara konsulter; vi är er samarbetspartner. Vi säkerställer struktur, trygghet och levererar reellt affärsvärde till varje projekt.",
+    "items": [
+      {
+        "title": "Mångårig branscherfarenhet",
+        "desc": "Våra konsulter har bred kompetens från både offentliga upphandlingar och stora privata IT-infrastrukturer."
+      },
+      {
+        "title": "Trygg och stabil leverans",
+        "desc": "Vi arbetar efter beprövade modeller som garanterar kontroll, hög kvalitet och strukturerade milstolpar."
+      },
+      {
+        "title": "Användarcentrerat fokus",
+        "desc": "Genom att kombinera UX och kravhantering sätter vi slutanvändarens faktiska behov i centrum av processen."
+      },
+      {
+        "title": "Agil flexibilitet",
+        "desc": "Vi behärskar Scrum, SAFe och traditionella ramverk, och anpassar metoderna efter er organisations unika förutsättningar."
+      }
+    ]
+  },
+  "process": {
+    "badge": "Metodik",
+    "title": "Vår Arbetsprocess",
+    "subtitle": "Med en strukturerad och beprövad arbetsmetodik säkerställer vi ordning och reda, minimerar risker och leder utvecklingen framåt.",
+    "steps": [
+      {
+        "num": "01",
+        "title": "Discovery & Analys",
+        "desc": "Vi kartlägger affärsbehov, genomför intervjuer med nyckelpersoner och definierar det faktiska problemet."
+      },
+      {
+        "num": "02",
+        "title": "Krav & Planering",
+        "desc": "Vi specificerar funktionella och icke-funktionella krav, ritar upp informationsflöden och planerar testscenarier."
+      },
+      {
+        "num": "03",
+        "title": "Kvalitetssäkrad Execution",
+        "desc": "Vi leder utvecklingsteamet, genomför kontinuerliga granskningar och utför tester för att löpande korrigera buggar."
+      },
+      {
+        "num": "04",
+        "title": "Målgång & Överlämning",
+        "desc": "Efter slutförda system- och acceptanstester kvalitetssäkrar vi driftsättningen och lämnar över en fungerande produkt."
+      }
+    ]
+  },
+  "team": {
+    "badge": "Ledarskap",
+    "title": "Vårt ledningsteam",
+    "subtitle": "Möt våra konsultchefer som styr våra lokala verksamheter och leder våra specialistteam framåt.",
+    "fadi_desc": "Fadi leder Stockholmskontoret och ansvarar för strategiska samarbeten samt rekrytering av seniora kravanalytiker.",
+    "anel_desc": "Anel ansvarar för Västsverige och matchar komplexa kundbehov med rätt test- och projektledarkompetens."
+  },
+  "testimonials": {
+    "badge": "Referenser",
+    "title": "Vad våra kunder säger",
+    "subtitle": "Vi bygger långsiktiga relationer grundade i förtroende och professionell leverans.",
+    "items": [
+      {
+        "quote": "REQCONs konsulter har visat en enastående förmåga att snabbt sätta sig in i vår verksamhet och strukturera upp våra kravprocesser.",
+        "name": "Anders Larsson",
+        "position": "IT-arkitekt & Utvecklingsledare, Statlig myndighet"
+      },
+      {
+        "quote": "Deras kombination av djup kravmetodik och teknisk förståelse gjorde att vi kunde halvera tiden från specifikation till färdig testad kod.",
+        "name": "Maria Bergqvist",
+        "position": "Product Owner, Energisektorn"
+      }
+    ]
+  },
+  "about": {
+    "badge": "Vår historia",
+    "title": "Om oss",
+    "subtitle": "Det började med en vision att samla kunniga IT-specialister och bygga beprövade metoder baserade på praktisk erfarenhet. Idag är vi en väletablerad partner för digital framgång.",
+    "story_title": "Vår berättelse",
+    "story_p1": "REQCON grundades 2020 i Stockholm. Visionen har alltid varit att samla ett gäng erfarna experter för att internt bygga upp beprövade modeller och processer grundade i vår know-how. Vi vill leverera verkligt värde till våra kunder – oavsett bransch.",
+    "story_p2": "Vår grundpelare ligger i kravanalys (business analysis), men som bolag har vi på senare tid framgångsrikt utökat våra kompetensområden till testning, projektledning och informationshantering. Idag har vi expanderat verksamheten till Göteborg, och vår ambition är att leverera expertis till organisationer i hela Sverige.",
+    "stats": [
+      {"value": "2020", "label": "Grundat i Stockholm"},
+      {"value": "2", "label": "Etablerade kontor (Sthlm & Gbg)"},
+      {"value": "100%", "label": "Kvalitetsfokus i alla led"},
+      {"value": "Senior", "label": "Kompetensnivå på konsulter"}
+    ],
+    "milestones": {
+      "badge": "Resa",
+      "title": "Milstolpar",
+      "subtitle": "Följ med på vår resa från nystartat specialistbolag till rikstäckande IT-partner.",
+      "items": [
+        {
+          "year": "2020",
+          "title": "REQCON grundas",
+          "desc": "Bolaget etableras i centrala Stockholm med målet att samla branschens främsta experter inom kravhantering och business analysis."
+        },
+        {
+          "year": "2022",
+          "title": "Kompetensområdena utökas",
+          "desc": "För att möta kundernas ökade behov av kvalitetssäkring rekryterar vi seniora testledare, QA-specialister och projektledare."
+        },
+        {
+          "year": "2024",
+          "title": "Expansion till Göteborg",
+          "desc": "REQCON öppnar dörrarna till kontoret på Gustaf Dalénsgatan i Göteborg för att stötta partners i Västsverige lokalt."
+        },
+        {
+          "year": "2026",
+          "title": "Nationell leverans",
+          "desc": "Med stabila modeller och beprövade processer har vi ambitionen att leverera våra specialisttjänster till kunder över hela Sverige."
+        }
+      ]
+    }
+  },
+  "careers": {
+    "badge": "Karriär",
+    "title": "Arbeta hos oss",
+    "subtitle": "Vill du bli en del av vårt team? Vi söker ständigt seniora kravanalytiker, testare och projektledare som vill utvecklas tillsammans med oss.",
+    "benefits_title": "Vad vi erbjuder dig",
+    "benefits_subtitle": "Vi värdesätter våra medarbetare högt och strävar efter att skapa en balanserad miljö där du trivs, växer och kan påverka.",
+    "benefits_badge": "Förmåner",
+    "benefits": [
+      {
+        "title": "Konkurrenskraftig kompensation",
+        "desc": "Vi erbjuder marknadsmässiga löner, bra villkor och ett generöst friskvårdsbidrag."
+      },
+      {
+        "title": "Frihet under ansvar",
+        "desc": "Hos oss styr du din egen tid och arbetsdag så länge vi och kunden når våra gemensamma mål."
+      },
+      {
+        "title": "Kompetensutveckling",
+        "desc": "Vi investerar i dig. Vi erbjuder både interna seminarier och externa utbildningar/certifieringar."
+      },
+      {
+        "title": "Karriärtillväxt",
+        "desc": "Det finns stora möjligheter att ta ett utökat ansvar och växa i takt med bolagets expansion."
+      }
+    ],
+    "expectations_title": "Vad vi förväntar oss",
+    "expectations_subtitle": "REQCON bygger på ömsesidigt förtroende och professionalitet. Vårt motto lyder: Om du bidrar till bolagets utveckling, ser bolaget till att utveckla dig – både kompetensmässigt och ekonomiskt.",
+    "expectations_badge": "Förväntningar",
+    "expectations": [
+      "Att du tar fullt ägarskap över dina uppgifter och håller vad du lovar.",
+      "Att du bidrar till en professionell, inkluderande och trevlig arbetsmiljö.",
+      "Att du kommunicerar öppet, respektfullt och delar med dig av din kunskap.",
+      "Att du är nyfiken, engagerad och har en vilja att ständigt utvecklas."
+    ],
+    "form": {
+      "badge": "Ansökan",
+      "title": "Skicka en spontanansökan",
+      "subtitle": "Hittar du ingen ledig tjänst som passar just nu? Skicka in ditt CV och berätta lite om dig själv, så hör vi av oss!",
+      "name": "Namn *",
+      "name_placeholder": "Ditt fullständiga namn",
+      "name_error": "Vänligen ange ditt namn",
+      "email": "E-post *",
+      "email_placeholder": "din.epost@example.se",
+      "email_error": "Vänligen ange din e-post",
+      "email_invalid": "Ogiltig e-postadress",
+      "phone": "Telefonnummer *",
+      "phone_placeholder": "07X - XXX XX XX",
+      "phone_error": "Vänligen ange ditt telefonnummer",
+      "cv": "Ladda upp CV *",
+      "cv_error": "Vänligen ladda upp ditt CV (PDF, DOC eller DOCX)",
+      "submit": "Skicka ansökan",
+      "success_title": "Tack för din ansökan!",
+      "success_desc": "Vi har tagit emot dina uppgifter och återkommer till dig så snart vi har granskat din profil.",
+      "success_btn": "Skicka en till ansökan"
+    }
+  },
+  "contact": {
+    "badge": "Kontakt",
+    "title": "Kontakta oss",
+    "subtitle": "Vill du diskutera ett potentiellt uppdrag, veta mer om våra konsulttjänster eller bli en del av teamet? Hör av dig till oss så hjälper vi dig vidare.",
+    "locations_badge": "Lokalkontor",
+    "locations_title": "Våra Kontor & Konsultchefer",
+    "locations_subtitle": "Hör av dig direkt till ansvarig konsultchef på din ort.",
+    "view_maps": "Visa på Google Maps",
+    "form": {
+      "badge": "Meddelande",
+      "title": "Skicka ett meddelande",
+      "subtitle": "Fyll i formuläret nedan så återkommer vi så snart som möjligt.",
+      "name": "Namn *",
+      "name_placeholder": "Ditt namn",
+      "name_error": "Vänligen ange ditt namn",
+      "email": "E-post *",
+      "email_placeholder": "din.epost@example.se",
+      "email_error": "Vänligen ange din e-post",
+      "email_invalid": "Ogiltig e-postadress",
+      "subject": "Ämne *",
+      "subject_placeholder": "Vad gäller ditt meddelande?",
+      "subject_error": "Vänligen ange ett ämne",
+      "message": "Meddelande *",
+      "message_placeholder": "Skriv ditt meddelande här...",
+      "message_error": "Vänligen ange ditt meddelande",
+      "submit": "Skicka meddelande",
+      "success_title": "Meddelande skickat!",
+      "success_desc": "Tack för att du kontaktar REQCON. Vi har tagit emot ditt meddelande och svarar vanligtvis inom 24 timmar på vardagar.",
+      "success_btn": "Skicka ett nytt meddelande"
+    }
+  },
+  "footer": {
+    "tagline": "Ert självklara val för att ta er från vision till produkt. Vi kombinerar djup kompetens inom kravhantering med bred verksamhetsförståelse.",
+    "services": "Tjänster",
+    "company": "Bolaget",
+    "offices": "Kontor",
+    "policy_staff": "Personalpolicy",
+    "policy_privacy": "Integritetspolicy",
+    "rights": "Alla rättigheter förbehållna."
+  }
+}

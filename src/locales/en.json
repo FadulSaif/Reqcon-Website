@@ -1,0 +1,288 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Our Services",
+    "about": "About Us",
+    "careers": "Careers",
+    "contact": "Contact Us"
+  },
+  "hero": {
+    "badge": "REQCON CONSULTING",
+    "title": "Building smarter solutions through expertise and collaboration.",
+    "subtitle": "We help organizations turn complex requirements into effective solutions through expertise in requirements management, technology, and agile development.",
+    "cta_primary": "Contact Us",
+    "cta_secondary": "Our Services"
+  },
+  "clients": {
+    "badge": "TRUSTED BY ORGANIZATIONS",
+    "title": "Some of our clients",
+    "subtitle": "We are proud to collaborate with leading organizations and authorities in Sweden."
+  },
+  "services": {
+    "badge": "Expertise",
+    "title": "Our competence areas",
+    "subtitle": "REQCON offers specialists across the entire IT development lifecycle, from the first strategic visions to continuous testing and QA.",
+    "cta_discuss": "Discuss your needs",
+    "cta_more": "Read more",
+    "learn_more": "Learn More",
+    "deliverables_label": "Our deliverables include:",
+    "cta_cta_title": "Need reinforcement in an ongoing project?",
+    "cta_cta_desc": "Our consultants are experienced in quickly integrating into existing codebases, data structures, and complex organizations to deliver results from day one.",
+    "cta_cta_btn": "Contact our consultant managers",
+    "items": {
+      "krav": {
+        "title": "Requirements Analysis (Business Analysis)",
+        "intro": "The foundation of every successful IT project lies in understanding the true business needs.",
+        "desc": "Our requirements analysts are experts at translating complex visions into structured requirements documentation. We facilitate communication between business and IT, eliminating misunderstandings and reducing the risk of expensive errors.",
+        "bullets": ["Requirements mapping & visualization", "Business analysis & process modeling", "System and data analysis", "Requirements management tools (e.g., Jira, Azure DevOps)"],
+        "button_text": "More Requirements Analysis services"
+      },
+      "test": {
+        "title": "Testing & QA",
+        "intro": "Quality assurance is not a final step – it is an integrated part of the entire lifecycle.",
+        "desc": "We help you set up structured testing processes and perform thorough functional, usability, and acceptance tests. We ensure that the system performs safely, quickly, and exactly as expected.",
+        "bullets": ["Test planning & test management", "Manual and automated functional testing", "User Acceptance Testing (UAT)", "Defect reporting and bug tracking"],
+        "button_text": "More Testing & QA services"
+      },
+      "pm": {
+        "title": "Project Management",
+        "intro": "We guide your project towards business goals, whether you work agile or traditionally.",
+        "desc": "With steady and methodical leadership, we ensure that schedules, budgets, and quality requirements are met. We coordinate teams, manage stakeholders, and establish transparency throughout development.",
+        "bullets": ["Agile project management (Scrum Master, RTE)", "Traditional project management", "Budget & risk management", "Stakeholder management & reporting"],
+        "button_text": "More Project Management services"
+      },
+      "info": {
+        "title": "Information Management",
+        "intro": "Create structure, security, and accessibility in your organization's information flows.",
+        "desc": "We help you structure, organize, and store critical project information. With expertise in data coordination and document management (e.g., in SharePoint), we ensure that the right information reaches the right person on time.",
+        "bullets": ["Data coordination & metadata structure", "SharePoint architecture & administration", "Permission & security structure", "Digitalization & archiving strategies"],
+        "button_text": "More Information Management services"
+      },
+      "ux": {
+        "title": "UX Design",
+        "intro": "User-friendly solutions are created at the intersection of form and function.",
+        "desc": "We find out what your users actually need through research and testing. Then, we design intuitive interfaces, user flows, and interactive prototypes that engage, simplify, and deliver results.",
+        "bullets": ["User research & interviews", "Wireframes & interactive prototypes", "UI design & graphical interfaces", "Usability testing"],
+        "button_text": "More UX Design services"
+      },
+      "agile": {
+        "title": "Agile Methods",
+        "intro": "We coach and help your organization adapt agile principles to your needs.",
+        "desc": "Whether you want to implement Scrum at the team level or scale up to SAFe (Scaled Agile Framework) at the organizational level, we help you build efficient, self-organizing teams and transparent workflows.",
+        "bullets": ["Scrum & Kanban adoption", "Scaled agility (SAFe consulting)", "Agile coaching on individual & team levels", "Agile ceremonies facilitation"],
+        "button_text": "More Agile Methods services"
+      }
+    }
+  },
+  "why": {
+    "badge": "Value Add",
+    "title": "Why choose REQCON?",
+    "subtitle": "We are not just consultants; we are your partner. We ensure structure, safety, and deliver real business value to every project.",
+    "items": [
+      {
+        "title": "Years of industry experience",
+        "desc": "Our consultants have broad expertise from both public procurements and major private IT infrastructures."
+      },
+      {
+        "title": "Safe and stable delivery",
+        "desc": "We work according to proven models that guarantee control, high quality, and structured milestones."
+      },
+      {
+        "title": "User-centric focus",
+        "desc": "By combining UX and requirements management, we place the end-user's actual needs at the heart of the process."
+      },
+      {
+        "title": "Agile flexibility",
+        "desc": "We master Scrum, SAFe, and traditional frameworks, and adapt the methods to your organization's unique conditions."
+      }
+    ]
+  },
+  "process": {
+    "badge": "Methodology",
+    "title": "Our Work Process",
+    "subtitle": "With a structured and proven working methodology, we ensure order, minimize risks, and drive development forward.",
+    "steps": [
+      {
+        "num": "01",
+        "title": "Discovery & Analysis",
+        "desc": "We map business needs, conduct interviews with key stakeholders, and define the actual problem."
+      },
+      {
+        "num": "02",
+        "title": "Requirements & Planning",
+        "desc": "We specify functional and non-functional requirements, map out information flows, and plan test scenarios."
+      },
+      {
+        "num": "03",
+        "title": "Quality Assured Execution",
+        "desc": "We lead the development team, perform continuous reviews, and execute tests to fix bugs dynamically."
+      },
+      {
+        "num": "04",
+        "title": "Delivery & Handover",
+        "desc": "After completed system and user acceptance testing, we assure deployment and hand over a functioning product."
+      }
+    ]
+  },
+  "team": {
+    "badge": "Leadership",
+    "title": "Our Leadership Team",
+    "subtitle": "Meet our consultant managers who guide our regional operations and lead our specialist teams.",
+    "fadi_desc": "Fadi leads the Stockholm office and is responsible for strategic partnerships as well as recruiting senior requirements analysts.",
+    "anel_desc": "Anel is responsible for Western Sweden and matches complex client needs with the right testing and project management expertise."
+  },
+  "testimonials": {
+    "badge": "References",
+    "title": "What our clients say",
+    "subtitle": "We build long-term relationships grounded in trust and professional delivery.",
+    "items": [
+      {
+        "quote": "REQCON's consultants have shown an outstanding ability to quickly understand our operations and structure our requirements processes.",
+        "name": "Anders Larsson",
+        "position": "IT Architect & Dev Lead, State Agency"
+      },
+      {
+        "quote": "Their combination of deep requirements methodology and technical understanding allowed us to halve the time from spec to tested code.",
+        "name": "Maria Bergqvist",
+        "position": "Product Owner, Energy Sector"
+      }
+    ]
+  },
+  "about": {
+    "badge": "Our History",
+    "title": "About Us",
+    "subtitle": "It started with a vision to gather expert IT specialists and build proven models based on practical experience. Today we are a well-established partner for digital success.",
+    "story_title": "Our Story",
+    "story_p1": "REQCON was founded in 2020 in Stockholm. The vision has always been to gather a group of knowledgeable experts to build proven models and processes based on our know-how. We want to deliver real value to our clients - regardless of industry.",
+    "story_p2": "Our foundation lies in requirements analysis (business analysis), but as a company we have recently expanded our competence areas to testing, project management, and information management. Today we have expanded operations to Gothenburg, and our ambition is to deliver expertise to organizations throughout Sweden.",
+    "stats": [
+      {"value": "2020", "label": "Founded in Stockholm"},
+      {"value": "2", "label": "Established Offices (Sthlm & Gbg)"},
+      {"value": "100%", "label": "Quality Focus in All Steps"},
+      {"value": "Senior", "label": "Consultant Competence Level"}
+    ],
+    "milestones": {
+      "badge": "Journey",
+      "title": "Milestones",
+      "subtitle": "Follow our journey from a newly started specialist firm to a nationwide IT partner.",
+      "items": [
+        {
+          "year": "2020",
+          "title": "REQCON is founded",
+          "desc": "The company is established in central Stockholm with the goal of gathering the industry's top experts in requirements management and business analysis."
+        },
+        {
+          "year": "2022",
+          "title": "Competence areas expand",
+          "desc": "To meet increased quality assurance demands from our clients, we recruit senior test leads, QA specialists, and project managers."
+        },
+        {
+          "year": "2024",
+          "title": "Expansion to Gothenburg",
+          "desc": "REQCON opens the doors to its office on Gustaf Dalénsgatan in Gothenburg to support partners in Western Sweden locally."
+        },
+        {
+          "year": "2026",
+          "title": "Nationwide delivery",
+          "desc": "With stable models and proven processes, we have the ambition to deliver our specialist services to clients throughout Sweden."
+        }
+      ]
+    }
+  },
+  "careers": {
+    "badge": "Careers",
+    "title": "Work with us",
+    "subtitle": "Want to join our team? We are always looking for senior requirements analysts, testers, and project managers who want to grow with us.",
+    "benefits_title": "What we offer you",
+    "benefits_subtitle": "We value our employees highly and strive to create a balanced environment where you thrive, grow, and can make an impact.",
+    "benefits_badge": "Benefits",
+    "benefits": [
+      {
+        "title": "Competitive Compensation",
+        "desc": "We offer market-competitive salaries, great terms, and a generous wellness allowance."
+      },
+      {
+        "title": "Freedom under responsibility",
+        "desc": "Here, you control your own time and workday as long as we and the client reach our common goals."
+      },
+      {
+        "title": "Competence development",
+        "desc": "We invest in you. We offer both internal seminars and external trainings/certifications."
+      },
+      {
+        "title": "Career Growth",
+        "desc": "There are excellent opportunities to take on expanded responsibility and grow alongside the company's expansion."
+      }
+    ],
+    "expectations_title": "What we expect",
+    "expectations_subtitle": "REQCON is built on mutual trust and professionalism. Our motto is: If you contribute to the company's development, the company will develop you – both competence-wise and economically.",
+    "expectations_badge": "Expectations",
+    "expectations": [
+      "That you take full ownership of your tasks and keep what you promise.",
+      "That you contribute to a professional, inclusive, and friendly work environment.",
+      "That you communicate openly, respectfully, and share your knowledge.",
+      "That you are curious, engaged, and have a constant desire to develop."
+    ],
+    "form": {
+      "badge": "Application",
+      "title": "Submit a spontaneous application",
+      "subtitle": "Can't find a vacant position that fits right now? Submit your CV and tell us about yourself, and we'll get in touch!",
+      "name": "Name *",
+      "name_placeholder": "Your full name",
+      "name_error": "Please enter your name",
+      "email": "Email *",
+      "email_placeholder": "your.email@example.com",
+      "email_error": "Please enter your email",
+      "email_invalid": "Invalid email address",
+      "phone": "Phone number *",
+      "phone_placeholder": "07X - XXX XX XX",
+      "phone_error": "Please enter your phone number",
+      "cv": "Upload CV *",
+      "cv_error": "Please upload your CV (PDF, DOC or DOCX)",
+      "submit": "Submit Application",
+      "success_title": "Thank you for your application!",
+      "success_desc": "We have received your details and will get back to you as soon as we have reviewed your profile.",
+      "success_btn": "Submit another application"
+    }
+  },
+  "contact": {
+    "badge": "Contact",
+    "title": "Contact us",
+    "subtitle": "Want to discuss a potential project, know more about our services, or join the team? Get in touch and we'll help you further.",
+    "locations_badge": "Local Offices",
+    "locations_title": "Our Offices & Managers",
+    "locations_subtitle": "Reach out directly to the manager responsible in your area.",
+    "view_maps": "Show on Google Maps",
+    "form": {
+      "badge": "Message",
+      "title": "Send a message",
+      "subtitle": "Fill in the form below and we will get back to you as soon as possible.",
+      "name": "Name *",
+      "name_placeholder": "Your name",
+      "name_error": "Please enter your name",
+      "email": "Email *",
+      "email_placeholder": "your.email@example.com",
+      "email_error": "Please enter your email",
+      "email_invalid": "Invalid email address",
+      "subject": "Subject *",
+      "subject_placeholder": "What is your message about?",
+      "subject_error": "Please enter a subject",
+      "message": "Message *",
+      "message_placeholder": "Write your message here...",
+      "message_error": "Please enter your message",
+      "submit": "Send Message",
+      "success_title": "Message sent!",
+      "success_desc": "Thank you for contacting REQCON. We have received your message and usually reply within 24 hours on business days.",
+      "success_btn": "Send another message"
+    }
+  },
+  "footer": {
+    "tagline": "Your obvious choice to take you from vision to product. We combine deep competence in requirements management with broad business understanding.",
+    "services": "Services",
+    "company": "Company",
+    "offices": "Offices",
+    "policy_staff": "Staff Policy",
+    "policy_privacy": "Privacy Policy",
+    "rights": "All rights reserved."
+  }
+}
