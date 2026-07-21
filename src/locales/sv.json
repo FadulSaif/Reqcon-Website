@@ -15,7 +15,7 @@
   },
   "clients": {
     "badge": "FÖRTROENDE & SAMARBETEN",
-    "title": "Några av våra kunder",
+    "title": "Anförtrodda av företag & myndigheter",
     "subtitle": "Vi är stolta över att samarbeta med ledande organisationer och myndigheter i Sverige."
   },
   "services": {
@@ -114,7 +114,7 @@
       },
       {
         "num": "03",
-        "title": "Kvalitetssäkrad Execution",
+        "title": "Kvalitetssäkrat genomförande",
         "desc": "Vi leder utvecklingsteamet, genomför kontinuerliga granskningar och utför tester för att löpande korrigera buggar."
       },
       {
@@ -151,10 +151,11 @@
   "about": {
     "badge": "Vår historia",
     "title": "Om oss",
-    "subtitle": "Det började med en vision att samla kunniga IT-specialister och bygga beprövade metoder baserade på praktisk erfarenhet. Idag är vi en väletablerad partner för digital framgång.",
-    "story_title": "Vår berättelse",
-    "story_p1": "REQCON grundades 2020 i Stockholm. Visionen har alltid varit att samla ett gäng erfarna experter för att internt bygga upp beprövade modeller och processer grundade i vår know-how. Vi vill leverera verkligt värde till våra kunder – oavsett bransch.",
-    "story_p2": "Vår grundpelare ligger i kravanalys (business analysis), men som bolag har vi på senare tid framgångsrikt utökat våra kompetensområden till testning, projektledning och informationshantering. Idag har vi expanderat verksamheten till Göteborg, och vår ambition är att leverera expertis till organisationer i hela Sverige.",
+    "subtitle": "Det började med en vision att samla kunniga experter och bygga beprövade modeller och processer för att leverera verkligt värde till våra kunder.",
+    "story_title": "Det började med en vision.",
+    "story_p1": "Reqcon grundades 2020 och har sitt säte i centrala Stockholm. Visionen har varit att samla ett gäng kunniga experter, för att internt bygga upp beprövade modeller och processer grundade i vår \"know-how\" och mångåriga erfarenhet för att leverera verkligt värde till våra kunder – oavsett bransch.",
+    "story_p2": "Reqcon's grundpelare ligger i kravanalys (business analysis), men har som bolag på senare tid utökat sina kompetensområden. Målet är att göra visionen till verklighet. Idag har Reqcon expanderat sin verksamhet till Göteborg och har även ambition att kunna leverera sina tjänster i hela Sverige.",
+    "tagline": "När du investerar i oss, investerar vi i dig",
     "stats": [
       {"value": "2020", "label": "Grundat i Stockholm"},
       {"value": "2", "label": "Etablerade kontor (Sthlm & Gbg)"},
@@ -192,37 +193,132 @@
   "careers": {
     "badge": "Karriär",
     "title": "Arbeta hos oss",
-    "subtitle": "Vill du bli en del av vårt team? Vi söker ständigt seniora kravanalytiker, testare och projektledare som vill utvecklas tillsammans med oss.",
-    "benefits_title": "Vad vi erbjuder dig",
-    "benefits_subtitle": "Vi värdesätter våra medarbetare högt och strävar efter att skapa en balanserad miljö där du trivs, växer och kan påverka.",
-    "benefits_badge": "Förmåner",
-    "benefits": [
-      {
-        "title": "Konkurrenskraftig kompensation",
-        "desc": "Vi erbjuder marknadsmässiga löner, bra villkor och ett generöst friskvårdsbidrag."
-      },
-      {
-        "title": "Frihet under ansvar",
-        "desc": "Hos oss styr du din egen tid och arbetsdag så länge vi och kunden når våra gemensamma mål."
-      },
-      {
-        "title": "Kompetensutveckling",
-        "desc": "Vi investerar i dig. Vi erbjuder både interna seminarier och externa utbildningar/certifieringar."
-      },
-      {
-        "title": "Karriärtillväxt",
-        "desc": "Det finns stora möjligheter att ta ett utökat ansvar och växa i takt med bolagets expansion."
-      }
-    ],
-    "expectations_title": "Vad vi förväntar oss",
-    "expectations_subtitle": "REQCON bygger på ömsesidigt förtroende och professionalitet. Vårt motto lyder: Om du bidrar till bolagets utveckling, ser bolaget till att utveckla dig – både kompetensmässigt och ekonomiskt.",
+    "hero_badge": "Vi vill bli fler!",
+    "hero_subtitle": "Är Reqcon rätt bolag för dig? Läs nedan och avgör",
+    "tagline": "När du investerar i oss, investerar vi i dig.",
+    "offer_badge": "Vårt erbjudande",
+    "offer_title": "Vad vi erbjuder dig",
+    "offer_p1": "På Reqcon värdesätter vi våra medarbetare högt och strävar efter att skapa en miljö där du trivs, utvecklas och får möjlighet att påverka. Vi erbjuder konkurrenskraftiga löner och flexibla arbetstider enligt principen \"frihet under ansvar\" – du har frihet att själv styra din arbetsdag så länge vi tillsammans når våra mål.",
+    "offer_p2": "Vi satsar aktivt på kompetensutveckling och erbjuder både interna och externa utbildningar för att du ska kunna växa i din roll och hålla dig uppdaterad i din yrkesutveckling. Hos oss finns också goda möjligheter att ta ett större ansvar och växa inom bolaget, i takt med att du utvecklas och bidrar.",
+    "offer_p3": "På Reqcon har vi följande motto: Om du bidrar till bolagets utveckling, ser bolaget till att utveckla dig – både kompetensmässigt och ekonomiskt. Reqcon är ett företag där du får tillbaka det du ger.",
     "expectations_badge": "Förväntningar",
-    "expectations": [
-      "Att du tar fullt ägarskap över dina uppgifter och håller vad du lovar.",
-      "Att du bidrar till en professionell, inkluderande och trevlig arbetsmiljö.",
-      "Att du kommunicerar öppet, respektfullt och delar med dig av din kunskap.",
-      "Att du är nyfiken, engagerad och har en vilja att ständigt utvecklas."
+    "expectations_title": "Vad förväntar sig Reqcon av dig?",
+    "expectations_p1": "På Reqcon bygger vi vår kultur på ömsesidigt förtroende, engagemang och professionalism. Som medarbetare förväntas du ta ansvar för ditt arbete, din utveckling och bidra aktivt till både teamets och företagets framgång.",
+    "expectations_p2": "Vi tror på frihet under ansvar – men också att du tar fullt ansvar för resultatet. Vi värdesätter initiativförmåga, samarbetsvilja och en vilja att ständigt utvecklas, både som individ och tillsammans med oss.",
+    "expectations_list_title": "Vi förväntar oss att du:",
+    "expectations_bullets": [
+      "Tar ansvar för dina uppgifter och håller vad du lovar.",
+      "Bidrar till en positiv och professionell arbetsmiljö.",
+      "Kommunicerar öppet och respektfullt.",
+      "Delar med dig av kunskap och erfarenheter.",
+      "Är nyfiken och villig att utvecklas – både tekniskt och personligt."
     ],
+    "expectations_footer": "Hos Reqcon är du inte bara en anställd – du är en viktig del av bolagets framtid.",
+    "policy_banner": "Vill du veta mer om Reqcon och våra värderingar?",
+    "policy_banner_cta": "Ta del av vår personalpolicy",
+    "form": {
+      "badge": "Ansökan",
+      "title": "Intresserad? Skicka spontanansökan",
+      "subtitle": "Hittar du ingen ledig tjänst som passar just nu? Skicka in ditt CV och berätta lite om dig själv, så hör vi av oss!",
+      "name": "Namn *",
+      "name_placeholder": "Ditt för- och efternamn",
+      "name_error": "Vänligen ange ditt namn",
+      "email": "E-post *",
+      "email_placeholder": "din.epost@doman.se",
+      "email_error": "Vänligen ange din e-postadress",
+      "email_invalid": "Ogiltig e-postadress",
+      "phone": "Tel-nr *",
+      "phone_placeholder": "070-000 00 00",
+      "phone_error": "Vänligen ange ditt telefonnummer",
+      "cv": "Ladda upp ditt CV (endast dokument tillåts) *",
+      "cv_error": "Vänligen bifoga ditt CV",
+      "submit": "Skicka spontanansökan",
+      "success_title": "Ansökan mottagen!",
+      "success_desc": "Tack för ditt intresse för REQCON. Vi går igenom din ansökan och återkopplar så snart vi kan.",
+      "success_btn": "Skicka en ny ansökan"
+    },
+    "policy": {
+      "badge": "Policy",
+      "title": "Personalpolicy",
+      "subtitle": "Vi värnar om en trygg, professionell och balanserad arbetsmiljö. Läs eller ladda ner vårt officiella policydokument.",
+      "read_btn": "Läs policyn online",
+      "download_btn": "Ladda ner PDF",
+      "close_btn": "Stäng dokument",
+      "signed_by": "Signerad av",
+      "ceo": "VD",
+      "manager": "Chef",
+      "effective_date": "Gäller från och med: 2025-06-03",
+      "docusigned": "DocuSigned",
+      "signed": "Signerad",
+      "sections": {
+        "1": {
+          "title": "1. Syfte",
+          "text": "Denna personalpolicy syftar till att skapa en trygg, inkluderande och professionell arbetsmiljö för våra medarbetare. Policyn tydliggör våra värderingar, förväntningar och riktlinjer för hur vi arbetar tillsammans inom bolaget och ute hos kund."
+        },
+        "2": {
+          "title": "2. Omfattning",
+          "text": "Policyn gäller för samtliga anställda, konsulter, praktikanter och inhyrd personal i Reqcon."
+        },
+        "3": {
+          "title": "3. Vår målsättning",
+          "text": "Reqcon ska vara en arbetsplats där alla känner sig trygga, respekterade och har goda förutsättningar att utföra sitt arbete. Vi verkar för en arbetsmiljö fri från ohälsa, olycksfall, diskriminering och kränkande särbehandling."
+        },
+        "4": {
+          "title": "4. Värdegrund",
+          "text": "Vi utgår från följande 5 grundläggande principer i allt vårt arbete:",
+          "bullets": [
+            "<strong>Professionalism:</strong> Vi representerar vårt bolag och våra kunder med respekt, punktlighet och kvalitet.",
+            "<strong>Tillit:</strong> Vi tror på öppenhet och ansvarstagande.",
+            "<strong>Kommunikation:</strong> Vi kommunicerar med respekt, tydlighet och öppenhet. Vår kommunikation ska vara inkluderande, bidra till förtroende och samarbete.",
+            "<strong>Engagemang:</strong> Vi är lösningsorienterade, proaktiva och värdesätter våra kunders behov. Vi värnar om varandra inom bolaget och stöttar varandra i vårt arbete.",
+            "<strong>Balans:</strong> Vi värnar om balans mellan arbete och privatliv."
+          ]
+        },
+        "5": {
+          "title": "5. Arbetsmiljö",
+          "text": "Vi eftersträvar en inkluderande och trygg arbetsmiljö där alla behandlas med respekt - oavsett kön, ålder, etnicitet, religion, funktionsvariation eller sexuell läggning.<br/><br/>Kränkande särbehandling, mobbning, trakasserier eller manipulation (\"toxic behavior\") accepteras inte."
+        },
+        "6": {
+          "title": "6. Kommunikation",
+          "text": "Vi uppmuntrar öppen, rak och respektfull kommunikation – både internt och externt. Synpunkter, förbättringsförslag eller problem ska kunna lyftas utan rädsla för repressalier."
+        },
+        "7": {
+          "title": "7. Tider och flexibilitet",
+          "text": "Vi tillämpar flexibla arbetstider i den mån uppdraget tillåter det. Konsulter följer i första hand kundens tider, men vi strävar efter balans och återhämtning."
+        },
+        "8": {
+          "title": "8. Distansarbete",
+          "text": "Distansarbete tillåts efter överenskommelse med närmaste chef och i dialog med kund samt avtalsenligt. Vi förväntar oss tillgänglighet och professionellt uppträdande oavsett arbetsplats."
+        },
+        "9": {
+          "title": "9. Kompetensutveckling",
+          "text": "Vi uppmuntrar kontinuerligt lärande genom utbildningar, certifieringar och erfarenhetsutbyte. Varje medarbetare ansvarar för sin utveckling – vi stöttar genom tid och resurser."
+        },
+        "10": {
+          "title": "10. Lojalitet & Sekretess",
+          "text": "All information rörande bolaget, kollegor och kunder hanteras konfidentiellt. Konsultrollen innebär ofta tillgång till känslig information – sekretess ska alltid respekteras."
+        },
+        "11": {
+          "title": "11. Uppföljning",
+          "text": "Policyn följs upp vid utvecklingssamtal och revideras minst årligen av ledningsgrupp."
+        },
+        "12": {
+          "title": "12. Godkännande",
+          "text": "Denna policy gäller från och med 2025-06-03, är godkänd och signerad av ledningen i Reqcon."
+        }
+      }
+    },
+    "info": {
+      "title": "Bli en del av REQCON",
+      "subtitle": "Vi söker ständigt efter drivna och engagerade talanger som vill växa tillsammans med oss.",
+      "bullets": [
+        "<strong>Spännande uppdrag:</strong> Arbeta med marknadsledande kunder och modern teknik.",
+        "<strong>Flexibel arbetsmiljö:</strong> Vi värnar om din balans mellan arbete och fritid med flexibla hybridval.",
+        "<strong>Kompetensutveckling:</strong> Vi stöttar dig aktivt med kurser, certifieringar och interna utbildningar."
+      ],
+      "motto_title": "Vårt löfte",
+      "motto_text": "När du investerar din tid och ditt engagemang i oss, ser vi till att investera i din framtid och din utveckling – både kompetensmässigt och ekonomiskt."
+    },
     "form": {
       "badge": "Ansökan",
       "title": "Skicka en spontanansökan",

@@ -15,7 +15,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="text-xs font-semibold uppercase tracking-wider text-text-primary select-none"
+            className="form-label text-text-primary select-none"
           >
             {label}
           </label>
@@ -23,7 +23,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           id={inputId}
           ref={ref}
-          className={`w-full px-4 py-3 rounded-lg border bg-bg-surface text-text-primary text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-primary/20 ${
+          className={`w-full form-input px-4 py-3 rounded-lg border bg-bg-surface text-text-primary transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-primary/20 ${
             error
               ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
               : 'border-border-custom focus:border-accent-primary'

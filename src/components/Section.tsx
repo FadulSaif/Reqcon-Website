@@ -37,17 +37,17 @@ export const Section: React.FC<SectionProps> = ({
   const headingBlock = (title || subtitle || badge) && (
     <div className={`flex flex-col ${alignStyles[align]} mb-12 md:mb-16 max-w-3xl ${align === 'center' ? 'mx-auto' : ''}`}>
       {badge && (
-        <span className="text-xs font-bold uppercase tracking-widest text-brand-secondary px-3 py-1 rounded-full bg-brand-secondary/10 mb-4 select-none">
+        <span className="section-eyebrow select-none w-fit px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15">
           {badge}
         </span>
       )}
       {title && (
-        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-current mb-4">
+        <h2 className="heading-xl text-current mb-4">
           {title}
         </h2>
       )}
       {subtitle && (
-        <p className={`text-base md:text-lg leading-relaxed ${background === 'dark' ? 'text-slate-400' : 'text-text-muted'}`}>
+        <p className={`body-lg ${background === 'dark' ? 'text-slate-400' : 'text-text-muted'}`}>
           {subtitle}
         </p>
       )}

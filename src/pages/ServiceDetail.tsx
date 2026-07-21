@@ -591,7 +591,7 @@ const ServiceDetail: React.FC = () => {
             <p className="text-base text-text-secondary leading-relaxed">
               {details.extendedDescription}
             </p>
-            <div className="mt-4 p-6 rounded-2xl bg-bg-surface border border-border-custom flex gap-4 items-start">
+            <div className="mt-4 p-6 rounded-2xl bg-gradient-to-br from-white via-white to-accent-primary/[0.14] dark:from-zinc-950 dark:via-bg-surface dark:to-accent-primary/[0.08] border border-border-custom flex gap-4 items-start">
               <Target className="w-6 h-6 text-brand-secondary shrink-0 mt-0.5" />
               <div>
                 <h4 className="font-bold text-text-primary text-sm mb-1">
@@ -720,7 +720,7 @@ const ServiceDetail: React.FC = () => {
                 <Link
                   key={id}
                   to={`/${activeLang}/services/${id}`}
-                  className="bg-bg-surface border border-border-custom hover:border-brand-secondary dark:hover:border-brand-secondary hover:-translate-y-0.5 rounded-xl p-4 shadow-sm flex flex-col items-center gap-2 text-center transition-all duration-200 select-none group"
+                  className="bg-gradient-to-br from-white via-white to-accent-primary/[0.14] dark:from-zinc-950 dark:via-bg-surface dark:to-accent-primary/[0.08] border border-border-custom hover:-translate-y-0.5 hover:shadow-md hover:border-accent-primary rounded-xl p-4 shadow-sm flex flex-col items-center gap-2 text-center transition-[transform,box-shadow,border-color] duration-200 select-none group"
                   onClick={() => window.scrollTo(0,0)}
                 >
                   <div className="w-8 h-8 rounded-lg bg-brand-secondary/5 flex items-center justify-center group-hover:bg-brand-secondary/10 transition-colors">

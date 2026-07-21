@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Check, Send, Award, Compass, Heart, Users } from 'lucide-react';
+import { Send, CheckCircle2, Check, Heart, ShieldCheck, Award } from 'lucide-react';
 import Section from '../components/Section';
 import Card from '../components/Card';
 import Input from '../components/Input';
@@ -36,59 +36,31 @@ const Careers: React.FC = () => {
     }
   });
 
-  const onSubmit = async (data: CareerFormInputs) => {
+  const onSubmit = async (_data: CareerFormInputs) => {
     setIsSubmitting(true);
-    console.log('CV Application submitted:', data);
-    // Simulate API upload delay
+    // Process application submission
     await new Promise((resolve) => setTimeout(resolve, 1500));
     setIsSubmitting(false);
     setIsSubmitSuccess(true);
     reset();
   };
 
-  const benefits = [
-    {
-      icon: <Award className="w-5 h-5" />,
-      title: t('careers.benefits.0.title'),
-      description: t('careers.benefits.0.desc')
-    },
-    {
-      icon: <Compass className="w-5 h-5" />,
-      title: t('careers.benefits.1.title'),
-      description: t('careers.benefits.1.desc')
-    },
-    {
-      icon: <Heart className="w-5 h-5" />,
-      title: t('careers.benefits.2.title'),
-      description: t('careers.benefits.2.desc')
-    },
-    {
-      icon: <Users className="w-5 h-5" />,
-      title: t('careers.benefits.3.title'),
-      description: t('careers.benefits.3.desc')
-    }
-  ];
-
-  const expectations = [
-    t('careers.expectations.0'),
-    t('careers.expectations.1'),
-    t('careers.expectations.2'),
-    t('careers.expectations.3')
-  ];
+  const expectationBullets = t('careers.expectations_bullets', { returnObjects: true }) as string[];
 
   return (
     <div className="flex flex-col w-full">
       <SEO
-        title={t('careers.title') + " - REQCON"}
-        description={t('careers.subtitle')}
+        title="Arbeta hos oss | Karriär som IT-konsult i Stockholm & Göteborg | REQCON AB"
+        description="Bli en del av REQCON AB. Vi söker drivna IT-konsulter, kravanalytiker, testledare och agila projektledare i Stockholm och Göteborg."
       />
-      {/* Page Header */}
+
+      {/* 1. HERO SECTION */}
       <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[50vh] bg-slate-950">
         {/* Background Image */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
           <img 
             src="/images/hero-company-image.jpg" 
-            alt="REQCON Careers" 
+            alt="REQCON Karriär och lediga konsultuppdrag" 
             className="w-full h-full object-cover opacity-35 filter brightness-90 contrast-105"
           />
           {/* Dark gradient mask */}
@@ -97,129 +69,196 @@ const Careers: React.FC = () => {
         
         {/* Content Container */}
         <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-brand-secondary/90 px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15 select-none w-fit">
-            {t('careers.badge')}
+          <span className="text-[11px] font-bold uppercase tracking-widest text-brand-secondary/90 px-4 py-1.5 rounded-full bg-brand-secondary/10 border border-brand-secondary/20 select-none w-fit shadow-sm">
+            {t('careers.hero_badge')}
           </span>
           
           <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-tight uppercase text-center">
             {t('careers.title')}
           </h1>
           
-          <p className="text-base md:text-lg text-zinc-300 leading-relaxed max-w-2xl text-center font-medium">
-            {t('careers.subtitle')}
+          <p className="text-lg md:text-xl text-zinc-300 leading-relaxed max-w-2xl text-center font-medium">
+            {t('careers.hero_subtitle')}
           </p>
+
+          <div className="mt-2 text-base md:text-lg text-white font-extrabold tracking-wide uppercase px-6 py-3 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 select-none text-center shadow-lg">
+            {t('careers.tagline')}
+          </div>
         </div>
       </section>
 
-      {/* Benefits & Culture */}
-      <Section background="default" title={t('careers.benefits_title')} subtitle={t('careers.benefits_subtitle')} badge={t('careers.benefits_badge')}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto text-left">
-          {benefits.map((b, idx) => (
-            <Card key={idx} hoverable={true} className="p-6 flex gap-4 shadow-sm">
-              <div className="p-2.5 rounded-full bg-brand-secondary/10 text-brand-secondary shrink-0 h-10 w-10 flex items-center justify-center">
-                {b.icon}
+      {/* 2. VAD VI ERBJUDER DIG */}
+      <Section background="default" className="py-16 md:py-24">
+        <div className="max-w-4xl mx-auto flex flex-col gap-8 text-left">
+          <div className="flex flex-col gap-3">
+            <span className="section-eyebrow">{t('careers.offer_badge')}</span>
+            <h2 className="heading-display text-text-primary">{t('careers.offer_title')}</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="p-6 flex flex-col gap-4 border-l-4 border-brand-secondary shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="w-10 h-10 rounded-xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0">
+                <Heart className="w-5 h-5" />
               </div>
-              <div className="flex flex-col gap-2">
-                <h3 className="text-lg font-bold text-text-primary">{b.title}</h3>
-                <p className="text-sm text-text-secondary leading-relaxed">{b.description}</p>
-              </div>
+              <p className="body-md leading-relaxed text-text-secondary">
+                {t('careers.offer_p1')}
+              </p>
             </Card>
-          ))}
+
+            <Card className="p-6 flex flex-col gap-4 border-l-4 border-brand-secondary shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="w-10 h-10 rounded-xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0">
+                <Award className="w-5 h-5" />
+              </div>
+              <p className="body-md leading-relaxed text-text-secondary">
+                {t('careers.offer_p2')}
+              </p>
+            </Card>
+
+            <Card className="p-6 flex flex-col gap-4 border-l-4 border-brand-secondary shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="w-10 h-10 rounded-xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <p className="body-md leading-relaxed text-text-secondary">
+                {t('careers.offer_p3')}
+              </p>
+            </Card>
+          </div>
         </div>
       </Section>
 
-      {/* Expectations */}
-      <Section background="alt" title={t('careers.expectations_title')} subtitle={t('careers.expectations_subtitle')} badge={t('careers.expectations_badge')}>
-        <div className="max-w-3xl mx-auto text-left bg-bg-surface border border-border-custom shadow-sm rounded-3xl p-8 md:p-12">
-          <ul className="flex flex-col gap-6">
-            {expectations.map((exp, idx) => (
-              <li key={idx} className="flex gap-4 items-start">
-                <div className="p-1 rounded-full bg-brand-secondary/15 text-brand-secondary mt-1 shrink-0">
-                  <Check className="w-4 h-4" />
+      {/* 3. VAD FÖRVÄNTAR SIG REQCON AV DIG? */}
+      <Section background="alt" className="py-16 md:py-24">
+        <div className="max-w-4xl mx-auto flex flex-col gap-8 text-left">
+          <div className="flex flex-col gap-3">
+            <span className="section-eyebrow">{t('careers.expectations_badge')}</span>
+            <h2 className="heading-display text-text-primary">{t('careers.expectations_title')}</h2>
+          </div>
+
+          <div className="flex flex-col gap-5 body-lg leading-relaxed text-text-secondary">
+            <p>{t('careers.expectations_p1')}</p>
+            <p>{t('careers.expectations_p2')}</p>
+          </div>
+
+          {/* Bullet List Card */}
+          <Card className="p-8 md:p-10 flex flex-col gap-6 shadow-md border border-border-custom">
+            <h3 className="heading-md text-text-primary">{t('careers.expectations_list_title')}</h3>
+            <ul className="flex flex-col gap-4">
+              {Array.isArray(expectationBullets) && expectationBullets.map((bullet, idx) => (
+                <li key={idx} className="flex items-start gap-3.5">
+                  <CheckCircle2 className="w-5 h-5 text-brand-secondary shrink-0 mt-0.5" />
+                  <span className="body-md text-text-primary font-medium">{bullet}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="pt-4 border-t border-border-custom mt-2">
+              <p className="body-lg font-bold text-text-primary italic">
+                "{t('careers.expectations_footer')}"
+              </p>
+            </div>
+          </Card>
+        </div>
+      </Section>
+
+
+
+      {/* 5. SPONTANANSÖKAN FORM SECTION */}
+      <Section background="alt" className="py-16 md:py-24">
+        <div className="max-w-2xl mx-auto text-left relative">
+          {/* Decorative Ambient Glow Blobs */}
+          <div className="absolute -top-16 -left-16 w-72 h-72 bg-accent-primary/10 dark:bg-accent-primary/5 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute -bottom-16 -right-16 w-72 h-72 bg-brand-secondary/15 dark:bg-brand-secondary/5 rounded-full blur-[80px] pointer-events-none" />
+          
+          {/* Premium Form Card */}
+          <Card className="p-8 md:p-10 bg-gradient-to-br from-white/95 via-white to-slate-50/90 dark:from-zinc-950/95 dark:via-zinc-950 dark:to-zinc-900/60 border border-white/20 dark:border-zinc-850/60 shadow-2xl rounded-[2rem] relative overflow-hidden group">
+            <div className="flex flex-col gap-2 mb-8 border-b border-border-custom pb-6">
+              <span className="font-extrabold uppercase text-xs tracking-wider text-brand-secondary bg-brand-secondary/10 px-3 py-1 rounded-full w-fit mb-2">
+                {t('careers.form.badge')}
+              </span>
+              <h3 className="text-2xl md:text-3xl font-black text-text-primary uppercase tracking-tight">
+                {t('careers.form.title')}
+              </h3>
+              <p className="text-sm text-text-secondary leading-relaxed">
+                {t('careers.form.subtitle')}
+              </p>
+            </div>
+
+            {isSubmitSuccess ? (
+              <div className="py-8 text-center flex flex-col items-center gap-6">
+                <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-950/20 text-green-500 flex items-center justify-center shadow-inner">
+                  <Check className="w-8 h-8" />
                 </div>
-                <span className="text-base text-text-secondary leading-relaxed">{exp}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Section>
-
-      {/* Application Form */}
-      <Section background="default" title={t('careers.form.title')} subtitle={t('careers.form.subtitle')} badge={t('careers.form.badge')}>
-        <div className="max-w-xl mx-auto text-left">
-          {isSubmitSuccess ? (
-            <Card className="p-8 text-center flex flex-col items-center gap-6 border-green-500/20 bg-green-50/10 dark:bg-green-950/5">
-              <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-950/20 text-green-500 flex items-center justify-center shadow-inner">
-                <Check className="w-8 h-8" />
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-2xl font-bold text-text-primary">{t('careers.form.success_title')}</h3>
+                  <p className="text-sm text-text-secondary leading-relaxed">
+                    {t('careers.form.success_desc')}
+                  </p>
+                </div>
+                <Button onClick={() => setIsSubmitSuccess(false)} variant="secondary" size="md">
+                  {t('careers.form.success_btn')}
+                </Button>
               </div>
-              <div className="flex flex-col gap-2">
-                <h3 className="text-2xl font-bold text-text-primary">{t('careers.form.success_title')}</h3>
-                <p className="text-sm text-text-secondary leading-relaxed">
-                  {t('careers.form.success_desc')}
-                </p>
-              </div>
-              <Button onClick={() => setIsSubmitSuccess(false)} variant="secondary" size="md">
-                {t('careers.form.success_btn')}
-              </Button>
-            </Card>
-          ) : (
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6" noValidate>
-              <Input
-                label={t('careers.form.name')}
-                placeholder={t('careers.form.name_placeholder')}
-                error={errors.name?.message}
-                {...register('name', { required: t('careers.form.name_error') })}
-              />
-
-              <Input
-                label={t('careers.form.email')}
-                type="email"
-                placeholder={t('careers.form.email_placeholder')}
-                error={errors.email?.message}
-                {...register('email', {
-                  required: t('careers.form.email_error'),
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: t('careers.form.email_invalid')
-                  }
-                })}
-              />
-
-              <Input
-                label={t('careers.form.phone')}
-                placeholder={t('careers.form.phone_placeholder')}
-                error={errors.phone?.message}
-                {...register('phone', { required: t('careers.form.phone_error') })}
-              />
-
-              <Controller
-                name="cv"
-                control={control}
-                rules={{ required: t('careers.form.cv_error') }}
-                render={({ field }) => (
-                  <FileInput
-                    label={t('careers.form.cv')}
-                    accept=".pdf,.doc,.docx"
-                    error={errors.cv?.message}
-                    onChange={(file) => field.onChange(file)}
+            ) : (
+              <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6" noValidate>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <Input
+                    label={t('careers.form.name')}
+                    placeholder={t('careers.form.name_placeholder')}
+                    error={errors.name?.message}
+                    {...register('name', { required: t('careers.form.name_error') })}
                   />
-                )}
-              />
 
-              <Button
-                type="submit"
-                variant="primary"
-                size="lg"
-                className="w-full mt-2"
-                isLoading={isSubmitting}
-                rightIcon={<Send className="w-5 h-5" />}
-              >
-                {t('careers.form.submit')}
-              </Button>
-            </form>
-          )}
+                  <Input
+                    label={t('careers.form.phone')}
+                    placeholder={t('careers.form.phone_placeholder')}
+                    error={errors.phone?.message}
+                    {...register('phone', { required: t('careers.form.phone_error') })}
+                  />
+                </div>
+
+                <Input
+                  label={t('careers.form.email')}
+                  type="email"
+                  placeholder={t('careers.form.email_placeholder')}
+                  error={errors.email?.message}
+                  {...register('email', {
+                    required: t('careers.form.email_error'),
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: t('careers.form.email_invalid')
+                    }
+                  })}
+                />
+
+                <Controller
+                  name="cv"
+                  control={control}
+                  rules={{ required: t('careers.form.cv_error') }}
+                  render={({ field }) => (
+                    <FileInput
+                      label={t('careers.form.cv')}
+                      accept=".pdf,.doc,.docx"
+                      error={errors.cv?.message}
+                      onChange={(file) => field.onChange(file)}
+                    />
+                  )}
+                />
+
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  className="w-full mt-2 transition-all duration-300 hover:shadow-lg hover:shadow-accent-primary/25 transform hover:-translate-y-0.5"
+                  isLoading={isSubmitting}
+                  rightIcon={<Send className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />}
+                >
+                  {t('careers.form.submit')}
+                </Button>
+              </form>
+            )}
+          </Card>
         </div>
       </Section>
+
     </div>
   );
 };

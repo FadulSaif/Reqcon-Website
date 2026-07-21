@@ -12,7 +12,7 @@ export const SEO: React.FC<SEOProps> = ({ title, description, schema }) => {
 
   useEffect(() => {
     // Update title
-    document.title = `${title} | REQCON`;
+    document.title = title.includes('REQCON') ? title : `${title} | REQCON AB`;
 
     // Update meta description
     let metaDescription = document.querySelector('meta[name="description"]');
@@ -25,11 +25,39 @@ export const SEO: React.FC<SEOProps> = ({ title, description, schema }) => {
 
     // Update OpenGraph Title
     let ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute('content', `${title} | REQCON`);
+    if (ogTitle) ogTitle.setAttribute('content', document.title);
 
     // Update OpenGraph Description
     let ogDesc = document.querySelector('meta[property="og:description"]');
     if (ogDesc) ogDesc.setAttribute('content', description);
+
+    // Update OpenGraph Locale (Swedish First)
+    let ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (!ogLocale) {
+      ogLocale = document.createElement('meta');
+      ogLocale.setAttribute('property', 'og:locale');
+      document.head.appendChild(ogLocale);
+    }
+    const currentLang = location.pathname.startsWith('/en') ? 'en_US' : 'sv_SE';
+    ogLocale.setAttribute('content', currentLang);
+
+    // Update OpenGraph Site Name
+    let ogSiteName = document.querySelector('meta[property="og:site_name"]');
+    if (!ogSiteName) {
+      ogSiteName = document.createElement('meta');
+      ogSiteName.setAttribute('property', 'og:site_name');
+      document.head.appendChild(ogSiteName);
+    }
+    ogSiteName.setAttribute('content', 'REQCON AB');
+
+    // Update Canonical URL
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', `https://reqcon.se${location.pathname}`);
 
     // Dynamic alternate links for bilingual indexation (hreflang)
     const currentPath = location.pathname;
@@ -38,9 +66,9 @@ export const SEO: React.FC<SEOProps> = ({ title, description, schema }) => {
 
     const baseDomain = 'https://reqcon.se';
     const alternateUrls = {
-      sv: `${baseDomain}/sv/${subPath}`,
-      en: `${baseDomain}/en/${subPath}`,
-      'x-default': `${baseDomain}/sv/${subPath}`
+      sv: `${baseDomain}/sv${subPath ? '/' + subPath : ''}`,
+      en: `${baseDomain}/en${subPath ? '/' + subPath : ''}`,
+      'x-default': `${baseDomain}/sv${subPath ? '/' + subPath : ''}`
     };
 
     // Remove existing alternate links

@@ -22,30 +22,135 @@ import SEO from '../components/SEO';
 
 const homeSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "REQCON AB",
-  "url": "https://reqcon.se/",
-  "logo": "https://reqcon.se/assets/logo.png",
-  "email": "info@reqcon.se",
-  "founder": {
-    "@type": "Person",
-    "name": "Fadi Rabah"
-  },
-  "foundingDate": "2020",
-  "address": [
+  "@graph": [
     {
-      "@type": "PostalAddress",
-      "streetAddress": "Tullgårdsgatan 10",
-      "addressLocality": "Stockholm",
-      "postalCode": "116 68",
-      "addressCountry": "SE"
+      "@type": ["Organization", "ConsultingService", "LocalBusiness"],
+      "@id": "https://reqcon.se/#organization",
+      "name": "REQCON AB",
+      "alternateName": ["REQCON", "REQCON Consulting"],
+      "legalName": "REQCON AB",
+      "url": "https://reqcon.se/",
+      "logo": "https://reqcon.se/assets/logo.png",
+      "image": "https://reqcon.se/assets/og-image.jpg",
+      "email": "info@reqcon.se",
+      "description": "REQCON är ett svenskt IT-konsultbolag grundat 2020 i Stockholm. Vi erbjuder seniora konsulter inom kravanalys, testledning, agil projektledning, kvalitetssäkring, informationshantering och UX-design i Stockholm, Göteborg och hela Sverige.",
+      "foundingDate": "2020",
+      "founder": {
+        "@type": "Person",
+        "name": "Fadi Rabah"
+      },
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "Tullgårdsgatan 10",
+          "addressLocality": "Stockholm",
+          "postalCode": "116 68",
+          "addressCountry": "SE"
+        },
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "Gustaf Dalénsgatan 30",
+          "addressLocality": "Göteborg",
+          "postalCode": "417 24",
+          "addressCountry": "SE"
+        }
+      ],
+      "areaServed": [
+        { "@type": "Country", "name": "Sverige" },
+        { "@type": "City", "name": "Stockholm" },
+        { "@type": "City", "name": "Göteborg" }
+      ],
+      "knowsAbout": [
+        "Kravanalys",
+        "Kravhantering",
+        "Business Analysis",
+        "Testledning",
+        "Kvalitetssäkring",
+        "QA-tjänster",
+        "Agil projektledning",
+        "Scrum Master",
+        "Informationshantering",
+        "SharePoint-konsultation",
+        "UX & Tjänstedesign",
+        "Verksamhetsanalys",
+        "Digital transformation"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "REQCON Specialisttjänster",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Kravanalys & Verksamhetsanalys",
+              "description": "Strukturering, insamling och visualisering av funktionella och icke-funktionella krav för IT-system."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Testledning & Kvalitetssäkring (QA)",
+              "description": "Strukturerad testplanering, manuella och automatiserade tester samt acceptanstester (UAT)."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Agil Projektledning & Scrum Leading",
+              "description": "Agilt ledarskap och metodiskt projektstöd för leveranser i tid och enligt budget."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Informationshantering & SharePoint",
+              "description": "Strukturering av dokumenthantering, intranät och informationsarkitektur."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "UX & Tjänstedesign",
+              "description": "Användarcentrerad design, prototyper och användbarhetstester."
+            }
+          }
+        ]
+      }
     },
     {
-      "@type": "PostalAddress",
-      "streetAddress": "Gustaf Dalénsgatan 30",
-      "addressLocality": "Göteborg",
-      "postalCode": "417 24",
-      "addressCountry": "SE"
+      "@type": "FAQPage",
+      "@id": "https://reqcon.se/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Vad gör REQCON?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "REQCON är ett svenskt IT-konsultbolag som hjälper företag och myndigheter att omvandla komplexa behov till välfungerande IT-system genom expertis inom kravanalys, testledning, agil projektledning, informationshantering och UX-design."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Var har REQCON sina kontor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "REQCON grundades 2020 i Stockholm (kontor på Tullgårdsgatan 10) och har expanderat till Göteborg (kontor på Gustaf Dalénsgatan 30), samt levererar konsulttjänster i hela Sverige."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Vilka branscher arbetar REQCON med?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "REQCON samarbetar med ledande organisationer i Sverige inom bland annat energisektorn, transport, myndigheter, finans, försvar och offentlig upphandling."
+          }
+        }
+      ]
     }
   ]
 };
@@ -56,25 +161,25 @@ const Home: React.FC = () => {
   // Dynamic services preview with icons and translated text
   const servicesPreview = [
     {
-      icon: <Search className="w-6 h-6 text-brand-secondary" />,
+      icon: <Search className="w-6 h-6 text-current" />,
       title: t('services.items.krav.title'),
       description: t('services.items.krav.intro'),
       key: 'krav'
     },
     {
-      icon: <ShieldCheck className="w-6 h-6 text-brand-secondary" />,
+      icon: <ShieldCheck className="w-6 h-6 text-current" />,
       title: t('services.items.test.title'),
       description: t('services.items.test.intro'),
       key: 'test'
     },
     {
-      icon: <Layers className="w-6 h-6 text-brand-secondary" />,
+      icon: <Layers className="w-6 h-6 text-current" />,
       title: t('services.items.pm.title'),
       description: t('services.items.pm.intro'),
       key: 'pm'
     },
     {
-      icon: <Compass className="w-6 h-6 text-brand-secondary" />,
+      icon: <Compass className="w-6 h-6 text-current" />,
       title: t('services.items.ux.title'),
       description: t('services.items.ux.intro'),
       key: 'ux'
@@ -158,8 +263,8 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col w-full">
       <SEO
-        title={t('hero.title') + " | REQCON AB"}
-        description={t('hero.subtitle')}
+        title={i18n.language === 'sv' ? 'REQCON AB | IT-konsulter inom kravanalys, testledning & agil projektledning' : 'REQCON AB | IT Consultants in Requirements Analysis & Project Management'}
+        description={i18n.language === 'sv' ? 'REQCON är ett svenskt IT-konsultbolag. Vi levererar seniora konsulter inom kravanalys, testledning, UX-design och agil projektledning i Stockholm, Göteborg och hela Sverige.' : 'REQCON is a Swedish IT consulting firm offering senior consultants in requirements analysis, testing, UX, and agile project management in Sweden.'}
         schema={homeSchema}
       />
       
@@ -173,7 +278,7 @@ const Home: React.FC = () => {
             <div className="absolute inset-0 z-0 overflow-hidden">
               <motion.img
                 src="/images/hero-company-image.jpg"
-                alt="REQCON Teamwork & Consulting"
+                alt="REQCON IT-konsulter i samarbete kring kravanalys och agil utveckling"
                 className="w-full h-full object-cover"
                 initial={{ scale: 1.1, opacity: 0 }}
                 animate={{ scale: 1, opacity: 0.55 }}
@@ -192,14 +297,14 @@ const Home: React.FC = () => {
               >
                 <motion.h1
                   variants={slideUp()}
-                  className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15] text-center"
+                  className="heading-hero text-white text-center"
                 >
                   {t('hero.title')}
                 </motion.h1>
                 
                 <motion.p
                   variants={slideUp()}
-                  className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl text-center"
+                  className="body-xl text-slate-300 opacity-80 max-w-2xl text-center"
                 >
                   {t('hero.subtitle')}
                 </motion.p>
@@ -242,7 +347,7 @@ const Home: React.FC = () => {
         <div className="flex items-center justify-center gap-4 mb-8 px-6 max-w-5xl mx-auto select-none">
           <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent to-slate-200 dark:to-zinc-800" />
           <div className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />
-          <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-text-secondary select-none whitespace-nowrap">
+          <span className="section-eyebrow !text-text-secondary select-none whitespace-nowrap !mb-0">
             {t('clients.title')}
           </span>
           <div className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />
@@ -305,7 +410,7 @@ const Home: React.FC = () => {
                 return scrollClients.map((client, idx) => (
                   <div
                     key={idx}
-                    className="bg-bg-page border border-border-custom rounded-2xl px-8 py-5 h-20 w-64 shadow-sm flex items-center justify-center shrink-0 hover:border-brand-secondary dark:hover:border-brand-secondary hover:-translate-y-1 hover:shadow-md transition-all duration-300 cursor-default"
+                    className="bg-bg-page border border-border-custom rounded-2xl px-8 py-5 h-20 w-64 shadow-sm flex items-center justify-center shrink-0 hover:-translate-y-0.5 hover:shadow-md hover:border-accent-primary transition-[transform,box-shadow,border-color] duration-200 cursor-default"
                   >
                     {client.svg}
                   </div>
@@ -328,7 +433,7 @@ const Home: React.FC = () => {
             <div className="relative aspect-square w-full max-w-md rounded-3xl overflow-hidden shadow-lg border border-border-custom bg-slate-950/20 group select-none">
               <img
                 src="/images/about_office.jpg"
-                alt="REQCON Delivering Quality"
+                alt="REQCON kvalitetssäkring, testledning och konsulttjänster i Sverige"
                 className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
                 loading="lazy"
               />
@@ -353,9 +458,9 @@ const Home: React.FC = () => {
                 <Card 
                   key={idx} 
                   hoverable={true} 
-                  className="p-5 flex gap-4 shadow-sm items-start hover:border-brand-secondary/40 hover:shadow-md transition-all duration-300 group"
+                  className="p-5 flex gap-4 shadow-sm items-start group"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-brand-secondary/10 flex items-center justify-center shrink-0 mt-0.5 transition-all duration-300 text-brand-secondary">
+                  <div className="w-10 h-10 rounded-xl bg-brand-secondary/10 flex items-center justify-center shrink-0 mt-0.5 transition-all duration-300 text-brand-secondary group-hover:rotate-6 group-hover:bg-accent-primary group-hover:text-white">
                     {service.icon}
                   </div>
                   <div className="flex flex-col gap-1.5 flex-1">
@@ -373,7 +478,7 @@ const Home: React.FC = () => {
             </div>
             <div className="mt-2">
               <Link to={servicesPath} onClick={() => window.scrollTo(0,0)}>
-                <Button variant="secondary" size="md" className="rounded-full">
+                <Button variant="primary" size="md" className="rounded-full">
                   {i18n.language === 'sv' ? 'Se alla våra tjänster' : 'More about our services'}
                 </Button>
               </Link>
@@ -390,13 +495,13 @@ const Home: React.FC = () => {
           {/* Left Column: Sticky Title & Description */}
           <div className="lg:col-span-5 text-left flex flex-col gap-6 lg:sticky lg:top-28 h-fit">
             <div className="flex flex-col gap-4">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-brand-secondary/90 px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15 select-none w-fit">
+              <span className="section-eyebrow select-none w-fit px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15">
                 {t('why.badge')}
               </span>
-              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-text-primary leading-tight">
+              <h2 className="heading-xl text-text-primary">
                 {t('why.title')}
               </h2>
-              <p className="text-base text-text-secondary leading-relaxed max-w-md">
+              <p className="body-lg text-text-secondary max-w-md">
                 {t('why.subtitle')}
               </p>
             </div>
@@ -415,13 +520,13 @@ const Home: React.FC = () => {
               <Card 
                 key={idx} 
                 hoverable={true} 
-                className="p-6 flex gap-5 text-left shadow-sm border border-border-custom hover:border-brand-secondary/40 hover:-translate-y-1 transition-all duration-300 group"
+                className="p-6 flex gap-5 text-left shadow-sm border border-border-custom group"
               >
-                <div className="p-3 rounded-xl bg-bg-surface border border-border-custom text-brand-secondary shrink-0 h-12 w-12 flex items-center justify-center transition-all duration-300 group-hover:bg-brand-secondary group-hover:text-white group-hover:border-brand-secondary">
+                <div className="p-3 rounded-xl bg-bg-surface border border-border-custom text-brand-secondary shrink-0 h-12 w-12 flex items-center justify-center transition-all duration-300 group-hover:rotate-6 group-hover:bg-accent-primary group-hover:text-white group-hover:border-accent-primary">
                   {pillar.icon}
                 </div>
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-lg font-bold text-text-primary group-hover:text-brand-secondary transition-colors">{pillar.title}</h3>
+                  <h3 className="text-lg font-bold text-text-primary transition-colors">{pillar.title}</h3>
                   <p className="text-sm text-text-secondary leading-relaxed">{pillar.description}</p>
                 </div>
               </Card>

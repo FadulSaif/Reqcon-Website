@@ -2,11 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Mail, MapPin } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
 
 export const Footer: React.FC = () => {
   const { t, i18n } = useTranslation();
-  const { theme } = useTheme();
   const currentYear = new Date().getFullYear();
 
   const services = [
@@ -27,7 +25,7 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-bg-alt border-t border-border-custom text-text-primary mt-auto">
+    <footer className="bg-gradient-to-b from-[#001724] to-[#000a10] text-zinc-100 border-t border-white/5 mt-auto">
       <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
         
         {/* Brand Column */}
@@ -35,13 +33,11 @@ export const Footer: React.FC = () => {
           <Link to={`/${i18n.language}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="select-none text-left w-fit block">
             <img 
               src="/images/logo.png" 
-              alt="REQCON Logo" 
-              className={`h-9 w-auto object-contain transition-all duration-300 ${
-                theme === 'light' ? '' : 'brightness-0 invert'
-              }`}
+              alt="REQCON Logotyp - IT-konsulter inom kravanalys och testledning" 
+              className="h-9 w-auto object-contain transition-all duration-300"
             />
           </Link>
-          <p className="text-sm text-text-secondary leading-relaxed text-left">
+          <p className="text-sm text-zinc-400 leading-relaxed text-left">
             {t('footer.tagline')}
           </p>
           <div className="flex items-center gap-3 mt-2">
@@ -49,7 +45,7 @@ export const Footer: React.FC = () => {
               href="https://www.linkedin.com/company/reqcon/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-full border border-border-custom hover:bg-slate-200 dark:hover:bg-slate-800 text-text-secondary hover:text-text-primary transition-colors focus:outline-none"
+              className="p-2 rounded-full border border-white/10 hover:bg-white/10 text-zinc-400 hover:text-white transition-colors focus:outline-none"
               aria-label="LinkedIn"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -58,7 +54,7 @@ export const Footer: React.FC = () => {
             </a>
             <a
               href="mailto:info@reqcon.se"
-              className="p-2 rounded-full border border-border-custom hover:bg-slate-200 dark:hover:bg-slate-800 text-text-secondary hover:text-text-primary transition-colors focus:outline-none"
+              className="p-2 rounded-full border border-white/10 hover:bg-white/10 text-zinc-400 hover:text-white transition-colors focus:outline-none"
               aria-label="E-post"
             >
               <Mail className="w-4 h-4" />
@@ -68,7 +64,7 @@ export const Footer: React.FC = () => {
 
         {/* Services Sitemap Column */}
         <div className="flex flex-col gap-5 text-left">
-          <span className="text-xs font-bold uppercase tracking-wider text-text-secondary">
+          <span className="font-heading font-semibold text-sm uppercase tracking-wider text-zinc-200">
             {t('footer.services')}
           </span>
           <ul className="flex flex-col gap-3">
@@ -77,7 +73,7 @@ export const Footer: React.FC = () => {
                 <Link
                   to={item.path}
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className="text-sm text-text-secondary hover:text-brand-secondary transition-colors inline-flex items-center gap-1 group"
+                  className="text-sm text-zinc-400 hover:text-brand-secondary transition-colors inline-flex items-center gap-1 group"
                 >
                   {item.name}
                 </Link>
@@ -88,7 +84,7 @@ export const Footer: React.FC = () => {
 
         {/* Company Sitemap Column */}
         <div className="flex flex-col gap-5 text-left">
-          <span className="text-xs font-bold uppercase tracking-wider text-text-secondary">
+          <span className="font-heading font-semibold text-sm uppercase tracking-wider text-zinc-200">
             {t('footer.company')}
           </span>
           <ul className="flex flex-col gap-3">
@@ -97,7 +93,7 @@ export const Footer: React.FC = () => {
                 <Link
                   to={item.path}
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className="text-sm text-text-secondary hover:text-brand-secondary transition-colors"
+                  className="text-sm text-zinc-400 hover:text-brand-secondary transition-colors"
                 >
                   {item.name}
                 </Link>
@@ -108,21 +104,21 @@ export const Footer: React.FC = () => {
 
         {/* Offices Information Column */}
         <div className="flex flex-col gap-5 text-left">
-          <span className="text-xs font-bold uppercase tracking-wider text-text-secondary">
+          <span className="font-heading font-semibold text-sm uppercase tracking-wider text-zinc-200">
             {t('footer.offices')}
           </span>
-          <div className="flex flex-col gap-4 text-sm text-text-secondary">
+          <div className="flex flex-col gap-4 text-sm text-zinc-400">
             <div className="flex gap-2.5 items-start">
               <MapPin className="w-4 h-4 text-brand-secondary mt-0.5 shrink-0" />
               <div>
-                <span className="font-semibold text-text-primary block">Stockholm</span>
+                <span className="font-semibold text-white block">Stockholm</span>
                 Tullgårdsgatan 10<br />116 68 Stockholm
               </div>
             </div>
             <div className="flex gap-2.5 items-start">
               <MapPin className="w-4 h-4 text-brand-secondary mt-0.5 shrink-0" />
               <div>
-                <span className="font-semibold text-text-primary block">Göteborg</span>
+                <span className="font-semibold text-white block">Göteborg</span>
                 Gustaf Dalénsgatan 30<br />417 24 Göteborg
               </div>
             </div>
@@ -132,14 +128,14 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-border-custom bg-slate-50 dark:bg-slate-950/20">
-        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-text-secondary">
+      <div className="border-t border-white/5 bg-black/20">
+        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
           <div>
             &copy; {currentYear} REQCON AB. Org.nr: 559281-2294. {t('footer.rights')}
           </div>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-text-primary transition-colors">{t('footer.policy_staff')}</a>
-            <a href="#" className="hover:text-text-primary transition-colors">{t('footer.policy_privacy')}</a>
+            <a href="#" className="hover:text-white transition-colors">{t('footer.policy_staff')}</a>
+            <a href="#" className="hover:text-white transition-colors">{t('footer.policy_privacy')}</a>
           </div>
         </div>
       </div>

@@ -11,11 +11,11 @@ export const ThemeToggle: React.FC = () => {
     <button
       type="button"
       onClick={toggleTheme}
-      className="relative w-14 h-8 rounded-full bg-slate-200/80 dark:bg-slate-800/80 border border-border-custom cursor-pointer p-1 transition-all duration-300 focus:outline-none shrink-0"
+      className="relative w-14 h-8 rounded-full bg-gradient-to-r from-accent-secondary/[0.08] to-accent-primary/[0.18] dark:from-accent-secondary/[0.18] dark:to-accent-primary/[0.28] border border-slate-300/80 dark:border-zinc-700/80 cursor-pointer p-1 transition-all duration-300 focus:outline-none shrink-0 shadow-sm"
       aria-label={isDark ? 'Växla till ljust läge' : 'Växla till mörkt läge'}
     >
       {/* Background indicators */}
-      <div className="absolute inset-0 flex items-center justify-between px-2 text-text-secondary opacity-60 pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-between px-2 text-text-secondary opacity-90 pointer-events-none">
         <Sun className="w-3.5 h-3.5 text-amber-500" />
         <Moon className="w-3.5 h-3.5 text-sky-400" />
       </div>

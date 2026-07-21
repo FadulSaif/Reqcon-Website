@@ -63,7 +63,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="text-xs font-semibold uppercase tracking-wider text-text-primary select-none"
+            className="form-label text-text-primary select-none"
           >
             {label}
           </label>
@@ -80,8 +80,17 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
         />
 
         <div
+          tabIndex={0}
+          role="button"
+          aria-label={label || 'Ladda upp fil'}
           onClick={handleButtonClick}
-          className={`w-full flex items-center justify-between p-4 rounded-lg border border-dashed bg-bg-surface cursor-pointer text-sm transition-all duration-200 hover:bg-slate-50 dark:hover:bg-slate-900/50 focus-within:ring-2 focus-within:ring-accent-primary/20 ${
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              handleButtonClick();
+            }
+          }}
+          className={`w-full flex items-center justify-between p-4 rounded-lg border border-dashed bg-bg-surface cursor-pointer text-sm transition-all duration-200 hover:bg-slate-50 dark:hover:bg-slate-900/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-within:ring-2 focus-within:ring-accent-primary/20 ${
             error
               ? 'border-red-500 hover:border-red-600'
               : 'border-border-custom hover:border-accent-primary'

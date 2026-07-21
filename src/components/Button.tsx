@@ -21,7 +21,7 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   // Styles based on Scandinavian minimalism and theme tokens
-  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none select-none active:scale-[0.98]';
+  const baseStyles = 'inline-flex items-center justify-center btn-typography rounded-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary/60 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none select-none active:scale-[0.98]';
   
   const sizeStyles = {
     sm: 'px-3 py-1.5 text-xs',
@@ -30,8 +30,8 @@ export const Button: React.FC<ButtonProps> = ({
   };
   
   const variantStyles = {
-    primary: 'bg-accent-primary text-white hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-md hover:shadow-blue-500/10 active:translate-y-0 active:shadow-none',
-    secondary: 'bg-bg-surface border border-border-custom text-text-primary hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:-translate-y-0.5 active:translate-y-0',
+    primary: 'bg-gradient-to-br from-[#006897] to-[#00A5D9] text-white hover:from-[#00577F] hover:to-[#008CBA] hover:-translate-y-0.5 hover:shadow-sm active:translate-y-0 active:shadow-none',
+    secondary: 'bg-bg-surface border border-border-custom text-text-primary hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:border-brand-secondary/40 hover:-translate-y-0.5 active:translate-y-0',
     ghost: 'text-text-primary hover:bg-accent-bg border border-transparent hover:border-border-custom',
     danger: 'bg-red-600 text-white hover:bg-red-700 hover:-translate-y-0.5 active:translate-y-0',
   };

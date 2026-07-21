@@ -40,7 +40,7 @@ const Services: React.FC = () => {
   const servicesList = [
     {
       slug: 'requirements-analysis',
-      icon: <Search className="w-8 h-8 text-brand-secondary" />,
+      icon: <Search className="w-8 h-8 text-current" />,
       title: t('services.items.krav.title'),
       intro: t('services.items.krav.intro'),
       description: t('services.items.krav.desc'),
@@ -55,7 +55,7 @@ const Services: React.FC = () => {
     },
     {
       slug: 'testing-qa',
-      icon: <ShieldCheck className="w-8 h-8 text-brand-secondary" />,
+      icon: <ShieldCheck className="w-8 h-8 text-current" />,
       title: t('services.items.test.title'),
       intro: t('services.items.test.intro'),
       description: t('services.items.test.desc'),
@@ -70,7 +70,7 @@ const Services: React.FC = () => {
     },
     {
       slug: 'project-management',
-      icon: <Layers className="w-8 h-8 text-brand-secondary" />,
+      icon: <Layers className="w-8 h-8 text-current" />,
       title: t('services.items.pm.title'),
       intro: t('services.items.pm.intro'),
       description: t('services.items.pm.desc'),
@@ -85,7 +85,7 @@ const Services: React.FC = () => {
     },
     {
       slug: 'information-management',
-      icon: <FileText className="w-8 h-8 text-brand-secondary" />,
+      icon: <FileText className="w-8 h-8 text-current" />,
       title: t('services.items.info.title'),
       intro: t('services.items.info.intro'),
       description: t('services.items.info.desc'),
@@ -100,7 +100,7 @@ const Services: React.FC = () => {
     },
     {
       slug: 'ux-design',
-      icon: <Compass className="w-8 h-8 text-brand-secondary" />,
+      icon: <Compass className="w-8 h-8 text-current" />,
       title: t('services.items.ux.title'),
       intro: t('services.items.ux.intro'),
       description: t('services.items.ux.desc'),
@@ -115,7 +115,7 @@ const Services: React.FC = () => {
     },
     {
       slug: 'agile-methods',
-      icon: <Zap className="w-8 h-8 text-brand-secondary" />,
+      icon: <Zap className="w-8 h-8 text-current" />,
       title: t('services.items.agile.title'),
       intro: t('services.items.agile.intro'),
       description: t('services.items.agile.desc'),
@@ -135,18 +135,34 @@ const Services: React.FC = () => {
   return (
     <div className="flex flex-col w-full">
       <SEO
-        title={t('services.title') + " | REQCON"}
-        description={t('services.subtitle')}
+        title="Våra specialisttjänster | Kravanalys, Testledning & Agil Projektledning | REQCON AB"
+        description="Utforska REQCONs tjänster inom kravanalys, testledning, UX, projektledning, informationshantering och agila metoder för organisationer i Stockholm, Göteborg och hela Sverige."
         schema={servicesSchema}
       />
       {/* Page Header */}
-      <section className="bg-white dark:bg-slate-950 py-16 md:py-24 px-6 border-b border-border-custom text-left">
-        <div className="max-w-4xl mx-auto flex flex-col gap-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-brand-secondary">{t('services.badge')}</span>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-text-primary">
+      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[50vh] bg-slate-950">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0 select-none pointer-events-none">
+          <img 
+            src="/images/hero-company-image.jpg" 
+            alt="REQCON specialisttjänster inom IT-konsultation och systemutveckling" 
+            className="w-full h-full object-cover opacity-25 filter brightness-[0.75] contrast-105"
+          />
+          {/* Dark gradient mask */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80 dark:from-black dark:via-black/75 dark:to-black/85" />
+        </div>
+        
+        {/* Content Container */}
+        <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-brand-secondary/90 px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15 select-none w-fit">
+            {t('services.badge')}
+          </span>
+          
+          <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-tight uppercase text-center">
             {t('services.title')}
           </h1>
-          <p className="text-lg text-text-secondary leading-relaxed max-w-3xl">
+          
+          <p className="text-base md:text-lg text-zinc-300 leading-relaxed max-w-2xl text-center font-medium">
             {t('services.subtitle')}
           </p>
         </div>
@@ -173,7 +189,7 @@ const Services: React.FC = () => {
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute top-4 left-4 w-12 h-12 rounded-xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm flex items-center justify-center shadow-md">
+                  <div className="absolute top-4 left-4 w-12 h-12 rounded-xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm flex items-center justify-center shadow-md text-brand-secondary transition-all duration-300 group-hover:rotate-6 group-hover:bg-accent-primary group-hover:text-white">
                     {service.icon}
                   </div>
                 </div>

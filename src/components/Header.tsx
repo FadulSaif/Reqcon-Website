@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import ThemeToggle from './ThemeToggle';
 import Button from './Button';
-import { useTheme } from '../context/ThemeContext';
 
 // High-contrast, clean vector flags that render perfectly as actual graphical flags on Windows and all other operating systems.
 const FlagSV: React.FC<{ className?: string }> = ({ className = 'w-4 h-3' }) => (
@@ -34,12 +33,12 @@ export const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-  const { theme } = useTheme();
 
   const isDarkHeaderPage = 
     location.pathname.endsWith('/about') || 
     location.pathname.endsWith('/careers') || 
     location.pathname.endsWith('/contact') ||
+    location.pathname.endsWith('/services') ||
     location.pathname.includes('/services/');
 
   useEffect(() => {
@@ -107,28 +106,28 @@ export const Header: React.FC = () => {
       }`}
     >
       <header
-        className={`w-full flex items-center justify-between pointer-events-auto transition-all duration-500 ease-out ${
+        className={`relative w-full flex items-center justify-between pointer-events-auto transition-all duration-500 ease-out ${
           isScrolled
-            ? 'max-w-5xl h-16 rounded-full bg-white/80 dark:bg-bg-surface/80 backdrop-blur-md shadow-lg border border-slate-200/50 dark:border-border-custom/50 px-6'
-            : 'max-w-7xl h-24 rounded-none bg-transparent border-b border-transparent px-8'
+            ? 'max-w-5xl h-16 rounded-full bg-white/80 dark:bg-bg-surface/80 backdrop-blur-md shadow-lg border border-slate-200/50 dark:border-border-custom/50 px-4 md:px-6'
+            : 'max-w-7xl h-24 rounded-none bg-transparent border-b border-transparent px-6 md:px-8'
         }`}
       >
         {/* Logo (Left side) */}
-        <Link to={`/${i18n.language}`} onClick={() => window.scrollTo(0,0)} className="flex items-center group select-none shrink-0">
-          <img 
-            src="/images/logo.png" 
-            alt="REQCON Logo" 
-            className={`w-auto object-contain transition-all duration-500 ${
-              isScrolled ? 'h-7 md:h-8' : 'h-9 md:h-10'
-            } ${
-              (theme === 'dark' || (!isScrolled && isDarkHeaderPage)) ? 'brightness-0 invert' : ''
-            }`}
-          />
-        </Link>
+        <div className="flex-1 flex items-center justify-start shrink-0">
+          <Link to={`/${i18n.language}`} onClick={() => window.scrollTo(0,0)} className="flex items-center group select-none shrink-0">
+            <img 
+              src="/images/logo.png" 
+              alt="REQCON Logotyp - IT-konsulter i Stockholm & Göteborg" 
+              className={`w-auto object-contain transition-all duration-500 ${
+                isScrolled ? 'h-7 md:h-8' : 'h-9 md:h-10'
+              }`}
+            />
+          </Link>
+        </div>
 
         {/* Centered Desktop Navigation Links */}
-        <nav className={`hidden md:flex items-center transition-all duration-500 ${
-          isScrolled ? 'gap-1' : 'gap-3'
+        <nav className={`hidden md:flex items-center justify-center gap-1 lg:gap-3 transition-all duration-500 transform ${
+          isScrolled ? '-translate-x-3 lg:-translate-x-7' : 'translate-x-0'
         }`}>
           {navLinks.map((link) => {
             const isActive = isLinkActive(link.path);
@@ -144,10 +143,12 @@ export const Header: React.FC = () => {
                 >
                   <Link
                     to={link.path}
-                    className={`relative px-4 py-2 text-[11px] font-bold uppercase tracking-widest transition-colors duration-300 z-10 flex items-center gap-1 group/services hover:after:scale-x-100 after:scale-x-0 after:content-[''] after:absolute after:bottom-0 after:left-4 after:right-4 after:h-0.5 after:bg-brand-secondary/40 after:origin-center after:transition-transform after:duration-300 ${
+                    className={`relative nav-link px-3 lg:px-4 py-2 transition-colors duration-300 z-10 flex items-center gap-1 group/services hover:after:scale-x-100 after:scale-x-0 after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-brand-secondary/40 after:origin-center after:transition-transform after:duration-300 ${
                       isActive
                         ? 'text-brand-secondary'
-                        : 'text-text-secondary hover:text-text-primary'
+                        : isDarkHeaderPage && !isScrolled
+                          ? 'text-white/80 hover:text-white'
+                          : 'text-slate-800 dark:text-zinc-200 hover:text-brand-secondary'
                     }`}
                   >
                     <span className="relative z-10 flex items-center gap-1">
@@ -157,7 +158,7 @@ export const Header: React.FC = () => {
                     {isActive && (
                       <motion.span
                         layoutId="activeNavLine"
-                        className="absolute bottom-0 left-4 right-4 h-0.5 bg-brand-secondary rounded-full"
+                        className="absolute bottom-0 left-3 right-3 h-0.5 bg-brand-secondary rounded-full"
                         transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                       />
                     )}
@@ -182,7 +183,7 @@ export const Header: React.FC = () => {
                                 setIsServicesDropdownOpen(false);
                                 window.scrollTo(0, 0);
                               }}
-                              className="px-4 py-2.5 text-[13px] font-semibold text-text-secondary hover:text-brand-secondary hover:bg-slate-50 dark:hover:bg-zinc-900 rounded-xl transition-all duration-200"
+                              className="dropdown-item px-4 py-2.5 text-text-secondary hover:text-brand-secondary hover:bg-slate-50 dark:hover:bg-zinc-900 rounded-xl transition-all duration-200"
                             >
                               {item.name.split('(')[0].trim()}
                             </Link>
@@ -199,17 +200,19 @@ export const Header: React.FC = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative px-4 py-2 text-[11px] font-bold uppercase tracking-widest transition-colors duration-300 z-10 hover:after:scale-x-100 after:scale-x-0 after:content-[''] after:absolute after:bottom-0 after:left-4 after:right-4 after:h-0.5 after:bg-brand-secondary/40 after:origin-center after:transition-transform after:duration-300 ${
+                className={`relative nav-link px-3 lg:px-4 py-2 transition-colors duration-300 z-10 hover:after:scale-x-100 after:scale-x-0 after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-brand-secondary/40 after:origin-center after:transition-transform after:duration-300 ${
                   isActive
                     ? 'text-brand-secondary'
-                    : 'text-text-secondary hover:text-text-primary'
+                    : isDarkHeaderPage && !isScrolled
+                      ? 'text-white/80 hover:text-white'
+                      : 'text-slate-800 dark:text-zinc-200 hover:text-brand-secondary'
                 }`}
               >
                 <span className="relative z-10">{link.name}</span>
                 {isActive && (
                   <motion.span
                     layoutId="activeNavLine"
-                    className="absolute bottom-0 left-4 right-4 h-0.5 bg-brand-secondary rounded-full"
+                    className="absolute bottom-0 left-3 right-3 h-0.5 bg-brand-secondary rounded-full"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -219,18 +222,28 @@ export const Header: React.FC = () => {
         </nav>
 
         {/* Unified Controls Group (Right side) */}
-        <div className="hidden md:flex items-center gap-4 shrink-0">
-          
+        <div className="flex-1 flex items-center justify-end gap-3 shrink-0">
+          <Link to={contactPath} className="shrink-0">
+            <Button
+              variant={isLinkActive(contactPath) ? 'secondary' : 'primary'}
+              size="sm"
+              className="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full shrink-0 whitespace-nowrap shadow-sm hover:shadow-md transition-all duration-300"
+              rightIcon={<ArrowRight className="w-3.5 h-3.5" />}
+            >
+              {t('nav.contact')}
+            </Button>
+          </Link>
+
           {/* Dropdown Language Selector */}
           <div className="relative">
             <button
               onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-border-custom bg-slate-100/40 dark:bg-slate-800/40 hover:bg-slate-200/50 dark:hover:bg-slate-800/60 transition-all duration-300 text-xs font-bold text-text-primary cursor-pointer focus:outline-none"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-300/80 dark:border-zinc-700/80 bg-gradient-to-r from-accent-secondary/[0.08] to-accent-primary/[0.18] dark:from-accent-secondary/[0.18] dark:to-accent-primary/[0.28] hover:from-accent-secondary/[0.12] hover:to-accent-primary/[0.25] dark:hover:from-accent-secondary/[0.22] dark:hover:to-accent-primary/[0.35] transition-all duration-300 text-xs font-bold text-text-primary cursor-pointer focus:outline-none shadow-sm"
               aria-haspopup="true"
               aria-expanded={isLangDropdownOpen}
             >
               {i18n.language === 'sv' ? <FlagSV /> : <FlagEN />}
-              <ChevronDown className={`w-3 h-3 text-text-secondary transition-transform duration-300 ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`w-3 h-3 text-text-primary transition-transform duration-300 ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
 
             <AnimatePresence>
@@ -292,17 +305,6 @@ export const Header: React.FC = () => {
           </div>
 
           <ThemeToggle />
-          
-          <Link to={contactPath}>
-            <Button
-              variant={isLinkActive(contactPath) ? 'secondary' : 'primary'}
-              size="sm"
-              className="font-bold rounded-full transition-all duration-500"
-              rightIcon={<ArrowRight className="w-3.5 h-3.5" />}
-            >
-              {t('nav.contact')}
-            </Button>
-          </Link>
         </div>
 
         {/* Mobile controls */}

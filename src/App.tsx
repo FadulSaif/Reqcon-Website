@@ -1,9 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AppRoutes from './router/AppRoutes';
 import ScrollToTop from './components/ScrollToTop';
+import FloatingCTA from './components/FloatingCTA';
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
           <AppRoutes />
         </main>
         <Footer />
+        <FloatingCTA />
       </div>
     </Router>
   );

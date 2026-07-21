@@ -34,9 +34,9 @@ const Contact: React.FC = () => {
     }
   });
 
-  const onSubmit = async (data: ContactFormInputs) => {
+  const onSubmit = async (_data: ContactFormInputs) => {
     setIsSubmitting(true);
-    console.log('Contact form submitted:', data);
+    // Process contact inquiry submission
     // Simulate API request delay
     await new Promise((resolve) => setTimeout(resolve, 1500));
     setIsSubmitting(false);
@@ -93,8 +93,8 @@ const Contact: React.FC = () => {
   return (
     <div className="flex flex-col w-full">
       <SEO
-        title={t('contact.title') + " - Stockholm & Göteborg"}
-        description={t('contact.subtitle')}
+        title="Kontakta oss | IT-konsulter i Stockholm & Göteborg | REQCON AB"
+        description="Kontakta REQCON AB för rådgivning och bokning av seniora IT-konsulter inom kravanalys, testledning, UX och agil projektledning i Stockholm och Göteborg."
         schema={contactSchema}
       />
       {/* Page Header */}
@@ -103,7 +103,7 @@ const Contact: React.FC = () => {
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
           <img 
             src="/images/about_office.jpg" 
-            alt="REQCON Contact" 
+            alt="REQCON Kontor i Stockholm och Göteborg" 
             className="w-full h-full object-cover opacity-30 filter brightness-[0.8] contrast-105"
           />
           {/* Dark gradient mask */}

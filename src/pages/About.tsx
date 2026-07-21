@@ -64,8 +64,19 @@ const About: React.FC = () => {
   return (
     <div className="flex flex-col w-full">
       <SEO
-        title={t('about.title') + " - REQCON"}
-        description={t('about.subtitle')}
+        title={t('about.title') + " | Svenskt IT-konsultbolag i Stockholm & Göteborg | REQCON AB"}
+        description={t('about.story_p1')}
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "name": "Om REQCON AB",
+          "description": "Läs om REQCON AB - grundat 2020 i Stockholm. Vi är ett svenskt specialistbolag inom kravanalys, testledning, kvalitetssäkring och agil projektledning.",
+          "url": "https://reqcon.se/sv/about",
+          "publisher": {
+            "@type": "Organization",
+            "name": "REQCON AB"
+          }
+        }}
       />
       {/* Page Header */}
       <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[50vh] bg-slate-950">
@@ -73,7 +84,7 @@ const About: React.FC = () => {
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
           <img 
             src="/images/about_office.jpg" 
-            alt="REQCON Office Workspace" 
+            alt="REQCON Kontorsmiljö i Stockholm" 
             className="w-full h-full object-cover opacity-35 filter brightness-90 contrast-105"
           />
           {/* Dark gradient mask */}
@@ -82,15 +93,15 @@ const About: React.FC = () => {
         
         {/* Content Container */}
         <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-brand-secondary/90 px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15 select-none w-fit">
+          <span className="section-eyebrow select-none w-fit px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15">
             {t('about.badge')}
           </span>
           
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-tight uppercase text-center">
+          <h1 className="heading-display text-white uppercase text-center">
             {t('about.title')}
           </h1>
           
-          <p className="text-base md:text-lg text-zinc-300 leading-relaxed max-w-2xl text-center font-medium">
+          <p className="body-xl text-zinc-300 max-w-2xl text-center">
             {t('about.subtitle')}
           </p>
         </div>
@@ -107,6 +118,13 @@ const About: React.FC = () => {
             <p className="text-base text-text-secondary leading-relaxed">
               {t('about.story_p2')}
             </p>
+
+            {/* Special Highlighted Motto Card */}
+            <div className="mt-2 p-5 rounded-2xl bg-gradient-to-r from-brand-secondary/15 via-brand-secondary/5 to-transparent border-l-4 border-brand-secondary shadow-sm">
+              <p className="text-base md:text-lg font-black text-text-primary tracking-tight">
+                "{t('about.tagline')}"
+              </p>
+            </div>
           </div>
 
           <div className="lg:col-span-5 grid grid-cols-2 gap-4">
@@ -160,7 +178,7 @@ const About: React.FC = () => {
                 isEven ? '' : 'md:flex-row-reverse'
               }`}>
                 {/* Content box */}
-                <Card className="w-full md:w-[45%] text-left p-6 shadow-sm border border-border-custom hover:border-brand-secondary/40 hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-center">
+                <Card className="w-full md:w-[45%] text-left p-6 shadow-sm border border-border-custom hover:-translate-y-0.5 hover:shadow-md hover:border-accent-primary transition-[transform,box-shadow,border-color] duration-200 flex flex-col justify-center">
                   <span className="text-xs font-bold text-brand-secondary uppercase tracking-widest md:hidden">{item.year}</span>
                   <h3 className="text-lg font-bold text-text-primary mt-1">{item.title}</h3>
                   <p className="text-sm text-text-secondary leading-relaxed mt-2">{item.description}</p>
