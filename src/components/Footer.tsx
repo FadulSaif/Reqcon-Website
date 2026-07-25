@@ -8,12 +8,12 @@ export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   const services = [
-    { name: t('services.items.krav.title'), path: `/${i18n.language}/services` },
-    { name: t('services.items.test.title'), path: `/${i18n.language}/services` },
-    { name: t('services.items.pm.title'), path: `/${i18n.language}/services` },
-    { name: t('services.items.info.title'), path: `/${i18n.language}/services` },
-    { name: t('services.items.ux.title'), path: `/${i18n.language}/services` },
-    { name: t('services.items.agile.title'), path: `/${i18n.language}/services` }
+    { name: t('services.items.krav.title'), path: `/${i18n.language}/services/requirements-analysis` },
+    { name: t('services.items.test.title'), path: `/${i18n.language}/services/testing-qa` },
+    { name: t('services.items.pm.title'), path: `/${i18n.language}/services/project-management` },
+    { name: t('services.items.info.title'), path: `/${i18n.language}/services/information-management` },
+    { name: t('services.items.ux.title'), path: `/${i18n.language}/services/ux-design` },
+    { name: t('services.items.agile.title'), path: `/${i18n.language}/services/agile-methods` }
   ];
 
   const company = [
@@ -25,21 +25,18 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-gradient-to-b from-[#001724] to-[#000a10] text-zinc-100 border-t border-white/5 mt-auto">
+    <footer id="site-footer" className="relative bg-gradient-to-b from-[#001724] to-[#000a10] text-zinc-100 border-t border-white/5 mt-auto">
       <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
         
         {/* Brand Column */}
         <div className="flex flex-col gap-6 md:col-span-1">
           <Link to={`/${i18n.language}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="select-none text-left w-fit block">
-            <img 
-              src="/images/logo.png" 
-              alt="REQCON Logotyp - IT-konsulter inom kravanalys och testledning" 
-              className="h-9 w-auto object-contain transition-all duration-300"
+            <img
+              src="/images/logo.png"
+              alt="REQCON – Från vision till produkt"
+              className="h-14 w-auto object-contain"
             />
           </Link>
-          <p className="text-sm text-zinc-400 leading-relaxed text-left">
-            {t('footer.tagline')}
-          </p>
           <div className="flex items-center gap-3 mt-2">
             <a
               href="https://www.linkedin.com/company/reqcon/"
@@ -130,12 +127,12 @@ export const Footer: React.FC = () => {
       {/* Bottom Bar */}
       <div className="border-t border-white/5 bg-black/20">
         <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
-          <div>
+          <div className="text-center md:text-left">
             &copy; {currentYear} REQCON AB. Org.nr: 559281-2294. {t('footer.rights')}
           </div>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors">{t('footer.policy_staff')}</a>
-            <a href="#" className="hover:text-white transition-colors">{t('footer.policy_privacy')}</a>
+            <Link to={`/${i18n.language}/personalpolicy`} className="hover:text-white transition-colors">{t('footer.policy_staff')}</Link>
+            <Link id="privacy-policy-link" to={`/${i18n.language}/privacy`} className="hover:text-white transition-colors">{t('footer.policy_privacy')}</Link>
           </div>
         </div>
       </div>

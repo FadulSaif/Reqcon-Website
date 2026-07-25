@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Phone, Mail, MapPin, Check, Send } from 'lucide-react';
@@ -7,6 +8,7 @@ import Card from '../components/Card';
 import Input, { TextArea } from '../components/Input';
 import Button from '../components/Button';
 import SEO from '../components/SEO';
+import { toAbsoluteUrl } from '../config/site';
 
 interface ContactFormInputs {
   name: string;
@@ -17,8 +19,20 @@ interface ContactFormInputs {
 
 const Contact: React.FC = () => {
   const { t } = useTranslation();
+  const location = useLocation();
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const serviceId = new URLSearchParams(location.search).get('service');
+  const serviceTitles: Record<string, string> = {
+    'requirements-analysis': t('services.items.krav.title'),
+    'testing-qa': t('services.items.test.title'),
+    'project-management': t('services.items.pm.title'),
+    'information-management': t('services.items.info.title'),
+    'ux-design': t('services.items.ux.title'),
+    'agile-methods': t('services.items.agile.title')
+  };
+  const requestedService = serviceId ? serviceTitles[serviceId] : undefined;
 
   const {
     register,
@@ -34,14 +48,36 @@ const Contact: React.FC = () => {
     }
   });
 
-  const onSubmit = async (_data: ContactFormInputs) => {
+  const onSubmit = async (data: ContactFormInputs) => {
     setIsSubmitting(true);
-    // Process contact inquiry submission
-    // Simulate API request delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitSuccess(true);
-    reset();
+    setSubmitError(null);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/info@reqcon.se', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          ...data,
+          ...(requestedService ? { service: requestedService } : {}),
+          _subject: 'New contact inquiry — REQCON website',
+          _honey: ''
+        })
+      });
+
+      if (response.status !== 200) {
+        throw new Error(`FormSubmit returned ${response.status}`);
+      }
+
+      setIsSubmitSuccess(true);
+      reset();
+    } catch {
+      setSubmitError(t('contact.form.submit_error'));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contacts = [
@@ -69,7 +105,7 @@ const Contact: React.FC = () => {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "REQCON AB",
-    "image": "https://reqcon.se/assets/logo.png",
+    "image": toAbsoluteUrl('/images/logo.png'),
     "telephone": "070-939 51 11",
     "email": "info@reqcon.se",
     "address": [
@@ -215,6 +251,11 @@ const Contact: React.FC = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6 text-left" noValidate>
+                {requestedService && (
+                  <p className="text-sm text-text-secondary rounded-lg border border-brand-secondary/20 bg-brand-secondary/5 px-4 py-3">
+                    {t('contact.form.service_context', { service: requestedService })}
+                  </p>
+                )}
                 <Input
                   label={t('contact.form.name')}
                   placeholder={t('contact.form.name_placeholder')}
@@ -249,6 +290,21 @@ const Contact: React.FC = () => {
                   error={errors.message?.message}
                   {...register('message', { required: t('contact.form.message_error') })}
                 />
+
+                <input
+                  type="text"
+                  name="_honey"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="hidden"
+                />
+
+                {submitError && (
+                  <p className="text-sm font-medium text-red-600" role="alert">
+                    {submitError}
+                  </p>
+                )}
 
                 <Button
                   type="submit"

@@ -19,19 +19,29 @@ import Card from '../components/Card';
 import Section from '../components/Section';
 import { slideUp, staggerContainer } from '../utils/animations';
 import SEO from '../components/SEO';
+import { SITE_URL, toAbsoluteUrl } from '../config/site';
+import vattenfallLogo from '../assets/logos/vattenfall-confirmed.png';
+import trafikverketLogo from '../assets/logos/trafikverket-confirmed.png';
+import skatteverketLogo from '../assets/logos/skatteverket-confirmed.webp';
+
+const customerLogos = [
+  { name: 'Trafikverket', src: trafikverketLogo, imageClassName: 'h-11 w-11 object-contain' },
+  { name: 'Vattenfall', src: vattenfallLogo, imageClassName: 'h-11 w-11 object-contain' },
+  { name: 'Skatteverket', src: skatteverketLogo, imageClassName: 'h-12 w-12 object-contain' },
+];
 
 const homeSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": ["Organization", "ConsultingService", "LocalBusiness"],
-      "@id": "https://reqcon.se/#organization",
+      "@id": `${SITE_URL}/#organization`,
       "name": "REQCON AB",
       "alternateName": ["REQCON", "REQCON Consulting"],
       "legalName": "REQCON AB",
-      "url": "https://reqcon.se/",
-      "logo": "https://reqcon.se/assets/logo.png",
-      "image": "https://reqcon.se/assets/og-image.jpg",
+      "url": SITE_URL,
+      "logo": toAbsoluteUrl('/images/logo.png'),
+      "image": toAbsoluteUrl('/images/hero-company-image.jpg'),
       "email": "info@reqcon.se",
       "description": "REQCON är ett svenskt IT-konsultbolag grundat 2020 i Stockholm. Vi erbjuder seniora konsulter inom kravanalys, testledning, agil projektledning, kvalitetssäkring, informationshantering och UX-design i Stockholm, Göteborg och hela Sverige.",
       "foundingDate": "2020",
@@ -124,7 +134,7 @@ const homeSchema = {
     },
     {
       "@type": "FAQPage",
-      "@id": "https://reqcon.se/#faq",
+      "@id": `${SITE_URL}/#faq`,
       "mainEntity": [
         {
           "@type": "Question",
@@ -269,7 +279,7 @@ const Home: React.FC = () => {
       />
       
       {/* 1. HERO SECTION (Redesigned Floating Card Hero) */}
-      <section className="relative px-4 md:px-6 pt-24 md:pt-28 pb-6 bg-bg-page overflow-hidden">
+      <section className="relative px-4 md:px-6 pt-0 md:pt-4 pb-6 bg-bg-page overflow-hidden">
         <div className="max-w-7xl mx-auto w-full">
           {/* Floating Card Container */}
           <div className="relative w-full rounded-3xl md:rounded-[32px] overflow-hidden min-h-[75vh] md:min-h-[80vh] flex items-center justify-center py-20 px-6 select-none bg-slate-950 border border-slate-900/10 shadow-lg z-0">
@@ -284,8 +294,8 @@ const Home: React.FC = () => {
                 animate={{ scale: 1, opacity: 0.55 }}
                 transition={{ duration: 1.6, ease: 'easeOut' }}
               />
-              {/* Dark gradient overlay for extreme readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-950/80" />
+              {/* A central scrim protects text from the busy window and plant areas. */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(2,6,23,0.92)_0%,rgba(2,6,23,0.76)_58%,rgba(2,6,23,0.86)_100%)]" />
             </div>
 
             <div className="max-w-4xl mx-auto w-full z-10 relative text-center flex flex-col items-center">
@@ -304,7 +314,11 @@ const Home: React.FC = () => {
                 
                 <motion.p
                   variants={slideUp()}
-                  className="body-xl text-slate-300 opacity-80 max-w-2xl text-center"
+                  className="body-xl max-w-2xl text-center"
+                  style={{
+                    color: '#f1f5f9',
+                    textShadow: '0 2px 12px rgba(0, 0, 0, 0.85)',
+                  }}
                 >
                   {t('hero.subtitle')}
                 </motion.p>
@@ -359,60 +373,23 @@ const Home: React.FC = () => {
           <div className="marquee-container py-2">
             <div className="animate-marquee gap-8 flex items-center pr-8">
               {(() => {
-                const clients = [
-                  {
-                    name: 'Trafikverket',
-                    svg: (
-                      <svg viewBox="0 0 240 60" className="h-10 w-auto select-none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" x="2" y="10" rx="8" fill="#E30613" />
-                        <path d="M22,16 v22 M11,27 h22" stroke="#FFF" strokeWidth="4" strokeLinecap="square" />
-                        <circle cx="22" cy="27" r="8" stroke="#FFF" strokeWidth="3.5" fill="none" />
-                        <circle cx="22" cy="27" r="3" fill="#E30613" />
-                        <text x="52" y="36" fontFamily="'Outfit', 'Inter', sans-serif" fontWeight="900" fontSize="18" letterSpacing="1.5" className="fill-slate-800 dark:fill-white">TRAFIKVERKET</text>
-                      </svg>
-                    )
-                  },
-                  {
-                    name: 'Vattenfall',
-                    svg: (
-                      <svg viewBox="0 0 240 60" className="h-10 w-auto select-none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="22" cy="30" r="18" fill="#005B94" />
-                        <path d="M9,30 C14,17 30,17 35,30 C30,43 14,43 9,30 Z" fill="#FFD100" />
-                        <circle cx="22" cy="30" r="8" fill="#005B94" />
-                        <text x="52" y="36" fontFamily="'Outfit', 'Inter', sans-serif" fontWeight="900" fontSize="19" letterSpacing="1.5" className="fill-slate-800 dark:fill-white">VATTENFALL</text>
-                      </svg>
-                    )
-                  },
-                  {
-                    name: 'Trafikförvaltningen',
-                    svg: (
-                      <svg viewBox="0 0 260 60" className="h-10 w-auto select-none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="22" cy="30" r="18" fill="#00A5E3" />
-                        <text x="22" y="37" fontFamily="'Outfit', 'Inter', sans-serif" fontWeight="900" fontSize="20" fill="#FFF" textAnchor="middle">SL</text>
-                        <text x="52" y="36" fontFamily="'Outfit', 'Inter', sans-serif" fontWeight="900" fontSize="15" letterSpacing="1" className="fill-slate-800 dark:fill-white">TRAFIKFÖRVALTNINGEN</text>
-                      </svg>
-                    )
-                  },
-                  {
-                    name: 'Skatteverket',
-                    svg: (
-                      <svg viewBox="0 0 240 60" className="h-10 w-auto select-none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5,30 C5,15 20,15 25,30 C20,45 5,45 5,30 Z" fill="#005B94" />
-                        <path d="M10,30 C10,18 30,18 30,30 C20,42 10,42 10,30 Z" fill="#FFD100" />
-                        <text x="45" y="36" fontFamily="'Outfit', 'Inter', sans-serif" fontWeight="900" fontSize="19" className="fill-slate-800 dark:fill-white">Skatteverket</text>
-                      </svg>
-                    )
-                  }
-                ];
-
-                const scrollClients = [...clients, ...clients, ...clients, ...clients, ...clients];
+                const scrollClients = [...customerLogos, ...customerLogos, ...customerLogos, ...customerLogos, ...customerLogos];
 
                 return scrollClients.map((client, idx) => (
                   <div
                     key={idx}
-                    className="bg-bg-page border border-border-custom rounded-2xl px-8 py-5 h-20 w-64 shadow-sm flex items-center justify-center shrink-0 hover:-translate-y-0.5 hover:shadow-md hover:border-accent-primary transition-[transform,box-shadow,border-color] duration-200 cursor-default"
+                    className="bg-bg-page border border-border-custom rounded-2xl px-7 py-4 h-20 w-64 shadow-sm flex items-center gap-4 shrink-0 hover:-translate-y-0.5 hover:shadow-md hover:border-accent-primary transition-[transform,box-shadow,border-color] duration-200 cursor-default"
                   >
-                    {client.svg}
+                    <div className="h-12 w-14 shrink-0 overflow-hidden flex items-center justify-center">
+                      <img
+                        src={client.src}
+                        alt={`${client.name} logo`}
+                        className={client.imageClassName}
+                      />
+                    </div>
+                    <span className="font-heading text-base font-bold tracking-tight text-text-primary whitespace-nowrap">
+                      {client.name}
+                    </span>
                   </div>
                 ));
               })()}

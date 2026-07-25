@@ -1,0 +1,27 @@
+{
+  "defaultLocale": "sv",
+  "locales": ["sv", "en"],
+  "paths": [
+    "",
+    "services",
+    "services/requirements-analysis",
+    "services/testing-qa",
+    "services/project-management",
+    "services/information-management",
+    "services/ux-design",
+    "services/agile-methods",
+    "about",
+    "careers",
+    "contact",
+    "personalpolicy",
+    "privacy",
+    "articles/identify-requirements-in-construction-tenders",
+    "articles/tender-requirements-versus-contract-requirements",
+    "articles/trace-requirements-to-original-source",
+    "articles/manage-amendments-conflicts-and-clarifications",
+    "articles/requirements-register-before-tender-submission",
+    "articles/carry-tender-requirements-into-delivery",
+    "articles/ownership-of-requirement-decisions",
+    "articles/audit-tender-documents-at-scale"
+  ]
+}

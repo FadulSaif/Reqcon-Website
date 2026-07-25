@@ -8,6 +8,7 @@ import {
 import Section from '../components/Section';
 import Button from '../components/Button';
 import SEO from '../components/SEO';
+import { SITE_URL } from '../config/site';
 
 // Detailed data configuration for Swedish and English languages
 interface DetailData {
@@ -477,7 +478,7 @@ const ServiceDetail: React.FC = () => {
     );
   }
 
-  const contactPath = `/${activeLang}/contact`;
+  const contactPath = `/${activeLang}/contact?service=${encodeURIComponent(serviceId!)}`;
   const otherServices = Object.keys(serviceDetails).filter(id => id !== serviceId);
 
   // Map serviceId to their corresponding icon for design continuity
@@ -514,7 +515,7 @@ const ServiceDetail: React.FC = () => {
     "provider": {
       "@type": "Organization",
       "name": "REQCON AB",
-      "url": "https://reqcon.se/"
+      "url": SITE_URL
     },
     "areaServed": {
       "@type": "Country",

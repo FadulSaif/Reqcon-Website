@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ZoomIn, ZoomOut, Maximize2, FileText } from 'lucide-react';
+import { ZoomIn, ZoomOut, FileText } from 'lucide-react';
 
 export const DocumentViewer: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -49,16 +49,6 @@ export const DocumentViewer: React.FC = () => {
           {i18n.language === 'sv' ? 'Läs vår personalpolicy' : 'Read our personnel policy'}
         </h3>
         
-        {/* Open PDF Popout */}
-        <a 
-          href="/REQCON-Personalpolicy.pdf" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="flex items-center gap-1.5 text-xs font-bold text-brand-secondary hover:text-brand-primary transition-colors py-1.5 px-3 rounded-lg border border-border-custom hover:border-brand-secondary/40 bg-bg-surface"
-        >
-          <Maximize2 className="w-3.5 h-3.5" />
-          <span>{i18n.language === 'sv' ? 'Öppna i ny flik' : 'Open in new tab'}</span>
-        </a>
       </div>
 
       {/* Reader Box Wrapper */}

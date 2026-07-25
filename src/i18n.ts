@@ -12,13 +12,13 @@ const resources = {
   }
 };
 
-const savedLanguage = localStorage.getItem('reqcon_language') || 'sv';
-
 i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: savedLanguage,
+    // The URL route wrapper selects the active locale before a page renders.
+    // Swedish is only a deterministic fallback for routes without a locale.
+    lng: 'sv',
     fallbackLng: 'sv',
     interpolation: {
       escapeValue: false // react already escapes values
@@ -26,11 +26,16 @@ i18n
   });
 
 i18n.on('languageChanged', (lng) => {
-  localStorage.setItem('reqcon_language', lng);
-  document.documentElement.setAttribute('lang', lng);
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('reqcon_language', lng);
+    document.documentElement.setAttribute('lang', lng);
+  }
 });
 
-// Set document lang initially
-document.documentElement.setAttribute('lang', savedLanguage);
+// This only enhances the client document. SSR/SSG markup gets its language
+// from the route-specific renderer rather than browser storage.
+if (typeof window !== 'undefined') {
+  document.documentElement.setAttribute('lang', i18n.language);
+}
 
 export default i18n;

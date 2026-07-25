@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/", "destination": "/sv", "statusCode": 301 },
+    { "source": "/services", "destination": "/sv/services", "statusCode": 301 },
+    { "source": "/services/:path*", "destination": "/sv/services/:path*", "statusCode": 301 },
+    { "source": "/about", "destination": "/sv/about", "statusCode": 301 },
+    { "source": "/careers", "destination": "/sv/careers", "statusCode": 301 },
+    { "source": "/contact", "destination": "/sv/contact", "statusCode": 301 },
+    { "source": "/personalpolicy", "destination": "/sv/personalpolicy", "statusCode": 301 },
+    { "source": "/privacy", "destination": "/sv/privacy", "statusCode": 301 },
+    { "source": "/articles/:path*", "destination": "/sv/articles/:path*", "statusCode": 301 }
+  ]
+}

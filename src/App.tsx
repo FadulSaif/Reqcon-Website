@@ -1,5 +1,4 @@
 import React from 'react';
-import { HashRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AppRoutes from './router/AppRoutes';
@@ -8,17 +7,17 @@ import FloatingCTA from './components/FloatingCTA';
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen">
         <Header />
-        <main className="flex-grow">
+        <main className="flex-grow pt-24">
           <AppRoutes />
         </main>
         <Footer />
         <FloatingCTA />
       </div>
-    </Router>
+    </>
   );
 };
 

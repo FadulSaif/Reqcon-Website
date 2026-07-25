@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useLocation } from 'react-router-dom';
+import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Send, CheckCircle2, Check, Heart, ShieldCheck, Award } from 'lucide-react';
 import Section from '../components/Section';
@@ -8,6 +9,7 @@ import Input from '../components/Input';
 import FileInput from '../components/FileInput';
 import Button from '../components/Button';
 import SEO from '../components/SEO';
+import { toAbsoluteUrl } from '../config/site';
 
 interface CareerFormInputs {
   name: string;
@@ -18,14 +20,16 @@ interface CareerFormInputs {
 
 const Careers: React.FC = () => {
   const { t } = useTranslation();
-  const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
+  const location = useLocation();
+  const [isSubmitSuccess, setIsSubmitSuccess] = useState(
+    () => new URLSearchParams(location.search).get('formsubmit') === 'success'
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     register,
     handleSubmit,
     control,
-    reset,
     formState: { errors }
   } = useForm<CareerFormInputs>({
     defaultValues: {
@@ -36,13 +40,9 @@ const Careers: React.FC = () => {
     }
   });
 
-  const onSubmit = async (_data: CareerFormInputs) => {
+  const onSubmit: SubmitHandler<CareerFormInputs> = (_data, event) => {
     setIsSubmitting(true);
-    // Process application submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitSuccess(true);
-    reset();
+    event?.currentTarget.submit();
   };
 
   const expectationBullets = t('careers.expectations_bullets', { returnObjects: true }) as string[];
@@ -198,7 +198,28 @@ const Careers: React.FC = () => {
                 </Button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6" noValidate>
+              <form
+                action="https://formsubmit.co/info@reqcon.se"
+                method="POST"
+                encType="multipart/form-data"
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col gap-6"
+                noValidate
+              >
+                <input type="hidden" name="_subject" value="New job application — REQCON website" />
+                <input
+                  type="hidden"
+                  name="_next"
+                  value={`${toAbsoluteUrl(location.pathname)}?formsubmit=success`}
+                />
+                <input
+                  type="text"
+                  name="_honey"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="hidden"
+                />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Input
                     label={t('careers.form.name')}
@@ -232,13 +253,32 @@ const Careers: React.FC = () => {
                 <Controller
                   name="cv"
                   control={control}
-                  rules={{ required: t('careers.form.cv_error') }}
+                  rules={{
+                    required: t('careers.form.cv_error'),
+                    validate: (file) => {
+                      if (!file) return true;
+
+                      const allowedTypes = [
+                        'application/pdf',
+                        'application/msword',
+                        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                      ];
+                      const allowedExtensions = /\.(pdf|doc|docx)$/i;
+
+                      if (!allowedTypes.includes(file.type) && !allowedExtensions.test(file.name)) {
+                        return t('careers.form.cv_type_error');
+                      }
+
+                      return file.size <= 5 * 1024 * 1024 || t('careers.form.cv_size_error');
+                    }
+                  }}
                   render={({ field }) => (
                     <FileInput
                       label={t('careers.form.cv')}
                       accept=".pdf,.doc,.docx"
+                      name="attachment"
                       error={errors.cv?.message}
-                      onChange={(file) => field.onChange(file)}
+                      onFileSelect={(file) => field.onChange(file)}
                     />
                   )}
                 />

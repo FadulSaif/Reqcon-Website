@@ -6,6 +6,7 @@ import Section from '../components/Section';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import SEO from '../components/SEO';
+import { SITE_URL } from '../config/site';
 
 const servicesSchema = {
   "@context": "https://schema.org",
@@ -14,7 +15,7 @@ const servicesSchema = {
   "provider": {
     "@type": "Organization",
     "name": "REQCON AB",
-    "url": "https://reqcon.se/"
+    "url": SITE_URL
   },
   "areaServed": {
     "@type": "Country",

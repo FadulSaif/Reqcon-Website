@@ -5,7 +5,11 @@ node_modules/
 # Production Build Outputs
 dist/
 dist-ssr/
+dist-rsc/
 build/
+
+# Reference-only nested Next.js fork; not part of the Vite ship target
+Reqcon-Website-prototype_updated_folder/
 
 # Local Environment Variables
 .env

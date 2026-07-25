@@ -34,13 +34,6 @@ export const Header: React.FC = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
 
-  const isDarkHeaderPage = 
-    location.pathname.endsWith('/about') || 
-    location.pathname.endsWith('/careers') || 
-    location.pathname.endsWith('/contact') ||
-    location.pathname.endsWith('/services') ||
-    location.pathname.includes('/services/');
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 40) {
@@ -84,9 +77,9 @@ export const Header: React.FC = () => {
     const pathParts = currentPath.split('/');
     if (pathParts[1] === 'sv' || pathParts[1] === 'en') {
       pathParts[1] = newLng;
-      navigate(pathParts.join('/'), { replace: true });
+      navigate({ pathname: pathParts.join('/'), search: location.search }, { replace: true });
     } else {
-      navigate(`/${newLng}`, { replace: true });
+      navigate({ pathname: `/${newLng}`, search: location.search }, { replace: true });
     }
   };
 
@@ -108,18 +101,18 @@ export const Header: React.FC = () => {
       <header
         className={`relative w-full flex items-center justify-between pointer-events-auto transition-all duration-500 ease-out ${
           isScrolled
-            ? 'max-w-5xl h-16 rounded-full bg-white/80 dark:bg-bg-surface/80 backdrop-blur-md shadow-lg border border-slate-200/50 dark:border-border-custom/50 px-4 md:px-6'
-            : 'max-w-7xl h-24 rounded-none bg-transparent border-b border-transparent px-6 md:px-8'
+            ? 'max-w-5xl h-16 rounded-full bg-white/95 dark:bg-[#06131b]/95 backdrop-blur-md shadow-lg border border-slate-200 dark:border-white/10 px-4 md:px-6'
+            : 'max-w-7xl h-24 rounded-none bg-white/95 dark:bg-[#06131b]/95 backdrop-blur-md border-b border-slate-200 dark:border-white/10 px-6 md:px-8'
         }`}
       >
         {/* Logo (Left side) */}
         <div className="flex-1 flex items-center justify-start shrink-0">
           <Link to={`/${i18n.language}`} onClick={() => window.scrollTo(0,0)} className="flex items-center group select-none shrink-0">
-            <img 
-              src="/images/logo.png" 
-              alt="REQCON Logotyp - IT-konsulter i Stockholm & Göteborg" 
+            <img
+              src="/images/logo.png"
+              alt="REQCON – Från vision till produkt"
               className={`w-auto object-contain transition-all duration-500 ${
-                isScrolled ? 'h-7 md:h-8' : 'h-9 md:h-10'
+                isScrolled ? 'h-10 md:h-11' : 'h-14 md:h-16'
               }`}
             />
           </Link>
@@ -146,9 +139,7 @@ export const Header: React.FC = () => {
                     className={`relative nav-link px-3 lg:px-4 py-2 transition-colors duration-300 z-10 flex items-center gap-1 group/services hover:after:scale-x-100 after:scale-x-0 after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-brand-secondary/40 after:origin-center after:transition-transform after:duration-300 ${
                       isActive
                         ? 'text-brand-secondary'
-                        : isDarkHeaderPage && !isScrolled
-                          ? 'text-white/80 hover:text-white'
-                          : 'text-slate-800 dark:text-zinc-200 hover:text-brand-secondary'
+                        : 'text-slate-800 dark:text-zinc-100 hover:text-brand-secondary'
                     }`}
                   >
                     <span className="relative z-10 flex items-center gap-1">
@@ -172,7 +163,7 @@ export const Header: React.FC = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
                         transition={{ duration: 0.15, ease: 'easeOut' }}
-                        className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-64 bg-white dark:bg-bg-surface border border-slate-200/80 dark:border-border-custom shadow-xl rounded-2xl p-2.5 z-50 text-left pointer-events-auto"
+                        className="absolute left-1/2 -translate-x-1/2 top-full mt-0 w-64 bg-white dark:bg-bg-surface border border-slate-200/80 dark:border-border-custom shadow-xl rounded-2xl p-2.5 z-50 text-left pointer-events-auto"
                       >
                         <div className="flex flex-col gap-1">
                           {servicesDropdownItems.map((item) => (
@@ -203,9 +194,7 @@ export const Header: React.FC = () => {
                 className={`relative nav-link px-3 lg:px-4 py-2 transition-colors duration-300 z-10 hover:after:scale-x-100 after:scale-x-0 after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-brand-secondary/40 after:origin-center after:transition-transform after:duration-300 ${
                   isActive
                     ? 'text-brand-secondary'
-                    : isDarkHeaderPage && !isScrolled
-                      ? 'text-white/80 hover:text-white'
-                      : 'text-slate-800 dark:text-zinc-200 hover:text-brand-secondary'
+                    : 'text-slate-800 dark:text-zinc-100 hover:text-brand-secondary'
                 }`}
               >
                 <span className="relative z-10">{link.name}</span>
@@ -243,6 +232,7 @@ export const Header: React.FC = () => {
               aria-expanded={isLangDropdownOpen}
             >
               {i18n.language === 'sv' ? <FlagSV /> : <FlagEN />}
+              <span>{i18n.language === 'sv' ? 'SV' : 'EN'}</span>
               <ChevronDown className={`w-3 h-3 text-text-primary transition-transform duration-300 ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
 

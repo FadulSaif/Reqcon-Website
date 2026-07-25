@@ -235,7 +235,9 @@
       "submit": "Skicka spontanansökan",
       "success_title": "Ansökan mottagen!",
       "success_desc": "Tack för ditt intresse för REQCON. Vi går igenom din ansökan och återkopplar så snart vi kan.",
-      "success_btn": "Skicka en ny ansökan"
+      "success_btn": "Skicka en ny ansökan",
+      "cv_type_error": "Ladda upp en PDF-, DOC- eller DOCX-fil.",
+      "cv_size_error": "CV:t får vara högst 5 MB."
     },
     "policy": {
       "badge": "Policy",
@@ -338,7 +340,9 @@
       "submit": "Skicka ansökan",
       "success_title": "Tack för din ansökan!",
       "success_desc": "Vi har tagit emot dina uppgifter och återkommer till dig så snart vi har granskat din profil.",
-      "success_btn": "Skicka en till ansökan"
+      "success_btn": "Skicka en till ansökan",
+      "cv_type_error": "Ladda upp en PDF-, DOC- eller DOCX-fil.",
+      "cv_size_error": "CV:t får vara högst 5 MB."
     }
   },
   "contact": {
@@ -366,10 +370,12 @@
       "message": "Meddelande *",
       "message_placeholder": "Skriv ditt meddelande här...",
       "message_error": "Vänligen ange ditt meddelande",
+      "service_context": "Din förfrågan gäller: {{service}}",
       "submit": "Skicka meddelande",
       "success_title": "Meddelande skickat!",
       "success_desc": "Tack för att du kontaktar REQCON. Vi har tagit emot ditt meddelande och svarar vanligtvis inom 24 timmar på vardagar.",
-      "success_btn": "Skicka ett nytt meddelande"
+      "success_btn": "Skicka ett nytt meddelande",
+      "submit_error": "Meddelandet kunde inte skickas just nu. Försök igen eller mejla info@reqcon.se."
     }
   },
   "footer": {
@@ -380,5 +386,21 @@
     "policy_staff": "Personalpolicy",
     "policy_privacy": "Integritetspolicy",
     "rights": "Alla rättigheter förbehållna."
+  },
+  "not_found": {
+    "title": "Sidan kunde inte hittas",
+    "description": "Adressen du angav finns inte eller har flyttats.",
+    "home": "Till startsidan",
+    "services": "Se våra tjänster"
+  },
+  "personal_policy": {
+    "title": "Personalpolicy",
+    "description": "Läs REQCONs personalpolicy."
+  },
+  "privacy": {
+    "title": "Integritet",
+    "description": "Har du frågor om hur REQCON hanterar personuppgifter? Kontakta oss.",
+    "body": "För frågor om personuppgifter eller integritet, kontakta REQCON så hjälper vi dig vidare.",
+    "contact": "Kontakta oss"
   }
 }

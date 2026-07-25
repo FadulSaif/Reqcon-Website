@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { MessageSquare, ArrowRight } from 'lucide-react';
@@ -6,9 +6,49 @@ import { MessageSquare, ArrowRight } from 'lucide-react';
 export const FloatingCTA: React.FC = () => {
   const { t, i18n } = useTranslation();
   const contactPath = `/${i18n.language}/contact`;
+  const [isPastThreshold, setIsPastThreshold] = useState(false);
+  const [bottomOffset, setBottomOffset] = useState(28);
+
+  useEffect(() => {
+    const updateThreshold = () => {
+      setIsPastThreshold(window.scrollY >= window.innerHeight * 0.6);
+
+      const defaultOffset = window.innerWidth < 768 ? 16 : 28;
+      const privacyLink = document.getElementById('privacy-policy-link');
+      if (!privacyLink) {
+        setBottomOffset(defaultOffset);
+        return;
+      }
+
+      const privacyBounds = privacyLink.getBoundingClientRect();
+      const privacyIsVisible = privacyBounds.top < window.innerHeight && privacyBounds.bottom > 0;
+      const clearance = 20;
+      const maximumOffset = window.innerHeight - 58;
+      const protectedOffset = window.innerHeight - privacyBounds.top + clearance;
+
+      setBottomOffset(
+        privacyIsVisible
+          ? Math.min(Math.max(defaultOffset, protectedOffset), maximumOffset)
+          : defaultOffset
+      );
+    };
+    window.addEventListener('scroll', updateThreshold, { passive: true });
+    window.addEventListener('resize', updateThreshold);
+    updateThreshold();
+
+    return () => {
+      window.removeEventListener('scroll', updateThreshold);
+      window.removeEventListener('resize', updateThreshold);
+    };
+  }, []);
+
+  if (!isPastThreshold) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-40 select-none">
+    <div
+      className="fixed right-4 bottom-4 md:right-8 md:bottom-7 z-40 select-none"
+      style={{ bottom: `${bottomOffset}px` }}
+    >
       <Link
         to={contactPath}
         aria-label={t('nav.contact')}

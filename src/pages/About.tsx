@@ -4,6 +4,7 @@ import { Award, Compass, Heart, Users } from 'lucide-react';
 import Section from '../components/Section';
 import Card from '../components/Card';
 import SEO from '../components/SEO';
+import { toAbsoluteUrl } from '../config/site';
 
 const About: React.FC = () => {
   const { t } = useTranslation();
@@ -71,7 +72,7 @@ const About: React.FC = () => {
           "@type": "AboutPage",
           "name": "Om REQCON AB",
           "description": "Läs om REQCON AB - grundat 2020 i Stockholm. Vi är ett svenskt specialistbolag inom kravanalys, testledning, kvalitetssäkring och agil projektledning.",
-          "url": "https://reqcon.se/sv/about",
+          "url": toAbsoluteUrl('/sv/about'),
           "publisher": {
             "@type": "Organization",
             "name": "REQCON AB"
