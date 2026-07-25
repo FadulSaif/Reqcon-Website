@@ -3,6 +3,8 @@
     "home": "Home",
     "services": "Our Services",
     "about": "About Us",
+    "team": "Our Team",
+    "articles": "Articles",
     "careers": "Work with us",
     "contact": "Contact Us"
   },
@@ -15,7 +17,7 @@
   },
   "clients": {
     "badge": "TRUSTED BY ORGANIZATIONS",
-    "title": "Trusted by companies & authorities",
+    "title": "Our Trusted Partners",
     "subtitle": "We are proud to collaborate with leading organizations and authorities in Sweden."
   },
   "services": {
@@ -125,6 +127,15 @@
     ]
   },
   "team": {
+    "page_title": "Our Team",
+    "page_description": "Meet REQCON’s consultant managers in Stockholm and Gothenburg.",
+    "contact_title": "Contact our team",
+    "contact_subtitle": "Speak directly with the consultant manager for your region.",
+    "fadi_title": "Consultant Manager - Stockholm",
+    "anel_title": "Consultant Manager - Gothenburg",
+    "cta_title": "Have a question?",
+    "cta_subtitle": "For general inquiries, send us a message through our contact page and the right person will get back to you.",
+    "cta_action": "Contact Us",
     "badge": "Leadership",
     "title": "Our Leadership Team",
     "subtitle": "Meet our consultant managers who guide our regional operations and lead our specialist teams.",

@@ -5,6 +5,7 @@ import Section from '../components/Section';
 import Card from '../components/Card';
 import SEO from '../components/SEO';
 import { toAbsoluteUrl } from '../config/site';
+import { teamMembers } from '../content/team';
 
 const About: React.FC = () => {
   const { t } = useTranslation();
@@ -210,33 +211,33 @@ const About: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
           <Card className="p-6 flex flex-col items-center text-center gap-4 shadow-sm">
             <img
-              src="/images/team/fadi_rabah.jpg"
-              alt="Fadi Rabah"
+              src={teamMembers[0].image}
+              alt={teamMembers[0].name}
               className="w-32 h-32 rounded-full object-cover border-2 border-brand-secondary/20 shadow-md"
               loading="lazy"
             />
             <div className="flex flex-col">
-              <h3 className="text-xl font-bold text-text-primary">Fadi Rabah</h3>
-              <span className="text-sm font-semibold text-brand-secondary">Konsultchef - Stockholm</span>
+              <h3 className="text-xl font-bold text-text-primary">{teamMembers[0].name}</h3>
+              <span className="text-sm font-semibold text-brand-secondary">{t('team.fadi_title')}</span>
             </div>
             <p className="text-xs text-text-secondary max-w-xs leading-relaxed">
-              {t('team.fadi_desc')}
+              {t(teamMembers[0].bioKey)}
             </p>
           </Card>
 
           <Card className="p-6 flex flex-col items-center text-center gap-4 shadow-sm">
             <img
-              src="/images/team/anel_pasic.jpg"
-              alt="Anel Pasic"
+              src={teamMembers[1].image}
+              alt={teamMembers[1].name}
               className="w-32 h-32 rounded-full object-cover border-2 border-brand-secondary/20 shadow-md"
               loading="lazy"
             />
             <div className="flex flex-col">
-              <h3 className="text-xl font-bold text-text-primary">Anel Pasic</h3>
-              <span className="text-sm font-semibold text-brand-secondary">Konsultchef - Göteborg</span>
+              <h3 className="text-xl font-bold text-text-primary">{teamMembers[1].name}</h3>
+              <span className="text-sm font-semibold text-brand-secondary">{t('team.anel_title')}</span>
             </div>
             <p className="text-xs text-text-secondary max-w-xs leading-relaxed">
-              {t('team.anel_desc')}
+              {t(teamMembers[1].bioKey)}
             </p>
           </Card>
         </div>

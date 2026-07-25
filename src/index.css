@@ -4,6 +4,9 @@
 @variant dark (.dark &);
 
 :root {
+  /* Updated by Header's ResizeObserver so fixed navigation never covers page content. */
+  --navbar-height: 4.5rem;
+
   /* Exact Typography Variables System (Replicated from agil-pro.vercel.app) */
   --font-brand: "Outfit", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-body: "Outfit", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;

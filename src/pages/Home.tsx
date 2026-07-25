@@ -20,14 +20,16 @@ import Section from '../components/Section';
 import { slideUp, staggerContainer } from '../utils/animations';
 import SEO from '../components/SEO';
 import { SITE_URL, toAbsoluteUrl } from '../config/site';
+import { teamMembers } from '../content/team';
+import { articles } from '../content/articles';
 import vattenfallLogo from '../assets/logos/vattenfall-confirmed.png';
 import trafikverketLogo from '../assets/logos/trafikverket-confirmed.png';
 import skatteverketLogo from '../assets/logos/skatteverket-confirmed.webp';
 
 const customerLogos = [
-  { name: 'Trafikverket', src: trafikverketLogo, imageClassName: 'h-11 w-11 object-contain' },
-  { name: 'Vattenfall', src: vattenfallLogo, imageClassName: 'h-11 w-11 object-contain' },
-  { name: 'Skatteverket', src: skatteverketLogo, imageClassName: 'h-12 w-12 object-contain' },
+  { name: 'Trafikverket', src: trafikverketLogo, imageClassName: 'h-13 w-13 object-contain' },
+  { name: 'Vattenfall', src: vattenfallLogo, imageClassName: 'h-13 w-13 object-contain' },
+  { name: 'Skatteverket', src: skatteverketLogo, imageClassName: 'h-14 w-14 object-contain' },
 ];
 
 const homeSchema = {
@@ -259,6 +261,24 @@ const Home: React.FC = () => {
   const servicesPath = `/${i18n.language}/services`;
   const contactPath = `/${i18n.language}/contact`;
   const aboutPath = `/${i18n.language}/about`;
+  const articlesPath = `/${i18n.language}/articles`;
+  const articleLocale = i18n.language === 'sv' ? 'sv' : 'en';
+  const featuredArticles = articles.slice(0, 3);
+  const articlePreviewCopy = articleLocale === 'sv'
+    ? {
+        badge: 'REQCON Insikter',
+        title: 'Insikter för tydligare krav och säkrare beslut',
+        subtitle: 'Praktiska artiklar om kravhantering, anbudsgranskning och spårbarhet.',
+        readMore: 'Läs mer',
+        viewAll: 'Se alla artiklar',
+      }
+    : {
+        badge: 'REQCON Insights',
+        title: 'Insights for clearer requirements and safer decisions',
+        subtitle: 'Practical articles on requirements management, tender review, and traceability.',
+        readMore: 'Read more',
+        viewAll: 'View all articles',
+      };
 
   const getSlugFromKey = (key: string) => {
     switch (key) {
@@ -279,10 +299,10 @@ const Home: React.FC = () => {
       />
       
       {/* 1. HERO SECTION (Redesigned Floating Card Hero) */}
-      <section className="relative px-4 md:px-6 pt-0 md:pt-4 pb-6 bg-bg-page overflow-hidden">
-        <div className="max-w-7xl mx-auto w-full">
+      <section className="relative px-4 md:px-6 pt-0 pb-0 bg-bg-page dark:bg-[#06131b] overflow-hidden">
+        <div className="max-w-[86rem] mx-auto w-full">
           {/* Floating Card Container */}
-          <div className="relative w-full rounded-3xl md:rounded-[32px] overflow-hidden min-h-[75vh] md:min-h-[80vh] flex items-center justify-center py-20 px-6 select-none bg-slate-950 border border-slate-900/10 shadow-lg z-0">
+          <div className="relative w-full rounded-3xl md:rounded-[32px] overflow-hidden min-h-[50svh] md:min-h-[52svh] flex items-center justify-center py-2 px-6 select-none bg-slate-950 border border-slate-900/10 shadow-lg z-0">
             
             {/* Background image container with subtle zoom animation */}
             <div className="absolute inset-0 z-0 overflow-hidden">
@@ -298,12 +318,12 @@ const Home: React.FC = () => {
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(2,6,23,0.92)_0%,rgba(2,6,23,0.76)_58%,rgba(2,6,23,0.86)_100%)]" />
             </div>
 
-            <div className="max-w-4xl mx-auto w-full z-10 relative text-center flex flex-col items-center">
+            <div className="max-w-5xl mx-auto w-full z-10 relative text-center flex flex-col items-center">
               <motion.div
                 initial="hidden"
                 animate="visible"
                 variants={staggerContainer(0.12)}
-                className="flex flex-col items-center text-center gap-6 max-w-3xl"
+                className="flex flex-col items-center text-center gap-6 max-w-4xl"
               >
                 <motion.h1
                   variants={slideUp()}
@@ -314,7 +334,7 @@ const Home: React.FC = () => {
                 
                 <motion.p
                   variants={slideUp()}
-                  className="body-xl max-w-2xl text-center"
+                  className="body-xl max-w-3xl text-center"
                   style={{
                     color: '#f1f5f9',
                     textShadow: '0 2px 12px rgba(0, 0, 0, 0.85)',
@@ -352,13 +372,16 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
       {/* 2. CUSTOMER SHOWCASE SECTION (Dual-row Infinite Marquee Scroll) */}
       <Section
         background="alt"
-        className="py-12 md:py-16 text-center border-b border-border-custom overflow-hidden"
+        animate={false}
+        containerClassName="max-w-[86rem]"
+        className="!pt-3 !pb-6 md:!pt-4 md:!pb-8 text-center border-b border-border-custom overflow-hidden"
       >
         {/* Custom uppercase header label and line dividers with a center dot indicator */}
-        <div className="flex items-center justify-center gap-4 mb-8 px-6 max-w-5xl mx-auto select-none">
+        <div className="flex items-center justify-center gap-4 mb-5 px-6 max-w-5xl mx-auto select-none">
           <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent to-slate-200 dark:to-zinc-800" />
           <div className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />
           <span className="section-eyebrow !text-text-secondary select-none whitespace-nowrap !mb-0">
@@ -378,9 +401,9 @@ const Home: React.FC = () => {
                 return scrollClients.map((client, idx) => (
                   <div
                     key={idx}
-                    className="bg-bg-page border border-border-custom rounded-2xl px-7 py-4 h-20 w-64 shadow-sm flex items-center gap-4 shrink-0 hover:-translate-y-0.5 hover:shadow-md hover:border-accent-primary transition-[transform,box-shadow,border-color] duration-200 cursor-default"
+                    className="bg-bg-page border border-border-custom rounded-2xl px-7 py-3 h-[5.5rem] w-64 shadow-sm flex items-center gap-4 shrink-0 hover:-translate-y-0.5 hover:shadow-md hover:border-accent-primary transition-[transform,box-shadow,border-color] duration-200 cursor-default"
                   >
-                    <div className="h-12 w-14 shrink-0 overflow-hidden flex items-center justify-center">
+                    <div className="h-14 w-16 shrink-0 overflow-hidden flex items-center justify-center">
                       <img
                         src={client.src}
                         alt={`${client.name} logo`}
@@ -403,8 +426,9 @@ const Home: React.FC = () => {
         subtitle={t('services.subtitle')}
         badge={t('services.badge')}
         background="default"
+        containerClassName="max-w-[86rem]"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center max-w-[80rem] mx-auto">
           {/* Left Column: Visual Showcase */}
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative aspect-square w-full max-w-md rounded-3xl overflow-hidden shadow-lg border border-border-custom bg-slate-950/20 group select-none">
@@ -467,8 +491,9 @@ const Home: React.FC = () => {
       {/* 4. WHY CHOOSE US SECTION */}
       <Section
         background="alt"
+        containerClassName="max-w-[86rem]"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-[80rem] mx-auto items-start">
           {/* Left Column: Sticky Title & Description */}
           <div className="lg:col-span-5 text-left flex flex-col gap-6 lg:sticky lg:top-28 h-fit">
             <div className="flex flex-col gap-4">
@@ -518,6 +543,7 @@ const Home: React.FC = () => {
         subtitle={t('process.subtitle')}
         badge={t('process.badge')}
         background="default"
+        containerClassName="max-w-[86rem]"
       >
         <div className="relative max-w-4xl mx-auto flex flex-col gap-12 md:gap-4 mt-8">
           {/* Vertical Center Line for desktop */}
@@ -554,48 +580,89 @@ const Home: React.FC = () => {
         subtitle={t('team.subtitle')}
         badge={t('team.badge')}
         background="default"
+        containerClassName="max-w-[86rem]"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
           <Card className="p-6 flex flex-col items-center text-center gap-4 shadow-sm">
             <img
-              src="/images/team/fadi_rabah.jpg"
-              alt="Fadi Rabah"
+              src={teamMembers[0].image}
+              alt={teamMembers[0].name}
               className="w-32 h-32 rounded-full object-cover border-2 border-brand-secondary/20 shadow-md"
               loading="lazy"
             />
             <div className="flex flex-col">
-              <h3 className="text-xl font-bold text-text-primary">Fadi Rabah</h3>
-              <span className="text-sm font-semibold text-brand-secondary">Konsultchef - Stockholm</span>
+              <h3 className="text-xl font-bold text-text-primary">{teamMembers[0].name}</h3>
+              <span className="text-sm font-semibold text-brand-secondary">{t('team.fadi_title')}</span>
             </div>
             <p className="text-xs text-text-secondary max-w-xs leading-relaxed">
-              {t('team.fadi_desc')}
+              {t(teamMembers[0].bioKey)}
             </p>
           </Card>
 
           <Card className="p-6 flex flex-col items-center text-center gap-4 shadow-sm">
             <img
-              src="/images/team/anel_pasic.jpg"
-              alt="Anel Pasic"
+              src={teamMembers[1].image}
+              alt={teamMembers[1].name}
               className="w-32 h-32 rounded-full object-cover border-2 border-brand-secondary/20 shadow-md"
               loading="lazy"
             />
             <div className="flex flex-col">
-              <h3 className="text-xl font-bold text-text-primary">Anel Pasic</h3>
-              <span className="text-sm font-semibold text-brand-secondary">Konsultchef - Göteborg</span>
+              <h3 className="text-xl font-bold text-text-primary">{teamMembers[1].name}</h3>
+              <span className="text-sm font-semibold text-brand-secondary">{t('team.anel_title')}</span>
             </div>
             <p className="text-xs text-text-secondary max-w-xs leading-relaxed">
-              {t('team.anel_desc')}
+              {t(teamMembers[1].bioKey)}
             </p>
           </Card>
         </div>
       </Section>
 
-      {/* 7. TESTIMONIALS SECTION */}
+      {/* 7. ARTICLES PREVIEW SECTION */}
+      <Section
+        title={articlePreviewCopy.title}
+        subtitle={articlePreviewCopy.subtitle}
+        badge={articlePreviewCopy.badge}
+        background="default"
+        containerClassName="max-w-[86rem]"
+        className="!pt-10 !pb-8 md:!pt-12 md:!pb-10"
+      >
+        <div className="grid grid-cols-1 auto-rows-fr gap-6 md:grid-cols-3 max-w-[80rem] mx-auto">
+          {featuredArticles.map((article) => {
+            const articleCopy = article[articleLocale];
+            return (
+              <Card key={article.slug} hoverable className="flex h-full flex-col p-6 text-left shadow-sm">
+                <h3 className="font-heading text-xl font-bold leading-tight text-text-primary">
+                  <Link to={`${articlesPath}/${article.slug}`} className="transition-colors hover:text-brand-secondary">
+                    {articleCopy.title}
+                  </Link>
+                </h3>
+                <p className="mt-4 flex-1 text-sm leading-relaxed text-text-secondary">{articleCopy.description}</p>
+                <Link
+                  to={`${articlesPath}/${article.slug}`}
+                  className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-bold text-brand-secondary transition-colors hover:text-accent-hover"
+                >
+                  {articlePreviewCopy.readMore}<ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </Card>
+            );
+          })}
+        </div>
+        <div className="mt-8 text-center">
+          <Link to={articlesPath}>
+            <Button variant="secondary" size="md" className="rounded-full">
+              {articlePreviewCopy.viewAll}
+            </Button>
+          </Link>
+        </div>
+      </Section>
+
+      {/* 8. TESTIMONIALS SECTION */}
       <Section
         title={t('testimonials.title')}
         subtitle={t('testimonials.subtitle')}
         badge={t('testimonials.badge')}
         background="alt"
+        containerClassName="max-w-[86rem]"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {testimonials.map((test, idx) => (
@@ -620,7 +687,7 @@ const Home: React.FC = () => {
         </div>
       </Section>
 
-      {/* 8. BOTTOM CTA SECTION */}
+      {/* 9. BOTTOM CTA SECTION */}
       <Section background="dark" animate={true} className="py-16 md:py-20 text-center bg-slate-950 text-white rounded-3xl mx-6 my-12 border border-slate-800">
         <div className="max-w-2xl mx-auto flex flex-col items-center gap-6">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">{t('services.cta_cta_title')}</h2>

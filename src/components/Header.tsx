@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, ArrowRight, ChevronDown, Check } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -33,19 +33,54 @@ export const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
+  const routeLanguage: 'sv' | 'en' = location.pathname.startsWith('/en') ? 'en' : 'sv';
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 40) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+    let ticking = false;
+    let frame = 0;
+
+    const updateNavbarShape = () => {
+      setIsScrolled(window.scrollY > 80);
+      ticking = false;
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      frame = window.requestAnimationFrame(updateNavbarShape);
+    };
+
+    updateNavbarShape();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.cancelAnimationFrame(frame);
+    };
   }, []);
+
+  // Keep all page content clear of the fixed navigation. The clearance is the
+  // navbar's actual bottom edge, which includes the pill's top inset.
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header || typeof window === 'undefined') return;
+
+    const publishClearance = () => {
+      // Keep the maximum measured clearance during the shape change. The
+      // shorter scrolled pill cannot overlap content, and this avoids moving
+      // the entire page by a few pixels on every animation frame.
+      const clearance = Math.max(72, Math.ceil(header.getBoundingClientRect().bottom));
+      document.documentElement.style.setProperty('--navbar-height', `${clearance}px`);
+    };
+
+    publishClearance();
+    const observer = new ResizeObserver(publishClearance);
+    observer.observe(header);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [isScrolled]);
 
   // Close mobile and services menus on page transition
   useEffect(() => {
@@ -54,23 +89,24 @@ export const Header: React.FC = () => {
   }, [location.pathname]);
 
   const navLinks = [
-    { name: t('nav.home'), path: `/${i18n.language}` },
-    { name: t('nav.services'), path: `/${i18n.language}/services` },
-    { name: t('nav.about'), path: `/${i18n.language}/about` },
-    { name: t('nav.careers'), path: `/${i18n.language}/careers` },
+    { name: t('nav.home', { lng: routeLanguage }), path: `/${routeLanguage}` },
+    { name: t('nav.services', { lng: routeLanguage }), path: `/${routeLanguage}/services` },
+    { name: t('nav.about', { lng: routeLanguage }), path: `/${routeLanguage}/about` },
+    { name: t('nav.careers', { lng: routeLanguage }), path: `/${routeLanguage}/careers` },
+    { name: t('nav.team', { lng: routeLanguage }), path: `/${routeLanguage}/team` },
   ];
 
   const servicesDropdownItems = [
-    { name: t('services.items.krav.title'), path: `/${i18n.language}/services/requirements-analysis` },
-    { name: t('services.items.test.title'), path: `/${i18n.language}/services/testing-qa` },
-    { name: t('services.items.pm.title'), path: `/${i18n.language}/services/project-management` },
-    { name: t('services.items.info.title'), path: `/${i18n.language}/services/information-management` },
-    { name: t('services.items.ux.title'), path: `/${i18n.language}/services/ux-design` },
-    { name: t('services.items.agile.title'), path: `/${i18n.language}/services/agile-methods` },
+    { name: t('services.items.krav.title', { lng: routeLanguage }), path: `/${routeLanguage}/services/requirements-analysis` },
+    { name: t('services.items.test.title', { lng: routeLanguage }), path: `/${routeLanguage}/services/testing-qa` },
+    { name: t('services.items.pm.title', { lng: routeLanguage }), path: `/${routeLanguage}/services/project-management` },
+    { name: t('services.items.info.title', { lng: routeLanguage }), path: `/${routeLanguage}/services/information-management` },
+    { name: t('services.items.ux.title', { lng: routeLanguage }), path: `/${routeLanguage}/services/ux-design` },
+    { name: t('services.items.agile.title', { lng: routeLanguage }), path: `/${routeLanguage}/services/agile-methods` },
   ];
 
   const handleLanguageChange = (newLng: string) => {
-    if (i18n.language === newLng) return;
+    if (routeLanguage === newLng) return;
     i18n.changeLanguage(newLng);
     
     const currentPath = location.pathname;
@@ -84,44 +120,44 @@ export const Header: React.FC = () => {
   };
 
   const isLinkActive = (path: string) => {
-    if (path === `/${i18n.language}`) {
+    if (path === `/${routeLanguage}`) {
       return location.pathname === path || location.pathname === `${path}/`;
     }
     return location.pathname.startsWith(path);
   };
 
-  const contactPath = `/${i18n.language}/contact`;
+  const contactPath = `/${routeLanguage}/contact`;
+  const navSpacingClass = isScrolled ? 'gap-3' : 'gap-3 2xl:gap-5';
+  const navLinkSizeClass = isScrolled ? 'px-2 py-2 text-[11px]' : 'px-2 py-2 text-sm 2xl:px-4 2xl:text-base';
+  const actionGroupClass = isScrolled ? 'gap-2' : 'gap-3';
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 z-50 flex justify-center w-full transition-all duration-500 ease-out pointer-events-none ${
-        isScrolled ? 'pt-4 px-4 md:px-6' : 'pt-0 px-0'
+      className={`fixed top-0 left-0 right-0 z-50 flex w-full justify-center pointer-events-none transition-[padding] duration-[400ms] ease-[cubic-bezier(0,0,0.2,1)] motion-reduce:transition-none ${
+        isScrolled ? 'p-3 px-4' : 'p-0'
       }`}
     >
       <header
-        className={`relative w-full flex items-center justify-between pointer-events-auto transition-all duration-500 ease-out ${
+        ref={headerRef}
+        className={`relative grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center pointer-events-auto w-full will-change-[max-width,border-radius,height,padding,background-color,box-shadow] transition-all duration-[400ms] ease-[cubic-bezier(0,0,0.2,1)] motion-reduce:transition-none ${
           isScrolled
-            ? 'max-w-5xl h-16 rounded-full bg-white/95 dark:bg-[#06131b]/95 backdrop-blur-md shadow-lg border border-slate-200 dark:border-white/10 px-4 md:px-6'
-            : 'max-w-7xl h-24 rounded-none bg-white/95 dark:bg-[#06131b]/95 backdrop-blur-md border-b border-slate-200 dark:border-white/10 px-6 md:px-8'
+            ? 'h-14 max-w-[1216px] rounded-[100px] border border-slate-200/70 bg-white/90 px-6 shadow-lg shadow-slate-950/10 backdrop-blur-md dark:border-white/10 dark:bg-[#06131b]/90 dark:shadow-black/30'
+            : 'h-[72px] max-w-full rounded-none border border-transparent bg-transparent px-8 shadow-none'
         }`}
       >
         {/* Logo (Left side) */}
-        <div className="flex-1 flex items-center justify-start shrink-0">
-          <Link to={`/${i18n.language}`} onClick={() => window.scrollTo(0,0)} className="flex items-center group select-none shrink-0">
+        <div className="flex min-w-0 items-center justify-start">
+          <Link to={`/${routeLanguage}`} onClick={() => window.scrollTo(0,0)} className="flex items-center group select-none shrink-0">
             <img
               src="/images/logo.png"
               alt="REQCON – Från vision till produkt"
-              className={`w-auto object-contain transition-all duration-500 ${
-                isScrolled ? 'h-10 md:h-11' : 'h-14 md:h-16'
-              }`}
+              className={`w-auto object-contain transition-[height] duration-[400ms] ease-out motion-reduce:transition-none ${isScrolled ? 'h-10' : 'h-11'}`}
             />
           </Link>
         </div>
 
         {/* Centered Desktop Navigation Links */}
-        <nav className={`hidden md:flex items-center justify-center gap-1 lg:gap-3 transition-all duration-500 transform ${
-          isScrolled ? '-translate-x-3 lg:-translate-x-7' : 'translate-x-0'
-        }`}>
+        <nav className={`hidden xl:flex items-center justify-center whitespace-nowrap ${navSpacingClass}`}>
           {navLinks.map((link) => {
             const isActive = isLinkActive(link.path);
             const isServices = link.path.endsWith('/services');
@@ -136,10 +172,10 @@ export const Header: React.FC = () => {
                 >
                   <Link
                     to={link.path}
-                    className={`relative nav-link px-3 lg:px-4 py-2 transition-colors duration-300 z-10 flex items-center gap-1 group/services hover:after:scale-x-100 after:scale-x-0 after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-brand-secondary/40 after:origin-center after:transition-transform after:duration-300 ${
-                      isActive
-                        ? 'text-brand-secondary'
-                        : 'text-slate-800 dark:text-zinc-100 hover:text-brand-secondary'
+                      className={`relative nav-link ${navLinkSizeClass} transition-colors duration-200 z-10 flex items-center gap-1 group/services hover:after:scale-x-100 after:scale-x-0 after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-brand-secondary/40 after:origin-center after:transition-transform after:duration-300 ${
+                        isActive
+                          ? 'text-brand-secondary'
+                        : 'text-slate-900 dark:text-white hover:text-brand-secondary'
                     }`}
                   >
                     <span className="relative z-10 flex items-center gap-1">
@@ -191,10 +227,10 @@ export const Header: React.FC = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative nav-link px-3 lg:px-4 py-2 transition-colors duration-300 z-10 hover:after:scale-x-100 after:scale-x-0 after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-brand-secondary/40 after:origin-center after:transition-transform after:duration-300 ${
+                className={`relative nav-link ${navLinkSizeClass} transition-colors duration-200 z-10 hover:after:scale-x-100 after:scale-x-0 after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-brand-secondary/40 after:origin-center after:transition-transform after:duration-300 ${
                   isActive
                     ? 'text-brand-secondary'
-                    : 'text-slate-800 dark:text-zinc-100 hover:text-brand-secondary'
+                  : 'text-slate-900 dark:text-white hover:text-brand-secondary'
                 }`}
               >
                 <span className="relative z-10">{link.name}</span>
@@ -211,15 +247,15 @@ export const Header: React.FC = () => {
         </nav>
 
         {/* Unified Controls Group (Right side) */}
-        <div className="flex-1 flex items-center justify-end gap-3 shrink-0">
+        <div className={`hidden xl:flex min-w-0 items-center justify-end ${actionGroupClass}`}>
           <Link to={contactPath} className="shrink-0">
             <Button
               variant={isLinkActive(contactPath) ? 'secondary' : 'primary'}
               size="sm"
-              className="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full shrink-0 whitespace-nowrap shadow-sm hover:shadow-md transition-all duration-300"
+              className={`${isScrolled ? 'px-3 py-1.5 text-[11px]' : 'px-4 py-2 text-xs'} font-bold uppercase tracking-wider rounded-full shrink-0 whitespace-nowrap shadow-sm hover:shadow-md transition-all duration-300`}
               rightIcon={<ArrowRight className="w-3.5 h-3.5" />}
             >
-              {t('nav.contact')}
+              {t('nav.contact', { lng: routeLanguage })}
             </Button>
           </Link>
 
@@ -227,13 +263,13 @@ export const Header: React.FC = () => {
           <div className="relative">
             <button
               onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-300/80 dark:border-zinc-700/80 bg-gradient-to-r from-accent-secondary/[0.08] to-accent-primary/[0.18] dark:from-accent-secondary/[0.18] dark:to-accent-primary/[0.28] hover:from-accent-secondary/[0.12] hover:to-accent-primary/[0.25] dark:hover:from-accent-secondary/[0.22] dark:hover:to-accent-primary/[0.35] transition-all duration-300 text-xs font-bold text-text-primary cursor-pointer focus:outline-none shadow-sm"
+              className={`flex items-center ${isScrolled ? 'gap-1.5 px-2 py-1 text-[11px]' : 'gap-2 px-3 py-1.5 text-xs'} rounded-full border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-[#0f2330] hover:bg-slate-100 dark:hover:bg-[#153040] text-slate-900 dark:text-white transition-colors duration-200 font-bold cursor-pointer focus:outline-none shadow-sm`}
               aria-haspopup="true"
               aria-expanded={isLangDropdownOpen}
             >
-              {i18n.language === 'sv' ? <FlagSV /> : <FlagEN />}
-              <span>{i18n.language === 'sv' ? 'SV' : 'EN'}</span>
-              <ChevronDown className={`w-3 h-3 text-text-primary transition-transform duration-300 ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
+              {routeLanguage === 'sv' ? <FlagSV /> : <FlagEN />}
+              <span>{routeLanguage === 'sv' ? 'SV' : 'EN'}</span>
+              <ChevronDown className={`w-3 h-3 text-slate-900 dark:text-white transition-transform duration-300 ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
 
             <AnimatePresence>
@@ -259,7 +295,7 @@ export const Header: React.FC = () => {
                         setIsLangDropdownOpen(false);
                       }}
                       className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-xs font-bold transition-colors cursor-pointer ${
-                        i18n.language === 'sv'
+                        routeLanguage === 'sv'
                           ? 'bg-slate-50 dark:bg-slate-800/50 text-brand-secondary'
                           : 'text-text-secondary hover:bg-slate-50 dark:hover:bg-slate-800/30 hover:text-text-primary'
                       }`}
@@ -268,7 +304,7 @@ export const Header: React.FC = () => {
                         <FlagSV />
                         <span>Svenska</span>
                       </div>
-                      {i18n.language === 'sv' && <Check className="w-3.5 h-3.5 text-brand-secondary" />}
+                      {routeLanguage === 'sv' && <Check className="w-3.5 h-3.5 text-brand-secondary" />}
                     </button>
                     
                     <button
@@ -277,7 +313,7 @@ export const Header: React.FC = () => {
                         setIsLangDropdownOpen(false);
                       }}
                       className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-xs font-bold transition-colors cursor-pointer ${
-                        i18n.language === 'en'
+                        routeLanguage === 'en'
                           ? 'bg-slate-50 dark:bg-slate-800/50 text-brand-secondary'
                           : 'text-text-secondary hover:bg-slate-50 dark:hover:bg-slate-800/30 hover:text-text-primary'
                       }`}
@@ -286,7 +322,7 @@ export const Header: React.FC = () => {
                         <FlagEN />
                         <span>English</span>
                       </div>
-                      {i18n.language === 'en' && <Check className="w-3.5 h-3.5 text-brand-secondary" />}
+                      {routeLanguage === 'en' && <Check className="w-3.5 h-3.5 text-brand-secondary" />}
                     </button>
                   </motion.div>
                 </>
@@ -298,12 +334,12 @@ export const Header: React.FC = () => {
         </div>
 
         {/* Mobile controls */}
-        <div className="flex md:hidden items-center gap-2 shrink-0">
+        <div className="flex xl:hidden items-center gap-2 shrink-0">
           <ThemeToggle />
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 rounded-full text-text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none cursor-pointer border border-transparent hover:border-slate-200/40"
+            className="p-2 rounded-full text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-colors focus:outline-none cursor-pointer border border-transparent hover:border-slate-300 dark:hover:border-white/20"
             aria-expanded={isMobileMenuOpen}
             aria-label="Öppna huvudmeny"
           >
@@ -322,7 +358,7 @@ export const Header: React.FC = () => {
               animate={{ opacity: 0.4 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/60 z-40 md:hidden pointer-events-auto"
+              className="fixed inset-0 bg-black/60 z-40 xl:hidden pointer-events-auto"
             />
 
             {/* Navigation Drawer */}
@@ -331,7 +367,7 @@ export const Header: React.FC = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.35, ease: 'easeInOut' }}
-              className="fixed right-0 top-0 bottom-0 w-[85%] max-w-sm bg-white dark:bg-bg-surface border-l border-border-custom z-50 p-8 flex flex-col justify-between md:hidden pointer-events-auto shadow-2xl"
+              className="fixed right-0 top-0 bottom-0 w-[85%] max-w-sm bg-white dark:bg-bg-surface border-l border-border-custom z-50 p-8 flex flex-col justify-between xl:hidden pointer-events-auto shadow-2xl"
             >
               <div className="flex flex-col gap-8">
                 {/* Header inside drawer */}
@@ -382,7 +418,7 @@ export const Header: React.FC = () => {
                     <button
                       onClick={() => handleLanguageChange('sv')}
                       className={`flex items-center justify-center gap-2 flex-1 py-2 px-4 rounded-full border text-xs font-bold text-center transition-all ${
-                        i18n.language === 'sv'
+                        routeLanguage === 'sv'
                           ? 'bg-brand-secondary/10 border-brand-secondary text-brand-secondary font-extrabold'
                           : 'border-border-custom bg-slate-50/50 dark:bg-slate-800/50 text-text-secondary'
                       }`}
@@ -393,7 +429,7 @@ export const Header: React.FC = () => {
                     <button
                       onClick={() => handleLanguageChange('en')}
                       className={`flex items-center justify-center gap-2 flex-1 py-2 px-4 rounded-full border text-xs font-bold text-center transition-all ${
-                        i18n.language === 'en'
+                        routeLanguage === 'en'
                           ? 'bg-brand-secondary/10 border-brand-secondary text-brand-secondary font-extrabold'
                           : 'border-border-custom bg-slate-50/50 dark:bg-slate-800/50 text-text-secondary'
                       }`}
@@ -406,7 +442,7 @@ export const Header: React.FC = () => {
 
                 <Link to={contactPath}>
                   <Button variant="primary" className="w-full rounded-full" size="lg">
-                    {t('nav.contact')}
+                  {t('nav.contact', { lng: routeLanguage })}
                   </Button>
                 </Link>
                 <div className="text-center text-xs text-text-secondary opacity-60">

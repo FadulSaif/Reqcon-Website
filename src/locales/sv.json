@@ -1,5 +1,7 @@
 {
   "nav": {
+    "team": "Vårt team",
+    "articles": "Artiklar",
     "home": "Hem",
     "services": "Våra tjänster",
     "about": "Om oss",
@@ -15,7 +17,7 @@
   },
   "clients": {
     "badge": "FÖRTROENDE & SAMARBETEN",
-    "title": "Anförtrodda av företag & myndigheter",
+    "title": "Våra betrodda partners",
     "subtitle": "Vi är stolta över att samarbeta med ledande organisationer och myndigheter i Sverige."
   },
   "services": {
@@ -125,6 +127,15 @@
     ]
   },
   "team": {
+    "page_title": "Vårt team",
+    "page_description": "Möt REQCON:s konsultchefer i Stockholm och Göteborg.",
+    "contact_title": "Kontakta vårt team",
+    "contact_subtitle": "Prata direkt med konsultchefen för din region.",
+    "fadi_title": "Konsultchef - Stockholm",
+    "anel_title": "Konsultchef - Göteborg",
+    "cta_title": "Har du en fråga?",
+    "cta_subtitle": "För allmänna frågor kan du skicka ett meddelande via vår kontaktsida så återkommer rätt person till dig.",
+    "cta_action": "Kontakta oss",
     "badge": "Ledarskap",
     "title": "Vårt ledningsteam",
     "subtitle": "Möt våra konsultchefer som styr våra lokala verksamheter och leder våra specialistteam framåt.",

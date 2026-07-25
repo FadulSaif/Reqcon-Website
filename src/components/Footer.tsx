@@ -1,27 +1,31 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Mail, MapPin } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const location = useLocation();
+  const routeLanguage: 'sv' | 'en' = location.pathname.startsWith('/en') ? 'en' : 'sv';
   const currentYear = new Date().getFullYear();
 
   const services = [
-    { name: t('services.items.krav.title'), path: `/${i18n.language}/services/requirements-analysis` },
-    { name: t('services.items.test.title'), path: `/${i18n.language}/services/testing-qa` },
-    { name: t('services.items.pm.title'), path: `/${i18n.language}/services/project-management` },
-    { name: t('services.items.info.title'), path: `/${i18n.language}/services/information-management` },
-    { name: t('services.items.ux.title'), path: `/${i18n.language}/services/ux-design` },
-    { name: t('services.items.agile.title'), path: `/${i18n.language}/services/agile-methods` }
+    { name: t('services.items.krav.title', { lng: routeLanguage }), path: `/${routeLanguage}/services/requirements-analysis` },
+    { name: t('services.items.test.title', { lng: routeLanguage }), path: `/${routeLanguage}/services/testing-qa` },
+    { name: t('services.items.pm.title', { lng: routeLanguage }), path: `/${routeLanguage}/services/project-management` },
+    { name: t('services.items.info.title', { lng: routeLanguage }), path: `/${routeLanguage}/services/information-management` },
+    { name: t('services.items.ux.title', { lng: routeLanguage }), path: `/${routeLanguage}/services/ux-design` },
+    { name: t('services.items.agile.title', { lng: routeLanguage }), path: `/${routeLanguage}/services/agile-methods` }
   ];
 
   const company = [
-    { name: t('nav.home'), path: `/${i18n.language}` },
-    { name: t('nav.services'), path: `/${i18n.language}/services` },
-    { name: t('nav.about'), path: `/${i18n.language}/about` },
-    { name: t('nav.careers'), path: `/${i18n.language}/careers` },
-    { name: t('nav.contact'), path: `/${i18n.language}/contact` }
+    { name: t('nav.home', { lng: routeLanguage }), path: `/${routeLanguage}` },
+    { name: t('nav.services', { lng: routeLanguage }), path: `/${routeLanguage}/services` },
+    { name: t('nav.about', { lng: routeLanguage }), path: `/${routeLanguage}/about` },
+    { name: t('nav.team', { lng: routeLanguage }), path: `/${routeLanguage}/team` },
+    { name: t('nav.careers', { lng: routeLanguage }), path: `/${routeLanguage}/careers` },
+    { name: t('nav.articles', { lng: routeLanguage }), path: `/${routeLanguage}/articles` },
+    { name: t('nav.contact', { lng: routeLanguage }), path: `/${routeLanguage}/contact` }
   ];
 
   return (
@@ -30,7 +34,7 @@ export const Footer: React.FC = () => {
         
         {/* Brand Column */}
         <div className="flex flex-col gap-6 md:col-span-1">
-          <Link to={`/${i18n.language}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="select-none text-left w-fit block">
+          <Link to={`/${routeLanguage}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="select-none text-left w-fit block">
             <img
               src="/images/logo.png"
               alt="REQCON – Från vision till produkt"
@@ -131,8 +135,8 @@ export const Footer: React.FC = () => {
             &copy; {currentYear} REQCON AB. Org.nr: 559281-2294. {t('footer.rights')}
           </div>
           <div className="flex gap-6">
-            <Link to={`/${i18n.language}/personalpolicy`} className="hover:text-white transition-colors">{t('footer.policy_staff')}</Link>
-            <Link id="privacy-policy-link" to={`/${i18n.language}/privacy`} className="hover:text-white transition-colors">{t('footer.policy_privacy')}</Link>
+            <Link to={`/${routeLanguage}/personalpolicy`} className="hover:text-white transition-colors">{t('footer.policy_staff', { lng: routeLanguage })}</Link>
+            <Link id="privacy-policy-link" to={`/${routeLanguage}/privacy`} className="hover:text-white transition-colors">{t('footer.policy_privacy', { lng: routeLanguage })}</Link>
           </div>
         </div>
       </div>

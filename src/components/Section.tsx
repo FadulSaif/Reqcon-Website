@@ -9,6 +9,7 @@ export interface SectionProps extends React.HTMLAttributes<HTMLDivElement> {
   background?: 'default' | 'alt' | 'dark';
   align?: 'left' | 'center';
   animate?: boolean;
+  containerClassName?: string;
 }
 
 export const Section: React.FC<SectionProps> = ({
@@ -20,6 +21,7 @@ export const Section: React.FC<SectionProps> = ({
   background = 'default',
   align = 'center',
   animate = true,
+  containerClassName = 'max-w-7xl',
   ...props
 }) => {
   const bgStyles = {
@@ -56,7 +58,7 @@ export const Section: React.FC<SectionProps> = ({
 
   return (
     <section className={`py-12 md:py-16 px-6 overflow-hidden ${bgStyles[background]} ${className}`} {...props}>
-      <div className="max-w-7xl mx-auto flex flex-col">
+      <div className={`${containerClassName} mx-auto flex flex-col`}>
         {animate ? (
           <motion.div
             initial="hidden"

@@ -13,7 +13,9 @@ const ServiceDetail = lazy(() => import('../pages/ServiceDetail'));
 const About = lazy(() => import('../pages/About'));
 const Careers = lazy(() => import('../pages/Careers'));
 const Contact = lazy(() => import('../pages/Contact'));
+const Team = lazy(() => import('../pages/Team'));
 const Article = lazy(() => import('../pages/Article'));
+const Articles = lazy(() => import('../pages/Articles'));
 
 // Fallback spinner conforming to corporate styling
 const PageLoader: React.FC = () => (
@@ -53,10 +55,12 @@ const AppRoutes: React.FC = () => {
           <Route path="services" element={<Services />} />
           <Route path="services/:serviceId" element={<ServiceDetail />} />
           <Route path="about" element={<About />} />
+          <Route path="team" element={<Team />} />
           <Route path="careers" element={<Careers />} />
           <Route path="contact" element={<Contact />} />
           <Route path="personalpolicy" element={<PersonalPolicy />} />
           <Route path="privacy" element={<Privacy />} />
+          <Route path="articles" element={<Articles />} />
           <Route path="articles/:slug" element={<Article />} />
           <Route path="*" element={<NotFound />} />
         </Route>

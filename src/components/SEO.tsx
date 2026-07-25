@@ -48,10 +48,13 @@ const copy = {
     services: 'Våra specialisttjänster | REQCON AB',
     servicesDescription: 'Utforska REQCONs tjänster inom kravanalys, testledning, UX, projektledning, informationshantering och agila metoder.',
     about: 'Om REQCON AB | IT-konsultbolag',
+    team: 'Vårt team | REQCON AB',
     careers: 'Arbeta hos oss | Karriär hos REQCON AB',
     contact: 'Kontakta oss | REQCON AB',
     personalPolicy: 'Personuppgiftspolicy | REQCON AB',
     privacy: 'Integritetspolicy | REQCON AB',
+    articles: 'Insikter om kravhantering | REQCON AB',
+    articlesDescription: 'Praktiska insikter om kravhantering, anbudsgranskning och spårbarhet i byggprojekt.',
   },
   en: {
     homeTitle: 'REQCON AB | IT Consultants in Requirements Analysis & Project Management',
@@ -59,10 +62,13 @@ const copy = {
     services: 'Our specialist services | REQCON AB',
     servicesDescription: 'Explore REQCON services in requirements analysis, testing, UX, project management, information management, and agile methods.',
     about: 'About REQCON AB | IT Consulting',
+    team: 'Our team | REQCON AB',
     careers: 'Careers at REQCON AB',
     contact: 'Contact us | REQCON AB',
     personalPolicy: 'Personal data policy | REQCON AB',
     privacy: 'Privacy policy | REQCON AB',
+    articles: 'Insights on requirements management | REQCON AB',
+    articlesDescription: 'Practical insights on requirements management, tender review, and traceability in construction projects.',
   },
 } as const;
 
@@ -97,6 +103,10 @@ export const getPageMetadata = (pathname: string): PageMetadata => {
     title = localizedCopy.about;
     description = localizedCopy.homeDescription;
     pageType = 'AboutPage';
+  } else if (suffix === '/team') {
+    title = localizedCopy.team;
+    description = language === 'sv' ? 'Möt REQCON AB:s konsultchefer i Stockholm och Göteborg.' : 'Meet REQCON AB’s consultant managers in Stockholm and Gothenburg.';
+    pageType = 'AboutPage';
   } else if (suffix === '/careers') {
     title = localizedCopy.careers;
     description = language === 'sv' ? 'Karriärmöjligheter hos REQCON AB.' : 'Career opportunities at REQCON AB.';
@@ -111,6 +121,10 @@ export const getPageMetadata = (pathname: string): PageMetadata => {
     title = localizedCopy.privacy;
     description = language === 'sv' ? 'REQCON AB:s integritetspolicy.' : 'REQCON AB privacy policy.';
     noindex = true;
+  } else if (suffix === '/articles') {
+    title = localizedCopy.articles;
+    description = localizedCopy.articlesDescription;
+    pageType = 'CollectionPage';
   } else if (suffix.startsWith('/articles/')) {
     const article = getArticle(suffix.split('/')[2]);
     if (article) {
