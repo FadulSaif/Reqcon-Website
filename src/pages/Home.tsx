@@ -624,7 +624,13 @@ const Home: React.FC = () => {
         badge={articlePreviewCopy.badge}
         background="dark"
         containerClassName="max-w-[86rem]"
-        className="insights-background !pt-10 !pb-8 md:!pt-12 md:!pb-10 [&_.body-lg]:!text-slate-300"
+        className="!pt-10 !pb-8 md:!pt-12 md:!pb-10 [&_.body-lg]:!text-slate-300"
+        style={{
+          backgroundColor: '#020617',
+          backgroundImage: "linear-gradient(to top, rgb(2 6 23 / 1), rgb(2 6 23 / 0.72), rgb(2 6 23 / 0.82)), url('/images/insights-background.jpg')",
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+        }}
       >
         <div className="grid grid-cols-1 auto-rows-fr gap-6 md:grid-cols-3 max-w-[80rem] mx-auto">
           {featuredArticles.map((article) => {

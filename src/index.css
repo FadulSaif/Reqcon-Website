@@ -223,21 +223,6 @@
   font-size: clamp(1.3275rem, 2.124vw, 1.77rem);
 }
 
-.insights-background {
-  background-color: #020617;
-  background-image:
-    linear-gradient(to top, rgb(2 6 23 / 1), rgb(2 6 23 / 0.7), rgb(2 6 23 / 0.8)),
-    url('/images/about_office.jpg');
-  background-position: center;
-  background-size: cover;
-}
-
-.dark .insights-background {
-  background-image:
-    linear-gradient(to top, rgb(0 0 0 / 1), rgb(0 0 0 / 0.75), rgb(0 0 0 / 0.85)),
-    url('/images/about_office.jpg');
-}
-
 .section-eyebrow {
   font-family: var(--font-heading);
   letter-spacing: var(--letter-spacing-eyebrow);

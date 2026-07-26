@@ -43,7 +43,7 @@ const Articles: React.FC = () => {
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             {backHome}
           </Link>
-          <p className="section-eyebrow">{copy.eyebrow}</p>
+          <p className="section-eyebrow select-none w-fit px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15">{copy.eyebrow}</p>
           <h1 className="heading-display text-text-primary">{copy.heading}</h1>
           <p className="body-lg mt-6 max-w-2xl">{copy.intro}</p>
         </div>

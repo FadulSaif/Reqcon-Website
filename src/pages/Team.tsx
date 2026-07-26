@@ -28,9 +28,9 @@ const Team: React.FC = () => {
       </section>
 
       <Section background="default" title={t('team.contact_title')} subtitle={t('team.contact_subtitle')}>
-        <div className="grid w-[87.5%] grid-cols-1 lg:grid-cols-2 gap-6 max-w-[49rem] mx-auto text-left">
+        <div className="grid w-[67.8125%] grid-cols-1 lg:grid-cols-2 gap-6 max-w-[38rem] mx-auto text-left">
           {teamMembers.map((member) => (
-            <Card key={member.email} className="overflow-hidden flex flex-col shadow-sm">
+            <Card key={member.email} className="min-w-0 overflow-hidden flex flex-col shadow-sm">
               <img src={member.image} alt={member.name} className="w-full aspect-[9/10] object-cover object-[center_15%]" loading="lazy" />
               <div className="p-6 flex flex-col gap-5 grow">
                 <div>
@@ -43,9 +43,9 @@ const Team: React.FC = () => {
                     <span className="p-2 bg-bg-surface border border-border-custom rounded-full group-hover:text-brand-secondary"><Phone className="w-4 h-4" /></span>
                     <span className="font-semibold">{member.phone}</span>
                   </a>
-                  <a href={`mailto:${member.email}`} className="flex items-center gap-3 hover:text-brand-secondary transition-colors group">
+                  <a href={`mailto:${member.email}`} className="min-w-0 flex items-center gap-3 hover:text-brand-secondary transition-colors group">
                     <span className="p-2 bg-bg-surface border border-border-custom rounded-full group-hover:text-brand-secondary"><Mail className="w-4 h-4" /></span>
-                    <span className="font-semibold">{member.email}</span>
+                    <span className="min-w-0 font-semibold [overflow-wrap:anywhere]">{member.email}</span>
                   </a>
                   <div className="flex items-start gap-3">
                     <span className="p-2 bg-bg-surface border border-border-custom rounded-full mt-0.5"><MapPin className="w-4 h-4" /></span>
