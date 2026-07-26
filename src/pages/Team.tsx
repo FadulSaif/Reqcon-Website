@@ -21,14 +21,14 @@ const Team: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80" />
         </div>
         <div className="max-w-3xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-brand-secondary/90 px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15">{t('team.badge')}</span>
+          <span className="section-eyebrow !mb-0 px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15">{t('team.badge')}</span>
           <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight uppercase">{t('team.title')}</h1>
           <p className="text-base md:text-lg text-zinc-300 leading-relaxed max-w-2xl font-medium">{t('team.subtitle')}</p>
         </div>
       </section>
 
       <Section background="default" title={t('team.contact_title')} subtitle={t('team.contact_subtitle')}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto text-left">
+        <div className="grid w-[87.5%] grid-cols-1 lg:grid-cols-2 gap-6 max-w-[49rem] mx-auto text-left">
           {teamMembers.map((member) => (
             <Card key={member.email} className="overflow-hidden flex flex-col shadow-sm">
               <img src={member.image} alt={member.name} className="w-full aspect-[9/10] object-cover object-[center_15%]" loading="lazy" />

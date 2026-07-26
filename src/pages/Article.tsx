@@ -20,7 +20,7 @@ const Article: React.FC = () => {
           <ArrowLeft className="w-4 h-4" />{backLabel}
         </Link>
         <header className="mt-8 border-b border-border-custom pb-10">
-          <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-secondary">REQCON Insights</p>
+          <p className="section-eyebrow !mb-0">REQCON Insights</p>
           <h1 className="mt-4 font-heading text-4xl md:text-5xl font-bold tracking-tight">{copy.title}</h1>
           <div className="mt-7 space-y-4 text-lg leading-8 text-text-secondary">
             {copy.answer.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}

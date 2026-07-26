@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Mail, MapPin } from 'lucide-react';
+import { ArrowRight, Mail, MapPin } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const { t } = useTranslation();
@@ -18,15 +18,23 @@ export const Footer: React.FC = () => {
     { name: t('services.items.agile.title', { lng: routeLanguage }), path: `/${routeLanguage}/services/agile-methods` }
   ];
 
-  const company = [
+  const navigation = [
     { name: t('nav.home', { lng: routeLanguage }), path: `/${routeLanguage}` },
     { name: t('nav.services', { lng: routeLanguage }), path: `/${routeLanguage}/services` },
     { name: t('nav.about', { lng: routeLanguage }), path: `/${routeLanguage}/about` },
-    { name: t('nav.team', { lng: routeLanguage }), path: `/${routeLanguage}/team` },
     { name: t('nav.careers', { lng: routeLanguage }), path: `/${routeLanguage}/careers` },
-    { name: t('nav.articles', { lng: routeLanguage }), path: `/${routeLanguage}/articles` },
+    { name: t('nav.team', { lng: routeLanguage }), path: `/${routeLanguage}/team` },
     { name: t('nav.contact', { lng: routeLanguage }), path: `/${routeLanguage}/contact` }
   ];
+
+  const isCurrentPage = (path: string) => {
+    const normalizedPath = location.pathname.replace(/\/+$/, '');
+    const normalizedTarget = path.replace(/\/+$/, '');
+    return normalizedPath === normalizedTarget || (
+      normalizedTarget !== `/${routeLanguage}` &&
+      normalizedPath.startsWith(`${normalizedTarget}/`)
+    );
+  };
 
   return (
     <footer id="site-footer" className="relative bg-gradient-to-b from-[#001724] to-[#000a10] text-zinc-100 border-t border-white/5 mt-auto">
@@ -83,23 +91,32 @@ export const Footer: React.FC = () => {
           </ul>
         </div>
 
-        {/* Company Sitemap Column */}
+        {/* Navigation Column */}
         <div className="flex flex-col gap-5 text-left">
-          <span className="font-heading font-semibold text-sm uppercase tracking-wider text-zinc-200">
-            {t('footer.company')}
+          <span className="font-heading text-lg font-semibold text-white">
+            {t('footer.navigation', { lng: routeLanguage })}
           </span>
-          <ul className="flex flex-col gap-3">
-            {company.map((item, idx) => (
-              <li key={idx}>
+          <ul className="flex flex-col border-t border-white/10">
+            {navigation.map((item) => {
+              const isActive = isCurrentPage(item.path);
+              return (
+              <li key={item.path} className="border-b border-white/10">
                 <Link
                   to={item.path}
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className="text-sm text-zinc-400 hover:text-brand-secondary transition-colors"
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`relative flex items-center justify-between gap-3 py-3 text-sm transition-colors ${
+                    isActive
+                      ? 'font-semibold text-white after:absolute after:-bottom-px after:left-0 after:h-0.5 after:w-12 after:bg-brand-secondary'
+                      : 'text-zinc-400 hover:text-brand-secondary'
+                  }`}
                 >
                   {item.name}
+                  {isActive && <ArrowRight className="h-4 w-4 text-brand-secondary" aria-hidden="true" />}
                 </Link>
               </li>
-            ))}
+              );
+            })}
           </ul>
         </div>
 

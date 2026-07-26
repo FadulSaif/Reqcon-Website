@@ -69,7 +69,7 @@ const Careers: React.FC = () => {
         
         {/* Content Container */}
         <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-brand-secondary/90 px-4 py-1.5 rounded-full bg-brand-secondary/10 border border-brand-secondary/20 select-none w-fit shadow-sm">
+          <span className="section-eyebrow !mb-0 px-4 py-1.5 rounded-full bg-brand-secondary/10 border border-brand-secondary/20 select-none w-fit shadow-sm">
             {t('careers.hero_badge')}
           </span>
           
@@ -171,7 +171,7 @@ const Careers: React.FC = () => {
           {/* Premium Form Card */}
           <Card className="p-8 md:p-10 bg-gradient-to-br from-white/95 via-white to-slate-50/90 dark:from-zinc-950/95 dark:via-zinc-950 dark:to-zinc-900/60 border border-white/20 dark:border-zinc-850/60 shadow-2xl rounded-[2rem] relative overflow-hidden group">
             <div className="flex flex-col gap-2 mb-8 border-b border-border-custom pb-6">
-              <span className="font-extrabold uppercase text-xs tracking-wider text-brand-secondary bg-brand-secondary/10 px-3 py-1 rounded-full w-fit mb-2">
+              <span className="section-eyebrow !mb-2 bg-brand-secondary/10 px-3 py-1 rounded-full w-fit">
                 {t('careers.form.badge')}
               </span>
               <h3 className="text-2xl md:text-3xl font-black text-text-primary uppercase tracking-tight">

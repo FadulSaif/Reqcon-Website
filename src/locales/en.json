@@ -207,6 +207,16 @@
     "hero_badge": "We want to grow!",
     "hero_subtitle": "Is Reqcon the right company for you? Read below and decide",
     "tagline": "When you invest in us, we invest in you.",
+    "benefits": {
+      "1": {
+        "title": "Clear direction, from vision to product",
+        "desc": "We guide the full requirements journey — from first idea to finished solution — combining structured methods with hands-on technical know-how."
+      },
+      "2": {
+        "title": "Close collaboration, every step",
+        "desc": "We work as an extension of your team, pairing agile ways of working with a sharp focus on the people who'll actually use what gets built."
+      }
+    },
     "offer_badge": "Our Offering",
     "offer_title": "What we offer you",
     "offer_p1": "At Reqcon, we value our employees highly and strive to create an environment where you thrive, develop, and have the opportunity to make an impact. We offer competitive salaries and flexible working hours based on the principle of \"freedom with responsibility\" – giving you the freedom to manage your own workday as long as we achieve our goals together.",
@@ -391,6 +401,7 @@
   },
   "footer": {
     "tagline": "Your obvious choice to take you from vision to product. We combine deep competence in requirements management with broad business understanding.",
+    "navigation": "Navigation",
     "services": "Services",
     "company": "Company",
     "offices": "Offices",

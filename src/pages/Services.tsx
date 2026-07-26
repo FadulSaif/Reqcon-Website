@@ -155,7 +155,7 @@ const Services: React.FC = () => {
         
         {/* Content Container */}
         <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-brand-secondary/90 px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15 select-none w-fit">
+          <span className="section-eyebrow !mb-0 px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15 select-none w-fit">
             {t('services.badge')}
           </span>
           
@@ -199,7 +199,7 @@ const Services: React.FC = () => {
                 <div className="flex-grow flex flex-col gap-5 justify-between">
                   <div className="flex flex-col gap-4">
                     <div className="flex flex-col gap-1.5">
-                      <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-secondary">
+                      <span className="section-eyebrow !mb-0">
                         {t('services.badge')}
                       </span>
                       <h2 className="text-3xl md:text-4xl font-extrabold text-text-primary tracking-tight leading-tight">

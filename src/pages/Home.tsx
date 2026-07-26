@@ -302,7 +302,7 @@ const Home: React.FC = () => {
       <section className="relative px-4 md:px-6 pt-0 pb-0 bg-bg-page dark:bg-[#06131b] overflow-hidden">
         <div className="max-w-[86rem] mx-auto w-full">
           {/* Floating Card Container */}
-          <div className="relative w-full rounded-3xl md:rounded-[32px] overflow-hidden min-h-[50svh] md:min-h-[52svh] flex items-center justify-center py-2 px-6 select-none bg-slate-950 border border-slate-900/10 shadow-lg z-0">
+          <div className="relative w-full rounded-3xl md:rounded-[32px] overflow-hidden min-h-[59svh] md:min-h-[61.36svh] flex items-center justify-center py-2 px-6 select-none bg-slate-950 border border-slate-900/10 shadow-lg z-0">
             
             {/* Background image container with subtle zoom animation */}
             <div className="absolute inset-0 z-0 overflow-hidden">
@@ -327,14 +327,14 @@ const Home: React.FC = () => {
               >
                 <motion.h1
                   variants={slideUp()}
-                  className="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold tracking-tight text-white text-center text-balance leading-[1.15]"
+                  className="home-hero-heading font-extrabold tracking-tight text-white text-center text-balance leading-[1.15]"
                 >
                   {t('hero.title')}
                 </motion.h1>
                 
                 <motion.p
                   variants={slideUp()}
-                  className="body-xl max-w-3xl text-center"
+                  className="home-hero-subheading body-xl max-w-3xl text-center"
                   style={{
                     color: '#f1f5f9',
                     textShadow: '0 2px 12px rgba(0, 0, 0, 0.85)',
@@ -384,7 +384,7 @@ const Home: React.FC = () => {
         <div className="flex items-center justify-center gap-4 mb-5 px-6 max-w-5xl mx-auto select-none">
           <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent to-slate-200 dark:to-zinc-800" />
           <div className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />
-          <span className="section-eyebrow !text-text-secondary select-none whitespace-nowrap !mb-0">
+          <span className="section-eyebrow select-none whitespace-nowrap !mb-0">
             {t('clients.title')}
           </span>
           <div className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />
@@ -622,9 +622,9 @@ const Home: React.FC = () => {
         title={articlePreviewCopy.title}
         subtitle={articlePreviewCopy.subtitle}
         badge={articlePreviewCopy.badge}
-        background="default"
+        background="dark"
         containerClassName="max-w-[86rem]"
-        className="!pt-10 !pb-8 md:!pt-12 md:!pb-10"
+        className="insights-background !pt-10 !pb-8 md:!pt-12 md:!pb-10 [&_.body-lg]:!text-slate-300"
       >
         <div className="grid grid-cols-1 auto-rows-fr gap-6 md:grid-cols-3 max-w-[80rem] mx-auto">
           {featuredArticles.map((article) => {
@@ -649,7 +649,7 @@ const Home: React.FC = () => {
         </div>
         <div className="mt-8 text-center">
           <Link to={articlesPath}>
-            <Button variant="secondary" size="md" className="rounded-full">
+            <Button variant="primary" size="md" className="rounded-full">
               {articlePreviewCopy.viewAll}
             </Button>
           </Link>

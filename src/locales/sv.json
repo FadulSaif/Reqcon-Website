@@ -207,6 +207,16 @@
     "hero_badge": "Vi vill bli fler!",
     "hero_subtitle": "Är Reqcon rätt bolag för dig? Läs nedan och avgör",
     "tagline": "När du investerar i oss, investerar vi i dig.",
+    "benefits": {
+      "1": {
+        "title": "Tydlig riktning, från vision till produkt",
+        "desc": "Vi guidar hela kravresan — från första idé till färdig lösning — med strukturerade metoder och praktiskt tekniskt kunnande."
+      },
+      "2": {
+        "title": "Nära samarbete, i varje steg",
+        "desc": "Vi arbetar som en förlängning av ert team och förenar agila arbetssätt med ett tydligt fokus på människorna som faktiskt ska använda det som byggs."
+      }
+    },
     "offer_badge": "Vårt erbjudande",
     "offer_title": "Vad vi erbjuder dig",
     "offer_p1": "På Reqcon värdesätter vi våra medarbetare högt och strävar efter att skapa en miljö där du trivs, utvecklas och får möjlighet att påverka. Vi erbjuder konkurrenskraftiga löner och flexibla arbetstider enligt principen \"frihet under ansvar\" – du har frihet att själv styra din arbetsdag så länge vi tillsammans når våra mål.",
@@ -391,6 +401,7 @@
   },
   "footer": {
     "tagline": "Ert självklara val för att ta er från vision till produkt. Vi kombinerar djup kompetens inom kravhantering med bred verksamhetsförståelse.",
+    "navigation": "Navigering",
     "services": "Tjänster",
     "company": "Bolaget",
     "offices": "Kontor",

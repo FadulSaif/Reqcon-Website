@@ -32,7 +32,7 @@ const Contact: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80 dark:from-black dark:via-black/75 dark:to-black/85" />
         </div>
         <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-brand-secondary/90 px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15 select-none w-fit">{t('contact.badge')}</span>
+          <span className="section-eyebrow !mb-0 px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15 select-none w-fit">{t('contact.badge')}</span>
           <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-tight uppercase text-center">{t('contact.title')}</h1>
           <p className="text-base md:text-lg text-zinc-300 leading-relaxed max-w-2xl text-center font-medium">{t('contact.subtitle')}</p>
         </div>
