@@ -327,7 +327,7 @@ const Home: React.FC = () => {
               >
                 <motion.h1
                   variants={slideUp()}
-                  className="heading-hero text-white text-center"
+                  className="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold tracking-tight text-white text-center text-balance leading-[1.15]"
                 >
                   {t('hero.title')}
                 </motion.h1>

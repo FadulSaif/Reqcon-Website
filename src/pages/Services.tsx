@@ -178,16 +178,16 @@ const Services: React.FC = () => {
               <Card 
                 key={idx} 
                 hoverable={true} 
-                className={`p-6 md:p-8 flex flex-col md:flex-row gap-8 md:gap-12 items-start text-left shadow-sm rounded-3xl ${
+                className={`p-6 md:p-8 flex flex-col md:flex-row gap-8 md:gap-12 items-stretch text-left shadow-sm rounded-3xl ${
                   !isEven ? 'md:flex-row-reverse' : ''
                 }`}
               >
                 {/* Image block */}
-                <div className="w-full md:w-[45%] aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden relative shadow-sm shrink-0">
+                <div className="w-full md:w-[45%] aspect-video md:aspect-auto rounded-2xl overflow-hidden relative shadow-sm shrink-0">
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                     loading="lazy"
                   />
                   <div className="absolute top-4 left-4 w-12 h-12 rounded-xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm flex items-center justify-center shadow-md text-brand-secondary transition-all duration-300 group-hover:rotate-6 group-hover:bg-accent-primary group-hover:text-white">

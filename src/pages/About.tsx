@@ -103,7 +103,7 @@ const About: React.FC = () => {
             {t('about.title')}
           </h1>
           
-          <p className="body-xl text-zinc-300 max-w-2xl text-center">
+          <p className="text-base md:text-lg text-zinc-300 leading-relaxed max-w-2xl font-medium text-center">
             {t('about.subtitle')}
           </p>
         </div>

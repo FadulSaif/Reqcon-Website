@@ -139,7 +139,7 @@ export const Header: React.FC = () => {
     >
       <header
         ref={headerRef}
-        className={`relative grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center pointer-events-auto w-full will-change-[max-width,border-radius,height,padding,background-color,box-shadow] transition-all duration-[400ms] ease-[cubic-bezier(0,0,0.2,1)] motion-reduce:transition-none ${
+        className={`relative grid grid-cols-2 xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center pointer-events-auto w-full will-change-[max-width,border-radius,height,padding,background-color,box-shadow] transition-all duration-[400ms] ease-[cubic-bezier(0,0,0.2,1)] motion-reduce:transition-none ${
           isScrolled
             ? 'h-14 max-w-[1216px] rounded-[100px] border border-slate-200/70 bg-white/90 px-6 shadow-lg shadow-slate-950/10 backdrop-blur-md dark:border-white/10 dark:bg-[#06131b]/90 dark:shadow-black/30'
             : 'h-[72px] max-w-full rounded-none border border-transparent bg-transparent px-8 shadow-none'
@@ -157,7 +157,7 @@ export const Header: React.FC = () => {
         </div>
 
         {/* Centered Desktop Navigation Links */}
-        <nav className={`hidden xl:flex items-center justify-center whitespace-nowrap ${navSpacingClass}`}>
+        <nav className={`hidden xl:flex items-center justify-center whitespace-nowrap ${isScrolled ? '-ml-8' : ''} ${navSpacingClass}`}>
           {navLinks.map((link) => {
             const isActive = isLinkActive(link.path);
             const isServices = link.path.endsWith('/services');
@@ -334,7 +334,7 @@ export const Header: React.FC = () => {
         </div>
 
         {/* Mobile controls */}
-        <div className="flex xl:hidden items-center gap-2 shrink-0">
+        <div className="flex xl:hidden min-w-0 items-center justify-end gap-2">
           <ThemeToggle />
           <button
             type="button"
@@ -386,7 +386,7 @@ export const Header: React.FC = () => {
 
                 <div className="flex flex-col gap-6 text-left">
                   <span className="text-xs font-bold uppercase tracking-widest text-text-secondary opacity-70">
-                    Navigering
+                    {routeLanguage === 'en' ? 'Navigation' : 'Navigering'}
                   </span>
                   <nav className="flex flex-col gap-4">
                     {navLinks.map((link) => {
