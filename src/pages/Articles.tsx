@@ -32,18 +32,24 @@ const Articles: React.FC = () => {
   const backHome = lng === 'sv' ? 'Till startsidan' : 'Back to Home';
 
   return (
-    <main
-      className="text-text-primary [&_.heading-display]:!text-white [&_.body-lg]:!text-slate-300"
-      style={{
-        backgroundColor: '#020617',
-        backgroundImage: "linear-gradient(to top, rgb(2 6 23 / 1), rgb(2 6 23 / 0.72), rgb(2 6 23 / 0.82)), url('/images/insights-background.jpg')",
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-      }}
-    >
+    <main className="relative overflow-hidden bg-slate-950 text-text-primary [&_.heading-display]:!text-white [&_.body-lg]:!text-slate-300">
       <SEO title={copy.title} description={copy.description} />
-      <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+      <div className="absolute inset-0 z-0 select-none pointer-events-none">
+        <img
+          src="/images/articles/insights-hero-720.png"
+          srcSet="/images/articles/insights-hero-720.png 720w, /images/articles/insights-hero-1080.png 1080w, /images/articles/insights-hero-1774.png 1774w"
+          sizes="100vw"
+          width="1774"
+          height="887"
+          alt=""
+          className="h-full w-full object-cover opacity-35 brightness-90 contrast-105"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80 dark:from-black dark:via-black/75 dark:to-black/85" />
+      </div>
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-16 md:py-24">
         <div className="max-w-3xl">
           <Link
             to={`/${lng}`}
@@ -55,18 +61,6 @@ const Articles: React.FC = () => {
           <p className="section-eyebrow select-none w-fit px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15">{copy.eyebrow}</p>
           <h1 className="heading-display text-text-primary">{copy.heading}</h1>
           <p className="body-lg mt-6 max-w-2xl">{copy.intro}</p>
-          <img
-            src="/images/articles/insights-hero-720.png"
-            srcSet="/images/articles/insights-hero-720.png 720w, /images/articles/insights-hero-1080.png 1080w, /images/articles/insights-hero-1774.png 1774w"
-            sizes="(max-width: 767px) calc(100vw - 3rem), 720px"
-            width="1774"
-            height="887"
-            alt=""
-            className="mt-7 aspect-[2/1] w-full object-cover"
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-          />
         </div>
 
         <div className="mt-12 grid auto-rows-fr grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
