@@ -55,6 +55,18 @@ const Articles: React.FC = () => {
           <p className="section-eyebrow select-none w-fit px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15">{copy.eyebrow}</p>
           <h1 className="heading-display text-text-primary">{copy.heading}</h1>
           <p className="body-lg mt-6 max-w-2xl">{copy.intro}</p>
+          <img
+            src="/images/articles/insights-hero-720.png"
+            srcSet="/images/articles/insights-hero-720.png 720w, /images/articles/insights-hero-1080.png 1080w, /images/articles/insights-hero-1774.png 1774w"
+            sizes="(max-width: 767px) calc(100vw - 3rem), 720px"
+            width="1774"
+            height="887"
+            alt=""
+            className="mt-7 aspect-[2/1] w-full object-cover"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
         </div>
 
         <div className="mt-12 grid auto-rows-fr grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
