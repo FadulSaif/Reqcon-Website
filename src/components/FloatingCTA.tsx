@@ -13,21 +13,23 @@ export const FloatingCTA: React.FC = () => {
     const updateThreshold = () => {
       setIsPastThreshold(window.scrollY >= window.innerHeight * 0.6);
 
-      const defaultOffset = window.innerWidth < 768 ? 16 : 28;
-      const privacyLink = document.getElementById('privacy-policy-link');
-      if (!privacyLink) {
+      const isMobile = window.innerWidth < 768;
+      const defaultOffset = isMobile ? 16 : 28;
+      const protectedElement = document.getElementById('footer-bottom-bar');
+      if (!protectedElement) {
         setBottomOffset(defaultOffset);
         return;
       }
 
-      const privacyBounds = privacyLink.getBoundingClientRect();
-      const privacyIsVisible = privacyBounds.top < window.innerHeight && privacyBounds.bottom > 0;
+      const protectedBounds = protectedElement.getBoundingClientRect();
+      const protectedElementIsVisible =
+        protectedBounds.top < window.innerHeight && protectedBounds.bottom > 0;
       const clearance = 20;
       const maximumOffset = window.innerHeight - 58;
-      const protectedOffset = window.innerHeight - privacyBounds.top + clearance;
+      const protectedOffset = window.innerHeight - protectedBounds.top + clearance;
 
       setBottomOffset(
-        privacyIsVisible
+        protectedElementIsVisible
           ? Math.min(Math.max(defaultOffset, protectedOffset), maximumOffset)
           : defaultOffset
       );

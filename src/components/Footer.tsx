@@ -33,11 +33,11 @@ export const Footer: React.FC = () => {
         
         {/* Brand Column */}
         <div className="flex flex-col gap-6 md:col-span-1">
-          <Link to={`/${routeLanguage}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="select-none text-left w-fit block">
+          <Link to={`/${routeLanguage}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="select-none w-fit block self-center">
             <img
               src="/images/logo.png"
               alt="REQCON – Från vision till produkt"
-              className="h-[4.55rem] w-auto object-contain"
+              className="h-[8.19rem] w-auto object-contain"
             />
           </Link>
         </div>
@@ -119,7 +119,7 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/5 bg-black/20">
+      <div id="footer-bottom-bar" className="border-t border-white/5 bg-black/20">
         <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
           <div className="text-center md:text-left">
             &copy; {currentYear} REQCON AB. Org.nr: 559281-2294. {t('footer.rights', { lng: routeLanguage })}
