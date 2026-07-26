@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, Mail, MapPin } from 'lucide-react';
+import { ArrowRight, MapPin } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const { t } = useTranslation();
@@ -89,15 +89,6 @@ export const Footer: React.FC = () => {
                 </svg>
               </span>
               <span>LinkedIn</span>
-            </a>
-            <a
-              href="mailto:info@reqcon.se"
-              className="inline-flex items-center gap-3 text-sm text-zinc-400 hover:text-brand-secondary transition-colors"
-            >
-              <span className="p-2 rounded-full border border-white/10 text-zinc-300">
-                <Mail className="w-4 h-4" aria-hidden="true" />
-              </span>
-              <span>{t('footer.email', { lng: routeLanguage })}</span>
             </a>
           </div>
         </div>
