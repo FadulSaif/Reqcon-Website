@@ -10,13 +10,13 @@ const Article: React.FC = () => {
   const article = slug ? getArticle(slug) : undefined;
   if (!article || (lng !== 'sv' && lng !== 'en')) return <NotFound />;
   const copy = article[lng];
-  const backLabel = lng === 'sv' ? 'Tillbaka till tjänster' : 'Back to services';
+  const backLabel = lng === 'sv' ? 'Tillbaka till insikter' : 'Back to Insights';
 
   return (
     <article className="bg-bg-page text-text-primary">
       <SEO title={copy.title} description={copy.description} />
       <div className="max-w-3xl mx-auto px-6 py-16 md:py-24">
-        <Link to={`/${lng}/services`} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-secondary hover:underline">
+        <Link to={`/${lng}/articles`} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-secondary hover:underline">
           <ArrowLeft className="w-4 h-4" />{backLabel}
         </Link>
         <header className="mt-8 border-b border-border-custom pb-10">
