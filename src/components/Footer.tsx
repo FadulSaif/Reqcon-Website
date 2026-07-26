@@ -37,7 +37,7 @@ export const Footer: React.FC = () => {
             <img
               src="/images/logo.png"
               alt="REQCON – Från vision till produkt"
-              className="h-14 w-auto object-contain"
+              className="h-[4.55rem] w-auto object-contain"
             />
           </Link>
         </div>
