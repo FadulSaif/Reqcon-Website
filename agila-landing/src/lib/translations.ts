@@ -27,7 +27,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "hero.subtitle": "Staffing and recruitment for companies across Sweden. We connect you with qualified staff within IT, construction, warehouse and logistics, transport, and moving, quickly and reliably, as individual specialists or complete teams.",
     "hero.ctaPrimary": "Find the Right Talent",
     "hero.ctaSecondary": "View Services",
-    "logos.label": "Trusted by companies & authorities",
+    "logos.label": "Our Trusted Partners",
 
     // About Brief
     "about.eyebrow": "WHO WE ARE",
@@ -68,7 +68,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "fullteam.role5": "QA Lead",
     "fullteam.roleExtra": "Your role?",
     "fullteam.strip.title": "Need more than one role?",
-    "fullteam.strip.desc": "We'll assemble the entire team for you: the roles above and everything in between.",
+    "fullteam.strip.desc": "We'll assemble the entire team for you.",
     "fullteam.strip.cta": "Request a full team",
     "services.cta": "View All Services",
 
@@ -121,7 +121,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "services.detail.viewSpecs": "View Specialisations",
     "services.detail.helpHeading": "What we can help with",
     "services.detail.helpText": "We connect Swedish companies with qualified professionals tailored to their exact operational needs, whether for short-term staffing or long-term recruitment. Our process is fast, structured, and built around finding the right fit, not just the nearest available candidate.",
-    "services.detail.specsHeading": "Specialisations we support",
+    "services.detail.specsHeading": "Competencies we offer",
     "services.detail.specsSubtitle": "Explore the roles and skills we can help companies recruit for within this service.",
     "services.detail.popularTag": "Most requested",
     "services.detail.requestRole": "Request this role",
@@ -310,7 +310,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "hero.subtitle": "Bemanning och rekrytering för företag i hela Sverige. Vi kopplar samman dig med kvalificerad personal inom IT, bygg, lager och logistik, transport samt flytt och montage, snabbt och tillförlitligt, som enskilda specialister eller kompletta team.",
     "hero.ctaPrimary": "Sök Personal",
     "hero.ctaSecondary": "Se Våra Tjänster",
-    "logos.label": "Anförtrodda av företag & myndigheter",
+    "logos.label": "Våra Betrodda Partners",
 
     // About Brief
     "about.eyebrow": "VILKA VI ÄR",
@@ -351,7 +351,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "fullteam.role5": "Testledare",
     "fullteam.roleExtra": "Din roll?",
     "fullteam.strip.title": "Behöver du mer än en roll?",
-    "fullteam.strip.desc": "Vi sätter ihop hela teamet åt dig: kompetenserna ovan och allt däremellan.",
+    "fullteam.strip.desc": "Vi sätter ihop hela teamet åt dig.",
     "fullteam.strip.cta": "Begär ett helt team",
     "services.cta": "Se Alla Tjänster",
 
@@ -404,7 +404,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "services.detail.viewSpecs": "Se kompetenser",
     "services.detail.helpHeading": "Vad vi kan hjälpa med",
     "services.detail.helpText": "Vi kopplar samman svenska företag med kvalificerad personal anpassad efter deras exakta behov, oavsett om det gäller kortsiktig bemanning eller långsiktig rekrytering. Vår process är snabb, strukturerad och bygger på att hitta rätt matchning, inte bara närmast tillgängliga kandidat.",
-    "services.detail.specsHeading": "Kompetenser vi kan hjälpa med",
+    "services.detail.specsHeading": "Kompetenser vi erbjuder",
     "services.detail.specsSubtitle": "Utforska de roller och kompetenser vi kan hjälpa företag att rekrytera inom denna tjänst.",
     "services.detail.popularTag": "Mest efterfrågad",
     "services.detail.requestRole": "Begär denna roll",

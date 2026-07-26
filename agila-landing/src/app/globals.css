@@ -758,6 +758,14 @@ body {
   text-align: center;
 }
 
+/* Must live here, not rely on Tailwind's utility layer: the `* { margin: 0 }`
+   reset above is unlayered, and unlayered CSS beats @layer utilities in the
+   cascade — so Tailwind's own .mx-auto never applies. */
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .mb-8 { margin-bottom: 8px; }
 .mb-12 { margin-bottom: 12px; }
 .mb-16 { margin-bottom: 16px; }

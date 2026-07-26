@@ -151,7 +151,6 @@ export default function ServicesPage() {
         .mb-64 { margin-bottom: 64px; }
         .d-block { display: block; }
         .text-center { text-align: center; }
-        .mx-auto { margin-left: auto; margin-right: auto; }
         .text-white { color: #ffffff !important; }
         .text-brand { color: var(--brand-primary); }
         .opacity-80 { opacity: 0.8; }

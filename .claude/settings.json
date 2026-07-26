@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\gamer\\\\Reqcon-Website\\\\agila-landing\" -File | Where-Object { $_.Name -match 'tailwind|postcss|package.json' } | Select-Object Name; Write-Output \"--- deps ---\"; \\(Get-Content \"c:\\\\Users\\\\gamer\\\\Reqcon-Website\\\\agila-landing\\\\package.json\" -Raw | ConvertFrom-Json\\).dependencies; Write-Output \"--- devDeps ---\"; \\(Get-Content \"c:\\\\Users\\\\gamer\\\\Reqcon-Website\\\\agila-landing\\\\package.json\" -Raw | ConvertFrom-Json\\).devDependencies)"
+    ]
+  }
+}
