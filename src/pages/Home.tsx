@@ -579,7 +579,7 @@ const Home: React.FC = () => {
         title={t('team.title')}
         subtitle={t('team.subtitle')}
         badge={t('team.badge')}
-        background="default"
+        background="alt"
         containerClassName="max-w-[86rem]"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
