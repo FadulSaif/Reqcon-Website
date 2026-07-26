@@ -32,7 +32,16 @@ const Articles: React.FC = () => {
   const backHome = lng === 'sv' ? 'Till startsidan' : 'Back to Home';
 
   return (
-    <main className="bg-bg-page text-text-primary">
+    <main
+      className="text-text-primary [&_.heading-display]:!text-white [&_.body-lg]:!text-slate-300"
+      style={{
+        backgroundColor: '#020617',
+        backgroundImage: "linear-gradient(to top, rgb(2 6 23 / 1), rgb(2 6 23 / 0.72), rgb(2 6 23 / 0.82)), url('/images/insights-background.jpg')",
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+      }}
+    >
       <SEO title={copy.title} description={copy.description} />
       <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
         <div className="max-w-3xl">
