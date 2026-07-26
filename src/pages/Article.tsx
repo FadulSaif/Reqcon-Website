@@ -22,6 +22,18 @@ const Article: React.FC = () => {
         <header className="mt-8 border-b border-border-custom pb-10">
           <p className="section-eyebrow select-none w-fit px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15">REQCON Insights</p>
           <h1 className="mt-4 font-heading text-4xl md:text-5xl font-bold tracking-tight">{copy.title}</h1>
+          <img
+            src="/images/articles/insights-hero-720.png"
+            srcSet="/images/articles/insights-hero-720.png 720w, /images/articles/insights-hero-1080.png 1080w, /images/articles/insights-hero-1774.png 1774w"
+            sizes="(max-width: 767px) calc(100vw - 3rem), 720px"
+            width="1774"
+            height="887"
+            alt=""
+            className="mt-7 aspect-[2/1] w-full object-cover"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
           <div className="mt-7 space-y-4 text-lg leading-8 text-text-secondary">
             {copy.answer.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
