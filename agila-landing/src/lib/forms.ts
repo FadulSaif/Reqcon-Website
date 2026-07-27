@@ -1,9 +1,7 @@
 /**
- * Client-side form delivery via Web3Forms (https://web3forms.com).
- * The access key is public by design (it only identifies the destination
- * inbox) and lives in NEXT_PUBLIC_WEB3FORMS_KEY.
+ * Client-side form delivery via FormSubmit (https://formsubmit.co).
+ * Configured in src/config/formConfig.ts
  */
-const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
 type FormLanguage = "sv" | "en";
 
@@ -30,28 +28,31 @@ export function buildServiceMessage(slug: string, language: FormLanguage, servic
     : `Hello, I am interested in the ${serviceLabel} service and would like to receive more information.`;
 }
 
-export async function submitWeb3Form(
+import { FORM_CONFIG } from "@/config/formConfig";
+
+export async function submitFormSubmit(
   payload: Record<string, string>
 ): Promise<{ success: boolean }> {
-  const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
-  if (!accessKey || accessKey === "YOUR_KEY_HERE") {
-    return { success: false };
-  }
-
   try {
-    const res = await fetch(WEB3FORMS_ENDPOINT, {
+    const url = `${FORM_CONFIG.endpoint}/ajax/${FORM_CONFIG.targetEmail}`;
+    
+    // Default form submit attributes
+    const formSubmitPayload = {
+      ...payload,
+      _template: "table",
+      _captcha: FORM_CONFIG.captcha,
+    };
+
+    const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify({
-        access_key: accessKey,
-        ...payload,
-      }),
+      body: JSON.stringify(formSubmitPayload),
     });
-    const data = await res.json();
-    return { success: Boolean(data?.success) };
+    
+    return { success: res.ok };
   } catch {
     return { success: false };
   }

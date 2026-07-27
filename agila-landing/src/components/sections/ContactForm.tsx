@@ -9,7 +9,7 @@ import {
   getTeamMemberForService,
   getServiceLabelKey,
 } from "@/lib/team-data";
-import { submitWeb3Form, buildFullTeamMessage, buildServiceMessage } from "@/lib/forms";
+import { submitFormSubmit, buildFullTeamMessage, buildServiceMessage } from "@/lib/forms";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 type SubmitStatus = "idle" | "sending" | "success" | "error";
@@ -207,18 +207,34 @@ export default function ContactForm({
       ...customRoles,
       ...(customRoleInput.trim() ? [customRoleInput.trim()] : []),
     ];
-    const { success } = await submitWeb3Form({
-      subject: `${language === "sv" ? "Ny förfrågan via webbplatsen" : "New website enquiry"} – ${serviceLabel}`,
-      from_name: "Agil Arbetskraft",
-      name: String(fd.get("name") || ""),
-      email: String(fd.get("email") || ""),
-      company: String(fd.get("company") || ""),
-      phone: String(fd.get("phone") || ""),
-      service: serviceLabel,
-      ...(isFullTeam ? { request_type: language === "sv" ? "Komplett team" : "Full team" } : {}),
-      ...(allCustomRoles.length > 0 ? { custom_role: allCustomRoles.join(", ") } : {}),
-      message,
-    });
+    const nameStr = String(fd.get("name") || "").trim();
+    const companyStr = String(fd.get("company") || "").trim();
+    const emailStr = String(fd.get("email") || "").trim();
+    const phoneStr = String(fd.get("phone") || "").trim();
+    const rolesStr = allCustomRoles.join(", ");
+    
+    const subjectPrefix = language === "sv" ? "[Förfrågan]" : "[Inquiry]";
+    const dynamicSubject = `${subjectPrefix} Nytt meddelande från ${nameStr || "Okänd"} (${companyStr || "Ingen företagsinfo"})`;
+
+    const structuredPayload: Record<string, string> = {
+      _subject: dynamicSubject,
+      
+      "─────── 🟧 CLIENT INFORMATION ───────": "",
+      "Full Name": nameStr,
+      "Email Address": emailStr,
+      "Company / Organization": companyStr || "Not provided",
+      "Phone Number": phoneStr || "Not provided",
+
+      "─────── 🟧 REQUEST DETAILS ───────": "",
+      "Service Requested": serviceLabel,
+      ...(isFullTeam ? { "Request Type": language === "sv" ? "Komplett team" : "Full team" } : {}),
+      ...(rolesStr ? { "Specific Roles": rolesStr } : {}),
+
+      "─────── 🟧 ADDITIONAL NOTES ───────": "",
+      "Message": message,
+    };
+
+    const { success } = await submitFormSubmit(structuredPayload);
     setStatus(success ? "success" : "error");
   };
 
@@ -704,6 +720,7 @@ export default function ContactForm({
           text-align: center;
           gap: 8px;
           padding: 48px 24px;
+          min-height: 580px;
         }
 
         .cf-success-icon {
