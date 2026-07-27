@@ -11,6 +11,8 @@ import {
 } from "@/lib/team-data";
 import { submitFormSubmit, buildFullTeamMessage, buildServiceMessage } from "@/lib/forms";
 import { useLanguage } from "@/contexts/LanguageContext";
+import HoneypotField from "@/components/forms/HoneypotField";
+import HumanVerification from "@/components/forms/HumanVerification";
 
 type SubmitStatus = "idle" | "sending" | "success" | "error";
 
@@ -49,6 +51,7 @@ export default function ContactForm({
   const [checkedSpecs, setCheckedSpecs] = useState<Set<string>>(new Set());
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
   const [customRoleActive, setCustomRoleActive] = useState(false);
   const [customRoles, setCustomRoles] = useState<string[]>([]);
   const [customRoleInput, setCustomRoleInput] = useState("");
@@ -199,7 +202,11 @@ export default function ContactForm({
     e.preventDefault();
     if (status === "sending") return;
     const fd = new FormData(e.currentTarget);
-    if (fd.get("botcheck")) return; // honeypot tripped — silently drop
+    if (fd.get("botcheck") || fd.get("_honey_trap")) return; // honeypot tripped — silently drop
+    if (!turnstileToken) {
+      setStatus("error");
+      return;
+    }
     setStatus("sending");
     const serviceLabel = t(getServiceLabelKey(selectedService));
     const isFullTeam = fullTeamActive || selectedService === "fullteam";
@@ -234,7 +241,7 @@ export default function ContactForm({
       "Message": message,
     };
 
-    const { success } = await submitFormSubmit(structuredPayload);
+    const { success } = await submitFormSubmit(structuredPayload, turnstileToken);
     setStatus(success ? "success" : "error");
   };
 
@@ -246,6 +253,7 @@ export default function ContactForm({
     setCustomRoleInput("");
     setCustomRoleActive(false);
     setFullTeamActive(false);
+    setTurnstileToken("");
   };
 
   return (
@@ -268,6 +276,7 @@ export default function ContactForm({
       </motion.div>
       ) : (
       <>
+      <HoneypotField />
       <input
         type="checkbox"
         name="botcheck"
@@ -538,10 +547,15 @@ export default function ContactForm({
         </div>
       )}
 
+      <HumanVerification 
+        onVerify={(token) => setTurnstileToken(token)} 
+        onExpire={() => setTurnstileToken("")} 
+      />
+
       <button
         type="submit"
         className="btn btn-primary btn-lg cp-submit-btn"
-        disabled={status === "sending"}
+        disabled={status === "sending" || !turnstileToken}
       >
         <Send size={16} />
         {status === "sending" ? t("contact.form.sending") : t("contact.btn.sendMsg")}

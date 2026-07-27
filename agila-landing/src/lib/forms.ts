@@ -31,16 +31,18 @@ export function buildServiceMessage(slug: string, language: FormLanguage, servic
 import { FORM_CONFIG } from "@/config/formConfig";
 
 export async function submitFormSubmit(
-  payload: Record<string, string>
+  payload: Record<string, string>,
+  turnstileToken: string
 ): Promise<{ success: boolean }> {
   try {
-    const url = `${FORM_CONFIG.endpoint}/ajax/${FORM_CONFIG.targetEmail}`;
+    const url = `/api/submit`;
     
     // Default form submit attributes
     const formSubmitPayload = {
       ...payload,
       _template: "table",
-      _captcha: FORM_CONFIG.captcha,
+      _captcha: false,
+      turnstileToken,
     };
 
     const res = await fetch(url, {

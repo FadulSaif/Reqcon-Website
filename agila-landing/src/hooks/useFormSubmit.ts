@@ -7,11 +7,11 @@ export const useFormSubmit = () => {
   const [status, setStatus] = useState<SubmitStatus>('idle');
   const [message, setMessage] = useState('');
 
-  const submitForm = async (formData: Record<string, any>, formType: string) => {
+  const submitForm = async (formData: Record<string, any>, formType: string, turnstileToken: string) => {
     setStatus('loading');
     
     // Construct the endpoint URL
-    const url = `${FORM_CONFIG.endpoint}/ajax/${FORM_CONFIG.targetEmail}`;
+    const url = `/api/submit`;
 
     try {
       const response = await fetch(url, {
@@ -23,7 +23,8 @@ export const useFormSubmit = () => {
         body: JSON.stringify({
           ...formData,
           _subject: `New ${formType} Submission`,
-          _captcha: FORM_CONFIG.captcha
+          _captcha: false,
+          turnstileToken
         })
       });
 
