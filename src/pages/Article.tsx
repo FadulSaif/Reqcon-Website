@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import SEO from '../components/SEO';
+import Eyebrow from '../components/Eyebrow';
 import { getArticle } from '../content/articles';
 import NotFound from './NotFound';
 
@@ -20,7 +21,7 @@ const Article: React.FC = () => {
           <ArrowLeft className="w-4 h-4" />{backLabel}
         </Link>
         <header className="mt-8 border-b border-border-custom pb-10">
-          <p className="section-eyebrow select-none w-fit px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15">REQCON Insights</p>
+          <Eyebrow>REQCON Insights</Eyebrow>
           <h1 className="mt-4 font-heading text-4xl md:text-5xl font-bold tracking-tight">{copy.title}</h1>
           <div className="mt-7 space-y-4 text-lg leading-8 text-text-secondary">
             {copy.answer.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}

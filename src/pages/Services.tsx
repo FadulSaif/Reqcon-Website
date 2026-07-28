@@ -5,6 +5,7 @@ import { Search, ShieldCheck, Layers, FileText, Compass, Zap, CheckCircle2, Arro
 import Section from '../components/Section';
 import Card from '../components/Card';
 import Button from '../components/Button';
+import Eyebrow from '../components/Eyebrow';
 import SEO from '../components/SEO';
 import { SITE_URL } from '../config/site';
 
@@ -155,9 +156,9 @@ const Services: React.FC = () => {
         
         {/* Content Container */}
         <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white">
-          <span className="section-eyebrow !mb-0 px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15 select-none w-fit">
+          <Eyebrow margin="none">
             {t('services.badge')}
-          </span>
+          </Eyebrow>
           
           <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-tight uppercase text-center">
             {t('services.title')}
@@ -199,9 +200,9 @@ const Services: React.FC = () => {
                 <div className="flex-grow flex flex-col gap-5 justify-between">
                   <div className="flex flex-col gap-4">
                     <div className="flex flex-col gap-1.5">
-                      <span className="section-eyebrow !mb-0">
+                      <Eyebrow margin="none">
                         {t('services.badge')}
-                      </span>
+                      </Eyebrow>
                       <h2 className="text-3xl md:text-4xl font-extrabold text-text-primary tracking-tight leading-tight">
                         {service.title}
                       </h2>

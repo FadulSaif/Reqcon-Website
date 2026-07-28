@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Award, Compass, Heart, Users } from 'lucide-react';
 import Section from '../components/Section';
 import Card from '../components/Card';
+import Eyebrow from '../components/Eyebrow';
 import SEO from '../components/SEO';
 import { toAbsoluteUrl } from '../config/site';
 import { teamMembers } from '../content/team';
@@ -95,9 +96,9 @@ const About: React.FC = () => {
         
         {/* Content Container */}
         <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white">
-          <span className="section-eyebrow select-none w-fit px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15">
+          <Eyebrow>
             {t('about.badge')}
-          </span>
+          </Eyebrow>
           
           <h1 className="heading-display text-white uppercase text-center">
             {t('about.title')}

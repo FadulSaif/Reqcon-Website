@@ -141,8 +141,8 @@ export const Header: React.FC = () => {
         ref={headerRef}
         className={`relative grid grid-cols-2 xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center pointer-events-auto w-full will-change-[max-width,border-radius,height,padding,background-color,box-shadow] transition-all duration-[400ms] ease-[cubic-bezier(0,0,0.2,1)] motion-reduce:transition-none ${
           isScrolled
-            ? 'h-14 max-w-[1216px] rounded-[100px] border border-slate-200/70 bg-white/90 px-6 shadow-lg shadow-slate-950/10 backdrop-blur-md dark:border-white/10 dark:bg-[#06131b]/90 dark:shadow-black/30'
-            : 'h-[72px] max-w-full rounded-none border border-transparent bg-transparent px-8 shadow-none'
+            ? 'max-w-[1216px] rounded-[100px] border border-slate-200/70 bg-white/90 px-6 py-4 shadow-lg shadow-slate-950/10 backdrop-blur-md dark:border-white/10 dark:bg-[#06131b]/90 dark:shadow-black/30'
+            : 'max-w-full rounded-none border border-transparent bg-transparent px-8 py-[22px] shadow-none'
         }`}
       >
         {/* Logo (Left side) */}

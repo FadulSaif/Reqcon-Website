@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { slideUp } from '../utils/animations';
+import Eyebrow from './Eyebrow';
 
 export interface SectionProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
@@ -39,9 +40,7 @@ export const Section: React.FC<SectionProps> = ({
   const headingBlock = (title || subtitle || badge) && (
     <div className={`flex flex-col ${alignStyles[align]} mb-12 md:mb-16 max-w-3xl ${align === 'center' ? 'mx-auto' : ''}`}>
       {badge && (
-        <span className="section-eyebrow select-none w-fit px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15">
-          {badge}
-        </span>
+        <Eyebrow>{badge}</Eyebrow>
       )}
       {title && (
         <h2 className="heading-xl text-current mb-4">

@@ -17,19 +17,28 @@ import {
 import Button from '../components/Button';
 import Card from '../components/Card';
 import Section from '../components/Section';
+import Eyebrow from '../components/Eyebrow';
 import { slideUp, staggerContainer } from '../utils/animations';
 import SEO from '../components/SEO';
 import { SITE_URL, toAbsoluteUrl } from '../config/site';
 import { teamMembers } from '../content/team';
 import { articles } from '../content/articles';
-import vattenfallLogo from '../assets/logos/vattenfall-confirmed.png';
-import trafikverketLogo from '../assets/logos/trafikverket-confirmed.png';
-import skatteverketLogo from '../assets/logos/skatteverket-confirmed.webp';
 
-const customerLogos = [
-  { name: 'Trafikverket', src: trafikverketLogo, imageClassName: 'h-13 w-13 object-contain' },
-  { name: 'Vattenfall', src: vattenfallLogo, imageClassName: 'h-13 w-13 object-contain' },
-  { name: 'Skatteverket', src: skatteverketLogo, imageClassName: 'h-14 w-14 object-contain' },
+const customerLogoRows = [
+  [
+    { name: 'H&M', src: '/images/clients/round5/hm.png' },
+    { name: 'Kronofogden', src: '/images/clients/round5/kronofogden.png' },
+    { name: 'Saab', src: '/images/clients/round5/saab.png' },
+    { name: 'SJ', src: '/images/clients/round5/sj.png' },
+    { name: 'Skatteverket', src: '/images/clients/round5/skatteverket.png' },
+  ],
+  [
+    { name: 'SL', src: '/images/clients/round5/sl.png' },
+    { name: 'Swedavia', src: '/images/clients/round5/swedavia.png' },
+    { name: 'Trafikförvaltningen', src: '/images/clients/round5/trafikforvaltningen.png' },
+    { name: 'Trafikverket', src: '/images/clients/round5/trafikverket-horizontal.png' },
+    { name: 'Vattenfall', src: '/images/clients/round5/vattenfall.png' },
+  ],
 ];
 
 const homeSchema = {
@@ -345,7 +354,7 @@ const Home: React.FC = () => {
                 
                 <motion.div
                   variants={slideUp()}
-                  className="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto justify-center"
+                  className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center"
                 >
                   <Link to={contactPath} className="w-full sm:w-auto">
                     <Button
@@ -384,40 +393,56 @@ const Home: React.FC = () => {
         <div className="flex items-center justify-center gap-4 mb-5 px-6 max-w-5xl mx-auto select-none">
           <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent to-slate-200 dark:to-zinc-800" />
           <div className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />
-          <span className="section-eyebrow select-none whitespace-nowrap !mb-0">
+          <Eyebrow margin="none" nowrap>
             {t('clients.title')}
-          </span>
+          </Eyebrow>
           <div className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />
           <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent to-slate-200 dark:to-zinc-800" />
         </div>
 
-        <div className="w-full select-none">
-          {/* Row 1: Left Scroll */}
-          <div className="marquee-container py-2">
-            <div className="animate-marquee gap-8 flex items-center pr-8">
-              {(() => {
-                const scrollClients = [...customerLogos, ...customerLogos, ...customerLogos, ...customerLogos, ...customerLogos];
+        <div className="w-full select-none space-y-3">
+          {customerLogoRows.map((row, rowIndex) => {
+            const extendedRow = [...row, ...row];
+            const scrollClients = [...extendedRow, ...extendedRow];
 
-                return scrollClients.map((client, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-bg-page border border-border-custom rounded-2xl px-7 py-3 h-[5.5rem] w-64 shadow-sm flex items-center gap-4 shrink-0 hover:-translate-y-0.5 hover:shadow-md hover:border-accent-primary transition-[transform,box-shadow,border-color] duration-200 cursor-default"
-                  >
-                    <div className="h-14 w-16 shrink-0 overflow-hidden flex items-center justify-center">
-                      <img
-                        src={client.src}
-                        alt={`${client.name} logo`}
-                        className={client.imageClassName}
-                      />
-                    </div>
-                    <span className="font-heading text-base font-bold tracking-tight text-text-primary whitespace-nowrap">
-                      {client.name}
-                    </span>
-                  </div>
-                ));
-              })()}
-            </div>
-          </div>
+            return (
+              <div className="marquee-container py-2" key={rowIndex}>
+                <div
+                  className={`${rowIndex === 0 ? 'animate-marquee' : 'animate-marquee-reverse'} flex items-center gap-6 pr-6`}
+                >
+                  {scrollClients.map((client, idx) => {
+                    const isAccessibleInstance = idx < row.length;
+
+                    return (
+                      <div
+                        key={`${client.name}-${idx}`}
+                        role="img"
+                        aria-label={isAccessibleInstance ? `${client.name} logo` : undefined}
+                        aria-hidden={isAccessibleInstance ? undefined : true}
+                        tabIndex={isAccessibleInstance ? 0 : -1}
+                        title={client.name}
+                        className="group relative flex h-[5.5rem] w-52 shrink-0 cursor-default items-center justify-center overflow-hidden rounded-2xl border border-border-custom bg-bg-page px-6 py-3 shadow-sm transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-accent-primary hover:shadow-md focus-visible:border-accent-primary"
+                      >
+                        <img
+                          src={client.src}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                          className="max-h-12 max-w-[9.5rem] object-contain transition-opacity duration-200 group-hover:opacity-15 group-focus-visible:opacity-15"
+                        />
+                        <span
+                          aria-hidden="true"
+                          className="absolute inset-0 flex items-center justify-center bg-bg-page/95 px-4 text-center font-heading text-sm font-bold tracking-tight text-text-primary opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+                        >
+                          {client.name}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </Section>
       {/* 3. SERVICES PREVIEW SECTION */}
@@ -497,9 +522,9 @@ const Home: React.FC = () => {
           {/* Left Column: Sticky Title & Description */}
           <div className="lg:col-span-5 text-left flex flex-col gap-6 lg:sticky lg:top-28 h-fit">
             <div className="flex flex-col gap-4">
-              <span className="section-eyebrow select-none w-fit px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15">
+              <Eyebrow>
                 {t('why.badge')}
-              </span>
+              </Eyebrow>
               <h2 className="heading-xl text-text-primary">
                 {t('why.title')}
               </h2>

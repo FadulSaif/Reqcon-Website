@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import Section from '../components/Section';
 import Button from '../components/Button';
+import Eyebrow from '../components/Eyebrow';
 import SEO from '../components/SEO';
 import { SITE_URL } from '../config/site';
 
@@ -564,9 +565,9 @@ const ServiceDetail: React.FC = () => {
             <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-tight uppercase text-center">
               {details.title.split('(')[0].trim()}
             </h1>
-            <span className="section-eyebrow !mb-0 px-3 py-1 rounded-full bg-brand-secondary/10 border border-brand-secondary/15 select-none w-fit">
+            <Eyebrow margin="none">
               {activeLang === 'sv' ? 'Specialistkompetens' : 'Specialist Competence'}
-            </span>
+            </Eyebrow>
           </div>
           
           <p className="text-base md:text-lg text-zinc-300 leading-relaxed max-w-2xl text-center font-medium">
@@ -710,9 +711,9 @@ const ServiceDetail: React.FC = () => {
       {/* 5. INTERNAL LINKING SITEMAP */}
       <Section background="alt" className="py-16 text-center border-t border-border-custom">
         <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
-          <h4 className="section-eyebrow !mb-0">
+          <Eyebrow margin="none">
             {activeLang === 'sv' ? 'Fler specialistkompetenser' : 'More Specialist Competences'}
-          </h4>
+          </Eyebrow>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-2 w-full justify-center">
             {otherServices.map((id) => {
               const otherDetails = serviceDetails[id]?.[activeLang];

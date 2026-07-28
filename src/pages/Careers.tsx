@@ -8,6 +8,7 @@ import Card from '../components/Card';
 import Input from '../components/Input';
 import FileInput from '../components/FileInput';
 import Button from '../components/Button';
+import Eyebrow from '../components/Eyebrow';
 import SEO from '../components/SEO';
 import { toAbsoluteUrl } from '../config/site';
 
@@ -69,9 +70,9 @@ const Careers: React.FC = () => {
         
         {/* Content Container */}
         <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white">
-          <span className="section-eyebrow !mb-0 px-4 py-1.5 rounded-full bg-brand-secondary/10 border border-brand-secondary/20 select-none w-fit shadow-sm">
+          <Eyebrow margin="none">
             {t('careers.hero_badge')}
-          </span>
+          </Eyebrow>
           
           <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-tight uppercase text-center">
             {t('careers.title')}
@@ -91,7 +92,7 @@ const Careers: React.FC = () => {
       <Section background="default" className="py-16 md:py-24">
         <div className="max-w-4xl mx-auto flex flex-col gap-8 text-left">
           <div className="flex flex-col gap-3">
-            <span className="section-eyebrow">{t('careers.offer_badge')}</span>
+            <Eyebrow>{t('careers.offer_badge')}</Eyebrow>
             <h2 className="heading-display text-text-primary">{t('careers.offer_title')}</h2>
           </div>
 
@@ -130,7 +131,7 @@ const Careers: React.FC = () => {
       <Section background="alt" className="py-16 md:py-24">
         <div className="max-w-4xl mx-auto flex flex-col gap-8 text-left">
           <div className="flex flex-col gap-3">
-            <span className="section-eyebrow">{t('careers.expectations_badge')}</span>
+            <Eyebrow>{t('careers.expectations_badge')}</Eyebrow>
             <h2 className="heading-display text-text-primary">{t('careers.expectations_title')}</h2>
           </div>
 
@@ -171,9 +172,9 @@ const Careers: React.FC = () => {
           {/* Premium Form Card */}
           <Card className="p-8 md:p-10 bg-gradient-to-br from-white/95 via-white to-slate-50/90 dark:from-zinc-950/95 dark:via-zinc-950 dark:to-zinc-900/60 border border-white/20 dark:border-zinc-850/60 shadow-2xl rounded-[2rem] relative overflow-hidden group">
             <div className="flex flex-col gap-2 mb-8 border-b border-border-custom pb-6">
-              <span className="section-eyebrow !mb-2 bg-brand-secondary/10 px-3 py-1 rounded-full w-fit">
+              <Eyebrow margin="compact">
                 {t('careers.form.badge')}
-              </span>
+              </Eyebrow>
               <h3 className="text-2xl md:text-3xl font-black text-text-primary uppercase tracking-tight">
                 {t('careers.form.title')}
               </h3>
