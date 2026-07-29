@@ -50,7 +50,7 @@ const Articles: React.FC = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80 dark:from-black dark:via-black/75 dark:to-black/85" />
       </div>
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-16 md:py-24">
+      <section className="relative z-10 max-w-7xl mx-auto px-6 pb-16 pt-[calc(var(--navbar-height)+4rem)] md:pb-24 md:pt-[calc(var(--navbar-height)+6rem)]">
         <div className="max-w-3xl">
           <Link
             to={`/${lng}`}

@@ -16,7 +16,7 @@ const Article: React.FC = () => {
   return (
     <article className="bg-bg-page text-text-primary">
       <SEO title={copy.title} description={copy.description} />
-      <div className="max-w-[46rem] mx-auto px-5 sm:px-6 py-16 md:py-24">
+      <div className="max-w-[46rem] mx-auto px-5 pb-16 pt-[calc(var(--navbar-height)+4rem)] sm:px-6 md:pb-24 md:pt-[calc(var(--navbar-height)+6rem)]">
         <Link to={`/${lng}/articles`} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-secondary hover:underline">
           <ArrowLeft className="w-4 h-4" />{backLabel}
         </Link>

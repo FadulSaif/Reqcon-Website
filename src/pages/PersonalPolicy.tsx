@@ -6,7 +6,7 @@ import SEO from '../components/SEO';
 
 const PersonalPolicy: React.FC = () => {
   const { t } = useTranslation();
-  return <div className="flex flex-col w-full"><SEO title={t('personal_policy.title')} description={t('personal_policy.description')} /><Section background="alt" title={t('personal_policy.title')} subtitle={t('personal_policy.description')}><DocumentViewer /></Section></div>;
+  return <div className="flex flex-col w-full"><SEO title={t('personal_policy.title')} description={t('personal_policy.description')} /><Section background="alt" title={t('personal_policy.title')} subtitle={t('personal_policy.description')} className="pt-[calc(var(--navbar-height)+3rem)]"><DocumentViewer /></Section></div>;
 };
 
 export default PersonalPolicy;
