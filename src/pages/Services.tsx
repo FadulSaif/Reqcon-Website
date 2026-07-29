@@ -142,7 +142,7 @@ const Services: React.FC = () => {
         schema={servicesSchema}
       />
       {/* Page Header */}
-      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[50vh] bg-slate-950">
+      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[calc(100svh-var(--navbar-height))] bg-slate-950">
         {/* Background Image */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
           <img 
@@ -155,23 +155,44 @@ const Services: React.FC = () => {
         </div>
         
         {/* Content Container */}
-        <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white">
+        <div className={`max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white ${
+          i18n.language === 'sv' ? 'w-full min-w-0' : ''
+        }`}>
           <Eyebrow margin="none">
             {t('services.badge')}
           </Eyebrow>
           
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-tight uppercase text-center">
+          <h1
+            lang={i18n.language === 'sv' ? 'sv' : 'en'}
+            className={`font-black tracking-tight text-white leading-tight uppercase text-center ${
+              i18n.language === 'sv'
+                ? 'w-full min-w-0 text-[clamp(2rem,8.5vw,3.75rem)] [overflow-wrap:break-word] hyphens-auto'
+                : 'text-4xl md:text-6xl'
+            }`}
+          >
             {t('services.title')}
           </h1>
           
-          <p className="text-base md:text-lg text-zinc-300 leading-relaxed max-w-2xl text-center font-medium">
+          <p className={`text-base md:text-lg text-zinc-300 leading-relaxed max-w-2xl text-center font-medium ${
+            i18n.language === 'sv' ? 'w-full' : ''
+          }`}>
             {t('services.subtitle')}
           </p>
+
+          <Button
+            type="button"
+            variant="primary"
+            size="lg"
+            className="rounded-full"
+            onClick={() => document.getElementById('services-list')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          >
+            {t('services.hero_cta')}
+          </Button>
         </div>
       </section>
 
       {/* Services List Section */}
-      <Section background="default" animate={true} className="py-10 md:py-14">
+      <Section id="services-list" background="default" animate={true} className="scroll-mt-[var(--navbar-height)] py-10 md:py-14">
         <div className="flex flex-col gap-16 md:gap-24 max-w-5xl mx-auto">
           {servicesList.map((service, idx) => {
             const isEven = idx % 2 === 0;
@@ -232,7 +253,7 @@ const Services: React.FC = () => {
 
                   {/* Buttons Action Group */}
                   <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center">
-                    <Link to={`/${i18n.language}/services/${service.slug}`} onClick={() => window.scrollTo(0, 0)} className="w-full sm:w-auto">
+                    <Link to={`/${i18n.language}/services/${service.slug}`} className="w-full sm:w-auto">
                       <Button variant="primary" size="md" className="font-bold" rightIcon={<ArrowRight className="w-4 h-4" />}>
                         {service.buttonText}
                       </Button>

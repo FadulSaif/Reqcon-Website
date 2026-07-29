@@ -16,7 +16,7 @@ const Team: React.FC = () => {
   return (
     <div className="flex flex-col w-full">
       <SEO title={t('team.page_title')} description={t('team.page_description')} />
-      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[42vh] bg-slate-950">
+      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[calc(100svh-var(--navbar-height))] bg-slate-950">
         <div className="absolute inset-0 pointer-events-none">
           <img src="/images/about_office.jpg" alt="" className="w-full h-full object-cover opacity-25 brightness-75" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80" />
@@ -25,10 +25,19 @@ const Team: React.FC = () => {
           <Eyebrow margin="none">{t('team.badge')}</Eyebrow>
           <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight uppercase">{t('team.title')}</h1>
           <p className="text-base md:text-lg text-zinc-300 leading-relaxed max-w-2xl font-medium">{t('team.subtitle')}</p>
+          <Button
+            type="button"
+            variant="primary"
+            size="lg"
+            className="rounded-full"
+            onClick={() => document.getElementById('team-profiles')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          >
+            {t('team.hero_cta')}
+          </Button>
         </div>
       </section>
 
-      <Section background="default" title={t('team.contact_title')} subtitle={t('team.contact_subtitle')}>
+      <Section id="team-profiles" background="default" title={t('team.contact_title')} subtitle={t('team.contact_subtitle')} className="scroll-mt-[var(--navbar-height)]">
         <div className="grid w-[67.8125%] grid-cols-1 lg:grid-cols-2 gap-6 max-w-[38rem] mx-auto text-left">
           {teamMembers.map((member) => (
             <Card key={member.email} className="min-w-0 overflow-hidden flex flex-col shadow-sm">

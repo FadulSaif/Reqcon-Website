@@ -1,6 +1,6 @@
 import { readFile, writeFile } from 'node:fs/promises';
 const manifest = JSON.parse(await readFile(new URL('../src/config/site-routes.json', import.meta.url), 'utf8'));
-const siteUrl = (process.env.VITE_SITE_URL || 'https://rec-ebon.vercel.app').replace(/\/$/, '');
+const siteUrl = (process.env.VITE_SITE_URL || 'https://reqcon-website.vercel.app').replace(/\/$/, '');
 
 const urls = manifest.locales.flatMap((locale) =>
   manifest.paths.map((path) => `${siteUrl}/${locale}${path ? `/${path}` : ''}`),

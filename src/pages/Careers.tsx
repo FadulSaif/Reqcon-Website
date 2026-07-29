@@ -54,6 +54,14 @@ const Careers: React.FC = () => {
         throw new Error('Careers form element is unavailable.');
       }
 
+      const successRedirect = form.elements.namedItem('_next');
+      if (successRedirect instanceof HTMLInputElement) {
+        successRedirect.value = new URL(
+          `${location.pathname}?formsubmit=success`,
+          window.location.origin
+        ).toString();
+      }
+
       form.submit();
     } catch (error) {
       console.error('Unable to submit the careers form.', error);
@@ -72,17 +80,11 @@ const Careers: React.FC = () => {
       />
 
       {/* 1. HERO SECTION */}
-      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[50vh] bg-slate-950">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0 select-none pointer-events-none">
-          <img 
-            src="/images/hero-company-image.jpg" 
-            alt="REQCON Karriär och lediga konsultuppdrag" 
-            className="w-full h-full object-cover opacity-35 filter brightness-90 contrast-105"
-          />
-          {/* Dark gradient mask */}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80 dark:from-black dark:via-black/75 dark:to-black/85" />
-        </div>
+      <section
+        className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[calc(100svh-var(--navbar-height))] bg-slate-950 bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/careers-handshake-hero.png')" }}
+      >
+        <div className="absolute inset-0 z-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80 dark:from-black dark:via-black/75 dark:to-black/85 pointer-events-none" />
         
         {/* Content Container */}
         <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white">
@@ -101,6 +103,16 @@ const Careers: React.FC = () => {
           <div className="mt-2 text-base md:text-lg text-white font-extrabold tracking-wide uppercase px-6 py-3 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 select-none text-center shadow-lg">
             {t('careers.tagline')}
           </div>
+
+          <Button
+            type="button"
+            variant="primary"
+            size="lg"
+            className="rounded-full"
+            onClick={() => document.getElementById('application-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          >
+            {t('careers.hero_cta')}
+          </Button>
         </div>
       </section>
 
@@ -179,7 +191,7 @@ const Careers: React.FC = () => {
 
 
       {/* 5. SPONTANANSÖKAN FORM SECTION */}
-      <Section background="alt" className="py-16 md:py-24">
+      <Section id="application-form" background="alt" className="scroll-mt-[var(--navbar-height)] py-16 md:py-24">
         <div className="max-w-2xl mx-auto text-left relative">
           {/* Decorative Ambient Glow Blobs */}
           <div className="absolute -top-16 -left-16 w-72 h-72 bg-accent-primary/10 dark:bg-accent-primary/5 rounded-full blur-[80px] pointer-events-none" />

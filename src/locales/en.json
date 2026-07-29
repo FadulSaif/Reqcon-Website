@@ -24,6 +24,7 @@
     "badge": "Expertise",
     "title": "Our competence areas",
     "subtitle": "REQCON offers specialists across the entire IT development lifecycle, from the first strategic visions to continuous testing and QA.",
+    "hero_cta": "Learn About Our Services",
     "cta_discuss": "Discuss your needs",
     "cta_more": "Read more",
     "learn_more": "Learn More",
@@ -139,6 +140,7 @@
     "badge": "Leadership",
     "title": "Our Leadership Team",
     "subtitle": "Meet our consultant managers who guide our regional operations and lead our specialist teams.",
+    "hero_cta": "Meet Our Team",
     "fadi_desc": "Fadi leads the Stockholm office and is responsible for strategic partnerships as well as recruiting senior requirements analysts.",
     "anel_desc": "Anel is responsible for Western Sweden and matches complex client needs with the right testing and project management expertise."
   },
@@ -163,6 +165,7 @@
     "badge": "Our History",
     "title": "About Us",
     "subtitle": "It started with a vision to gather expert specialists and build proven models and processes to deliver real value to our clients.",
+    "hero_cta": "Learn More",
     "story_title": "It started with a vision.",
     "story_p1": "Reqcon was founded in 2020 and is headquartered in central Stockholm. The vision has been to gather a team of knowledgeable experts to build proven models and processes internally based on our know-how and many years of experience to deliver real value to our clients – regardless of industry.",
     "story_p2": "Reqcon's cornerstone lies in requirements analysis (business analysis), but as a company we have recently expanded our competence areas. The goal is to turn that vision into reality. Today, Reqcon has expanded its operations to Gothenburg and has the ambition to deliver its services throughout Sweden.",
@@ -206,6 +209,7 @@
     "title": "Work with us",
     "hero_badge": "We want to grow!",
     "hero_subtitle": "Is Reqcon the right company for you? Read below and decide",
+    "hero_cta": "Submit an Application",
     "tagline": "When you invest in us, we invest in you.",
     "benefits": {
       "1": {
@@ -370,6 +374,7 @@
     "badge": "Contact",
     "title": "Contact us",
     "subtitle": "Want to discuss a potential project, know more about our services, or join the team? Get in touch and we'll help you further.",
+    "hero_cta": "Send a Message",
     "locations_badge": "Local Offices",
     "locations_title": "Our Offices & Managers",
     "locations_subtitle": "Reach out directly to the manager responsible in your area.",

@@ -134,30 +134,30 @@ export const Header: React.FC = () => {
   return (
     <div
       className={`fixed top-0 left-0 right-0 z-50 flex w-full justify-center pointer-events-none transition-[padding] duration-[400ms] ease-[cubic-bezier(0,0,0.2,1)] motion-reduce:transition-none ${
-        isScrolled ? 'p-3 px-4' : 'p-0'
+        isScrolled ? 'p-3 px-4' : 'px-4'
       }`}
     >
       <header
         ref={headerRef}
-        className={`relative grid grid-cols-2 xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center pointer-events-auto w-full will-change-[max-width,border-radius,height,padding,background-color,box-shadow] transition-all duration-[400ms] ease-[cubic-bezier(0,0,0.2,1)] motion-reduce:transition-none ${
+        className={`relative grid grid-cols-2 min-[1440px]:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-x-4 items-center pointer-events-auto w-full will-change-[max-width,border-radius,height,padding,background-color,box-shadow] transition-all duration-[400ms] ease-[cubic-bezier(0,0,0.2,1)] motion-reduce:transition-none ${
           isScrolled
-            ? 'max-w-[1216px] rounded-[100px] border border-slate-200/70 bg-white/90 px-6 py-4 shadow-lg shadow-slate-950/10 backdrop-blur-md dark:border-white/10 dark:bg-[#06131b]/90 dark:shadow-black/30'
-            : 'max-w-full rounded-none border border-transparent bg-transparent px-8 py-[22px] shadow-none'
+            ? 'max-w-[1440px] rounded-[100px] border border-slate-200/70 bg-white/90 px-6 py-4 shadow-lg shadow-slate-950/10 backdrop-blur-md dark:border-white/10 dark:bg-[#06131b]/90 dark:shadow-black/30'
+            : 'max-w-[1440px] rounded-none border border-transparent bg-transparent px-6 py-[22px] shadow-none'
         }`}
       >
         {/* Logo (Left side) */}
         <div className="flex min-w-0 items-center justify-start">
-          <Link to={`/${routeLanguage}`} onClick={() => window.scrollTo(0,0)} className="flex items-center group select-none shrink-0">
+          <Link to={`/${routeLanguage}`} className="flex items-center group select-none shrink-0">
             <img
-              src="/images/logo.png"
+              src="/images/REQCON.svg"
               alt="REQCON – Från vision till produkt"
-              className={`w-auto object-contain transition-[height] duration-[400ms] ease-out motion-reduce:transition-none ${isScrolled ? 'h-10' : 'h-11'}`}
+              className={`h-auto object-contain transition-[width,filter] duration-[400ms] ease-out dark:brightness-[1.75] dark:contrast-110 motion-reduce:transition-none ${isScrolled ? 'w-[9.25rem]' : 'w-40'}`}
             />
           </Link>
         </div>
 
         {/* Centered Desktop Navigation Links */}
-        <nav className={`hidden xl:flex items-center justify-center whitespace-nowrap ${isScrolled ? '-ml-8' : ''} ${navSpacingClass}`}>
+        <nav className={`hidden min-[1440px]:flex shrink-0 items-center justify-center whitespace-nowrap ${isScrolled ? '-ml-8' : ''} ${navSpacingClass}`}>
           {navLinks.map((link) => {
             const isActive = isLinkActive(link.path);
             const isServices = link.path.endsWith('/services');
@@ -208,7 +208,6 @@ export const Header: React.FC = () => {
                               to={item.path}
                               onClick={() => {
                                 setIsServicesDropdownOpen(false);
-                                window.scrollTo(0, 0);
                               }}
                               className="dropdown-item px-4 py-2.5 text-text-secondary hover:text-brand-secondary hover:bg-slate-50 dark:hover:bg-zinc-900 rounded-xl transition-all duration-200"
                             >
@@ -247,7 +246,7 @@ export const Header: React.FC = () => {
         </nav>
 
         {/* Unified Controls Group (Right side) */}
-        <div className={`hidden xl:flex min-w-0 items-center justify-end ${actionGroupClass}`}>
+        <div className={`hidden min-[1440px]:flex min-w-0 shrink-0 items-center justify-end ${actionGroupClass}`}>
           <Link to={contactPath} className="shrink-0">
             <Button
               variant={isLinkActive(contactPath) ? 'secondary' : 'primary'}
@@ -260,10 +259,10 @@ export const Header: React.FC = () => {
           </Link>
 
           {/* Dropdown Language Selector */}
-          <div className="relative">
+          <div className="relative shrink-0">
             <button
               onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-              className={`flex items-center ${isScrolled ? 'gap-1.5 px-2 py-1 text-[11px]' : 'gap-2 px-3 py-1.5 text-xs'} rounded-full border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-[#0f2330] hover:bg-slate-100 dark:hover:bg-[#153040] text-slate-900 dark:text-white transition-colors duration-200 font-bold cursor-pointer focus:outline-none shadow-sm`}
+              className={`flex shrink-0 items-center whitespace-nowrap ${isScrolled ? 'gap-1.5 px-2 py-1 text-[11px]' : 'gap-2 px-3 py-1.5 text-xs'} rounded-full border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-[#0f2330] hover:bg-slate-100 dark:hover:bg-[#153040] text-slate-900 dark:text-white transition-colors duration-200 font-bold cursor-pointer focus:outline-none shadow-sm`}
               aria-haspopup="true"
               aria-expanded={isLangDropdownOpen}
             >
@@ -334,7 +333,7 @@ export const Header: React.FC = () => {
         </div>
 
         {/* Mobile controls */}
-        <div className="flex xl:hidden min-w-0 items-center justify-end gap-2">
+        <div className="flex min-[1440px]:hidden min-w-0 items-center justify-end gap-2">
           <ThemeToggle />
           <button
             type="button"
@@ -358,7 +357,7 @@ export const Header: React.FC = () => {
               animate={{ opacity: 0.4 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/60 z-40 xl:hidden pointer-events-auto"
+              className="fixed inset-0 bg-black/60 z-40 min-[1440px]:hidden pointer-events-auto"
             />
 
             {/* Navigation Drawer */}
@@ -367,7 +366,7 @@ export const Header: React.FC = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.35, ease: 'easeInOut' }}
-              className="fixed right-0 top-0 bottom-0 w-[85%] max-w-sm bg-white dark:bg-bg-surface border-l border-border-custom z-50 p-8 flex flex-col justify-between xl:hidden pointer-events-auto shadow-2xl"
+              className="fixed right-0 top-0 bottom-0 w-[85%] max-w-sm bg-white dark:bg-bg-surface border-l border-border-custom z-50 p-8 flex flex-col justify-between min-[1440px]:hidden pointer-events-auto shadow-2xl"
             >
               <div className="flex flex-col gap-8">
                 {/* Header inside drawer */}

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Award, Compass, Heart, Users } from 'lucide-react';
 import Section from '../components/Section';
 import Card from '../components/Card';
+import Button from '../components/Button';
 import Eyebrow from '../components/Eyebrow';
 import SEO from '../components/SEO';
 import { toAbsoluteUrl } from '../config/site';
@@ -82,7 +83,7 @@ const About: React.FC = () => {
         }}
       />
       {/* Page Header */}
-      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[50vh] bg-slate-950">
+      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[calc(100svh-var(--navbar-height))] bg-slate-950">
         {/* Background Image */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
           <img 
@@ -107,11 +108,21 @@ const About: React.FC = () => {
           <p className="text-base md:text-lg text-zinc-300 leading-relaxed max-w-2xl font-medium text-center">
             {t('about.subtitle')}
           </p>
+
+          <Button
+            type="button"
+            variant="primary"
+            size="lg"
+            className="rounded-full"
+            onClick={() => document.getElementById('about-story')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          >
+            {t('about.hero_cta')}
+          </Button>
         </div>
       </section>
 
       {/* 1. OUR STORY BLOCK */}
-      <Section background="default" animate={true} className="py-10 md:py-14">
+      <Section id="about-story" background="default" animate={true} className="scroll-mt-[var(--navbar-height)] py-10 md:py-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 text-left flex flex-col gap-6">
             <h2 className="text-3xl font-extrabold text-text-primary">{t('about.story_title')}</h2>

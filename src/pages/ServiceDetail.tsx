@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   ArrowLeft, ArrowRight, CheckCircle2,
@@ -458,11 +458,6 @@ const ServiceDetail: React.FC = () => {
   const activeLang = (lng === 'en' || lng === 'sv') ? lng : 'sv';
   const details = serviceId ? serviceDetails[serviceId]?.[activeLang] : undefined;
 
-  // Scroll to top immediately on component mount
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [serviceId]);
-
   // If service ID is invalid, redirect back to main services list
   if (!details) {
     return (
@@ -554,7 +549,6 @@ const ServiceDetail: React.FC = () => {
             <Link 
               to={`/${activeLang}/services`} 
               className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-brand-secondary hover:text-white uppercase transition-colors group select-none"
-              onClick={() => window.scrollTo(0,0)}
             >
               <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
               {activeLang === 'sv' ? 'TILLBAKA TILL TJÄNSTER' : 'BACK TO SERVICES'}
@@ -582,7 +576,7 @@ const ServiceDetail: React.FC = () => {
             {details.intro}
           </p>
 
-          <Link to={contactPath} onClick={() => window.scrollTo(0, 0)} className="mt-4">
+          <Link to={contactPath} className="mt-4">
             <Button variant="primary" size="lg" className="font-bold" rightIcon={<ArrowRight className="w-4 h-4" />}>
               {activeLang === 'sv' ? 'Diskutera behov' : 'Discuss your needs'}
             </Button>
@@ -635,7 +629,6 @@ const ServiceDetail: React.FC = () => {
                   key={id}
                   to={`/${activeLang}/services/${id}`}
                   className="h-full"
-                  onClick={() => window.scrollTo(0,0)}
                 >
                   <Card hoverable className="h-full p-5 flex flex-col items-center justify-center gap-3 text-center shadow-sm">
                     <div className="w-10 h-10 rounded-xl bg-brand-secondary/5 flex items-center justify-center">
@@ -792,12 +785,12 @@ const ServiceDetail: React.FC = () => {
               : 'Our consultants are available for roles in Stockholm, Gothenburg, and hybrid. Contact us today to discuss your technical and project requirements.'}
           </p>
           <div className="mt-4 flex flex-wrap gap-4 justify-center">
-            <Link to={contactPath} onClick={() => window.scrollTo(0,0)}>
+            <Link to={contactPath}>
               <Button variant="primary" size="lg" rightIcon={<ArrowRight className="w-5 h-5" />}>
                 {activeLang === 'sv' ? 'Kontakta oss' : 'Contact Us'}
               </Button>
             </Link>
-            <Link to={`/${activeLang}/services`} onClick={() => window.scrollTo(0,0)}>
+            <Link to={`/${activeLang}/services`}>
               <Button variant="secondary" size="lg" className="!bg-transparent border-white/30 !text-white hover:!bg-white/10 hover:!border-white/60 transition-all duration-200">
                 {activeLang === 'sv' ? 'Se alla kompetenser' : 'View All Competences'}
               </Button>

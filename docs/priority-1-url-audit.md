@@ -6,7 +6,7 @@ Audited routes, navigation, metadata, sitemap, robots directives, Vercel routing
 
 ## 2. Current Production Baseline
 
-The inspected live baseline is `https://rec-ebon.vercel.app/`. It currently redirects its root client-side to `#/sv` and exposes internal links such as `#/sv/services`. The deployed HTML title is the default site title. This is a HashRouter build, so the clean `/sv/...` URLs previously listed in `public/sitemap.xml` did not represent the live client routes.
+The configured interim deployment baseline is `https://reqcon-website.vercel.app/`. The application now uses clean BrowserRouter paths such as `/sv` and `/sv/services`, with Vercel rewrites supporting direct loads.
 
 ## 3. Framework and Routing Architecture
 

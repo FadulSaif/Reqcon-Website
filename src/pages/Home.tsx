@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import {
@@ -7,12 +7,7 @@ import {
   ShieldCheck,
   Search,
   Layers,
-  Compass,
-  CheckCircle2,
-  Users,
-  Award,
-  Zap,
-  MessageSquare
+  Compass
 } from 'lucide-react';
 import Button from '../components/Button';
 import Card from '../components/Card';
@@ -21,7 +16,6 @@ import Eyebrow from '../components/Eyebrow';
 import { slideUp, staggerContainer } from '../utils/animations';
 import SEO from '../components/SEO';
 import { SITE_URL, toAbsoluteUrl } from '../config/site';
-import { teamMembers } from '../content/team';
 import { articles } from '../content/articles';
 
 const customerLogoRows = [
@@ -178,6 +172,7 @@ const homeSchema = {
 
 const Home: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
   // Dynamic services preview with icons and translated text
   const servicesPreview = [
@@ -207,69 +202,8 @@ const Home: React.FC = () => {
     }
   ];
 
-  // Helper arrays for custom structured sections
-  const pillars = [
-    {
-      icon: <Award className="w-5 h-5 text-current" />,
-      title: t('why.items.0.title'),
-      description: t('why.items.0.desc')
-    },
-    {
-      icon: <CheckCircle2 className="w-5 h-5 text-current" />,
-      title: t('why.items.1.title'),
-      description: t('why.items.1.desc')
-    },
-    {
-      icon: <Users className="w-5 h-5 text-current" />,
-      title: t('why.items.2.title'),
-      description: t('why.items.2.desc')
-    },
-    {
-      icon: <Zap className="w-5 h-5 text-current" />,
-      title: t('why.items.3.title'),
-      description: t('why.items.3.desc')
-    }
-  ];
-
-  const processSteps = [
-    {
-      num: t('process.steps.0.num'),
-      title: t('process.steps.0.title'),
-      description: t('process.steps.0.desc')
-    },
-    {
-      num: t('process.steps.1.num'),
-      title: t('process.steps.1.title'),
-      description: t('process.steps.1.desc')
-    },
-    {
-      num: t('process.steps.2.num'),
-      title: t('process.steps.2.title'),
-      description: t('process.steps.2.desc')
-    },
-    {
-      num: t('process.steps.3.num'),
-      title: t('process.steps.3.title'),
-      description: t('process.steps.3.desc')
-    }
-  ];
-
-  const testimonials = [
-    {
-      quote: t('testimonials.items.0.quote'),
-      name: t('testimonials.items.0.name'),
-      position: t('testimonials.items.0.position')
-    },
-    {
-      quote: t('testimonials.items.1.quote'),
-      name: t('testimonials.items.1.name'),
-      position: t('testimonials.items.1.position')
-    }
-  ];
-
   const servicesPath = `/${i18n.language}/services`;
   const contactPath = `/${i18n.language}/contact`;
-  const aboutPath = `/${i18n.language}/about`;
   const articlesPath = `/${i18n.language}/articles`;
   const articleLocale = i18n.language === 'sv' ? 'sv' : 'en';
   const featuredArticles = articles.slice(0, 3);
@@ -307,78 +241,63 @@ const Home: React.FC = () => {
         schema={homeSchema}
       />
       
-      {/* 1. HERO SECTION (Redesigned Floating Card Hero) */}
-      <section className="relative px-4 md:px-6 pt-0 pb-0 bg-bg-page dark:bg-[#06131b] overflow-hidden">
-        <div className="max-w-[86rem] mx-auto w-full">
-          {/* Floating Card Container */}
-          <div className="relative w-full rounded-3xl md:rounded-[32px] overflow-hidden min-h-[59svh] md:min-h-[61.36svh] flex items-center justify-center py-2 px-6 select-none bg-slate-950 border border-slate-900/10 shadow-lg z-0">
-            
-            {/* Background image container with subtle zoom animation */}
-            <div className="absolute inset-0 z-0 overflow-hidden">
-              <motion.img
-                src="/images/hero-company-image.jpg"
-                alt="REQCON IT-konsulter i samarbete kring kravanalys och agil utveckling"
-                className="w-full h-full object-cover"
-                initial={{ scale: 1.1, opacity: 0 }}
-                animate={{ scale: 1, opacity: 0.55 }}
-                transition={{ duration: 1.6, ease: 'easeOut' }}
-              />
-              {/* A central scrim protects text from the busy window and plant areas. */}
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(2,6,23,0.92)_0%,rgba(2,6,23,0.76)_58%,rgba(2,6,23,0.86)_100%)]" />
-            </div>
+      {/* 1. HERO SECTION */}
+      <section
+        className="relative flex min-h-[calc(100svh-var(--navbar-height))] w-full select-none items-center justify-center overflow-hidden bg-slate-950 bg-cover bg-center px-6 py-2"
+        style={{ backgroundImage: "url('/images/hero-company-image.jpg')" }}
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(2,6,23,0.92)_0%,rgba(2,6,23,0.76)_58%,rgba(2,6,23,0.86)_100%)]" />
 
-            <div className="max-w-5xl mx-auto w-full z-10 relative text-center flex flex-col items-center">
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={staggerContainer(0.12)}
-                className="flex flex-col items-center text-center gap-6 max-w-4xl"
-              >
-                <motion.h1
-                  variants={slideUp()}
-                  className="home-hero-heading font-extrabold tracking-tight text-white text-center text-balance leading-[1.15]"
+        <div className="relative z-10 mx-auto flex w-full max-w-5xl translate-y-[5svh] flex-col items-center text-center">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer(0.12)}
+            className="flex max-w-4xl flex-col items-center gap-[clamp(1.125rem,2.5vw,2rem)] text-center"
+          >
+            <motion.h1
+              variants={slideUp()}
+              className="home-hero-heading text-balance text-center font-extrabold leading-[1.15] tracking-tight text-white"
+            >
+              {t('hero.title')}
+            </motion.h1>
+
+            <motion.p
+              variants={slideUp()}
+              className="home-hero-subheading body-xl max-w-3xl text-center"
+              style={{
+                color: '#f1f5f9',
+                textShadow: '0 2px 12px rgba(0, 0, 0, 0.85)',
+              }}
+            >
+              {t('hero.subtitle')}
+            </motion.p>
+
+            <motion.div
+              variants={slideUp()}
+              className="flex w-full flex-col justify-center gap-4 sm:w-auto sm:flex-row"
+            >
+              <Link to={contactPath} className="w-full sm:w-auto">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="w-full rounded-full font-bold sm:w-auto"
+                  rightIcon={<ArrowRight className="w-5 h-5" />}
                 >
-                  {t('hero.title')}
-                </motion.h1>
-                
-                <motion.p
-                  variants={slideUp()}
-                  className="home-hero-subheading body-xl max-w-3xl text-center"
-                  style={{
-                    color: '#f1f5f9',
-                    textShadow: '0 2px 12px rgba(0, 0, 0, 0.85)',
-                  }}
+                  {t('hero.cta_primary')}
+                </Button>
+              </Link>
+              <Link to={servicesPath} className="w-full sm:w-auto">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  className="w-full rounded-full border-white/30 !bg-transparent font-bold !text-white transition-all duration-200 hover:!border-white/60 hover:!bg-white/10 sm:w-auto"
                 >
-                  {t('hero.subtitle')}
-                </motion.p>
-                
-                <motion.div
-                  variants={slideUp()}
-                  className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center"
-                >
-                  <Link to={contactPath} className="w-full sm:w-auto">
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      className="w-full sm:w-auto font-bold rounded-full"
-                      rightIcon={<ArrowRight className="w-5 h-5" />}
-                    >
-                      {t('hero.cta_primary')}
-                    </Button>
-                  </Link>
-                  <Link to={servicesPath} className="w-full sm:w-auto">
-                    <Button
-                      variant="secondary"
-                      size="lg"
-                      className="w-full sm:w-auto font-bold rounded-full !bg-transparent border-white/30 !text-white hover:!bg-white/10 hover:!border-white/60 transition-all duration-200"
-                    >
-                      {t('hero.cta_secondary')}
-                    </Button>
-                  </Link>
-                </motion.div>
-              </motion.div>
-            </div>
-          </div>
+                  {t('hero.cta_secondary')}
+                </Button>
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -387,7 +306,7 @@ const Home: React.FC = () => {
         background="alt"
         animate={false}
         containerClassName="max-w-[86rem]"
-        className="!pt-3 !pb-6 md:!pt-4 md:!pb-8 text-center border-b border-border-custom overflow-hidden"
+        className="!pb-6 !pt-12 text-center border-b border-border-custom overflow-hidden md:!pb-8 md:!pt-16"
       >
         {/* Custom uppercase header label and line dividers with a center dot indicator */}
         <div className="flex w-full items-center justify-center gap-2 sm:gap-4 mb-5 px-0 sm:px-6 max-w-5xl mx-auto select-none">
@@ -481,168 +400,35 @@ const Home: React.FC = () => {
           <div className="lg:col-span-7 flex flex-col gap-6 text-left">
             <div className="flex flex-col gap-4">
               {servicesPreview.map((service, idx) => (
-                <Card 
-                  key={idx} 
-                  hoverable={true} 
-                  className="p-5 flex gap-4 shadow-sm items-start group"
+                <Button
+                  key={idx}
+                  type="button"
+                  variant="secondary"
+                  size="md"
+                  onClick={() => {
+                    navigate(`${servicesPath}/${getSlugFromKey(service.key)}`);
+                  }}
+                  className="group h-full w-full !justify-start rounded-2xl p-5 text-left shadow-sm [&>span]:w-full"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-brand-secondary/10 flex items-center justify-center shrink-0 mt-0.5 transition-all duration-300 text-brand-secondary group-hover:rotate-6 group-hover:bg-accent-primary group-hover:text-white">
-                    {service.icon}
-                  </div>
-                  <div className="flex flex-col gap-1.5 flex-1">
-                    <Link 
-                      to={`${servicesPath}/${getSlugFromKey(service.key)}`} 
-                      onClick={() => window.scrollTo(0,0)}
-                      className="text-lg font-bold text-text-primary hover:text-brand-secondary transition-colors cursor-pointer w-fit"
-                    >
-                      {service.title}
-                    </Link>
-                    <p className="text-sm text-text-secondary leading-relaxed">{service.description}</p>
-                  </div>
-                </Card>
+                  <span className="flex w-full items-start gap-4">
+                    <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-secondary/10 text-brand-secondary transition-all duration-300 group-hover:rotate-6 group-hover:bg-accent-primary group-hover:text-white">
+                      {service.icon}
+                    </span>
+                    <span className="flex flex-1 flex-col gap-1.5">
+                      <span className="w-fit text-lg font-bold normal-case tracking-normal text-text-primary transition-colors group-hover:text-brand-secondary">
+                        {service.title}
+                      </span>
+                      <span className="text-sm font-normal leading-relaxed normal-case tracking-normal text-text-secondary">{service.description}</span>
+                    </span>
+                  </span>
+                </Button>
               ))}
             </div>
-            <div className="mt-2">
-              <Link to={servicesPath} onClick={() => window.scrollTo(0,0)}>
-                <Button variant="primary" size="md" className="rounded-full">
-                  {i18n.language === 'sv' ? 'Se alla våra tjänster' : 'More about our services'}
-                </Button>
-              </Link>
-            </div>
           </div>
         </div>
       </Section>
 
-      {/* 4. WHY CHOOSE US SECTION */}
-      <Section
-        background="alt"
-        containerClassName="max-w-[86rem]"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-[80rem] mx-auto items-start">
-          {/* Left Column: Sticky Title & Description */}
-          <div className="lg:col-span-5 text-left flex flex-col gap-6 lg:sticky lg:top-28 h-fit">
-            <div className="flex flex-col gap-4">
-              <Eyebrow>
-                {t('why.badge')}
-              </Eyebrow>
-              <h2 className="heading-xl text-text-primary">
-                {t('why.title')}
-              </h2>
-              <p className="body-lg text-text-secondary max-w-md">
-                {t('why.subtitle')}
-              </p>
-            </div>
-            <div className="mt-2">
-              <Link to={contactPath}>
-                <Button variant="primary" size="md" className="rounded-full">
-                  {i18n.language === 'sv' ? 'Kontakta oss' : 'Contact us'}
-                </Button>
-              </Link>
-            </div>
-          </div>
-
-          {/* Right Column: Scrolling feature cards */}
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            {pillars.map((pillar, idx) => (
-              <Card 
-                key={idx} 
-                hoverable={true} 
-                className="p-6 flex gap-5 text-left shadow-sm border border-border-custom group"
-              >
-                <div className="p-3 rounded-xl bg-bg-surface border border-border-custom text-brand-secondary shrink-0 h-12 w-12 flex items-center justify-center transition-all duration-300 group-hover:rotate-6 group-hover:bg-accent-primary group-hover:text-white group-hover:border-accent-primary">
-                  {pillar.icon}
-                </div>
-                <div className="flex flex-col gap-2">
-                  <h3 className="text-lg font-bold text-text-primary transition-colors">{pillar.title}</h3>
-                  <p className="text-sm text-text-secondary leading-relaxed">{pillar.description}</p>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* 5. PROCESS SECTION */}
-      <Section
-        title={t('process.title')}
-        subtitle={t('process.subtitle')}
-        badge={t('process.badge')}
-        background="default"
-        containerClassName="max-w-[86rem]"
-      >
-        <div className="relative max-w-4xl mx-auto flex flex-col gap-12 md:gap-4 mt-8">
-          {/* Vertical Center Line for desktop */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-border-custom -translate-x-1/2 z-0" />
-
-          {processSteps.map((step, idx) => {
-            const isEven = idx % 2 === 0;
-            return (
-              <div key={idx} className="relative flex flex-col md:flex-row items-center w-full md:py-6 z-10">
-                {/* Timeline node */}
-                <div className="absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full border-4 border-bg-page bg-brand-secondary text-white font-bold flex items-center justify-center shadow-lg hidden md:flex text-sm z-20 select-none">
-                  {step.num}
-                </div>
-
-                {/* Content block */}
-                <div className={`w-full md:w-1/2 flex flex-col gap-2 ${
-                  isEven
-                    ? 'md:pr-16 md:text-right md:items-end'
-                    : 'md:pl-16 md:text-left md:items-start md:ml-auto'
-                }`}>
-                  <span className="text-sm font-bold text-brand-secondary md:hidden">{step.num}. {step.title}</span>
-                  <h3 className="text-xl font-extrabold text-text-primary hidden md:block">{step.title}</h3>
-                  <p className="text-sm text-text-secondary leading-relaxed max-w-md">{step.description}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </Section>
-
-      {/* 6. TEAM SECTION (With Optimized Image Paths) */}
-      <Section
-        title={t('team.title')}
-        subtitle={t('team.subtitle')}
-        badge={t('team.badge')}
-        background="alt"
-        containerClassName="max-w-[86rem]"
-      >
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
-          <Card className="p-6 flex flex-col items-center text-center gap-4 shadow-sm">
-            <img
-              src={teamMembers[0].image}
-              alt={teamMembers[0].name}
-              className="w-32 h-32 rounded-full object-cover border-2 border-brand-secondary/20 shadow-md"
-              loading="lazy"
-            />
-            <div className="flex flex-col">
-              <h3 className="text-xl font-bold text-text-primary">{teamMembers[0].name}</h3>
-              <span className="text-sm font-semibold text-brand-secondary">{t('team.fadi_title')}</span>
-            </div>
-            <p className="text-xs text-text-secondary max-w-xs leading-relaxed">
-              {t(teamMembers[0].bioKey)}
-            </p>
-          </Card>
-
-          <Card className="p-6 flex flex-col items-center text-center gap-4 shadow-sm">
-            <img
-              src={teamMembers[1].image}
-              alt={teamMembers[1].name}
-              className="w-32 h-32 rounded-full object-cover border-2 border-brand-secondary/20 shadow-md"
-              loading="lazy"
-            />
-            <div className="flex flex-col">
-              <h3 className="text-xl font-bold text-text-primary">{teamMembers[1].name}</h3>
-              <span className="text-sm font-semibold text-brand-secondary">{t('team.anel_title')}</span>
-            </div>
-            <p className="text-xs text-text-secondary max-w-xs leading-relaxed">
-              {t(teamMembers[1].bioKey)}
-            </p>
-          </Card>
-        </div>
-      </Section>
-
-      {/* 7. ARTICLES PREVIEW SECTION */}
+      {/* 4. ARTICLES PREVIEW SECTION */}
       <Section
         title={articlePreviewCopy.title}
         subtitle={articlePreviewCopy.subtitle}
@@ -678,59 +464,6 @@ const Home: React.FC = () => {
               {articlePreviewCopy.viewAll}
             </Button>
           </Link>
-        </div>
-      </Section>
-
-      {/* 8. TESTIMONIALS SECTION */}
-      <Section
-        title={t('testimonials.title')}
-        subtitle={t('testimonials.subtitle')}
-        badge={t('testimonials.badge')}
-        background="alt"
-        containerClassName="max-w-[86rem]"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {testimonials.map((test, idx) => (
-            <Card key={idx} className="p-8 flex flex-col justify-between text-left shadow-sm h-full relative">
-              <div className="absolute top-6 right-8 text-6xl font-serif text-slate-200 dark:text-slate-800 pointer-events-none select-none">
-                ”
-              </div>
-              <div className="flex flex-col gap-6">
-                <div className="p-2 bg-brand-secondary/10 text-brand-secondary rounded-full w-10 h-10 flex items-center justify-center shrink-0">
-                  <MessageSquare className="w-5 h-5" />
-                </div>
-                <p className="text-base text-text-primary italic leading-relaxed z-10">
-                  ”{test.quote}”
-                </p>
-              </div>
-              <div className="mt-8 border-t border-border-custom pt-6 flex flex-col">
-                <span className="font-bold text-text-primary text-sm">{test.name}</span>
-                <span className="text-xs text-text-secondary">{test.position}</span>
-              </div>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      {/* 9. BOTTOM CTA SECTION */}
-      <Section background="dark" animate={true} className="py-16 md:py-20 text-center bg-slate-950 text-white rounded-3xl mx-6 my-12 border border-slate-800">
-        <div className="max-w-2xl mx-auto flex flex-col items-center gap-6">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">{t('services.cta_cta_title')}</h2>
-          <p className="text-slate-400 text-sm md:text-base leading-relaxed">
-            {t('services.cta_cta_desc')}
-          </p>
-          <div className="mt-4 flex flex-wrap gap-4 justify-center">
-            <Link to={contactPath}>
-              <Button variant="primary" size="lg" rightIcon={<ArrowRight className="w-5 h-5" />}>
-                {t('services.cta_cta_btn')}
-              </Button>
-            </Link>
-            <Link to={aboutPath}>
-              <Button variant="secondary" size="lg" className="!bg-transparent border-white/30 !text-white hover:!bg-white/10 hover:!border-white/60 transition-all duration-200">
-                {t('nav.about')}
-              </Button>
-            </Link>
-          </div>
         </div>
       </Section>
 

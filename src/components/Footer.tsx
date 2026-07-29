@@ -29,15 +29,15 @@ export const Footer: React.FC = () => {
 
   return (
     <footer id="site-footer" className="relative bg-gradient-to-b from-[#001724] to-[#000a10] text-zinc-100 border-t border-white/5 mt-auto">
-      <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 md:grid-cols-[1.05fr_1fr_0.8fr_1fr] gap-y-12 md:gap-x-12">
+      <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 md:grid-cols-[1.54fr_1fr_0.8fr_1fr] gap-y-12 md:gap-x-12">
         
         {/* Brand Column */}
-        <div className="flex flex-col gap-6 md:col-span-1">
-          <Link to={`/${routeLanguage}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="select-none w-fit block self-center">
+        <div className="flex flex-col items-start justify-center gap-6 md:col-span-1">
+          <Link to={`/${routeLanguage}`} className="block w-full max-w-[20.96rem] select-none md:max-w-none md:-translate-x-8">
             <img
-              src="/images/logo.png"
+              src="/images/REQCON.svg"
               alt="REQCON – Från vision till produkt"
-              className="h-[8.19rem] w-auto object-contain"
+              className="h-auto w-full object-contain dark:brightness-[1.75] dark:contrast-110"
             />
           </Link>
         </div>
@@ -54,7 +54,6 @@ export const Footer: React.FC = () => {
               <li key={item.path} className="border-b border-white/10">
                 <Link
                   to={item.path}
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                   aria-current={isActive ? 'page' : undefined}
                   className={`relative flex items-center justify-between gap-3 py-3 text-sm transition-colors ${
                     isActive

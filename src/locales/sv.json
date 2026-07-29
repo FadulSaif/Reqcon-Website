@@ -24,6 +24,7 @@
     "badge": "Expertis",
     "title": "Våra kompetensområden",
     "subtitle": "REQCON erbjuder specialister inom hela IT-utvecklingskedjan, från de första strategiska visionerna till löpande testning och kvalitetssäkring.",
+    "hero_cta": "Läs om våra tjänster",
     "cta_discuss": "Diskutera ert behov",
     "cta_more": "Läs mer",
     "learn_more": "Läs mer",
@@ -139,6 +140,7 @@
     "badge": "Ledarskap",
     "title": "Vårt ledningsteam",
     "subtitle": "Möt våra konsultchefer som styr våra lokala verksamheter och leder våra specialistteam framåt.",
+    "hero_cta": "Möt vårt team",
     "fadi_desc": "Fadi leder Stockholmskontoret och ansvarar för strategiska samarbeten samt rekrytering av seniora kravanalytiker.",
     "anel_desc": "Anel ansvarar för Västsverige och matchar komplexa kundbehov med rätt test- och projektledarkompetens."
   },
@@ -163,6 +165,7 @@
     "badge": "Vår historia",
     "title": "Om oss",
     "subtitle": "Det började med en vision att samla kunniga experter och bygga beprövade modeller och processer för att leverera verkligt värde till våra kunder.",
+    "hero_cta": "Läs mer",
     "story_title": "Det började med en vision.",
     "story_p1": "Reqcon grundades 2020 och har sitt säte i centrala Stockholm. Visionen har varit att samla ett gäng kunniga experter, för att internt bygga upp beprövade modeller och processer grundade i vår \"know-how\" och mångåriga erfarenhet för att leverera verkligt värde till våra kunder – oavsett bransch.",
     "story_p2": "Reqcon's grundpelare ligger i kravanalys (business analysis), men har som bolag på senare tid utökat sina kompetensområden. Målet är att göra visionen till verklighet. Idag har Reqcon expanderat sin verksamhet till Göteborg och har även ambition att kunna leverera sina tjänster i hela Sverige.",
@@ -206,6 +209,7 @@
     "title": "Arbeta hos oss",
     "hero_badge": "Vi vill bli fler!",
     "hero_subtitle": "Är Reqcon rätt bolag för dig? Läs nedan och avgör",
+    "hero_cta": "Skicka en ansökan",
     "tagline": "När du investerar i oss, investerar vi i dig.",
     "benefits": {
       "1": {
@@ -370,6 +374,7 @@
     "badge": "Kontakt",
     "title": "Kontakta oss",
     "subtitle": "Vill du diskutera ett potentiellt uppdrag, veta mer om våra konsulttjänster eller bli en del av teamet? Hör av dig till oss så hjälper vi dig vidare.",
+    "hero_cta": "Skicka ett meddelande",
     "locations_badge": "Lokalkontor",
     "locations_title": "Våra Kontor & Konsultchefer",
     "locations_subtitle": "Hör av dig direkt till ansvarig konsultchef på din ort.",
