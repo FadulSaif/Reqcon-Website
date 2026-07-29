@@ -9,6 +9,13 @@ export interface TeamMember {
   image: string;
 }
 
+export interface EmployeePlaceholder {
+  id: string;
+  name: string;
+  title: string;
+  description: string;
+}
+
 // This is the shared source for the existing Contact, Home, About, and Team
 // presentations. Keep the contact details aligned with the Contact page.
 export const teamMembers: TeamMember[] = [
@@ -33,3 +40,10 @@ export const teamMembers: TeamMember[] = [
     image: '/images/team/anel_pasic.jpg',
   },
 ];
+
+export const employeePlaceholders: EmployeePlaceholder[] = Array.from({ length: 5 }, (_, index) => ({
+  id: `employee-placeholder-${index + 1}`,
+  name: `Firstname Lastname ${index + 1}`,
+  title: '[Job Title]',
+  description: '[Short bio goes here].',
+}));

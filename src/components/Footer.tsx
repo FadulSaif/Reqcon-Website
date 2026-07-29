@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, MapPin } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
+import { teamMembers } from '../content/team';
 
 export const Footer: React.FC = () => {
   const { t } = useTranslation();
@@ -37,7 +38,7 @@ export const Footer: React.FC = () => {
             <img
               src="/images/REQCON.svg"
               alt="REQCON – Från vision till produkt"
-              className="h-auto w-full object-contain dark:brightness-[1.75] dark:contrast-110"
+              className="h-auto w-full object-contain"
             />
           </Link>
         </div>
@@ -103,6 +104,25 @@ export const Footer: React.FC = () => {
               <div>
                 <span className="font-semibold text-white block">Stockholm</span>
                 Tullgårdsgatan 10<br />116 68 Stockholm
+                <div className="mt-3 flex flex-col gap-1.5">
+                  <span className="font-semibold text-zinc-200">
+                    {t('nav.contact', { lng: routeLanguage })}
+                  </span>
+                  <a
+                    href={`mailto:${teamMembers[0].email}`}
+                    className="inline-flex items-center gap-2 hover:text-brand-secondary transition-colors"
+                  >
+                    <Mail className="h-3.5 w-3.5 shrink-0 text-brand-secondary" aria-hidden="true" />
+                    {teamMembers[0].email}
+                  </a>
+                  <a
+                    href={`tel:${teamMembers[0].phone.replace(/[\s-]/g, '')}`}
+                    className="inline-flex items-center gap-2 hover:text-brand-secondary transition-colors"
+                  >
+                    <Phone className="h-3.5 w-3.5 shrink-0 text-brand-secondary" aria-hidden="true" />
+                    {teamMembers[0].phone}
+                  </a>
+                </div>
               </div>
             </div>
             <div className="flex gap-2.5 items-start">
@@ -110,6 +130,25 @@ export const Footer: React.FC = () => {
               <div>
                 <span className="font-semibold text-white block">Göteborg</span>
                 Gustaf Dalénsgatan 30<br />417 24 Göteborg
+                <div className="mt-3 flex flex-col gap-1.5">
+                  <span className="font-semibold text-zinc-200">
+                    {t('nav.contact', { lng: routeLanguage })}
+                  </span>
+                  <a
+                    href={`mailto:${teamMembers[1].email}`}
+                    className="inline-flex items-center gap-2 hover:text-brand-secondary transition-colors"
+                  >
+                    <Mail className="h-3.5 w-3.5 shrink-0 text-brand-secondary" aria-hidden="true" />
+                    {teamMembers[1].email}
+                  </a>
+                  <a
+                    href={`tel:${teamMembers[1].phone.replace(/[\s-]/g, '')}`}
+                    className="inline-flex items-center gap-2 hover:text-brand-secondary transition-colors"
+                  >
+                    <Phone className="h-3.5 w-3.5 shrink-0 text-brand-secondary" aria-hidden="true" />
+                    {teamMembers[1].phone}
+                  </a>
+                </div>
               </div>
             </div>
           </div>

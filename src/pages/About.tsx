@@ -83,7 +83,7 @@ const About: React.FC = () => {
         }}
       />
       {/* Page Header */}
-      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[calc(100svh-var(--navbar-height))] bg-slate-950">
+      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[50vh] bg-slate-950">
         {/* Background Image */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
           <img 
@@ -125,7 +125,7 @@ const About: React.FC = () => {
       <Section id="about-story" background="default" animate={true} className="scroll-mt-[var(--navbar-height)] py-10 md:py-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 text-left flex flex-col gap-6">
-            <h2 className="text-3xl font-extrabold text-text-primary">{t('about.story_title')}</h2>
+            <h2 className="heading-xl text-text-primary">{t('about.story_title')}</h2>
             <p className="text-base text-text-secondary leading-relaxed">
               {t('about.story_p1')}
             </p>

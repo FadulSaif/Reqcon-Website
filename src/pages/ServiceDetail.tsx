@@ -2,12 +2,10 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   ArrowLeft, ArrowRight, CheckCircle2,
-  Search, ShieldCheck, Layers, FileText, Compass, Zap,
   Briefcase, Target, Award
 } from 'lucide-react';
 import Section from '../components/Section';
 import Button from '../components/Button';
-import Card from '../components/Card';
 import Eyebrow from '../components/Eyebrow';
 import SEO from '../components/SEO';
 import { SITE_URL } from '../config/site';
@@ -476,20 +474,6 @@ const ServiceDetail: React.FC = () => {
   }
 
   const contactPath = `/${activeLang}/contact?service=${encodeURIComponent(serviceId!)}`;
-  const otherServices = Object.keys(serviceDetails).filter(id => id !== serviceId);
-
-  // Map serviceId to their corresponding icon for design continuity
-  const getServiceIcon = (id: string) => {
-    switch (id) {
-      case 'requirements-analysis': return <Search className="w-8 h-8 text-brand-secondary" />;
-      case 'testing-qa': return <ShieldCheck className="w-8 h-8 text-brand-secondary" />;
-      case 'project-management': return <Layers className="w-8 h-8 text-brand-secondary" />;
-      case 'information-management': return <FileText className="w-8 h-8 text-brand-secondary" />;
-      case 'ux-design': return <Compass className="w-8 h-8 text-brand-secondary" />;
-      case 'agile-methods': return <Zap className="w-8 h-8 text-brand-secondary" />;
-      default: return <Briefcase className="w-8 h-8 text-brand-secondary" />;
-    }
-  };
 
   const getServiceImage = (id: string) => {
     switch (id) {
@@ -611,41 +595,7 @@ const ServiceDetail: React.FC = () => {
         </div>
       </Section>
 
-      {/* 3. REST OF SERVICES */}
-      <Section background="alt" className="py-10 md:py-14 text-center border-y border-border-custom">
-        <div className="max-w-6xl mx-auto flex flex-col items-center gap-6">
-          <Eyebrow margin="none">
-            {activeLang === 'sv' ? 'Våra tjänster' : 'Our Services'}
-          </Eyebrow>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-text-primary tracking-tight">
-            {activeLang === 'sv' ? 'Utforska våra andra specialistområden' : 'Explore Our Other Specialist Areas'}
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mt-2 w-full">
-            {otherServices.map((id) => {
-              const otherDetails = serviceDetails[id]?.[activeLang];
-              if (!otherDetails) return null;
-              return (
-                <Link
-                  key={id}
-                  to={`/${activeLang}/services/${id}`}
-                  className="h-full"
-                >
-                  <Card hoverable className="h-full p-5 flex flex-col items-center justify-center gap-3 text-center shadow-sm">
-                    <div className="w-10 h-10 rounded-xl bg-brand-secondary/5 flex items-center justify-center">
-                      {getServiceIcon(id)}
-                    </div>
-                    <span className="text-sm font-bold text-text-primary leading-snug">
-                      {otherDetails.title.split('(')[0].trim()}
-                    </span>
-                  </Card>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </Section>
-
-      {/* 4. DESCRIPTION & BENEFITS SECTION */}
+      {/* 3. DESCRIPTION & BENEFITS SECTION */}
       <Section background="default" className="py-10 md:py-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto">
           {/* Detailed text */}
@@ -691,7 +641,7 @@ const ServiceDetail: React.FC = () => {
         </div>
       </Section>
 
-      {/* 3. PROCESS TIMELINE */}
+      {/* 4. PROCESS TIMELINE */}
       <Section background="alt" className="py-10 md:py-14">
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center gap-12">
           <div className="flex flex-col items-center gap-4">
@@ -733,7 +683,7 @@ const ServiceDetail: React.FC = () => {
         </div>
       </Section>
 
-      {/* 4. WHY CHOOSE US & USE CASES */}
+      {/* 5. WHY CHOOSE US & USE CASES */}
       <Section background="default" className="py-10 md:py-14">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto items-start">
           {/* Why choose us */}
@@ -772,7 +722,7 @@ const ServiceDetail: React.FC = () => {
       </Section>
 
       {/* 6. CONVERSION CTA BANNER */}
-      <Section background="dark" className="py-16 md:py-20 text-center bg-zinc-950 dark:bg-bg-surface text-white rounded-3xl mx-6 my-12 border border-zinc-800/80 relative overflow-hidden">
+      <Section background="dark" className="py-16 md:py-20 text-center !bg-gradient-to-b !from-[#001724] !to-[#000a10] text-zinc-100 rounded-3xl mx-6 my-12 border border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-brand-secondary/10 via-transparent to-transparent pointer-events-none select-none z-0" />
         
         <div className="max-w-2xl mx-auto flex flex-col items-center gap-6 relative z-10">
@@ -786,7 +736,7 @@ const ServiceDetail: React.FC = () => {
           </p>
           <div className="mt-4 flex flex-wrap gap-4 justify-center">
             <Link to={contactPath}>
-              <Button variant="primary" size="lg" rightIcon={<ArrowRight className="w-5 h-5" />}>
+              <Button variant="secondary" size="lg" className="!bg-[#001724] border-white/30 !text-white hover:!bg-[#002536] hover:!border-white/60" rightIcon={<ArrowRight className="w-5 h-5" />}>
                 {activeLang === 'sv' ? 'Kontakta oss' : 'Contact Us'}
               </Button>
             </Link>

@@ -130,7 +130,7 @@
   "team": {
     "page_title": "Our Team",
     "page_description": "Meet REQCON’s consultant managers in Stockholm and Gothenburg.",
-    "contact_title": "Contact our team",
+    "contact_title": "Our Leadership Team",
     "contact_subtitle": "Speak directly with the consultant manager for your region.",
     "fadi_title": "Consultant Manager - Stockholm",
     "anel_title": "Consultant Manager - Gothenburg",
@@ -142,7 +142,8 @@
     "subtitle": "Meet our consultant managers who guide our regional operations and lead our specialist teams.",
     "hero_cta": "Meet Our Team",
     "fadi_desc": "Fadi leads the Stockholm office and is responsible for strategic partnerships as well as recruiting senior requirements analysts.",
-    "anel_desc": "Anel is responsible for Western Sweden and matches complex client needs with the right testing and project management expertise."
+    "anel_desc": "Anel is responsible for Western Sweden and matches complex client needs with the right testing and project management expertise.",
+    "employees_title": "Our Employees"
   },
   "testimonials": {
     "badge": "References",
@@ -360,6 +361,8 @@
       "phone": "Phone number *",
       "phone_placeholder": "07X - XXX XX XX",
       "phone_error": "Please enter your phone number",
+      "message": "Message",
+      "message_placeholder": "Write your message here...",
       "cv": "Upload CV *",
       "cv_error": "Please upload your CV (PDF, DOC or DOCX)",
       "submit": "Submit Application",

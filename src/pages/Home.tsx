@@ -243,12 +243,12 @@ const Home: React.FC = () => {
       
       {/* 1. HERO SECTION */}
       <section
-        className="relative flex min-h-[calc(100svh-var(--navbar-height))] w-full select-none items-center justify-center overflow-hidden bg-slate-950 bg-cover bg-center px-6 py-2"
+        className="home-hero relative flex w-full select-none items-center justify-center overflow-hidden bg-slate-950 bg-cover bg-center px-6"
         style={{ backgroundImage: "url('/images/hero-company-image.jpg')" }}
       >
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(2,6,23,0.92)_0%,rgba(2,6,23,0.76)_58%,rgba(2,6,23,0.86)_100%)]" />
 
-        <div className="relative z-10 mx-auto flex w-full max-w-5xl translate-y-[5svh] flex-col items-center text-center">
+        <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center text-center">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -372,33 +372,9 @@ const Home: React.FC = () => {
         background="default"
         containerClassName="max-w-[86rem]"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center max-w-[80rem] mx-auto">
-          {/* Left Column: Visual Showcase */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative aspect-square w-full max-w-md rounded-3xl overflow-hidden shadow-lg border border-border-custom bg-slate-950/20 group select-none">
-              <img
-                src="/images/about_office.jpg"
-                alt="REQCON kvalitetssäkring, testledning och konsulttjänster i Sverige"
-                className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
-                loading="lazy"
-              />
-              {/* Dark overlay at bottom */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-8 text-left">
-                <h4 className="text-white font-bold text-lg mb-2">
-                  {i18n.language === 'sv' ? 'Leverans med precision' : 'Delivery with Precision'}
-                </h4>
-                <p className="text-zinc-300 text-sm leading-relaxed">
-                  {i18n.language === 'sv'
-                    ? 'Vi matchar er med Sveriges främsta specialister inom kravanalys, testning och agil projektledning.'
-                    : 'We match you with Sweden\'s leading specialists in requirements analysis, testing, and agile project management.'}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Services List */}
-          <div className="lg:col-span-7 flex flex-col gap-6 text-left">
-            <div className="flex flex-col gap-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col gap-6 text-left">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {servicesPreview.map((service, idx) => (
                 <Button
                   key={idx}

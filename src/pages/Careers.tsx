@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Send, CheckCircle2, Check, Heart, ShieldCheck, Award } from 'lucide-react';
 import Section from '../components/Section';
 import Card from '../components/Card';
-import Input from '../components/Input';
+import Input, { TextArea } from '../components/Input';
 import FileInput from '../components/FileInput';
 import Button from '../components/Button';
 import Eyebrow from '../components/Eyebrow';
@@ -16,6 +16,7 @@ interface CareerFormInputs {
   name: string;
   email: string;
   phone: string;
+  message: string;
   cv: File | null;
 }
 
@@ -39,6 +40,7 @@ const Careers: React.FC = () => {
       name: '',
       email: '',
       phone: '',
+      message: '',
       cv: null
     }
   });
@@ -81,7 +83,7 @@ const Careers: React.FC = () => {
 
       {/* 1. HERO SECTION */}
       <section
-        className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[calc(100svh-var(--navbar-height))] bg-slate-950 bg-cover bg-center"
+        className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[50vh] bg-slate-950 bg-cover bg-center"
         style={{ backgroundImage: "url('/images/careers-handshake-hero.png')" }}
       >
         <div className="absolute inset-0 z-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80 dark:from-black dark:via-black/75 dark:to-black/85 pointer-events-none" />
@@ -99,10 +101,6 @@ const Careers: React.FC = () => {
           <p className="text-lg md:text-xl text-zinc-300 leading-relaxed max-w-2xl text-center font-medium">
             {t('careers.hero_subtitle')}
           </p>
-
-          <div className="mt-2 text-base md:text-lg text-white font-extrabold tracking-wide uppercase px-6 py-3 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 select-none text-center shadow-lg">
-            {t('careers.tagline')}
-          </div>
 
           <Button
             type="button"
@@ -278,6 +276,12 @@ const Careers: React.FC = () => {
                       message: t('careers.form.email_invalid')
                     }
                   })}
+                />
+
+                <TextArea
+                  label={t('careers.form.message')}
+                  placeholder={t('careers.form.message_placeholder')}
+                  {...register('message')}
                 />
 
                 <Controller

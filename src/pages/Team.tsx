@@ -1,39 +1,25 @@
 import React from 'react';
-import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone, UserRound } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Section from '../components/Section';
 import Card from '../components/Card';
-import Button from '../components/Button';
-import Eyebrow from '../components/Eyebrow';
-import { teamMembers } from '../content/team';
+import { employeePlaceholders, teamMembers } from '../content/team';
 
 const Team: React.FC = () => {
-  const { t, i18n } = useTranslation();
-  const contactPath = `/${i18n.language === 'en' ? 'en' : 'sv'}/contact`;
+  const { t } = useTranslation();
 
   return (
     <div className="flex flex-col w-full">
       <SEO title={t('team.page_title')} description={t('team.page_description')} />
-      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[calc(100svh-var(--navbar-height))] bg-slate-950">
+      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[50vh] bg-slate-950">
         <div className="absolute inset-0 pointer-events-none">
           <img src="/images/about_office.jpg" alt="" className="w-full h-full object-cover opacity-25 brightness-75" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80" />
         </div>
         <div className="max-w-3xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white">
-          <Eyebrow margin="none">{t('team.badge')}</Eyebrow>
           <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight uppercase">{t('team.title')}</h1>
           <p className="text-base md:text-lg text-zinc-300 leading-relaxed max-w-2xl font-medium">{t('team.subtitle')}</p>
-          <Button
-            type="button"
-            variant="primary"
-            size="lg"
-            className="rounded-full"
-            onClick={() => document.getElementById('team-profiles')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-          >
-            {t('team.hero_cta')}
-          </Button>
         </div>
       </section>
 
@@ -73,13 +59,22 @@ const Team: React.FC = () => {
         </div>
       </Section>
 
-      <Section background="alt" title={t('team.cta_title')} subtitle={t('team.cta_subtitle')}>
-        <div className="flex justify-center">
-          <Link to={contactPath}>
-            <Button variant="primary" size="lg" className="rounded-full" rightIcon={<ArrowRight className="h-5 w-5" />}>
-              {t('team.cta_action')}
-            </Button>
-          </Link>
+      <Section background="alt" title={t('team.employees_title')}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
+          {employeePlaceholders.map((employee) => (
+            <Card key={employee.id} className="min-w-0 overflow-hidden flex flex-col shadow-sm">
+              <div className="flex w-full aspect-[9/10] items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400 dark:from-slate-900 dark:to-slate-800 dark:text-slate-500">
+                <UserRound className="h-24 w-24" aria-hidden="true" />
+              </div>
+              <div className="p-6 flex flex-col gap-4 grow">
+                <div>
+                  <h2 className="text-2xl font-extrabold text-text-primary">{employee.name}</h2>
+                  <p className="text-sm font-semibold text-brand-secondary mt-1">{employee.title}</p>
+                  <p className="text-sm text-text-secondary leading-relaxed mt-4">{employee.description}</p>
+                </div>
+              </div>
+            </Card>
+          ))}
         </div>
       </Section>
     </div>

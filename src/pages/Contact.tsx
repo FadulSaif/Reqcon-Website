@@ -28,7 +28,7 @@ const Contact: React.FC = () => {
   return (
     <div className="flex flex-col w-full">
       <SEO title="Kontakta oss | IT-konsulter i Stockholm & Göteborg | REQCON AB" description="Kontakta REQCON AB för rådgivning och bokning av seniora IT-konsulter inom kravanalys, testledning, UX och agil projektledning i Stockholm och Göteborg." schema={contactSchema} />
-      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[calc(100svh-var(--navbar-height))] bg-slate-950">
+      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[50vh] bg-slate-950">
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
           <img src="/images/about_office.jpg" alt="REQCON Kontor i Stockholm och Göteborg" className="w-full h-full object-cover opacity-30 filter brightness-[0.8] contrast-105" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80 dark:from-black dark:via-black/75 dark:to-black/85" />

@@ -142,7 +142,7 @@ const Services: React.FC = () => {
         schema={servicesSchema}
       />
       {/* Page Header */}
-      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[calc(100svh-var(--navbar-height))] bg-slate-950">
+      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[50vh] bg-slate-950">
         {/* Background Image */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
           <img 
@@ -179,15 +179,6 @@ const Services: React.FC = () => {
             {t('services.subtitle')}
           </p>
 
-          <Button
-            type="button"
-            variant="primary"
-            size="lg"
-            className="rounded-full"
-            onClick={() => document.getElementById('services-list')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-          >
-            {t('services.hero_cta')}
-          </Button>
         </div>
       </section>
 
@@ -227,7 +218,7 @@ const Services: React.FC = () => {
                     </div>
 
                     <div className="flex flex-col gap-3">
-                      <p className="text-sm md:text-base font-semibold text-brand-secondary leading-relaxed">
+                      <p className="text-sm md:text-base font-semibold text-text-secondary leading-relaxed">
                         {service.intro}
                       </p>
                       <p className="text-sm md:text-base text-text-secondary leading-relaxed">

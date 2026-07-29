@@ -108,7 +108,7 @@ export const Header: React.FC = () => {
   const contactPath = `/${routeLanguage}/contact`;
   const navSpacingClass = isScrolled ? 'gap-2 2xl:gap-3' : 'gap-3 2xl:gap-5';
   const navLinkSizeClass = isScrolled ? 'px-2 py-2 text-[11px]' : 'px-2 py-2 text-sm 2xl:px-4 2xl:text-base';
-  const actionGroupClass = isScrolled ? 'gap-2' : 'gap-3';
+  const actionGroupClass = isScrolled ? 'gap-1' : 'gap-2';
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex w-full justify-center pointer-events-none px-4">
@@ -126,7 +126,7 @@ export const Header: React.FC = () => {
             <img
               src="/images/REQCON.svg"
               alt="REQCON – Från vision till produkt"
-              className={`h-auto object-contain transition-[width,filter] duration-300 ease-out dark:brightness-[1.75] dark:contrast-110 motion-reduce:transition-none ${isScrolled ? 'w-[8rem]' : 'w-40'}`}
+              className={`h-auto object-contain transition-[width] duration-300 ease-out motion-reduce:transition-none ${isScrolled ? 'w-[8rem]' : 'w-40'}`}
             />
           </Link>
         </div>

@@ -130,7 +130,7 @@
   "team": {
     "page_title": "Vårt team",
     "page_description": "Möt REQCON:s konsultchefer i Stockholm och Göteborg.",
-    "contact_title": "Kontakta vårt team",
+    "contact_title": "Vårt ledarteam",
     "contact_subtitle": "Prata direkt med konsultchefen för din region.",
     "fadi_title": "Konsultchef - Stockholm",
     "anel_title": "Konsultchef - Göteborg",
@@ -138,11 +138,12 @@
     "cta_subtitle": "För allmänna frågor kan du skicka ett meddelande via vår kontaktsida så återkommer rätt person till dig.",
     "cta_action": "Kontakta oss",
     "badge": "Ledarskap",
-    "title": "Vårt ledningsteam",
+    "title": "Vårt ledarteam",
     "subtitle": "Möt våra konsultchefer som styr våra lokala verksamheter och leder våra specialistteam framåt.",
     "hero_cta": "Möt vårt team",
     "fadi_desc": "Fadi leder Stockholmskontoret och ansvarar för strategiska samarbeten samt rekrytering av seniora kravanalytiker.",
-    "anel_desc": "Anel ansvarar för Västsverige och matchar komplexa kundbehov med rätt test- och projektledarkompetens."
+    "anel_desc": "Anel ansvarar för Västsverige och matchar komplexa kundbehov med rätt test- och projektledarkompetens.",
+    "employees_title": "Våra anställda"
   },
   "testimonials": {
     "badge": "Referenser",
@@ -360,6 +361,8 @@
       "phone": "Telefonnummer *",
       "phone_placeholder": "07X - XXX XX XX",
       "phone_error": "Vänligen ange ditt telefonnummer",
+      "message": "Meddelande",
+      "message_placeholder": "Skriv ditt meddelande här...",
       "cv": "Ladda upp CV *",
       "cv_error": "Vänligen ladda upp ditt CV (PDF, DOC eller DOCX)",
       "submit": "Skicka ansökan",
