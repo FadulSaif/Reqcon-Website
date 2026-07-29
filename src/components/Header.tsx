@@ -35,6 +35,8 @@ export const Header: React.FC = () => {
   const { t, i18n } = useTranslation();
   const routeLanguage: 'sv' | 'en' = location.pathname.startsWith('/en') ? 'en' : 'sv';
   const headerRef = useRef<HTMLElement>(null);
+  const normalizedPath = location.pathname.replace(/\/+$/, '');
+  const isHomePage = normalizedPath === `/${routeLanguage}`;
 
   useEffect(() => {
     let ticking = false;
@@ -106,9 +108,16 @@ export const Header: React.FC = () => {
   };
 
   const contactPath = `/${routeLanguage}/contact`;
+  const isTransparentHomeHeader = isHomePage && !isScrolled;
   const navSpacingClass = isScrolled ? 'gap-2 2xl:gap-3' : 'gap-3 2xl:gap-5';
   const navLinkSizeClass = isScrolled ? 'px-2 py-2 text-[11px]' : 'px-2 py-2 text-sm 2xl:px-4 2xl:text-base';
   const actionGroupClass = isScrolled ? 'gap-1' : 'gap-2';
+  const inactiveNavLinkClass = isTransparentHomeHeader
+    ? 'text-white hover:text-brand-secondary'
+    : 'text-text-primary hover:text-brand-secondary';
+  const mobileMenuButtonClass = isTransparentHomeHeader
+    ? 'text-white hover:border-white/20 hover:bg-white/10'
+    : 'text-text-primary hover:border-slate-300 hover:bg-slate-100 dark:hover:border-white/20 dark:hover:bg-white/10';
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex w-full justify-center pointer-events-none px-4">
@@ -116,8 +125,10 @@ export const Header: React.FC = () => {
         ref={headerRef}
         className={`relative grid grid-cols-2 min-[1440px]:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] ${isScrolled ? 'gap-x-2' : 'gap-x-4'} items-center pointer-events-auto w-full will-change-[max-width,border-radius,height,padding,background-color,box-shadow,transform] transition-all duration-300 ease-[cubic-bezier(0,0,0.2,1)] motion-reduce:transition-none ${
           isScrolled
-            ? 'max-w-[1120px] rounded-[100px] border border-slate-200/70 bg-white/90 px-6 py-1.5 shadow-lg shadow-slate-950/10 backdrop-blur-md dark:border-white/10 dark:bg-[#06131b]/90 dark:shadow-black/30 translate-y-3'
-            : 'max-w-[1440px] rounded-none border border-transparent bg-transparent px-6 py-[22px] shadow-none translate-y-0'
+            ? 'max-w-[1120px] translate-y-3 rounded-[100px] border border-border-custom/70 bg-bg-surface/95 px-6 py-1.5 shadow-lg shadow-slate-950/10 backdrop-blur-md dark:shadow-black/30'
+            : isTransparentHomeHeader
+              ? 'max-w-[1440px] translate-y-0 rounded-none border border-transparent bg-transparent px-6 py-[22px] shadow-none'
+              : 'max-w-[1440px] translate-y-0 rounded-none border border-border-custom/70 bg-bg-surface/95 px-6 py-[22px] shadow-sm backdrop-blur-md'
         }`}
       >
         {/* Logo (Left side) */}
@@ -150,7 +161,7 @@ export const Header: React.FC = () => {
                     className={`relative nav-link ${navLinkSizeClass} transition-colors duration-200 z-10 flex items-center gap-1 group/services hover:after:scale-x-100 after:scale-x-0 after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-brand-secondary/40 after:origin-center after:transition-transform after:duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-2 rounded-lg ${
                       isActive
                         ? 'text-brand-secondary'
-                        : 'text-slate-900 dark:text-white hover:text-brand-secondary'
+                        : inactiveNavLinkClass
                     }`}
                   >
                     <span className="relative z-10 flex items-center gap-1">
@@ -204,7 +215,7 @@ export const Header: React.FC = () => {
                 className={`relative nav-link ${navLinkSizeClass} transition-colors duration-200 z-10 hover:after:scale-x-100 after:scale-x-0 after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-brand-secondary/40 after:origin-center after:transition-transform after:duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-2 rounded-lg ${
                   isActive
                     ? 'text-brand-secondary'
-                    : 'text-slate-900 dark:text-white hover:text-brand-secondary'
+                    : inactiveNavLinkClass
                 }`}
               >
                 <span className="relative z-10">{link.name}</span>
@@ -315,7 +326,7 @@ export const Header: React.FC = () => {
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 rounded-full text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-2 cursor-pointer border border-transparent hover:border-slate-300 dark:hover:border-white/20"
+            className={`p-2 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-2 cursor-pointer border border-transparent ${mobileMenuButtonClass}`}
             aria-expanded={isMobileMenuOpen}
             aria-label="Öppna huvudmeny"
           >

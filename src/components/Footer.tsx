@@ -19,6 +19,19 @@ export const Footer: React.FC = () => {
     { name: t('nav.contact', { lng: routeLanguage }), path: `/${routeLanguage}/contact` }
   ];
 
+  const offices = [
+    {
+      name: 'Stockholm',
+      addressLines: ['Tullgårdsgatan 10', '116 68 Stockholm'],
+      contact: teamMembers[0],
+    },
+    {
+      name: 'Göteborg',
+      addressLines: ['Gustaf Dalénsgatan 30', '417 24 Göteborg'],
+      contact: teamMembers[1],
+    },
+  ];
+
   const isCurrentPage = (path: string) => {
     const normalizedPath = location.pathname.replace(/\/+$/, '');
     const normalizedTarget = path.replace(/\/+$/, '');
@@ -30,7 +43,7 @@ export const Footer: React.FC = () => {
 
   return (
     <footer id="site-footer" className="relative bg-gradient-to-b from-[#001724] to-[#000a10] text-zinc-100 border-t border-white/5 mt-auto">
-      <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 md:grid-cols-[1.54fr_1fr_0.8fr_1fr] gap-y-12 md:gap-x-12">
+      <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 md:grid-cols-[1.25fr_0.85fr_0.7fr_1.55fr] gap-y-12 md:gap-x-8 lg:gap-x-10">
         
         {/* Brand Column */}
         <div className="flex flex-col items-start justify-center gap-6 md:col-span-1">
@@ -98,60 +111,52 @@ export const Footer: React.FC = () => {
           <span className="font-heading font-semibold text-sm uppercase tracking-wider text-zinc-200">
             {t('footer.offices', { lng: routeLanguage })}
           </span>
-          <div className="flex flex-col gap-4 text-sm text-zinc-400">
-            <div className="flex gap-2.5 items-start">
-              <MapPin className="w-4 h-4 text-brand-secondary mt-0.5 shrink-0" />
-              <div>
-                <span className="font-semibold text-white block">Stockholm</span>
-                Tullgårdsgatan 10<br />116 68 Stockholm
-                <div className="mt-3 flex flex-col gap-1.5">
-                  <span className="font-semibold text-zinc-200">
-                    {t('nav.contact', { lng: routeLanguage })}
+          <ul className="flex flex-col gap-5 text-sm text-zinc-400">
+            {offices.map((office, index) => (
+              <li
+                key={office.name}
+                className={`grid min-w-0 grid-cols-1 gap-y-3 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-x-6 ${
+                  index > 0 ? 'border-t border-white/10 pt-5' : ''
+                }`}
+              >
+                <div className="flex min-w-0 items-start gap-2.5">
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-secondary" aria-hidden="true" />
+                  <address className="min-w-0 not-italic">
+                    <span className="block font-semibold text-white">{office.name}</span>
+                    {office.addressLines.map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
+                    ))}
+                  </address>
+                </div>
+
+                <div className="flex min-w-0 flex-col gap-1.5 pl-[1.625rem] lg:pl-0">
+                  <span className="font-heading text-sm font-semibold text-white">
+                    {t('footer.contact', { lng: routeLanguage })}
                   </span>
                   <a
-                    href={`mailto:${teamMembers[0].email}`}
-                    className="inline-flex items-center gap-2 hover:text-brand-secondary transition-colors"
+                    href={`mailto:${office.contact.email}`}
+                    aria-label={`${t('footer.email', { lng: routeLanguage })}: ${office.contact.email}`}
+                    className="inline-flex min-w-0 items-start gap-2 transition-colors hover:text-brand-secondary"
                   >
-                    <Mail className="h-3.5 w-3.5 shrink-0 text-brand-secondary" aria-hidden="true" />
-                    {teamMembers[0].email}
+                    <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-secondary" aria-hidden="true" />
+                    <span className="min-w-0 break-words [overflow-wrap:anywhere]">
+                      {office.contact.email}
+                    </span>
                   </a>
                   <a
-                    href={`tel:${teamMembers[0].phone.replace(/[\s-]/g, '')}`}
-                    className="inline-flex items-center gap-2 hover:text-brand-secondary transition-colors"
+                    href={`tel:+46${office.contact.phone.replace(/\D/g, '').replace(/^0/, '')}`}
+                    aria-label={`${t('footer.phone', { lng: routeLanguage })}: ${office.contact.phone}`}
+                    className="inline-flex min-w-0 items-center gap-2 transition-colors hover:text-brand-secondary"
                   >
                     <Phone className="h-3.5 w-3.5 shrink-0 text-brand-secondary" aria-hidden="true" />
-                    {teamMembers[0].phone}
+                    <span>{office.contact.phone}</span>
                   </a>
                 </div>
-              </div>
-            </div>
-            <div className="flex gap-2.5 items-start">
-              <MapPin className="w-4 h-4 text-brand-secondary mt-0.5 shrink-0" />
-              <div>
-                <span className="font-semibold text-white block">Göteborg</span>
-                Gustaf Dalénsgatan 30<br />417 24 Göteborg
-                <div className="mt-3 flex flex-col gap-1.5">
-                  <span className="font-semibold text-zinc-200">
-                    {t('nav.contact', { lng: routeLanguage })}
-                  </span>
-                  <a
-                    href={`mailto:${teamMembers[1].email}`}
-                    className="inline-flex items-center gap-2 hover:text-brand-secondary transition-colors"
-                  >
-                    <Mail className="h-3.5 w-3.5 shrink-0 text-brand-secondary" aria-hidden="true" />
-                    {teamMembers[1].email}
-                  </a>
-                  <a
-                    href={`tel:${teamMembers[1].phone.replace(/[\s-]/g, '')}`}
-                    className="inline-flex items-center gap-2 hover:text-brand-secondary transition-colors"
-                  >
-                    <Phone className="h-3.5 w-3.5 shrink-0 text-brand-secondary" aria-hidden="true" />
-                    {teamMembers[1].phone}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+              </li>
+            ))}
+          </ul>
         </div>
 
       </div>

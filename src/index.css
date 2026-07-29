@@ -207,14 +207,16 @@
 
 .home-hero {
   /*
-   * Keep the lower hero composition in normal layout flow. The top-padding
-   * offset visually replaces the former translate-y without allowing CTA
-   * buttons to escape the section when mobile text wraps.
+   * Pull the homepage hero beneath the fixed navbar while keeping its content
+   * in normal flow. Including the measured navbar height in the top padding
+   * preserves the established lower composition without letting the CTA row
+   * escape the hero when mobile text wraps.
    */
-  min-height: calc(100vh - var(--navbar-height));
-  min-height: calc(100dvh - var(--navbar-height));
-  padding-top: calc(0.5rem + 10vh);
-  padding-top: calc(0.5rem + 10dvh);
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin-top: calc(-1 * var(--navbar-height));
+  padding-top: calc(var(--navbar-height) + 0.5rem + 10vh);
+  padding-top: calc(var(--navbar-height) + 0.5rem + 10dvh);
   padding-bottom: 0.5rem;
 }
 
