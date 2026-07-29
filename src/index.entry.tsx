@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { BrowserRouter, StaticRouter } from 'react-router-dom';
 import { createAppConfig } from '@wroud/vite-plugin-ssg/app';
 import type { IndexComponentProps } from '@wroud/vite-plugin-ssg';
@@ -38,6 +39,7 @@ const Document = ({ context }: IndexComponentProps) => {
       <Head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {import.meta.env.DEV && <link rel="stylesheet" href="/src/index.css" />}
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />

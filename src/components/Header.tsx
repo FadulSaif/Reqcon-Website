@@ -59,28 +59,7 @@ export const Header: React.FC = () => {
     };
   }, []);
 
-  // Keep all page content clear of the fixed navigation. The clearance is the
-  // navbar's actual bottom edge, which includes the pill's top inset.
-  useEffect(() => {
-    const header = headerRef.current;
-    if (!header || typeof window === 'undefined') return;
 
-    const publishClearance = () => {
-      // Keep the maximum measured clearance during the shape change. The
-      // shorter scrolled pill cannot overlap content, and this avoids moving
-      // the entire page by a few pixels on every animation frame.
-      const clearance = Math.max(72, Math.ceil(header.getBoundingClientRect().bottom));
-      document.documentElement.style.setProperty('--navbar-height', `${clearance}px`);
-    };
-
-    publishClearance();
-    const observer = new ResizeObserver(publishClearance);
-    observer.observe(header);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [isScrolled]);
 
   // Close mobile and services menus on page transition
   useEffect(() => {
@@ -127,22 +106,18 @@ export const Header: React.FC = () => {
   };
 
   const contactPath = `/${routeLanguage}/contact`;
-  const navSpacingClass = isScrolled ? 'gap-3' : 'gap-3 2xl:gap-5';
+  const navSpacingClass = isScrolled ? 'gap-2 2xl:gap-3' : 'gap-3 2xl:gap-5';
   const navLinkSizeClass = isScrolled ? 'px-2 py-2 text-[11px]' : 'px-2 py-2 text-sm 2xl:px-4 2xl:text-base';
   const actionGroupClass = isScrolled ? 'gap-2' : 'gap-3';
 
   return (
-    <div
-      className={`fixed top-0 left-0 right-0 z-50 flex w-full justify-center pointer-events-none transition-[padding] duration-[400ms] ease-[cubic-bezier(0,0,0.2,1)] motion-reduce:transition-none ${
-        isScrolled ? 'p-3 px-4' : 'px-4'
-      }`}
-    >
+    <div className="fixed top-0 left-0 right-0 z-50 flex w-full justify-center pointer-events-none px-4">
       <header
         ref={headerRef}
-        className={`relative grid grid-cols-2 min-[1440px]:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-x-4 items-center pointer-events-auto w-full will-change-[max-width,border-radius,height,padding,background-color,box-shadow] transition-all duration-[400ms] ease-[cubic-bezier(0,0,0.2,1)] motion-reduce:transition-none ${
+        className={`relative grid grid-cols-2 min-[1440px]:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] ${isScrolled ? 'gap-x-2' : 'gap-x-4'} items-center pointer-events-auto w-full will-change-[max-width,border-radius,height,padding,background-color,box-shadow,transform] transition-all duration-300 ease-[cubic-bezier(0,0,0.2,1)] motion-reduce:transition-none ${
           isScrolled
-            ? 'max-w-[1440px] rounded-[100px] border border-slate-200/70 bg-white/90 px-6 py-4 shadow-lg shadow-slate-950/10 backdrop-blur-md dark:border-white/10 dark:bg-[#06131b]/90 dark:shadow-black/30'
-            : 'max-w-[1440px] rounded-none border border-transparent bg-transparent px-6 py-[22px] shadow-none'
+            ? 'max-w-[1120px] rounded-[100px] border border-slate-200/70 bg-white/90 px-6 py-1.5 shadow-lg shadow-slate-950/10 backdrop-blur-md dark:border-white/10 dark:bg-[#06131b]/90 dark:shadow-black/30 translate-y-3'
+            : 'max-w-[1440px] rounded-none border border-transparent bg-transparent px-6 py-[22px] shadow-none translate-y-0'
         }`}
       >
         {/* Logo (Left side) */}
@@ -151,13 +126,13 @@ export const Header: React.FC = () => {
             <img
               src="/images/REQCON.svg"
               alt="REQCON – Från vision till produkt"
-              className={`h-auto object-contain transition-[width,filter] duration-[400ms] ease-out dark:brightness-[1.75] dark:contrast-110 motion-reduce:transition-none ${isScrolled ? 'w-[9.25rem]' : 'w-40'}`}
+              className={`h-auto object-contain transition-[width,filter] duration-300 ease-out dark:brightness-[1.75] dark:contrast-110 motion-reduce:transition-none ${isScrolled ? 'w-[8rem]' : 'w-40'}`}
             />
           </Link>
         </div>
 
         {/* Centered Desktop Navigation Links */}
-        <nav className={`hidden min-[1440px]:flex shrink-0 items-center justify-center whitespace-nowrap ${isScrolled ? '-ml-8' : ''} ${navSpacingClass}`}>
+        <nav className={`hidden min-[1440px]:flex shrink-0 items-center justify-center whitespace-nowrap transition-transform duration-300 ease-[cubic-bezier(0,0,0.2,1)] ${isScrolled ? '-translate-x-20' : 'translate-x-0'} ${navSpacingClass}`}>
           {navLinks.map((link) => {
             const isActive = isLinkActive(link.path);
             const isServices = link.path.endsWith('/services');
@@ -172,9 +147,9 @@ export const Header: React.FC = () => {
                 >
                   <Link
                     to={link.path}
-                      className={`relative nav-link ${navLinkSizeClass} transition-colors duration-200 z-10 flex items-center gap-1 group/services hover:after:scale-x-100 after:scale-x-0 after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-brand-secondary/40 after:origin-center after:transition-transform after:duration-300 ${
-                        isActive
-                          ? 'text-brand-secondary'
+                    className={`relative nav-link ${navLinkSizeClass} transition-colors duration-200 z-10 flex items-center gap-1 group/services hover:after:scale-x-100 after:scale-x-0 after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-brand-secondary/40 after:origin-center after:transition-transform after:duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-2 rounded-lg ${
+                      isActive
+                        ? 'text-brand-secondary'
                         : 'text-slate-900 dark:text-white hover:text-brand-secondary'
                     }`}
                   >
@@ -209,7 +184,7 @@ export const Header: React.FC = () => {
                               onClick={() => {
                                 setIsServicesDropdownOpen(false);
                               }}
-                              className="dropdown-item px-4 py-2.5 text-text-secondary hover:text-brand-secondary hover:bg-slate-50 dark:hover:bg-zinc-900 rounded-xl transition-all duration-200"
+                              className="dropdown-item px-4 py-2.5 text-text-secondary hover:text-brand-secondary hover:bg-slate-50 dark:hover:bg-zinc-900 rounded-xl transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-1"
                             >
                               {item.name.split('(')[0].trim()}
                             </Link>
@@ -226,10 +201,10 @@ export const Header: React.FC = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative nav-link ${navLinkSizeClass} transition-colors duration-200 z-10 hover:after:scale-x-100 after:scale-x-0 after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-brand-secondary/40 after:origin-center after:transition-transform after:duration-300 ${
+                className={`relative nav-link ${navLinkSizeClass} transition-colors duration-200 z-10 hover:after:scale-x-100 after:scale-x-0 after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-brand-secondary/40 after:origin-center after:transition-transform after:duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-2 rounded-lg ${
                   isActive
                     ? 'text-brand-secondary'
-                  : 'text-slate-900 dark:text-white hover:text-brand-secondary'
+                    : 'text-slate-900 dark:text-white hover:text-brand-secondary'
                 }`}
               >
                 <span className="relative z-10">{link.name}</span>
@@ -251,7 +226,7 @@ export const Header: React.FC = () => {
             <Button
               variant={isLinkActive(contactPath) ? 'secondary' : 'primary'}
               size="sm"
-              className={`${isScrolled ? 'px-3 py-1.5 text-[11px]' : 'px-4 py-2 text-xs'} font-bold uppercase tracking-wider rounded-full shrink-0 whitespace-nowrap shadow-sm hover:shadow-md transition-all duration-300`}
+              className={`${isScrolled ? 'px-2.5 py-1 text-[10px]' : 'px-4 py-2 text-xs'} font-bold uppercase tracking-wider rounded-full shrink-0 whitespace-nowrap shadow-sm hover:shadow-md transition-all duration-300`}
               rightIcon={<ArrowRight className="w-3.5 h-3.5" />}
             >
               {t('nav.contact', { lng: routeLanguage })}
@@ -262,7 +237,7 @@ export const Header: React.FC = () => {
           <div className="relative shrink-0">
             <button
               onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-              className={`flex shrink-0 items-center whitespace-nowrap ${isScrolled ? 'gap-1.5 px-2 py-1 text-[11px]' : 'gap-2 px-3 py-1.5 text-xs'} rounded-full border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-[#0f2330] hover:bg-slate-100 dark:hover:bg-[#153040] text-slate-900 dark:text-white transition-colors duration-200 font-bold cursor-pointer focus:outline-none shadow-sm`}
+              className={`flex shrink-0 items-center whitespace-nowrap ${isScrolled ? 'gap-1 px-2.5 py-0.5 text-[10px]' : 'gap-2 px-3 py-1.5 text-xs'} rounded-full border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-[#0f2330] hover:bg-slate-100 dark:hover:bg-[#153040] text-slate-900 dark:text-white transition-colors duration-200 font-bold cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-2 shadow-sm`}
               aria-haspopup="true"
               aria-expanded={isLangDropdownOpen}
             >
@@ -293,7 +268,7 @@ export const Header: React.FC = () => {
                         handleLanguageChange('sv');
                         setIsLangDropdownOpen(false);
                       }}
-                      className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-xs font-bold transition-colors cursor-pointer ${
+                      className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-xs font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-1 ${
                         routeLanguage === 'sv'
                           ? 'bg-slate-50 dark:bg-slate-800/50 text-brand-secondary'
                           : 'text-text-secondary hover:bg-slate-50 dark:hover:bg-slate-800/30 hover:text-text-primary'
@@ -311,7 +286,7 @@ export const Header: React.FC = () => {
                         handleLanguageChange('en');
                         setIsLangDropdownOpen(false);
                       }}
-                      className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-xs font-bold transition-colors cursor-pointer ${
+                      className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-xs font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-1 ${
                         routeLanguage === 'en'
                           ? 'bg-slate-50 dark:bg-slate-800/50 text-brand-secondary'
                           : 'text-text-secondary hover:bg-slate-50 dark:hover:bg-slate-800/30 hover:text-text-primary'
@@ -329,7 +304,9 @@ export const Header: React.FC = () => {
             </AnimatePresence>
           </div>
 
-          <ThemeToggle />
+          <div className={`transition-transform duration-300 origin-center ${isScrolled ? 'scale-80' : 'scale-100'}`}>
+            <ThemeToggle />
+          </div>
         </div>
 
         {/* Mobile controls */}
@@ -338,7 +315,7 @@ export const Header: React.FC = () => {
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 rounded-full text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-colors focus:outline-none cursor-pointer border border-transparent hover:border-slate-300 dark:hover:border-white/20"
+            className="p-2 rounded-full text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-2 cursor-pointer border border-transparent hover:border-slate-300 dark:hover:border-white/20"
             aria-expanded={isMobileMenuOpen}
             aria-label="Öppna huvudmeny"
           >
@@ -376,10 +353,10 @@ export const Header: React.FC = () => {
                   </span>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer text-text-primary"
+                    className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-1"
                     aria-label="Stäng meny"
                   >
-                    <X className="w-5 h-5" />
+                    <X className="w-5 h-5" aria-hidden="true" />
                   </button>
                 </div>
 
@@ -394,7 +371,7 @@ export const Header: React.FC = () => {
                         <Link
                           key={link.path}
                           to={link.path}
-                          className={`text-xl font-bold py-2 transition-colors ${
+                          className={`text-xl font-bold py-2 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-1 rounded-lg ${
                             isActive ? 'text-brand-secondary' : 'text-text-primary'
                           }`}
                         >
@@ -416,7 +393,7 @@ export const Header: React.FC = () => {
                   <div className="flex gap-2">
                     <button
                       onClick={() => handleLanguageChange('sv')}
-                      className={`flex items-center justify-center gap-2 flex-1 py-2 px-4 rounded-full border text-xs font-bold text-center transition-all ${
+                      className={`flex items-center justify-center gap-2 flex-1 py-2 px-4 rounded-full border text-xs font-bold text-center transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-1 ${
                         routeLanguage === 'sv'
                           ? 'bg-brand-secondary/10 border-brand-secondary text-brand-secondary font-extrabold'
                           : 'border-border-custom bg-slate-50/50 dark:bg-slate-800/50 text-text-secondary'
@@ -427,7 +404,7 @@ export const Header: React.FC = () => {
                     </button>
                     <button
                       onClick={() => handleLanguageChange('en')}
-                      className={`flex items-center justify-center gap-2 flex-1 py-2 px-4 rounded-full border text-xs font-bold text-center transition-all ${
+                      className={`flex items-center justify-center gap-2 flex-1 py-2 px-4 rounded-full border text-xs font-bold text-center transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-1 ${
                         routeLanguage === 'en'
                           ? 'bg-brand-secondary/10 border-brand-secondary text-brand-secondary font-extrabold'
                           : 'border-border-custom bg-slate-50/50 dark:bg-slate-800/50 text-text-secondary'

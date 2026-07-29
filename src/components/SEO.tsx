@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { SITE_URL, toAbsoluteUrl } from '../config/site';

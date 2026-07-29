@@ -11,7 +11,7 @@ export const ThemeToggle: React.FC = () => {
     <button
       type="button"
       onClick={toggleTheme}
-      className="relative w-14 h-8 rounded-full bg-gradient-to-r from-accent-secondary/[0.08] to-accent-primary/[0.18] dark:from-accent-secondary/[0.18] dark:to-accent-primary/[0.28] border border-slate-300/80 dark:border-zinc-700/80 cursor-pointer p-1 transition-all duration-300 focus:outline-none shrink-0 shadow-sm"
+      className="relative w-14 h-8 rounded-full bg-gradient-to-r from-accent-secondary/[0.08] to-accent-primary/[0.18] dark:from-accent-secondary/[0.18] dark:to-accent-primary/[0.28] border border-slate-300/80 dark:border-zinc-700/80 cursor-pointer p-1 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-2 shrink-0 shadow-sm"
       aria-label={isDark ? 'Växla till ljust läge' : 'Växla till mörkt läge'}
     >
       {/* Background indicators */}
