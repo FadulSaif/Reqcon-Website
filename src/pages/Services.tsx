@@ -200,9 +200,6 @@ const Services: React.FC = () => {
                 <div className="flex-grow flex flex-col gap-5 justify-between">
                   <div className="flex flex-col gap-4">
                     <div className="flex flex-col gap-1.5">
-                      <Eyebrow margin="none">
-                        {t('services.badge')}
-                      </Eyebrow>
                       <h2 className="text-3xl md:text-4xl font-extrabold text-text-primary tracking-tight leading-tight">
                         {service.title}
                       </h2>

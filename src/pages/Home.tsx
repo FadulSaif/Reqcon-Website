@@ -390,14 +390,14 @@ const Home: React.FC = () => {
         className="!pt-3 !pb-6 md:!pt-4 md:!pb-8 text-center border-b border-border-custom overflow-hidden"
       >
         {/* Custom uppercase header label and line dividers with a center dot indicator */}
-        <div className="flex items-center justify-center gap-4 mb-5 px-6 max-w-5xl mx-auto select-none">
-          <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent to-slate-200 dark:to-zinc-800" />
+        <div className="flex w-full items-center justify-center gap-2 sm:gap-4 mb-5 px-0 sm:px-6 max-w-5xl mx-auto select-none">
+          <div className="flex-1 h-[1px] bg-border-custom" />
           <div className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />
           <Eyebrow margin="none" nowrap>
             {t('clients.title')}
           </Eyebrow>
           <div className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />
-          <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent to-slate-200 dark:to-zinc-800" />
+          <div className="flex-1 h-[1px] bg-border-custom" />
         </div>
 
         <div className="w-full select-none space-y-3">

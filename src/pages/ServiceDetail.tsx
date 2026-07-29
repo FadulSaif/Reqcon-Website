@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import Section from '../components/Section';
 import Button from '../components/Button';
+import Card from '../components/Card';
 import Eyebrow from '../components/Eyebrow';
 import SEO from '../components/SEO';
 import { SITE_URL } from '../config/site';
@@ -562,7 +563,14 @@ const ServiceDetail: React.FC = () => {
           
           {/* Centered Main Info Block */}
           <div className="flex flex-col items-center gap-4 mt-2 max-w-4xl">
-            <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-tight uppercase text-center">
+            <h1
+              lang={activeLang}
+              className={`font-black tracking-tight text-white leading-tight uppercase text-center ${
+                activeLang === 'sv'
+                  ? 'w-full min-w-0 text-[clamp(2rem,8.5vw,3.75rem)] [overflow-wrap:break-word] hyphens-auto'
+                  : 'text-4xl md:text-6xl'
+              }`}
+            >
               {details.title.split('(')[0].trim()}
             </h1>
             <Eyebrow margin="none">
@@ -582,7 +590,69 @@ const ServiceDetail: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. DESCRIPTION & BENEFITS SECTION */}
+      {/* 2. SERVICE OVERVIEW */}
+      <Section background="default" className="py-10 md:py-14">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 max-w-6xl mx-auto items-center">
+          <div className="flex flex-col items-start gap-5 text-left">
+            <Eyebrow margin="none">
+              {activeLang === 'sv' ? 'Tjänsteöversikt' : 'Service Overview'}
+            </Eyebrow>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-text-primary tracking-tight leading-tight">
+              {details.title}
+            </h2>
+            <p className="text-base md:text-lg text-text-secondary leading-relaxed max-w-2xl">
+              {details.schemaDescription}
+            </p>
+          </div>
+
+          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border-custom shadow-sm">
+            <img
+              src={getServiceImage(serviceId!)}
+              alt={details.title}
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
+        </div>
+      </Section>
+
+      {/* 3. REST OF SERVICES */}
+      <Section background="alt" className="py-10 md:py-14 text-center border-y border-border-custom">
+        <div className="max-w-6xl mx-auto flex flex-col items-center gap-6">
+          <Eyebrow margin="none">
+            {activeLang === 'sv' ? 'Våra tjänster' : 'Our Services'}
+          </Eyebrow>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-text-primary tracking-tight">
+            {activeLang === 'sv' ? 'Utforska våra andra specialistområden' : 'Explore Our Other Specialist Areas'}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mt-2 w-full">
+            {otherServices.map((id) => {
+              const otherDetails = serviceDetails[id]?.[activeLang];
+              if (!otherDetails) return null;
+              return (
+                <Link
+                  key={id}
+                  to={`/${activeLang}/services/${id}`}
+                  className="h-full"
+                  onClick={() => window.scrollTo(0,0)}
+                >
+                  <Card hoverable className="h-full p-5 flex flex-col items-center justify-center gap-3 text-center shadow-sm">
+                    <div className="w-10 h-10 rounded-xl bg-brand-secondary/5 flex items-center justify-center">
+                      {getServiceIcon(id)}
+                    </div>
+                    <span className="text-sm font-bold text-text-primary leading-snug">
+                      {otherDetails.title.split('(')[0].trim()}
+                    </span>
+                  </Card>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </Section>
+
+      {/* 4. DESCRIPTION & BENEFITS SECTION */}
       <Section background="default" className="py-10 md:py-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto">
           {/* Detailed text */}
@@ -704,36 +774,6 @@ const ServiceDetail: React.FC = () => {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* 5. INTERNAL LINKING SITEMAP */}
-      <Section background="alt" className="py-16 text-center border-t border-border-custom">
-        <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
-          <Eyebrow margin="none">
-            {activeLang === 'sv' ? 'Fler specialistkompetenser' : 'More Specialist Competences'}
-          </Eyebrow>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-2 w-full justify-center">
-            {otherServices.map((id) => {
-              const otherDetails = serviceDetails[id]?.[activeLang];
-              if (!otherDetails) return null;
-              return (
-                <Link
-                  key={id}
-                  to={`/${activeLang}/services/${id}`}
-                  className="bg-gradient-to-br from-white via-white to-accent-primary/[0.14] dark:from-zinc-950 dark:via-bg-surface dark:to-accent-primary/[0.08] border border-border-custom hover:-translate-y-0.5 hover:shadow-md hover:border-accent-primary rounded-xl p-4 shadow-sm flex flex-col items-center gap-2 text-center transition-[transform,box-shadow,border-color] duration-200 select-none group"
-                  onClick={() => window.scrollTo(0,0)}
-                >
-                  <div className="w-8 h-8 rounded-lg bg-brand-secondary/5 flex items-center justify-center group-hover:bg-brand-secondary/10 transition-colors">
-                    {getServiceIcon(id)}
-                  </div>
-                  <span className="text-xs font-bold text-text-primary leading-snug line-clamp-2">
-                    {otherDetails.title.split('&')[0].split('(')[0].trim()}
-                  </span>
-                </Link>
-              );
-            })}
           </div>
         </div>
       </Section>

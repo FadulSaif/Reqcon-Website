@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -26,6 +26,8 @@ const Careers: React.FC = () => {
     () => new URLSearchParams(location.search).get('formsubmit') === 'success'
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const {
     register,
@@ -41,9 +43,23 @@ const Careers: React.FC = () => {
     }
   });
 
-  const onSubmit: SubmitHandler<CareerFormInputs> = (_data, event) => {
+  const onSubmit: SubmitHandler<CareerFormInputs> = () => {
     setIsSubmitting(true);
-    event?.currentTarget.submit();
+    setSubmitError(null);
+
+    try {
+      const form = formRef.current;
+
+      if (!form) {
+        throw new Error('Careers form element is unavailable.');
+      }
+
+      form.submit();
+    } catch (error) {
+      console.error('Unable to submit the careers form.', error);
+      setIsSubmitting(false);
+      setSubmitError(t('contact.form.submit_error'));
+    }
   };
 
   const expectationBullets = t('careers.expectations_bullets', { returnObjects: true }) as string[];
@@ -200,6 +216,7 @@ const Careers: React.FC = () => {
               </div>
             ) : (
               <form
+                ref={formRef}
                 action="https://formsubmit.co/info@reqcon.se"
                 method="POST"
                 encType="multipart/form-data"
@@ -283,6 +300,12 @@ const Careers: React.FC = () => {
                     />
                   )}
                 />
+
+                {submitError && (
+                  <p className="text-sm font-medium text-red-600" role="alert">
+                    {submitError}
+                  </p>
+                )}
 
                 <Button
                   type="submit"

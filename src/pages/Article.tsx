@@ -16,22 +16,22 @@ const Article: React.FC = () => {
   return (
     <article className="bg-bg-page text-text-primary">
       <SEO title={copy.title} description={copy.description} />
-      <div className="max-w-3xl mx-auto px-6 py-16 md:py-24">
+      <div className="max-w-[46rem] mx-auto px-5 sm:px-6 py-16 md:py-24">
         <Link to={`/${lng}/articles`} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-secondary hover:underline">
           <ArrowLeft className="w-4 h-4" />{backLabel}
         </Link>
-        <header className="mt-8 border-b border-border-custom pb-10">
+        <header className="mt-8 border-b border-border-custom pb-12">
           <Eyebrow>REQCON Insights</Eyebrow>
           <h1 className="mt-4 font-heading text-4xl md:text-5xl font-bold tracking-tight">{copy.title}</h1>
-          <div className="mt-7 space-y-4 text-lg leading-8 text-text-secondary">
+          <div className="mt-7 max-w-[65ch] space-y-5 text-[1.0625rem] md:text-lg leading-8 text-text-secondary">
             {copy.answer.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
         </header>
-        <div className="mt-12 space-y-12">
+        <div className="mt-14 max-w-[65ch] space-y-14">
           {copy.sections.map((section) => (
             <section key={section.heading}>
-              <h2 className="font-heading text-2xl font-bold">{section.heading}</h2>
-              <div className="mt-4 space-y-4 leading-7 text-text-secondary">
+              <h2 className="font-heading text-2xl md:text-3xl font-bold leading-tight">{section.heading}</h2>
+              <div className="mt-5 space-y-5 text-[1.0625rem] leading-8 text-text-secondary">
                 {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               </div>
             </section>

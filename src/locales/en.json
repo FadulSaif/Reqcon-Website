@@ -394,7 +394,7 @@
       "service_context": "Your inquiry concerns: {{service}}",
       "submit": "Send Message",
       "success_title": "Message sent!",
-      "success_desc": "Thank you for contacting REQCON. We have received your message and usually reply within 24 hours on business days.",
+      "success_desc": "Thank you for contacting REQCON. We have received your message and will reply within 24–48 hours on business days.",
       "success_btn": "Send another message",
       "submit_error": "We could not send your message right now. Please try again or email info@reqcon.se."
     }
