@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import Button from '../components/Button';
 import Eyebrow from '../components/Eyebrow';
 import SEO from '../components/SEO';
+import SubpageHero from '../components/SubpageHero';
 import { toAbsoluteUrl } from '../config/site';
 import { teamMembers } from '../content/team';
 
@@ -83,20 +84,11 @@ const About: React.FC = () => {
         }}
       />
       {/* Page Header */}
-      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[50vh] bg-slate-950">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0 select-none pointer-events-none">
-          <img 
-            src="/images/about_office.jpg" 
-            alt="REQCON Kontorsmiljö i Stockholm" 
-            className="w-full h-full object-cover opacity-35 filter brightness-90 contrast-105"
-          />
-          {/* Dark gradient mask */}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80 dark:from-black dark:via-black/75 dark:to-black/85" />
-        </div>
-        
-        {/* Content Container */}
-        <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white">
+      <SubpageHero
+        backgroundImage="/images/about_office.jpg"
+        backgroundAlt="REQCON Kontorsmiljö i Stockholm"
+        imageClassName="opacity-35 brightness-90 contrast-105"
+      >
           <Eyebrow>
             {t('about.badge')}
           </Eyebrow>
@@ -118,8 +110,7 @@ const About: React.FC = () => {
           >
             {t('about.hero_cta')}
           </Button>
-        </div>
-      </section>
+      </SubpageHero>
 
       {/* 1. OUR STORY BLOCK */}
       <Section id="about-story" background="default" animate={true} className="scroll-mt-[var(--navbar-height)] py-10 md:py-14">

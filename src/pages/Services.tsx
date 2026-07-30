@@ -7,6 +7,7 @@ import Card from '../components/Card';
 import Button from '../components/Button';
 import Eyebrow from '../components/Eyebrow';
 import SEO from '../components/SEO';
+import SubpageHero from '../components/SubpageHero';
 import { SITE_URL } from '../config/site';
 
 const servicesSchema = {
@@ -132,8 +133,6 @@ const Services: React.FC = () => {
     }
   ];
 
-  const contactPath = `/${i18n.language}/contact`;
-
   return (
     <div className="flex flex-col w-full">
       <SEO
@@ -142,22 +141,12 @@ const Services: React.FC = () => {
         schema={servicesSchema}
       />
       {/* Page Header */}
-      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[50vh] bg-slate-950">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0 select-none pointer-events-none">
-          <img 
-            src="/images/hero-company-image.jpg" 
-            alt="REQCON specialisttjänster inom IT-konsultation och systemutveckling" 
-            className="w-full h-full object-cover opacity-25 filter brightness-[0.75] contrast-105"
-          />
-          {/* Dark gradient mask */}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80 dark:from-black dark:via-black/75 dark:to-black/85" />
-        </div>
-        
-        {/* Content Container */}
-        <div className={`max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white ${
-          i18n.language === 'sv' ? 'w-full min-w-0' : ''
-        }`}>
+      <SubpageHero
+        backgroundImage="/images/hero-company-image.jpg"
+        backgroundAlt="REQCON specialisttjänster inom IT-konsultation och systemutveckling"
+        imageClassName="opacity-25 brightness-[0.75] contrast-105"
+        contentClassName={i18n.language === 'sv' ? 'min-w-0' : ''}
+      >
           <Eyebrow margin="none">
             {t('services.badge')}
           </Eyebrow>
@@ -179,8 +168,7 @@ const Services: React.FC = () => {
             {t('services.subtitle')}
           </p>
 
-        </div>
-      </section>
+      </SubpageHero>
 
       {/* Services List Section */}
       <Section id="services-list" background="default" animate={true} className="scroll-mt-[var(--navbar-height)] py-10 md:py-14">
@@ -257,22 +245,6 @@ const Services: React.FC = () => {
         </div>
       </Section>
 
-      {/* Bottom conversion block */}
-      <Section background="dark" className="py-16 md:py-20 text-center bg-zinc-950 dark:bg-bg-surface text-white rounded-3xl mx-6 my-12 border border-zinc-800/80">
-        <div className="max-w-2xl mx-auto flex flex-col items-center gap-6">
-          <h2 className="text-3xl font-extrabold tracking-tight text-white">{t('services.cta_cta_title')}</h2>
-          <p className="text-slate-400 text-sm md:text-base leading-relaxed">
-            {t('services.cta_cta_desc')}
-          </p>
-          <div className="mt-4">
-            <Link to={contactPath}>
-              <Button variant="primary" size="lg">
-                {t('services.cta_cta_btn')}
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </Section>
     </div>
   );
 };

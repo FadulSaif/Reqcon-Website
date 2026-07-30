@@ -10,6 +10,7 @@ import FileInput from '../components/FileInput';
 import Button from '../components/Button';
 import Eyebrow from '../components/Eyebrow';
 import SEO from '../components/SEO';
+import SubpageHero from '../components/SubpageHero';
 import { toAbsoluteUrl } from '../config/site';
 
 interface CareerFormInputs {
@@ -82,14 +83,10 @@ const Careers: React.FC = () => {
       />
 
       {/* 1. HERO SECTION */}
-      <section
-        className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[50vh] bg-slate-950 bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/careers-handshake-hero.png')" }}
+      <SubpageHero
+        backgroundImage="/images/careers-handshake-hero.png"
+        imageClassName="opacity-100"
       >
-        <div className="absolute inset-0 z-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80 dark:from-black dark:via-black/75 dark:to-black/85 pointer-events-none" />
-        
-        {/* Content Container */}
-        <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 relative z-10 text-white">
           <Eyebrow margin="none">
             {t('careers.hero_badge')}
           </Eyebrow>
@@ -111,8 +108,7 @@ const Careers: React.FC = () => {
           >
             {t('careers.hero_cta')}
           </Button>
-        </div>
-      </section>
+      </SubpageHero>
 
       {/* 2. VAD VI ERBJUDER DIG */}
       <Section background="default" className="py-16 md:py-24">

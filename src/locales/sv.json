@@ -29,9 +29,6 @@
     "cta_more": "Läs mer",
     "learn_more": "Läs mer",
     "deliverables_label": "Våra leveranser inkluderar:",
-    "cta_cta_title": "Behöver ni förstärkning i ett pågående projekt?",
-    "cta_cta_desc": "Våra konsulter är vana vid att snabbt sätta sig in i befintliga kodbaser, datastrukturer och komplexa organisationer för att leverera resultat från dag ett.",
-    "cta_cta_btn": "Kontakta våra konsultchefer",
     "items": {
       "krav": {
         "title": "Kravanalys (Business Analysis)",
@@ -129,11 +126,13 @@
   },
   "team": {
     "page_title": "Vårt team",
-    "page_description": "Möt REQCON:s konsultchefer i Stockholm och Göteborg.",
-    "contact_title": "Vårt ledarteam",
-    "contact_subtitle": "Prata direkt med konsultchefen för din region.",
+    "page_description": "Prata direkt med våra konsultchefer.",
+    "contact_title": "Vårt team",
+    "contact_subtitle": "Prata direkt med våra konsultchefer.",
     "fadi_title": "Konsultchef - Stockholm",
+    "fadi_team_title": "VD",
     "anel_title": "Konsultchef - Göteborg",
+    "anton_title": "Verksamhetskoordinator",
     "cta_title": "Har du en fråga?",
     "cta_subtitle": "För allmänna frågor kan du skicka ett meddelande via vår kontaktsida så återkommer rätt person till dig.",
     "cta_action": "Kontakta oss",
@@ -143,7 +142,8 @@
     "hero_cta": "Möt vårt team",
     "fadi_desc": "Fadi leder Stockholmskontoret och ansvarar för strategiska samarbeten samt rekrytering av seniora kravanalytiker.",
     "anel_desc": "Anel ansvarar för Västsverige och matchar komplexa kundbehov med rätt test- och projektledarkompetens.",
-    "employees_title": "Våra anställda"
+    "anton_desc": "Profilbeskrivning kommer snart.",
+    "anton_image_alt": "Tillfällig profilbild för Anton af Bjur"
   },
   "testimonials": {
     "badge": "Referenser",

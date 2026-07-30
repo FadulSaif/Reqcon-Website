@@ -154,6 +154,29 @@
     outline: 2px solid var(--color-accent-primary);
     outline-offset: 2px;
   }
+
+  /* Shared interaction feedback for semantic controls and accessible button roles. */
+  a[href]:not([aria-disabled="true"]),
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  summary,
+  select:not(:disabled),
+  input[type="button"]:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="file"]:not(:disabled),
+  input[type="radio"]:not(:disabled),
+  input[type="reset"]:not(:disabled),
+  input[type="submit"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  a[aria-disabled="true"],
+  button:disabled,
+  [role="button"][aria-disabled="true"],
+  select:disabled,
+  input:disabled {
+    cursor: not-allowed;
+  }
 }
 
 /* Global Typography Classes Replicating agil-pro.vercel.app */

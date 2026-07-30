@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
-import { teamMembers } from '../content/team';
+import { footerOffices } from '../content/offices';
 
 export const Footer: React.FC = () => {
   const { t } = useTranslation();
@@ -17,19 +17,6 @@ export const Footer: React.FC = () => {
     { name: t('nav.careers', { lng: routeLanguage }), path: `/${routeLanguage}/careers` },
     { name: t('nav.team', { lng: routeLanguage }), path: `/${routeLanguage}/team` },
     { name: t('nav.contact', { lng: routeLanguage }), path: `/${routeLanguage}/contact` }
-  ];
-
-  const offices = [
-    {
-      name: 'Stockholm',
-      addressLines: ['Tullgårdsgatan 10', '116 68 Stockholm'],
-      contact: teamMembers[0],
-    },
-    {
-      name: 'Göteborg',
-      addressLines: ['Gustaf Dalénsgatan 30', '417 24 Göteborg'],
-      contact: teamMembers[1],
-    },
   ];
 
   const isCurrentPage = (path: string) => {
@@ -112,17 +99,17 @@ export const Footer: React.FC = () => {
             {t('footer.offices', { lng: routeLanguage })}
           </span>
           <ul className="flex flex-col gap-5 text-sm text-zinc-400">
-            {offices.map((office, index) => (
+            {footerOffices.map((office, index) => (
               <li
-                key={office.name}
-                className={`grid min-w-0 grid-cols-1 gap-y-3 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-x-6 ${
+                key={office.id}
+                className={`grid min-w-0 grid-cols-1 items-start gap-y-3 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-x-6 ${
                   index > 0 ? 'border-t border-white/10 pt-5' : ''
                 }`}
               >
-                <div className="flex min-w-0 items-start gap-2.5">
+                <div className="flex min-w-0 self-start items-start gap-2.5">
                   <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-secondary" aria-hidden="true" />
                   <address className="min-w-0 not-italic">
-                    <span className="block font-semibold text-white">{office.name}</span>
+                    <span className="block font-semibold leading-5 text-white">{office.name}</span>
                     {office.addressLines.map((line) => (
                       <span key={line} className="block">
                         {line}
@@ -131,27 +118,27 @@ export const Footer: React.FC = () => {
                   </address>
                 </div>
 
-                <div className="flex min-w-0 flex-col gap-1.5 pl-[1.625rem] lg:pl-0">
-                  <span className="font-heading text-sm font-semibold text-white">
+                <div className="flex min-w-0 self-start flex-col gap-1.5 pl-[1.625rem] lg:pl-0">
+                  <span className="font-heading text-sm font-semibold leading-5 text-white">
                     {t('footer.contact', { lng: routeLanguage })}
                   </span>
                   <a
-                    href={`mailto:${office.contact.email}`}
-                    aria-label={`${t('footer.email', { lng: routeLanguage })}: ${office.contact.email}`}
+                    href={`mailto:${office.email}`}
+                    aria-label={`${t('footer.email', { lng: routeLanguage })}: ${office.email}`}
                     className="inline-flex min-w-0 items-start gap-2 transition-colors hover:text-brand-secondary"
                   >
                     <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-secondary" aria-hidden="true" />
                     <span className="min-w-0 break-words [overflow-wrap:anywhere]">
-                      {office.contact.email}
+                      {office.email}
                     </span>
                   </a>
                   <a
-                    href={`tel:+46${office.contact.phone.replace(/\D/g, '').replace(/^0/, '')}`}
-                    aria-label={`${t('footer.phone', { lng: routeLanguage })}: ${office.contact.phone}`}
+                    href={office.phoneHref}
+                    aria-label={`${t('footer.phone', { lng: routeLanguage })}: ${office.phone}`}
                     className="inline-flex min-w-0 items-center gap-2 transition-colors hover:text-brand-secondary"
                   >
                     <Phone className="h-3.5 w-3.5 shrink-0 text-brand-secondary" aria-hidden="true" />
-                    <span>{office.contact.phone}</span>
+                    <span>{office.phone}</span>
                   </a>
                 </div>
               </li>

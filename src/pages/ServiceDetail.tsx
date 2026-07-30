@@ -8,6 +8,7 @@ import Section from '../components/Section';
 import Button from '../components/Button';
 import Eyebrow from '../components/Eyebrow';
 import SEO from '../components/SEO';
+import SubpageHero from '../components/SubpageHero';
 import { SITE_URL } from '../config/site';
 
 // Detailed data configuration for Swedish and English languages
@@ -514,59 +515,44 @@ const ServiceDetail: React.FC = () => {
       />
 
       {/* 1. HERO HEADER */}
-      <section className="relative py-24 md:py-36 px-6 border-b border-border-custom overflow-hidden text-center flex items-center justify-center min-h-[50vh] bg-slate-950">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0 select-none pointer-events-none">
-          <img 
-            src={getServiceImage(serviceId!)} 
-            alt={details.title} 
-            className="w-full h-full object-cover opacity-35 filter brightness-90 contrast-105"
-          />
-          {/* Dark gradient mask */}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80 dark:from-black dark:via-black/75 dark:to-black/85" />
-        </div>
-        
-        {/* Content Container */}
-        <div className="max-w-6xl mx-auto w-full flex flex-col items-center gap-6 relative z-10 text-white">
-          {/* Left Aligned Back Button */}
-          <div className="w-full flex justify-start">
-            <Link 
-              to={`/${activeLang}/services`} 
-              className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-brand-secondary hover:text-white uppercase transition-colors group select-none"
-            >
-              <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-              {activeLang === 'sv' ? 'TILLBAKA TILL TJÄNSTER' : 'BACK TO SERVICES'}
-            </Link>
-          </div>
-          
-          {/* Centered Main Info Block */}
-          <div className="flex flex-col items-center gap-4 mt-2 max-w-4xl">
-            <h1
-              lang={activeLang}
-              className={`font-black tracking-tight text-white leading-tight uppercase text-center ${
-                activeLang === 'sv'
-                  ? 'w-full min-w-0 text-[clamp(2rem,8.5vw,3.75rem)] [overflow-wrap:break-word] hyphens-auto'
-                  : 'text-4xl md:text-6xl'
-              }`}
-            >
-              {details.title.split('(')[0].trim()}
-            </h1>
-            <Eyebrow margin="none">
-              {activeLang === 'sv' ? 'Specialistkompetens' : 'Specialist Competence'}
-            </Eyebrow>
-          </div>
-          
-          <p className="text-base md:text-lg text-zinc-300 leading-relaxed max-w-2xl text-center font-medium">
-            {details.intro}
-          </p>
-
-          <Link to={contactPath} className="mt-4">
-            <Button variant="primary" size="lg" className="font-bold" rightIcon={<ArrowRight className="w-4 h-4" />}>
-              {activeLang === 'sv' ? 'Diskutera behov' : 'Discuss your needs'}
-            </Button>
+      <SubpageHero
+        backgroundImage={getServiceImage(serviceId!)}
+        backgroundAlt={details.title}
+        imageClassName="opacity-35 brightness-90 contrast-105"
+        contentClassName="gap-4 md:gap-5"
+      >
+        <div className="flex w-full justify-start">
+          <Link
+            to={`/${activeLang}/services`}
+            className="group inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-secondary transition-colors hover:text-white select-none"
+          >
+            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+            {activeLang === 'sv' ? 'TILLBAKA TILL TJÄNSTER' : 'BACK TO SERVICES'}
           </Link>
         </div>
-      </section>
+
+        <div className="flex w-full min-w-0 flex-col items-center gap-2">
+          <h1
+            lang={activeLang}
+            className="w-full min-w-0 text-center text-[clamp(1.75rem,7.5vw,3.75rem)] font-black uppercase leading-tight tracking-tight text-white [overflow-wrap:break-word] hyphens-auto"
+          >
+            {details.title.split('(')[0].trim()}
+          </h1>
+          <Eyebrow margin="none">
+            {activeLang === 'sv' ? 'Specialistkompetens' : 'Specialist Competence'}
+          </Eyebrow>
+        </div>
+
+        <p className="max-w-2xl text-center text-sm font-medium leading-relaxed text-zinc-300 md:text-base">
+          {details.intro}
+        </p>
+
+        <Link to={contactPath}>
+          <Button variant="primary" size="lg" className="font-bold" rightIcon={<ArrowRight className="w-4 h-4" />}>
+            {activeLang === 'sv' ? 'Diskutera behov' : 'Discuss your needs'}
+          </Button>
+        </Link>
+      </SubpageHero>
 
       {/* 2. SERVICE OVERVIEW */}
       <Section background="default" className="py-10 md:py-14">

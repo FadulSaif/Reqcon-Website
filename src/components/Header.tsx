@@ -4,14 +4,16 @@ import { Menu, X, ArrowRight, ChevronDown, Check } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import ThemeToggle from './ThemeToggle';
-import Button from './Button';
+import { getButtonClassName } from './buttonStyles';
 
 // High-contrast, clean vector flags that render perfectly as actual graphical flags on Windows and all other operating systems.
-const FlagSV: React.FC<{ className?: string }> = ({ className = 'w-4 h-3' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 10" className={`${className} rounded-[2px] shrink-0 shadow-sm`} aria-hidden="true">
-    <rect width="16" height="10" fill="#006aa7"/>
-    <path d="M5,0 h2 v10 h-2 z M0,4 v2 h16 v-2 z" fill="#fecc00"/>
-  </svg>
+const FlagSV: React.FC<{ className?: string }> = ({ className = 'h-2.5 w-4' }) => (
+  <img
+    src="/images/flags/sv.svg"
+    alt=""
+    className={`${className} shrink-0 rounded-[2px] object-cover shadow-sm`}
+    aria-hidden="true"
+  />
 );
 
 const FlagEN: React.FC<{ className?: string }> = ({ className = 'w-4 h-3' }) => (
@@ -247,22 +249,13 @@ export const Header: React.FC = () => {
 
         {/* Unified Controls Group (Right side) */}
         <div className={`hidden min-[1440px]:flex min-w-0 shrink-0 items-center justify-end ${actionGroupClass}`}>
-          <Link to={contactPath} className="shrink-0">
-            <Button
-              variant={isLinkActive(contactPath) ? 'secondary' : 'primary'}
-              size="sm"
-              className={`${isCompactHeader ? 'px-2.5 py-1 text-[10px]' : 'px-4 py-2 text-xs'} font-bold uppercase tracking-wider rounded-full shrink-0 whitespace-nowrap shadow-sm hover:shadow-md transition-all duration-300`}
-              rightIcon={<ArrowRight className="w-3.5 h-3.5" />}
-            >
-              {t('nav.contact', { lng: routeLanguage })}
-            </Button>
-          </Link>
-
           {/* Dropdown Language Selector */}
           <div className="relative shrink-0">
             <button
+              type="button"
               onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
               className={`flex shrink-0 items-center whitespace-nowrap ${isCompactHeader ? 'gap-1 px-2.5 py-0.5 text-[10px]' : 'gap-2 px-3 py-1.5 text-xs'} rounded-full border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-[#0f2330] hover:bg-slate-100 dark:hover:bg-[#153040] text-slate-900 dark:text-white transition-colors duration-200 font-bold cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-2 shadow-sm`}
+              aria-label={routeLanguage === 'en' ? 'Change language' : 'Byt språk'}
               aria-haspopup="true"
               aria-expanded={isLangDropdownOpen}
             >
@@ -276,7 +269,7 @@ export const Header: React.FC = () => {
                 <>
                   {/* Backdrop overlay to catch click-outs */}
                   <div
-                    className="fixed inset-0 z-10"
+                    className="fixed inset-0 z-10 cursor-pointer"
                     onClick={() => setIsLangDropdownOpen(false)}
                   />
                   
@@ -289,6 +282,7 @@ export const Header: React.FC = () => {
                     className="absolute right-0 mt-2 w-44 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-xl z-20 overflow-hidden p-1.5 flex flex-col gap-1"
                   >
                     <button
+                      type="button"
                       onClick={() => {
                         handleLanguageChange('sv');
                         setIsLangDropdownOpen(false);
@@ -307,6 +301,7 @@ export const Header: React.FC = () => {
                     </button>
                     
                     <button
+                      type="button"
                       onClick={() => {
                         handleLanguageChange('en');
                         setIsLangDropdownOpen(false);
@@ -332,17 +327,34 @@ export const Header: React.FC = () => {
           <div className={`transition-transform duration-300 origin-center ${isCompactHeader ? 'scale-80' : 'scale-100'}`}>
             <ThemeToggle />
           </div>
+
+          <Link
+            to={contactPath}
+            className={getButtonClassName({
+              variant: isLinkActive(contactPath) ? 'secondary' : 'primary',
+              size: 'sm',
+              className: `${isCompactHeader ? 'px-2.5 py-1 text-[10px]' : 'px-4 py-2 text-xs'} shrink-0 whitespace-nowrap rounded-full font-bold uppercase tracking-wider shadow-sm transition-all duration-300 hover:shadow-md`,
+            })}
+          >
+            <span>{t('nav.contact', { lng: routeLanguage })}</span>
+            <span className="ml-2 inline-flex items-center justify-center">
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+            </span>
+          </Link>
         </div>
 
         {/* Mobile controls */}
         <div className="flex min-[1440px]:hidden min-w-0 items-center justify-end gap-2">
-          <ThemeToggle />
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={`p-2 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-2 cursor-pointer border border-transparent ${mobileMenuButtonClass}`}
             aria-expanded={isMobileMenuOpen}
-            aria-label="Öppna huvudmeny"
+            aria-label={
+              isMobileMenuOpen
+                ? routeLanguage === 'en' ? 'Close main menu' : 'Stäng huvudmeny'
+                : routeLanguage === 'en' ? 'Open main menu' : 'Öppna huvudmeny'
+            }
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -359,7 +371,7 @@ export const Header: React.FC = () => {
               animate={{ opacity: 0.4 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/60 z-40 min-[1440px]:hidden pointer-events-auto"
+              className="fixed inset-0 z-40 cursor-pointer bg-black/60 pointer-events-auto min-[1440px]:hidden"
             />
 
             {/* Navigation Drawer */}
@@ -377,9 +389,10 @@ export const Header: React.FC = () => {
                     REQCON<span className="text-brand-secondary">.</span>
                   </span>
                   <button
+                    type="button"
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-1"
-                    aria-label="Stäng meny"
+                    aria-label={routeLanguage === 'en' ? 'Close menu' : 'Stäng meny'}
                   >
                     <X className="w-5 h-5" aria-hidden="true" />
                   </button>
@@ -415,8 +428,13 @@ export const Header: React.FC = () => {
                   <span className="text-xs font-bold uppercase tracking-widest text-text-secondary opacity-70">
                     Språk / Language
                   </span>
-                  <div className="flex gap-2">
+                  <div
+                    className="flex gap-2"
+                    role="group"
+                    aria-label={routeLanguage === 'en' ? 'Choose language' : 'Välj språk'}
+                  >
                     <button
+                      type="button"
                       onClick={() => handleLanguageChange('sv')}
                       className={`flex items-center justify-center gap-2 flex-1 py-2 px-4 rounded-full border text-xs font-bold text-center transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-1 ${
                         routeLanguage === 'sv'
@@ -424,10 +442,11 @@ export const Header: React.FC = () => {
                           : 'border-border-custom bg-slate-50/50 dark:bg-slate-800/50 text-text-secondary'
                       }`}
                     >
-                      <FlagSV className="w-3.5 h-2.5" />
+                      <FlagSV className="h-[0.546875rem] w-3.5" />
                       <span>Svenska</span>
                     </button>
                     <button
+                      type="button"
                       onClick={() => handleLanguageChange('en')}
                       className={`flex items-center justify-center gap-2 flex-1 py-2 px-4 rounded-full border text-xs font-bold text-center transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/70 focus-visible:ring-offset-1 ${
                         routeLanguage === 'en'
@@ -441,10 +460,22 @@ export const Header: React.FC = () => {
                   </div>
                 </div>
 
-                <Link to={contactPath}>
-                  <Button variant="primary" className="w-full rounded-full" size="lg">
-                  {t('nav.contact', { lng: routeLanguage })}
-                  </Button>
+                <div className="flex items-center justify-between gap-4">
+                  <span className="text-xs font-bold uppercase tracking-widest text-text-secondary opacity-70">
+                    {routeLanguage === 'en' ? 'Theme' : 'Tema'}
+                  </span>
+                  <ThemeToggle />
+                </div>
+
+                <Link
+                  to={contactPath}
+                  className={getButtonClassName({
+                    variant: 'primary',
+                    size: 'lg',
+                    className: 'w-full rounded-full',
+                  })}
+                >
+                  <span>{t('nav.contact', { lng: routeLanguage })}</span>
                 </Link>
                 <div className="text-center text-xs text-text-secondary opacity-60">
                   REQCON AB &copy; {new Date().getFullYear()}

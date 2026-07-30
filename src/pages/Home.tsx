@@ -18,20 +18,26 @@ import SEO from '../components/SEO';
 import { SITE_URL, toAbsoluteUrl } from '../config/site';
 import { articles } from '../content/articles';
 
-const customerLogoRows = [
+interface CustomerLogo {
+  name: string;
+  src: string;
+  scaleClassName: string;
+}
+
+const customerLogoRows: readonly (readonly CustomerLogo[])[] = [
   [
-    { name: 'H&M', src: '/images/clients/round5/hm.png' },
-    { name: 'Kronofogden', src: '/images/clients/round5/kronofogden.png' },
-    { name: 'Saab', src: '/images/clients/round5/saab.png' },
-    { name: 'SJ', src: '/images/clients/round5/sj.png' },
-    { name: 'Skatteverket', src: '/images/clients/round5/skatteverket.png' },
+    { name: 'H&M', src: '/images/clients/round5/hm.png', scaleClassName: 'scale-[1.15]' },
+    { name: 'Kronofogden', src: '/images/clients/round5/kronofogden.png', scaleClassName: 'scale-[1.05]' },
+    { name: 'Saab', src: '/images/clients/round5/saab.png', scaleClassName: 'scale-100' },
+    { name: 'SJ', src: '/images/clients/round5/sj.png', scaleClassName: 'scale-[1.05]' },
+    { name: 'Skatteverket', src: '/images/clients/round5/skatteverket.png', scaleClassName: 'scale-[1.05]' },
   ],
   [
-    { name: 'SL', src: '/images/clients/round5/sl.png' },
-    { name: 'Swedavia', src: '/images/clients/round5/swedavia.png' },
-    { name: 'Trafikförvaltningen', src: '/images/clients/round5/trafikforvaltningen.png' },
-    { name: 'Trafikverket', src: '/images/clients/round5/trafikverket-horizontal.png' },
-    { name: 'Vattenfall', src: '/images/clients/round5/vattenfall.png' },
+    { name: 'SL', src: '/images/clients/round5/sl.png', scaleClassName: 'scale-[1.1]' },
+    { name: 'Swedavia', src: '/images/clients/round5/swedavia.png', scaleClassName: 'scale-[1.5]' },
+    { name: 'Trafikförvaltningen', src: '/images/clients/round5/trafikforvaltningen.png', scaleClassName: 'scale-[1.25]' },
+    { name: 'Trafikverket', src: '/images/clients/round5/trafikverket-horizontal.png', scaleClassName: 'scale-[1.05]' },
+    { name: 'Vattenfall', src: '/images/clients/round5/vattenfall.png', scaleClassName: 'scale-[1.35]' },
   ],
 ];
 
@@ -340,18 +346,18 @@ const Home: React.FC = () => {
                         aria-hidden={isAccessibleInstance ? undefined : true}
                         tabIndex={isAccessibleInstance ? 0 : -1}
                         title={client.name}
-                        className="group relative flex h-[5.5rem] w-52 shrink-0 cursor-default items-center justify-center overflow-hidden rounded-2xl border border-border-custom bg-bg-page px-6 py-3 shadow-sm transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-accent-primary hover:shadow-md focus-visible:border-accent-primary"
+                        className="group relative flex h-24 w-56 shrink-0 cursor-default items-center justify-center overflow-hidden rounded-2xl border border-border-custom bg-bg-page px-5 py-3 shadow-sm transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-accent-primary hover:shadow-md focus-visible:border-accent-primary dark:border-white/15 dark:bg-white"
                       >
                         <img
                           src={client.src}
                           alt=""
                           loading="lazy"
                           decoding="async"
-                          className="max-h-12 max-w-[9.5rem] object-contain transition-opacity duration-200 group-hover:opacity-15 group-focus-visible:opacity-15"
+                          className={`max-h-14 max-w-44 object-contain transition-[opacity,transform] duration-200 group-hover:opacity-15 group-focus-visible:opacity-15 ${client.scaleClassName}`}
                         />
                         <span
                           aria-hidden="true"
-                          className="absolute inset-0 flex items-center justify-center bg-bg-page/95 px-4 text-center font-heading text-sm font-bold tracking-tight text-text-primary opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+                          className="absolute inset-0 flex items-center justify-center bg-bg-page/95 px-4 text-center font-heading text-sm font-bold tracking-tight text-text-primary opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 dark:bg-white/95 dark:text-slate-900"
                         >
                           {client.name}
                         </span>
