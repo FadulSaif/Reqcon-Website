@@ -87,25 +87,18 @@ export default function AboutPage() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
               >
-                <div className="vision-image-grid">
-                  <div className="vision-img-1 glass-panel">
-                    <Image
-                      src="/assets/worker-portrait-01.jpg"
-                      alt="Medarbetare hos Agil Arbetskraft"
-                      fill
-                      sizes="(max-width: 1024px) 50vw, 25vw"
-                      className="vision-image"
-                    />
-                  </div>
-                  <div className="vision-img-2 glass-panel">
-                    <Image
-                      src="/assets/worker-portrait-03.jpg"
-                      alt="Yrkesarbetare hos Agil Arbetskraft"
-                      fill
-                      sizes="(max-width: 1024px) 50vw, 25vw"
-                      className="vision-image"
-                    />
-                  </div>
+                <div className="vision-logo-panel glass-panel">
+                  {/* unoptimized: the optimizer refuses SVG unless
+                      dangerouslyAllowSVG is set, and a vector mark has
+                      nothing to gain from it anyway. */}
+                  <Image
+                    src="/assets/agil-mark.svg"
+                    alt="Agil Arbetskrafts logotyp"
+                    width={240}
+                    height={243}
+                    unoptimized
+                    className="vision-logo"
+                  />
                 </div>
               </motion.div>
 
@@ -433,30 +426,21 @@ export default function AboutPage() {
           justify-content: center;
         }
 
-        .vision-image-grid {
+        /* 7/5 keeps roughly the height the two staggered photo cards had, so
+           swapping them for the mark does not shorten the section. */
+        .vision-logo-panel {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 16px;
+          place-items: center;
           width: 100%;
           max-width: 500px;
-        }
-
-        .vision-img-1,
-        .vision-img-2 {
-          position: relative;
-          width: 100%;
-          aspect-ratio: 3 / 4;
+          aspect-ratio: 7 / 5;
+          padding: clamp(32px, 6vw, 56px);
           border-radius: var(--radius-lg);
-          overflow: hidden;
-          padding: 0;
         }
 
-        .vision-img-2 {
-          transform: translateY(32px);
-        }
-
-        .vision-image {
-          object-fit: cover;
+        .vision-logo {
+          width: min(100%, 240px);
+          height: auto;
         }
 
         /* Pillars Section */
