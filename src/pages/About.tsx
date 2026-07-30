@@ -221,7 +221,7 @@ const About: React.FC = () => {
             />
             <div className="flex flex-col">
               <h3 className="text-xl font-bold text-text-primary">{teamMembers[0].name}</h3>
-              <span className="text-sm font-semibold text-brand-secondary">{t('team.fadi_title')}</span>
+              <span className="text-sm font-semibold text-brand-secondary">{t('team.fadi_team_title')}</span>
             </div>
             <p className="text-xs text-text-secondary max-w-xs leading-relaxed">
               {t(teamMembers[0].bioKey)}

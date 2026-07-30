@@ -152,7 +152,7 @@ export const Footer: React.FC = () => {
       <div id="footer-bottom-bar" className="border-t border-white/5 bg-black/20">
         <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
           <div className="text-center md:text-left">
-            &copy; {currentYear} REQCON AB. Org.nr: 559281-2294. {t('footer.rights', { lng: routeLanguage })}
+            &copy; {currentYear} REQCON AB. Org.nr: 559269-9374. {t('footer.rights', { lng: routeLanguage })}
           </div>
           <div className="flex gap-6">
             <Link to={`/${routeLanguage}/personalpolicy`} className="hover:text-white transition-colors">{t('footer.policy_staff', { lng: routeLanguage })}</Link>
