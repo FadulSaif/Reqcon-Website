@@ -20,7 +20,7 @@ export interface ServiceData {
 export const SERVICES_CONFIG: Record<string, ServiceData> = {
   it: {
     slug: "it",
-    image: "/assets/it-team-software-development.jpg",
+    image: "/assets/service-it.jpg",
     popularSpecs: [8, 7, 4],
     specs: {
       sv: [
@@ -127,7 +127,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
   },
   logistics: {
     slug: "logistics",
-    image: "/assets/industry-warehous.jpg",
+    image: "/assets/service-logistics.jpg",
     popularSpecs: [0, 4],
     specs: {
       sv: [
@@ -234,7 +234,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
   },
   construction: {
     slug: "construction",
-    image: "/assets/industry-construction.jpg",
+    image: "/assets/service-construction.jpg",
     popularSpecs: [0, 3],
     specs: {
       sv: [
@@ -337,7 +337,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
   },
   transport: {
     slug: "transport",
-    image: "/assets/industry-transport.jpg",
+    image: "/assets/service-transport.jpg",
     popularSpecs: [2, 4],
     specs: {
       sv: [
@@ -436,7 +436,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
   },
   moving: {
     slug: "moving",
-    image: "/assets/industry-moving.jpg",
+    image: "/assets/service-moving.jpg",
     popularSpecs: [0, 1],
     specs: {
       sv: [

@@ -102,7 +102,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "services.transport.title": "Transport",
     "services.transport.cardDesc": "We recruit and staff drivers and transport personnel for companies across Sweden, from distribution and long-distance to ADR and refrigerated transport.",
     "services.transport.intro": "Agil Arbetskraft helps Swedish transport companies and hauliers find the right drivers and transport staff. We supply drivers with valid licences and Driver CPC (YKB) for local distribution, long-distance, specialised, and express assignments across Sweden.",
-    "services.transport.imgAlt": "Professional driver and logistics route",
+    "services.transport.imgAlt": "Truck on the motorway on a long-distance transport assignment",
 
     "services.moving.title": "Moving & Assembly",
     "services.moving.cardDesc": "We staff moving and assembly personnel for companies across Sweden where care, structure, and efficiency matter.",
@@ -387,7 +387,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "services.transport.title": "Transport",
     "services.transport.cardDesc": "Vi rekryterar och bemannar chaufförer och transportpersonal för företag i hela Sverige, från distribution och fjärr till ADR och kyltransport.",
     "services.transport.intro": "Agil Arbetskraft hjälper svenska transportföretag och åkerier att hitta rätt chaufförer och transportpersonal. Vi levererar chaufförer med giltig körkortsbehörighet och YKB för lokal distribution, fjärrtransport, specialtransport och expressleveranser i hela Sverige.",
-    "services.transport.imgAlt": "Professionell chaufför och transportfordon",
+    "services.transport.imgAlt": "Lastbil på motorvägen under ett fjärrtransportuppdrag",
 
     "services.moving.title": "Flytt & Montage",
     "services.moving.cardDesc": "Vi bemannar flytt- och montagepersonal för företag i hela Sverige där noggrannhet, struktur och effektivitet är viktigt.",
