@@ -902,6 +902,7 @@ export default function ContactPage() {
           font-size: 1rem;
           color: #ffffff;
           line-height: 1.5;
+          overflow-wrap: anywhere;
         }
         .cp-map-btn {
           margin-top: 10px;
@@ -994,6 +995,13 @@ export default function ContactPage() {
           font-size: 0.9375rem;
           color: var(--text-primary);
           line-height: 1.5;
+          overflow-wrap: anywhere;
+        }
+        /* Text column of an icon+text row must be allowed to shrink, or an
+           unbreakable value (email, long street) runs past the panel edge. */
+        .cp-office-row > div:not(.cp-office-icon),
+        .cp-info-item > div:not(.cp-info-icon) {
+          min-width: 0;
         }
         .cp-office-link {
           text-decoration: none;

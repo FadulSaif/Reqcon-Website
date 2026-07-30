@@ -91,6 +91,11 @@ const organizationSchema = {
   },
   "telephone": SITE_CONFIG.phone,
   "email": SITE_CONFIG.email,
+  "identifier": {
+    "@type": "PropertyValue",
+    "name": "Organisationsnummer",
+    "value": SITE_CONFIG.orgNumber
+  },
   "areaServed": {
     "@type": "Country",
     "name": "Sverige"

@@ -4,35 +4,38 @@
  * Every component, the SEO metadata, and the JSON-LD schema should import from
  * here instead of hardcoding contact details. This keeps the LocalBusiness data
  * that Google and AI engines read consistent across the whole site.
- *
- * NOTE FOR CLIENT: `phone` is currently a placeholder (+46 8 123 4567).
- * Replace it with the real company number before production launch.
  */
 
 export const SITE_CONFIG = {
   companyName: "Agil Arbetskraft",
+  /** Swedish company registration number (organisationsnummer). */
+  orgNumber: "559481-8485",
   /** Production domain — used for canonical URLs, sitemap, schema, OG tags. */
   domain: "https://agilarbetskraft.se",
 
   email: "info@agilarbetskraft.se",
 
-  /** Placeholder — client to confirm the real number. */
-  phone: "+46 8 123 4567",
-  phoneHref: "tel:+4681234567",
+  phone: "070-554 81 47",
+  /** E.164 for the tel: link — national 0 dropped, +46 prefixed. */
+  phoneHref: "tel:+46705548147",
 
   address: {
-    street: "Kungsgatan 15",
-    postalCode: "111 43",
+    street: "Tullgårdsgatan 10A",
+    postalCode: "116 68",
     city: "Stockholm",
     country: "Sverige",
     countryCode: "SE",
     /** Single-line form for display. */
-    full: "Kungsgatan 15, 111 43 Stockholm, Sverige",
+    full: "Tullgårdsgatan 10A, 116 68 Stockholm, Sverige",
   },
 
-  /** Google Maps embed for the office (precise Kungsgatan 15 place embed). */
+  /**
+   * Keyless Google Maps embed. Uses the address-query form so Google does the
+   * geocoding — a hand-written `?pb=` string would bake in coordinates and a
+   * place ID we cannot verify.
+   */
   mapsEmbedUrl:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2035.0390234123515!2d18.06821817743516!3d59.33230621063688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f9d5c48b29f79%3A0xc3317f22312d8a0d!2sKungsgatan%2015%2C%20111%2043%20Stockholm!5e0!3m2!1sen!2sse!4v1716900000000!5m2!1sen!2sse",
+    "https://www.google.com/maps?q=Tullg%C3%A5rdsgatan+10A,+116+68+Stockholm,+Sverige&output=embed&hl=sv&z=16",
 
   openingHours: {
     weekdays: "08:00 - 17:00",

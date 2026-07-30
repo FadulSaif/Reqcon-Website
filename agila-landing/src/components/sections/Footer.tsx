@@ -92,7 +92,7 @@ export default function Footer() {
         <div className="footer-bottom-grid">
           <div className="footer-bottom-left">
             <p className="copyright">
-              © {new Date().getFullYear()} Agil Arbetskraft. {t("footer.rights")}
+              © {new Date().getFullYear()} Agil Arbetskraft. {t("footer.rights")} · Org.nr {SITE_CONFIG.orgNumber}
             </p>
             <span className="dot-separator hidden-mobile">•</span>
             <div className="footer-bottom-links">
@@ -269,6 +269,7 @@ export default function Footer() {
           border: 1px solid rgba(255, 255, 255, 0.1);
           color: #FAFAFA;
           transition: all 0.3s ease;
+          flex-shrink: 0; /* keep the circle round when the address is long */
         }
 
         .contact-link:hover .contact-icon-wrapper {
