@@ -11,5 +11,25 @@
     { "source": "/personalpolicy", "destination": "/sv/personalpolicy", "statusCode": 301 },
     { "source": "/privacy", "destination": "/sv/privacy", "statusCode": 301 },
     { "source": "/articles/:path*", "destination": "/sv/articles/:path*", "statusCode": 301 }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/images/clients/round5/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
+      ]
+    }
   ]
 }
