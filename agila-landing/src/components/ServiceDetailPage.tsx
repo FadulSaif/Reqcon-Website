@@ -363,14 +363,14 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
                       <div className="sdp-member-contacts">
                         <a href={`mailto:${member.email}`} className="sdp-member-contact-row">
                           <div className="sdp-member-icon"><Mail size={16} /></div>
-                          <div>
+                          <div className="sdp-member-contact-text">
                             <span className="sdp-member-contact-label">{t("contact.lbl.email")}</span>
                             <span className="sdp-member-contact-value">{member.email}</span>
                           </div>
                         </a>
                         <a href={`tel:${member.phone.replace(/\s/g, "")}`} className="sdp-member-contact-row">
                           <div className="sdp-member-icon"><Phone size={16} /></div>
-                          <div>
+                          <div className="sdp-member-contact-text">
                             <span className="sdp-member-contact-label">{t("contact.lbl.phone")}</span>
                             <span className="sdp-member-contact-value">{member.phone}</span>
                           </div>
@@ -795,11 +795,17 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
           color: rgba(255,255,255,0.4);
         }
 
+        /* See .cp-back-contact-text — same long-address overflow. */
+        .sdp-member-contact-text {
+          min-width: 0;
+          flex: 1;
+        }
         .sdp-member-contact-value {
           display: block;
           font-size: 0.8125rem;
           color: #FAFAFA;
           font-weight: 500;
+          overflow-wrap: anywhere;
         }
 
 

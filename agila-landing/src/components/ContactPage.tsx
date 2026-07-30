@@ -142,7 +142,7 @@ export default function ContactPage() {
                           src={member.image}
                           alt={member.name}
                           fill
-                          sizes="(max-width: 768px) 100vw, 33vw"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
                           className="cp-team-photo"
                         />
                       </div>
@@ -194,14 +194,14 @@ export default function ContactPage() {
                       <div className="cp-back-contacts">
                         <a href={`mailto:${member.email}`} className="cp-back-contact-item">
                           <div className="cp-back-icon"><Mail size={18} /></div>
-                          <div>
+                          <div className="cp-back-contact-text">
                             <span className="cp-back-contact-label">{t("contact.lbl.email")}</span>
                             <span className="cp-back-contact-value">{member.email}</span>
                           </div>
                         </a>
                         <a href={`tel:${member.phone.replace(/\s/g, "")}`} className="cp-back-contact-item">
                           <div className="cp-back-icon"><Phone size={18} /></div>
-                          <div>
+                          <div className="cp-back-contact-text">
                             <span className="cp-back-contact-label">{t("contact.lbl.phone")}</span>
                             <span className="cp-back-contact-value">{member.phone}</span>
                           </div>
@@ -562,7 +562,9 @@ export default function ContactPage() {
         .cp-team-image {
           position: relative;
           width: 100%;
-          aspect-ratio: 4 / 3.2;
+          /* Square matches the source headshots, so nothing is cropped away.
+             The old 4/3.2 letterbox cut roughly a fifth off top and bottom. */
+          aspect-ratio: 1 / 1;
           overflow: hidden;
           flex-shrink: 0;
         }
@@ -690,11 +692,18 @@ export default function ContactPage() {
           text-transform: uppercase;
           color: rgba(255,255,255,0.45);
         }
+        /* min-width:0 lets the flex child shrink; without it a long address
+           like Markus.nyberg@agilarbetskraft.se pushes past the card edge. */
+        .cp-back-contact-text {
+          min-width: 0;
+          flex: 1;
+        }
         .cp-back-contact-value {
           display: block;
           font-size: 0.875rem;
           color: #FAFAFA;
           font-weight: 500;
+          overflow-wrap: anywhere;
         }
 
         .cp-back-actions {

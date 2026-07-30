@@ -205,7 +205,7 @@ export default function AboutPage() {
                       src={member.image}
                       alt={member.name}
                       fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
                       className="about-team-photo"
                     />
                   </div>
@@ -625,7 +625,9 @@ export default function AboutPage() {
         .about-team-img {
           position: relative;
           width: 100%;
-          aspect-ratio: 4 / 3.2;
+          /* Square matches the source headshots, so nothing is cropped away.
+             The old 4/3.2 letterbox cut roughly a fifth off top and bottom. */
+          aspect-ratio: 1 / 1;
           overflow: hidden;
           flex-shrink: 0; /* keep the photo its natural size as the card stretches */
         }

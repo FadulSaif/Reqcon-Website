@@ -51,7 +51,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     phone: "070-554 81 47",
     image: "/assets/team-johan.jpg",
     bioKey: "bio.markus",
-    services: ["construction", "logistics", "cleaning", "moving", "workshop"],
+    services: ["construction", "logistics", "transport", "cleaning", "moving", "workshop"],
   },
   {
     id: "anel",
@@ -77,7 +77,7 @@ export const SERVICE_OPTIONS: ServiceOption[] = [
   { slug: "it",                labelKey: "svc.it",                 memberId: "anel" },
   { slug: "cleaning",          labelKey: "svc.cleaning",           memberId: "markus" },
   { slug: "moving",            labelKey: "svc.moving",             memberId: "markus" },
-  { slug: "transport",         labelKey: "svc.transport",          memberId: null },
+  { slug: "transport",         labelKey: "svc.transport",          memberId: "markus" },
   { slug: "workshop",          labelKey: "svc.workshop",           memberId: "markus" },
 ];
 
