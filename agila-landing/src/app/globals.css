@@ -384,7 +384,7 @@ body {
 
 
 /* ─── Hero shell ───
-   The hero video card and the trust-logo strip below it stack into a single
+   The hero media card and the trust-logo strip below it stack into a single
    visual card, so their left/right edges must line up exactly. Both apply
    this class and neither sets its own width, so the two cannot drift apart. */
 .hero-shell {

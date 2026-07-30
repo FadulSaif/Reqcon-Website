@@ -41,8 +41,8 @@ export default function ServicesBrief() {
           >
             <div className="image-container">
               <Image
-                src="/assets/service-recruitment.jpg"
-                alt="Agil Arbetskraft Services"
+                src="/assets/service-consultation.jpg"
+                alt="Rekryterare hos Agil Arbetskraft i ett kandidatsamtal"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 style={{ objectFit: "cover" }}

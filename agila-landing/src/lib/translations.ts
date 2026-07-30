@@ -27,6 +27,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "hero.subtitle": "Staffing and recruitment for companies across Sweden. We connect you with qualified staff within IT, construction, warehouse and logistics, transport, and moving, quickly and reliably, as individual specialists or complete teams.",
     "hero.ctaPrimary": "Find the Right Talent",
     "hero.ctaSecondary": "View Services",
+    "hero.imgAlt": "A team working together around a shared desk in a Swedish office",
     "logos.label": "Our Trusted Partners",
 
     // About Brief
@@ -310,6 +311,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "hero.subtitle": "Bemanning och rekrytering för företag i hela Sverige. Vi kopplar samman dig med kvalificerad personal inom IT, bygg, lager och logistik, transport samt flytt och montage, snabbt och tillförlitligt, som enskilda specialister eller kompletta team.",
     "hero.ctaPrimary": "Sök Personal",
     "hero.ctaSecondary": "Se Våra Tjänster",
+    "hero.imgAlt": "Ett team som arbetar tillsammans vid ett gemensamt skrivbord på ett kontor i Sverige",
     "logos.label": "Våra Betrodda Partners",
 
     // About Brief
