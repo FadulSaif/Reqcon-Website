@@ -604,8 +604,9 @@ export default function AboutPage() {
         @media (min-width: 768px) {
           .about-team-grid { grid-template-columns: repeat(2, 1fr); }
         }
-        @media (min-width: 1024px) {
-          .about-team-grid { grid-template-columns: repeat(3, 1fr); }
+        /* Four members: 2x2 then 1x4. A 3-col step would strand a lone card. */
+        @media (min-width: 1280px) {
+          .about-team-grid { grid-template-columns: repeat(4, 1fr); }
         }
 
         .about-team-card {

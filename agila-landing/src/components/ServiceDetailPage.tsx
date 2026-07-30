@@ -7,7 +7,6 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { SERVICES_CONFIG } from "@/lib/services-data";
 import { getTeamMemberForService, SERVICE_OPTIONS, getServiceLabelKey } from "@/lib/team-data";
 import { CheckCircle2, ArrowRight, Mail, Phone, Plus, Send } from "lucide-react";
-import { LinkedinIcon as Linkedin } from "./icons/SocialIcons";
 import { motion } from "framer-motion";
 import Navbar from "./sections/Navbar";
 import Footer from "./sections/Footer";
@@ -374,13 +373,6 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
                           <div>
                             <span className="sdp-member-contact-label">{t("contact.lbl.phone")}</span>
                             <span className="sdp-member-contact-value">{member.phone}</span>
-                          </div>
-                        </a>
-                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="sdp-member-contact-row">
-                          <div className="sdp-member-icon"><Linkedin size={16} /></div>
-                          <div>
-                            <span className="sdp-member-contact-label">{t("contact.lbl.linkedin")}</span>
-                            <span className="sdp-member-contact-value">{t("contact.lbl.viewProfile")}</span>
                           </div>
                         </a>
                       </div>

@@ -120,7 +120,7 @@ export default function ContactPage() {
               <h1 className="heading-lg">{t("contact.team.title")}</h1>
             </div>
 
-            <div className="grid-3-col">
+            <div className="cp-team-grid">
               {TEAM_MEMBERS.map((member, idx) => (
                 <motion.div
                   key={member.id}
@@ -204,13 +204,6 @@ export default function ContactPage() {
                           <div>
                             <span className="cp-back-contact-label">{t("contact.lbl.phone")}</span>
                             <span className="cp-back-contact-value">{member.phone}</span>
-                          </div>
-                        </a>
-                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="cp-back-contact-item">
-                          <div className="cp-back-icon"><Linkedin size={18} /></div>
-                          <div>
-                            <span className="cp-back-contact-label">{t("contact.lbl.linkedin")}</span>
-                            <span className="cp-back-contact-value">{t("contact.lbl.viewProfile")}</span>
                           </div>
                         </a>
                       </div>
@@ -552,6 +545,20 @@ export default function ContactPage() {
           box-shadow: 0 12px 40px rgba(0,0,0,0.35);
         }
 
+        /* Local grid rather than .grid-3-col: four members need 2x2 then 1x4,
+           and .grid-3-col is a shared utility. */
+        .cp-team-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        @media (min-width: 768px) {
+          .cp-team-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1280px) {
+          .cp-team-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
         .cp-team-image {
           position: relative;
           width: 100%;
@@ -589,7 +596,7 @@ export default function ContactPage() {
           flex-wrap: wrap;
           gap: 6px;
           min-height: 52px;
-          margin-bottom: 20px; /* guaranteed gap before the button, even with 2 rows of tags (e.g. Johan) */
+          margin-bottom: 20px; /* guaranteed gap before the button, even with 2 rows of tags (e.g. Markus) */
         }
         .cp-service-tag {
           padding: 3px 10px;

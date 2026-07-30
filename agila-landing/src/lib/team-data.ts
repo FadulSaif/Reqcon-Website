@@ -8,7 +8,6 @@ export interface TeamMember {
   titleKey: string;
   email: string;
   phone: string;
-  linkedin: string;
   image: string;
   bioKey: string;
   services: string[]; // URL-safe slugs matching SERVICE_OPTIONS
@@ -20,56 +19,66 @@ export interface ServiceOption {
   memberId: string | null; // null = general inbox
 }
 
+// PLACEHOLDER: bios (bio.*) and service tags are samples pending real copy.
+// Anton and Markus also still carry the previous stock headshots, which do not
+// depict them — both need real photos before this goes live.
 export const TEAM_MEMBERS: TeamMember[] = [
   {
-    id: "lars",
-    name: "Lars Eriksson",
-    titleKey: "role.ops",
-    email: "lars@agilarbetskraft.se",
-    phone: "+46 8 123 4567",
-    linkedin: "https://linkedin.com/in/lars-eriksson",
-    image: "/assets/team-lars.jpg",
-    bioKey: "bio.lars",
+    id: "fadi",
+    name: "Fadi Rabah",
+    titleKey: "role.ceo",
+    email: "fadi.rabah@reqcon.se",
+    phone: "070-939 51 11",
+    image: "/assets/team-fadi.jpg",
+    bioKey: "bio.fadi",
     services: ["staffing", "warehouse"],
   },
   {
-    id: "ebba",
-    name: "Ebba Lindgren",
-    titleKey: "role.recruitment",
-    email: "ebba@agilarbetskraft.se",
-    phone: "+46 8 234 5678",
-    linkedin: "https://linkedin.com/in/ebba-lindgren",
+    id: "anton",
+    name: "Anton af Bjur",
+    titleKey: "role.coordinator",
+    email: "Anton@reqcon.se",
+    phone: "073-302 30 35",
     image: "/assets/team-ebba.jpg",
-    bioKey: "bio.ebba",
+    bioKey: "bio.anton",
     services: ["recruitment", "hire-to-permanent"],
   },
   {
-    id: "johan",
-    name: "Johan Bergström",
-    titleKey: "role.industry",
-    email: "johan@agilarbetskraft.se",
-    phone: "+46 8 345 6789",
-    linkedin: "https://linkedin.com/in/johan-bergstrom",
+    id: "markus",
+    name: "Markus Nyberg",
+    titleKey: "role.consultantManager",
+    email: "Markus.nyberg@agilarbetskraft.se",
+    phone: "070-554 81 47",
     image: "/assets/team-johan.jpg",
-    bioKey: "bio.johan",
-    services: ["construction", "logistics", "it", "cleaning", "moving", "workshop"],
+    bioKey: "bio.markus",
+    services: ["construction", "logistics", "cleaning", "moving", "workshop"],
+  },
+  {
+    id: "anel",
+    name: "Anel Pasic",
+    titleKey: "role.itManager",
+    email: "anel.pasic@reqcon.se",
+    phone: "070-853 19 21",
+    image: "/assets/team-anel.jpg",
+    bioKey: "bio.anel",
+    services: ["it"],
   },
 ];
 
 export const SERVICE_OPTIONS: ServiceOption[] = [
   { slug: "general",           labelKey: "svc.general",            memberId: null },
   { slug: "fullteam",          labelKey: "svc.fullteam",           memberId: null },
-  { slug: "staffing",          labelKey: "svc.staffing",           memberId: "lars" },
-  { slug: "recruitment",       labelKey: "svc.recruitment",        memberId: "ebba" },
-  { slug: "hire-to-permanent", labelKey: "svc.hireToPerm",         memberId: "ebba" },
-  { slug: "construction",      labelKey: "svc.construction",       memberId: "johan" },
-  { slug: "logistics",         labelKey: "svc.logistics",          memberId: "johan" },
-  { slug: "warehouse",         labelKey: "svc.warehouse",          memberId: "lars" },
-  { slug: "it",                labelKey: "svc.it",                 memberId: "johan" },
-  { slug: "cleaning",          labelKey: "svc.cleaning",           memberId: "johan" },
-  { slug: "moving",            labelKey: "svc.moving",             memberId: "johan" },
+  { slug: "staffing",          labelKey: "svc.staffing",           memberId: "fadi" },
+  { slug: "recruitment",       labelKey: "svc.recruitment",        memberId: "anton" },
+  { slug: "hire-to-permanent", labelKey: "svc.hireToPerm",         memberId: "anton" },
+  { slug: "construction",      labelKey: "svc.construction",       memberId: "markus" },
+  { slug: "logistics",         labelKey: "svc.logistics",          memberId: "markus" },
+  { slug: "warehouse",         labelKey: "svc.warehouse",          memberId: "fadi" },
+  { slug: "it",                labelKey: "svc.it",                 memberId: "anel" },
+  { slug: "cleaning",          labelKey: "svc.cleaning",           memberId: "markus" },
+  { slug: "moving",            labelKey: "svc.moving",             memberId: "markus" },
   { slug: "transport",         labelKey: "svc.transport",          memberId: null },
-  { slug: "workshop",          labelKey: "svc.workshop",           memberId: "johan" },
+  { slug: "workshop",          labelKey: "svc.workshop",           memberId: "markus" },
 ];
 
 /**
