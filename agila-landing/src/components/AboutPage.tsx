@@ -38,21 +38,13 @@ export default function AboutPage() {
             </motion.div>
           </div>
 
-          <div className="container-wide mt-32">
-            <motion.div
-              className="hero-image-banner"
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
+          <div className="container-wide hero-divider-slot">
+            <motion.hr
+              className="hero-divider"
+              initial={{ opacity: 0, scaleX: 0.7 }}
+              animate={{ opacity: 1, scaleX: 1 }}
               transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            >
-              <Image
-                src="/assets/contact-team.jpg"
-                alt="Teamet på Agil Arbetskraft – bemanningsföretag i Sverige"
-                fill
-                priority
-                className="hero-image-content"
-              />
-            </motion.div>
+            />
           </div>
         </section>
 
@@ -375,21 +367,21 @@ export default function AboutPage() {
           padding: 0 16px;
         }
 
-        .mt-32 { margin-top: 32px; }
-
-        .hero-image-banner {
-          position: relative;
-          width: 100%;
-          height: clamp(300px, 45vh, 500px);
-          min-height: 400px;
-          border-radius: var(--radius-xl);
-          overflow: hidden;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        /* Closes out the hero where the team banner used to sit, so the intro
+           still reads as its own block before the vision section. */
+        /* margin-bottom + the section's own padding-bottom add up to roughly
+           the space above, so the rule sits centred between the two sections. */
+        .hero-divider-slot {
+          margin-top: clamp(40px, 6vw, 72px);
+          margin-bottom: clamp(16px, 2vw, 32px);
         }
 
-        .hero-image-content {
-          object-fit: cover;
-          object-position: center 25%;
+        .hero-divider {
+          width: 100%;
+          height: 1px;
+          margin: 0;
+          border: none;
+          background: var(--border-subtle);
         }
 
         .mb-8 { margin-bottom: 8px; }
