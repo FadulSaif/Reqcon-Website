@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { COMPANY_LOGOS } from "@/lib/company-logos";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -13,11 +14,12 @@ function LogoRow({ logos, reverse }: { logos: typeof COMPANY_LOGOS; reverse?: bo
       <div className="logo-row-track">
         {[...logos, ...logos, ...logos].map((logo, idx) => (
           <div key={`${logo.name}-${idx}`} className="logo-chip" title={logo.name}>
-            <img
+            <Image
               src={logo.src}
               alt={logo.alt}
+              width={180}
+              height={34}
               className="logo-img"
-              loading="lazy"
             />
           </div>
         ))}

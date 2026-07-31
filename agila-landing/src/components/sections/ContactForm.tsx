@@ -126,6 +126,8 @@ export default function ContactForm({
     const summary = requestedRoles.length > 0
       ? `\n\n${t("contact.form.specsSummaryPrefix")}\n${requestedRoles.map((r) => `• ${r}`).join("\n")}`
       : "";
+    // The message mirrors the selected roles and must stay synchronized here.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMessage(baseMsg + summary);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkedSpecs, customRoles, customRoleInput, fullTeamActive]);

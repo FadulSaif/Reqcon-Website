@@ -61,8 +61,20 @@ export default function HumanVerification({ onVerify, onExpire, className = "" }
 
 // Add types for window.turnstile
 declare global {
+  interface TurnstileWidgetOptions {
+    sitekey: string;
+    callback: (token: string) => void;
+    "expired-callback": () => void;
+    theme: "auto" | "light" | "dark";
+  }
+
+  interface TurnstileApi {
+    render(container: HTMLElement, options: TurnstileWidgetOptions): string;
+    remove(widgetId: string): void;
+  }
+
   interface Window {
-    turnstile: any;
+    turnstile?: TurnstileApi;
     onloadTurnstileCallback: () => void;
   }
 }

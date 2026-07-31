@@ -1,10 +1,8 @@
 "use client";
 
 import Image from "next/image";
-// Link import preserved for potential future use
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SERVICES_LIST } from "@/lib/services-data";
 

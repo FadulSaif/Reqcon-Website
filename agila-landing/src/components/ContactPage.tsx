@@ -753,6 +753,9 @@ export default function ContactPage() {
           gap: clamp(32px, 5vw, 48px);
           align-items: stretch;
         }
+        .cp-contact-grid > * {
+          min-width: 0;
+        }
         @media (min-width: 1024px) {
           .cp-contact-grid {
             grid-template-columns: 1.2fr 1fr;
@@ -837,6 +840,8 @@ export default function ContactPage() {
         .cp-flip-container {
           perspective: 1500px;
           border-radius: var(--radius-xl);
+          min-width: 0;
+          max-width: 100%;
         }
         .cp-flipper {
           width: 100%;
@@ -967,6 +972,9 @@ export default function ContactPage() {
           grid-template-columns: 1fr;
           gap: clamp(24px, 4vw, 40px);
           align-items: stretch;
+        }
+        .cp-office-grid > * {
+          min-width: 0;
         }
         @media (min-width: 1024px) {
           .cp-office-grid {

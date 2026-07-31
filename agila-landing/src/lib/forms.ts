@@ -28,8 +28,6 @@ export function buildServiceMessage(slug: string, language: FormLanguage, servic
     : `Hello, I am interested in the ${serviceLabel} service and would like to receive more information.`;
 }
 
-import { FORM_CONFIG } from "@/config/formConfig";
-
 export async function submitFormSubmit(
   payload: Record<string, string>,
   turnstileToken: string

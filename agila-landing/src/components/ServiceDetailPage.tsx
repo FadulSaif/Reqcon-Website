@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SERVICES_CONFIG } from "@/lib/services-data";
-import { getTeamMemberForService, SERVICE_OPTIONS, getServiceLabelKey } from "@/lib/team-data";
-import { CheckCircle2, ArrowRight, Mail, Phone, Plus, Send } from "lucide-react";
+import { getTeamMemberForService } from "@/lib/team-data";
+import { CheckCircle2, ArrowRight, Mail, Phone, Plus } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "./sections/Navbar";
 import Footer from "./sections/Footer";
@@ -849,7 +849,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
         }
         @media (min-width: 1024px) {
           /* Image top meets the heading; .eyebrow-offset clears the eyebrow. */
-          .overview-grid { grid-template-columns: 45% 55%; align-items: start; }
+          .overview-grid { grid-template-columns: minmax(0, 45fr) minmax(0, 55fr); align-items: start; }
         }
 
         .value-highlights-list { display: flex; flex-direction: column; gap: 24px; }

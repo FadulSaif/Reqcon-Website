@@ -1,0 +1,50 @@
+[Unit]
+Description=Agil Arbetskraft Next.js production service
+# Runtime: Node.js 24.x recommended; supported range is ^20.17.0 || >=22.9.0.
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=agil-web
+Group=agil-web
+WorkingDirectory=/srv/agil-arbetskraft/current
+UMask=0027
+Environment=NODE_ENV=production
+Environment=HOSTNAME=127.0.0.1
+Environment=PORT=3000
+EnvironmentFile=/etc/agil-arbetskraft/environment
+ExecStartPre=/usr/bin/test -r /srv/agil-arbetskraft/current/server.js
+ExecStartPre=/usr/bin/test -r /srv/agil-arbetskraft/current/scripts/validate-production-env.mjs
+ExecStartPre=/usr/bin/node scripts/validate-production-env.mjs
+ExecStart=/usr/bin/node /srv/agil-arbetskraft/current/server.js
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+KillSignal=SIGTERM
+SyslogIdentifier=agil-arbetskraft
+StandardOutput=journal
+StandardError=journal
+CapabilityBoundingSet=
+AmbientCapabilities=
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectClock=true
+ProtectControlGroups=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectHostname=true
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallArchitectures=native
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+ReadWritePaths=/srv/agil-arbetskraft/shared/next-cache
+
+[Install]
+WantedBy=multi-user.target

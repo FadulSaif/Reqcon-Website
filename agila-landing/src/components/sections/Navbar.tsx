@@ -300,6 +300,7 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
                 <button
                   onClick={() => setTheme(isDark ? "light" : "dark")}
                   className="theme-toggle-btn"
+                  aria-label="Toggle theme"
                 >
                   {isDark ? <Sun size={28} /> : <Moon size={28} />}
                 </button>
