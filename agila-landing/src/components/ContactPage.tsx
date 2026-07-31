@@ -143,6 +143,7 @@ export default function ContactPage() {
                           alt={member.name}
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                          quality={100}
                           className="cp-team-photo"
                         />
                       </div>
@@ -184,6 +185,7 @@ export default function ContactPage() {
                             alt={member.name}
                             width={72}
                             height={72}
+                            quality={100}
                             className="cp-back-avatar-img"
                           />
                         </div>
