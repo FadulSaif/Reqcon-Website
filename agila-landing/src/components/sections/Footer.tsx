@@ -58,7 +58,7 @@ export default function Footer() {
 
           {/* Column 3: Contact */}
           <div className="footer-col">
-            <h4 className="footer-heading">{t("footer.getInTouch")}</h4>
+            <h4 className="footer-heading contact-heading">{t("footer.getInTouch")}</h4>
             <div className="footer-nav-list">
               <a href={`mailto:${SITE_CONFIG.email}`} className="footer-link contact-link">
                 <div className="contact-icon-wrapper"><Mail size={16} /></div>
@@ -73,7 +73,7 @@ export default function Footer() {
 
           {/* Column 4: Socials */}
           <div className="footer-col">
-            <h4 className="footer-heading">{t("footer.followUs")}</h4>
+            <h4 className="footer-heading social-heading">{t("footer.followUs")}</h4>
             <div className="footer-socials-flat">
               <a href={SITE_CONFIG.socials.linkedin} target="_blank" rel="noopener noreferrer" className="social-link-flat">
                 <Linkedin size={20} />
@@ -168,6 +168,7 @@ export default function Footer() {
           .footer-grid, .footer-bottom-grid {
             grid-template-columns: 30% 1fr 1fr 1fr;
             gap: 40px;
+            align-items: flex-start;
           }
         }
 
@@ -206,8 +207,18 @@ export default function Footer() {
           color: #FAFAFA;
           font-size: 1.125rem;
           font-weight: 600;
-          margin-bottom: 24px;
+          margin: 0 0 24px 0;
+          padding: 0;
+          line-height: 1.2;
           letter-spacing: 0.02em;
+        }
+
+        .contact-heading {
+          padding-left: 52px;
+        }
+
+        .social-heading {
+          padding-left: 32px;
         }
 
         .footer-nav-list {
@@ -224,7 +235,7 @@ export default function Footer() {
           text-decoration: none;
           font-size: 0.9375rem;
           font-weight: 500;
-          padding-bottom: 8px;
+          height: 36px;
           border-bottom: 1px solid rgba(255, 255, 255, 0.08);
           transition: all 0.3s ease;
         }
@@ -281,7 +292,7 @@ export default function Footer() {
         .footer-socials-flat {
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          gap: 16px;
         }
 
         .social-link-flat {
@@ -292,6 +303,7 @@ export default function Footer() {
           text-decoration: none;
           font-size: 0.9375rem;
           font-weight: 500;
+          height: 36px;
           transition: color 0.3s ease;
         }
 
