@@ -20,8 +20,6 @@ export interface ServiceOption {
 }
 
 // PLACEHOLDER: bios (bio.*) and service tags are samples pending real copy.
-// Anton and Markus also still carry the previous stock headshots, which do not
-// depict them — both need real photos before this goes live.
 export const TEAM_MEMBERS: TeamMember[] = [
   {
     id: "fadi",
@@ -39,7 +37,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     titleKey: "role.coordinator",
     email: "Anton@reqcon.se",
     phone: "073-302 30 35",
-    image: "/assets/team-ebba.jpg",
+    image: "/assets/agil-mark.svg",
     bioKey: "bio.anton",
     services: ["recruitment", "hire-to-permanent"],
   },
@@ -49,7 +47,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     titleKey: "role.consultantManager",
     email: "Markus.nyberg@agilarbetskraft.se",
     phone: "070-554 81 47",
-    image: "/assets/team-johan.jpg",
+    image: "/assets/agil-mark.svg",
     bioKey: "bio.markus",
     services: ["construction", "logistics", "transport", "cleaning", "moving", "workshop"],
   },
