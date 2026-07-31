@@ -12,13 +12,17 @@ const resources = {
   }
 };
 
+const initialLanguage = typeof window !== 'undefined' && window.location.pathname.startsWith('/en')
+  ? 'en'
+  : 'sv';
+
 i18n
   .use(initReactI18next)
   .init({
     resources,
     // The URL route wrapper selects the active locale before a page renders.
     // Swedish is only a deterministic fallback for routes without a locale.
-    lng: 'sv',
+    lng: initialLanguage,
     fallbackLng: 'sv',
     interpolation: {
       escapeValue: false // react already escapes values

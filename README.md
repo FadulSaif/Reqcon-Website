@@ -1,35 +1,33 @@
 # REQCON Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+REQCON's bilingual Swedish/English company website. The application is a React 19
+single-page application that is statically prerendered with Vite and deployed to
+Vercel.
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Requirements: a current Node.js LTS release and npm.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+The development server prints the local URL. Swedish is the default language at
+`/sv`; English is available at `/en`.
+
+## Quality checks
+
+```bash
+npm run lint
+npx tsc -b --pretty false
+npm run test:routes
+npm run build
+```
+
+There is no general unit-test script in the current project. `test:routes` verifies
+the 46 localized routes shared by the sitemap and static-prerender configuration.
+The production build also runs TypeScript before generating the static site.
 
 ## Static SEO build
 
@@ -42,6 +40,11 @@ manifest (or replace it with article data-derived route generation) before launc
 `/` is a Swedish fixed-default entry point: Vercel returns a 301 redirect to `/sv`.
 Known legacy unprefixed public routes redirect to their `/sv/...` counterparts.
 Vercel is the only deployment target.
+
+The canonical production URL is read from `VITE_SITE_URL` when configured and
+falls back to `https://reqcon-website.vercel.app`. Keep that environment variable
+aligned with the final public domain before launch.
+
 ## FormSubmit activation and delivery note
 
 The contact and careers forms send to `info@reqcon.se` through FormSubmit. The first

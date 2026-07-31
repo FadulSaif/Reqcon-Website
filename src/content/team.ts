@@ -3,6 +3,7 @@ export interface TeamMember {
   titleKey: 'team.fadi_title' | 'team.anel_title';
   bioKey: 'team.fadi_desc' | 'team.anel_desc';
   phone: string;
+  phoneHref: string;
   email: string;
   address: string;
   mapUrl: string;
@@ -41,6 +42,7 @@ export const fadi: TeamMember = {
   titleKey: 'team.fadi_title',
   bioKey: 'team.fadi_desc',
   phone: '070-939 51 11',
+  phoneHref: 'tel:+46709395111',
   email: 'fadi.rabah@reqcon.se',
   address: 'Tullgårdsgatan 10, 116 68 Stockholm',
   mapUrl: 'https://maps.google.com/?q=Tullgårdsgatan+10,+Stockholm',
@@ -52,6 +54,7 @@ export const anel: TeamMember = {
   titleKey: 'team.anel_title',
   bioKey: 'team.anel_desc',
   phone: '070-853 19 21',
+  phoneHref: 'tel:+46708531921',
   email: 'anel.pasic@reqcon.se',
   address: 'Gustaf Dalénsgatan 30 (Hisinge Hus), 417 24 Göteborg',
   mapUrl: 'https://maps.google.com/?q=Gustaf+Dalénsgatan+30,+Göteborg',
@@ -68,7 +71,6 @@ export const teamPageMembers: TeamProfileMember[] = [
   {
     ...anel,
     id: 'anel',
-    phoneHref: 'tel:+46708531921',
     image: {
       src: anel.image,
       alt: anel.name,
@@ -78,7 +80,6 @@ export const teamPageMembers: TeamProfileMember[] = [
     ...fadi,
     id: 'fadi',
     titleKey: 'team.fadi_team_title',
-    phoneHref: 'tel:+46709395111',
     image: {
       src: fadi.image,
       alt: fadi.name,

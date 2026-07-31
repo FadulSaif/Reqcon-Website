@@ -18,7 +18,7 @@ export const footerOffices: readonly FooterOffice[] = [
     addressLines: ['Tullgårdsgatan 10', '116 68 Stockholm'],
     email: COMPANY_EMAIL,
     phone: fadi.phone,
-    phoneHref: 'tel:+46709395111',
+    phoneHref: fadi.phoneHref,
   },
   {
     id: 'gothenburg',
@@ -26,6 +26,6 @@ export const footerOffices: readonly FooterOffice[] = [
     addressLines: ['Gustaf Dalénsgatan 30', '417 24 Göteborg'],
     email: COMPANY_EMAIL,
     phone: anel.phone,
-    phoneHref: 'tel:+46708531921',
+    phoneHref: anel.phoneHref,
   },
 ];

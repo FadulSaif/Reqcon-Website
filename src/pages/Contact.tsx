@@ -71,7 +71,7 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex flex-col gap-4 text-sm text-text-secondary">
-                  <a href={`tel:${member.phone.replace(/\s+/g, '')}`} className="flex items-center gap-3 hover:text-brand-secondary transition-colors group">
+                  <a href={member.phoneHref} className="flex items-center gap-3 hover:text-brand-secondary transition-colors group">
                     <span className="p-2 bg-bg-surface border border-border-custom rounded-full text-text-secondary group-hover:text-brand-secondary transition-colors"><Phone className="w-4 h-4" /></span>
                     <span className="font-semibold">{member.phone}</span>
                   </a>

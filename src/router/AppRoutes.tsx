@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Navigate, useParams, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Loader2 } from 'lucide-react';
@@ -28,15 +28,16 @@ const PageLoader: React.FC = () => (
 const LanguageRouteWrapper: React.FC = () => {
   const { lng } = useParams<{ lng: string }>();
   const { i18n } = useTranslation();
+  const isSupportedLanguage = lng === 'sv' || lng === 'en';
 
-  if (lng !== 'sv' && lng !== 'en') {
+  useEffect(() => {
+    if (isSupportedLanguage && i18n.language !== lng) {
+      void i18n.changeLanguage(lng);
+    }
+  }, [i18n, isSupportedLanguage, lng]);
+
+  if (!isSupportedLanguage) {
     return <NotFound />;
-  }
-
-  // This must happen while rendering, not in an effect: an SSG render for
-  // /en/... needs English content and metadata in its first HTML response.
-  if (i18n.language !== lng) {
-    void i18n.changeLanguage(lng);
   }
 
   return <Outlet />;
