@@ -170,7 +170,6 @@
     "story_title": "It started with a vision.",
     "story_p1": "Reqcon was founded in 2020 and is headquartered in central Stockholm. The vision has been to gather a team of knowledgeable experts to build proven models and processes internally based on our know-how and many years of experience to deliver real value to our clients – regardless of industry.",
     "story_p2": "Reqcon's cornerstone lies in requirements analysis (business analysis), but as a company we have recently expanded our competence areas. The goal is to turn that vision into reality. Today, Reqcon has expanded its operations to Gothenburg and has the ambition to deliver its services throughout Sweden.",
-    "tagline": "When you invest in us, we invest in you",
     "stats": [
       {"value": "2020", "label": "Founded in Stockholm"},
       {"value": "2", "label": "Established offices (Sthlm & Gbg)"},
@@ -208,9 +207,12 @@
   "careers": {
     "badge": "Careers",
     "title": "Work with us",
-    "hero_badge": "We want to grow!",
-    "hero_subtitle": "Is Reqcon the right company for you? Read below and decide",
+    "hero_badge": "Careers at Reqcon",
+    "hero_subtitle": "Learn what we offer, how we work and what we value in the people who join us.",
     "hero_cta": "Submit an application",
+    "intro_badge": "Working at Reqcon",
+    "intro_title": "What you can expect from us",
+    "intro_description": "At Reqcon, you are trusted to take responsibility for your work while receiving support from experienced colleagues. We value clear communication, shared knowledge and continuous development.",
     "tagline": "When you invest in us, we invest in you.",
     "benefits": {
       "1": {
@@ -224,13 +226,32 @@
     },
     "offer_badge": "Our offering",
     "offer_title": "What we offer you",
+    "offer_intro": "At Reqcon, we value our employees highly and create an environment where you can thrive, develop, and make an impact.",
+    "offer_cards": {
+      "freedom": {
+        "title": "Freedom with responsibility",
+        "description": "We offer competitive salaries and flexible working hours, with freedom to manage your workday as long as we achieve our goals together."
+      },
+      "learning": {
+        "title": "Knowledge that keeps growing",
+        "description": "Internal and external training helps you develop in your role and keep your professional knowledge current."
+      },
+      "influence": {
+        "title": "Room to make an impact",
+        "description": "As you develop and contribute, you have opportunities to take greater responsibility and grow with the company."
+      },
+      "investment": {
+        "title": "Mutual development",
+        "description": "When you contribute to the company's development, Reqcon supports your growth – both professionally and financially."
+      }
+    },
     "offer_p1": "At Reqcon, we value our employees highly and strive to create an environment where you thrive, develop, and have the opportunity to make an impact. We offer competitive salaries and flexible working hours based on the principle of \"freedom with responsibility\" – giving you the freedom to manage your own workday as long as we achieve our goals together.",
     "offer_p2": "We actively focus on professional development and offer both internal training sessions and external courses/certifications to help you grow in your role and stay up-to-date in your professional development. We also provide excellent opportunities to take on greater responsibility and grow within the company as you develop and contribute.",
     "offer_p3": "At Reqcon, our motto is: If you contribute to the company's development, the company will ensure your development – both in terms of competence and financially. Reqcon is a company where you get back what you give.",
     "expectations_badge": "Expectations",
-    "expectations_title": "What does Reqcon expect from you?",
+    "expectations_title": "What Reqcon expects from you",
     "expectations_p1": "At Reqcon, we build our culture on mutual trust, commitment, and professionalism. As an employee, you are expected to take ownership of your work, your growth, and actively contribute to both your team's and the company's success.",
-    "expectations_p2": "We believe in freedom with responsibility – but also that you take full ownership of the results. We value initiative, collaboration, and a continuous desire to grow, both as an individual and together with us.",
+    "expectations_p2": "We believe in freedom with responsibility, but also that you take full ownership of the results. We value initiative, collaboration, and a continuous desire to grow, both as an individual and together with us.",
     "expectations_list_title": "We expect you to:",
     "expectations_bullets": [
       "Take responsibility for your tasks and keep your promises.",
@@ -239,7 +260,8 @@
       "Share your knowledge and experiences with others.",
       "Be curious and eager to develop – both technically and personally."
     ],
-    "expectations_footer": "At Reqcon, you are not just an employee – you are an essential part of the company's future.",
+    "expectations_footer": "At Reqcon, you are not just an employee, you are an essential part of the company's future.",
+    "policy_badge": "Our values",
     "policy_banner": "Want to know more about Reqcon and our core values?",
     "policy_banner_cta": "View our personnel policy",
     "form": {

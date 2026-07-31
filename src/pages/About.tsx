@@ -127,12 +127,6 @@ const About: React.FC = () => {
               {t('about.story_p2')}
             </p>
 
-            {/* Special Highlighted Motto Card */}
-            <div className="mt-2 p-5 rounded-2xl bg-gradient-to-r from-brand-secondary/15 via-brand-secondary/5 to-transparent border-l-4 border-brand-secondary shadow-sm">
-              <p className="text-base md:text-lg font-black text-text-primary tracking-tight">
-                "{t('about.tagline')}"
-              </p>
-            </div>
           </div>
 
           <div className="lg:col-span-5 grid grid-cols-2 gap-4">

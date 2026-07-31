@@ -170,7 +170,6 @@
     "story_title": "Det började med en vision.",
     "story_p1": "Reqcon grundades 2020 och har sitt säte i centrala Stockholm. Visionen har varit att samla ett gäng kunniga experter, för att internt bygga upp beprövade modeller och processer grundade i vår \"know-how\" och mångåriga erfarenhet för att leverera verkligt värde till våra kunder – oavsett bransch.",
     "story_p2": "Reqcon's grundpelare ligger i kravanalys (business analysis), men har som bolag på senare tid utökat sina kompetensområden. Målet är att göra visionen till verklighet. Idag har Reqcon expanderat sin verksamhet till Göteborg och har även ambition att kunna leverera sina tjänster i hela Sverige.",
-    "tagline": "När du investerar i oss, investerar vi i dig",
     "stats": [
       {"value": "2020", "label": "Grundat i Stockholm"},
       {"value": "2", "label": "Etablerade kontor (Sthlm & Gbg)"},
@@ -208,9 +207,12 @@
   "careers": {
     "badge": "Karriär",
     "title": "Arbeta hos oss",
-    "hero_badge": "Vi vill bli fler!",
-    "hero_subtitle": "Är Reqcon rätt bolag för dig? Läs nedan och avgör",
+    "hero_badge": "Karriär på Reqcon",
+    "hero_subtitle": "Läs om vad vi erbjuder, hur vi arbetar och vad vi värdesätter hos dem som börjar hos oss.",
     "hero_cta": "Skicka en ansökan",
+    "intro_badge": "Att arbeta på Reqcon",
+    "intro_title": "Det här kan du förvänta dig av oss",
+    "intro_description": "På Reqcon får du förtroendet att ta ansvar för ditt arbete samtidigt som du får stöd av erfarna kollegor. Vi värdesätter tydlig kommunikation, kunskapsdelning och kontinuerlig utveckling.",
     "tagline": "När du investerar i oss, investerar vi i dig.",
     "benefits": {
       "1": {
@@ -223,7 +225,26 @@
       }
     },
     "offer_badge": "Vårt erbjudande",
-    "offer_title": "Vad vi erbjuder dig",
+    "offer_title": "Vad vi erbjuder dig?",
+    "offer_intro": "På Reqcon värdesätter vi våra medarbetare högt och skapar en miljö där du kan trivas, utvecklas och påverka.",
+    "offer_cards": {
+      "freedom": {
+        "title": "Frihet under ansvar",
+        "description": "Vi erbjuder konkurrenskraftiga löner och flexibla arbetstider, med frihet att styra arbetsdagen när vi tillsammans når våra mål."
+      },
+      "learning": {
+        "title": "Kompetens som fortsätter växa",
+        "description": "Interna och externa utbildningar ger dig möjlighet att utvecklas i din roll och hålla dina kunskaper aktuella."
+      },
+      "influence": {
+        "title": "Utrymme att påverka",
+        "description": "När du utvecklas och bidrar får du möjlighet att ta större ansvar och växa vidare tillsammans med bolaget."
+      },
+      "investment": {
+        "title": "Ömsesidig utveckling",
+        "description": "Bidrar du till bolagets utveckling ser Reqcon till att utveckla dig – både kompetensmässigt och ekonomiskt."
+      }
+    },
     "offer_p1": "På Reqcon värdesätter vi våra medarbetare högt och strävar efter att skapa en miljö där du trivs, utvecklas och får möjlighet att påverka. Vi erbjuder konkurrenskraftiga löner och flexibla arbetstider enligt principen \"frihet under ansvar\" – du har frihet att själv styra din arbetsdag så länge vi tillsammans når våra mål.",
     "offer_p2": "Vi satsar aktivt på kompetensutveckling och erbjuder både interna och externa utbildningar för att du ska kunna växa i din roll och hålla dig uppdaterad i din yrkesutveckling. Hos oss finns också goda möjligheter att ta ett större ansvar och växa inom bolaget, i takt med att du utvecklas och bidrar.",
     "offer_p3": "På Reqcon har vi följande motto: Om du bidrar till bolagets utveckling, ser bolaget till att utveckla dig – både kompetensmässigt och ekonomiskt. Reqcon är ett företag där du får tillbaka det du ger.",
@@ -240,6 +261,7 @@
       "Är nyfiken och villig att utvecklas – både tekniskt och personligt."
     ],
     "expectations_footer": "Hos Reqcon är du inte bara en anställd – du är en viktig del av bolagets framtid.",
+    "policy_badge": "Våra värderingar",
     "policy_banner": "Vill du veta mer om Reqcon och våra värderingar?",
     "policy_banner_cta": "Ta del av vår personalpolicy",
     "form": {

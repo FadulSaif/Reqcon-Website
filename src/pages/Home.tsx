@@ -34,7 +34,7 @@ const customerLogoRows: readonly (readonly CustomerLogo[])[] = [
   ],
   [
     { name: 'SL', src: '/images/clients/round5/sl.png', scaleClassName: 'scale-[1.1]' },
-    { name: 'Swedavia', src: '/images/clients/round5/swedavia.png', scaleClassName: 'scale-[1.5]' },
+    { name: 'Swedavia', src: '/images/clients/round5/swedavia.png', scaleClassName: 'scale-[1.7]' },
     { name: 'Trafikförvaltningen', src: '/images/clients/round5/trafikforvaltningen.png', scaleClassName: 'scale-[1.25]' },
     { name: 'Trafikverket', src: '/images/clients/round5/trafikverket-horizontal.png', scaleClassName: 'scale-[1.05]' },
     { name: 'Vattenfall', src: '/images/clients/round5/vattenfall.png', scaleClassName: 'scale-[1.35]' },
