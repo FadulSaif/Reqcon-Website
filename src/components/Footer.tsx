@@ -44,7 +44,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Navigation Column */}
-        <div className="flex flex-col gap-5 text-left">
+        <div className="flex flex-col gap-6 text-left">
           <span className="font-heading text-lg font-semibold text-white">
             {t('footer.navigation', { lng: routeLanguage })}
           </span>
@@ -52,98 +52,108 @@ export const Footer: React.FC = () => {
             {navigation.map((item) => {
               const isActive = isCurrentPage(item.path);
               return (
-              <li key={item.path} className="border-b border-white/10">
-                <Link
-                  to={item.path}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={`relative flex items-center justify-between gap-3 py-3 text-sm transition-colors ${
-                    isActive
-                      ? 'font-semibold text-white after:absolute after:-bottom-px after:left-0 after:h-0.5 after:w-12 after:bg-brand-secondary'
-                      : 'text-zinc-400 hover:text-brand-secondary'
-                  }`}
-                >
-                  {item.name}
-                  {isActive && <ArrowRight className="h-4 w-4 text-brand-secondary" aria-hidden="true" />}
-                </Link>
-              </li>
+                <li key={item.path} className="border-b border-white/10">
+                  <Link
+                    to={item.path}
+                    aria-current={isActive ? 'page' : undefined}
+                    className={`relative flex items-center justify-between gap-3 h-[45px] text-sm transition-colors ${
+                      isActive
+                        ? 'font-semibold text-white after:absolute after:-bottom-px after:left-0 after:h-0.5 after:w-12 after:bg-brand-secondary'
+                        : 'text-zinc-400 hover:text-brand-secondary'
+                    }`}
+                  >
+                    <span>{item.name}</span>
+                    {isActive && <ArrowRight className="h-4 w-4 text-brand-secondary" aria-hidden="true" />}
+                  </Link>
+                </li>
               );
             })}
           </ul>
         </div>
 
         {/* Follow Us Column */}
-        <div className="flex flex-col gap-5 text-left">
-          <span className="font-heading text-lg font-semibold text-white">
+        <div className="flex flex-col gap-6 text-left">
+          <span className="font-heading text-lg font-semibold text-white block pl-[46px]">
             {t('footer.follow_us', { lng: routeLanguage })}
           </span>
-          <div className="flex flex-col gap-4">
-            <a
-              href="https://www.linkedin.com/company/reqcon/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 text-sm text-zinc-400 hover:text-brand-secondary transition-colors"
-            >
-              <span className="p-2 rounded-full border border-white/10 text-zinc-300">
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                </svg>
-              </span>
-              <span>LinkedIn</span>
-            </a>
+          <div className="border-t border-transparent">
+            <div className="flex items-center h-[45px]">
+              <a
+                href="https://www.linkedin.com/company/reqcon/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 text-sm text-zinc-400 hover:text-brand-secondary transition-colors"
+              >
+                <span className="p-2 rounded-full border border-white/10 text-zinc-300 inline-flex items-center justify-center shrink-0">
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                  </svg>
+                </span>
+                <span>LinkedIn</span>
+              </a>
+            </div>
           </div>
         </div>
 
         {/* Offices Information Column */}
-        <div className="flex flex-col gap-5 text-left">
-          <span className="font-heading font-semibold text-sm uppercase tracking-wider text-zinc-200">
+        <div className="flex flex-col gap-6 text-left">
+          <span className="font-heading text-lg font-semibold text-white block pl-[26px]">
             {t('footer.offices', { lng: routeLanguage })}
           </span>
-          <ul className="flex flex-col gap-5 text-sm text-zinc-400">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-0 border-t border-transparent">
             {footerOffices.map((office, index) => (
-              <li
-                key={office.id}
-                className={`grid min-w-0 grid-cols-1 items-start gap-y-3 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-x-6 ${
-                  index > 0 ? 'border-t border-white/10 pt-5' : ''
-                }`}
-              >
-                <div className="flex min-w-0 self-start items-start gap-2.5">
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-secondary" aria-hidden="true" />
-                  <address className="min-w-0 not-italic">
-                    <span className="block font-semibold leading-5 text-white">{office.name}</span>
-                    {office.addressLines.map((line) => (
-                      <span key={line} className="block">
-                        {line}
-                      </span>
-                    ))}
-                  </address>
+              <React.Fragment key={office.id}>
+                {/* Left Column: Address */}
+                <div className={`flex flex-col ${index > 0 ? "border-t border-white/10" : ""}`}>
+                  {/* City Name */}
+                  <div className="flex items-center gap-2.5 h-[45px]">
+                    <MapPin className="h-4 w-4 shrink-0 text-brand-secondary" aria-hidden="true" />
+                    <span className="font-semibold text-zinc-100 text-sm leading-5">{office.name}</span>
+                  </div>
+                  {/* Address Line 1 */}
+                  <div className="flex items-center pl-[26px] h-[45px]">
+                    <span className="text-zinc-400 text-sm leading-5">{office.addressLines[0]}</span>
+                  </div>
+                  {/* Address Line 2 */}
+                  <div className="flex items-center pl-[26px] h-[45px]">
+                    <span className="text-zinc-400 text-sm leading-5">{office.addressLines[1]}</span>
+                  </div>
                 </div>
 
-                <div className="flex min-w-0 self-start flex-col gap-1.5 pl-[1.625rem] lg:pl-0">
-                  <span className="font-heading text-sm font-semibold leading-5 text-white">
-                    {t('footer.contact', { lng: routeLanguage })}
-                  </span>
-                  <a
-                    href={`mailto:${office.email}`}
-                    aria-label={`${t('footer.email', { lng: routeLanguage })}: ${office.email}`}
-                    className="inline-flex min-w-0 items-start gap-2 transition-colors hover:text-brand-secondary"
-                  >
-                    <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-secondary" aria-hidden="true" />
-                    <span className="min-w-0 break-words [overflow-wrap:anywhere]">
-                      {office.email}
+                {/* Right Column: Contact info */}
+                <div className={`flex flex-col ${index > 0 ? "sm:border-t border-white/10" : ""}`}>
+                  {/* Contact Heading */}
+                  <div className="flex items-center pl-[26px] h-[45px]">
+                    <span className="font-semibold text-zinc-100 text-sm leading-5">
+                      {t('footer.contact', { lng: routeLanguage })}
                     </span>
-                  </a>
-                  <a
-                    href={office.phoneHref}
-                    aria-label={`${t('footer.phone', { lng: routeLanguage })}: ${office.phone}`}
-                    className="inline-flex min-w-0 items-center gap-2 transition-colors hover:text-brand-secondary"
-                  >
-                    <Phone className="h-3.5 w-3.5 shrink-0 text-brand-secondary" aria-hidden="true" />
-                    <span>{office.phone}</span>
-                  </a>
+                  </div>
+                  {/* Email */}
+                  <div className="flex items-center gap-2.5 h-[45px]">
+                    <Mail className="h-4 w-4 shrink-0 text-brand-secondary" aria-hidden="true" />
+                    <a
+                      href={`mailto:${office.email}`}
+                      aria-label={`${t('footer.email', { lng: routeLanguage })}: ${office.email}`}
+                      className="text-sm leading-5 text-zinc-400 hover:text-brand-secondary transition-colors"
+                    >
+                      {office.email}
+                    </a>
+                  </div>
+                  {/* Phone */}
+                  <div className="flex items-center gap-2.5 h-[45px]">
+                    <Phone className="h-4 w-4 shrink-0 text-brand-secondary" aria-hidden="true" />
+                    <a
+                      href={office.phoneHref}
+                      aria-label={`${t('footer.phone', { lng: routeLanguage })}: ${office.phone}`}
+                      className="text-sm leading-5 text-zinc-400 hover:text-brand-secondary transition-colors"
+                    >
+                      {office.phone}
+                    </a>
+                  </div>
                 </div>
-              </li>
+              </React.Fragment>
             ))}
-          </ul>
+          </div>
         </div>
 
       </div>

@@ -35,7 +35,7 @@ const Team: React.FC = () => {
                   <img
                     src={member.image.src}
                     alt={member.image.alt}
-                    className="w-full h-full object-cover object-[center_15%]"
+                    className={`w-full h-full ${member.id === 'anton' ? 'object-contain p-12 bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200 dark:from-slate-900 dark:via-slate-950 dark:to-slate-800' : 'object-cover object-[center_15%]'}`}
                     loading="lazy"
                   />
                 ) : (

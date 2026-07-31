@@ -104,9 +104,9 @@ export const teamPageMembers: TeamProfileMember[] = [
     address: fadi.address,
     mapUrl: fadi.mapUrl,
     image: {
-      kind: 'placeholder',
-      initials: 'AB',
-      altKey: 'team.anton_image_alt',
+      kind: 'photo',
+      src: '/images/team/anton_af_bjur.png',
+      alt: 'Anton af Bjur',
     },
   },
 ];
