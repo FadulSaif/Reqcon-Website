@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormSubmit } from '../../hooks/useFormSubmit';
+import HoneypotField from './HoneypotField';
+import HumanVerification from './HumanVerification';
 
 interface FormWrapperProps {
   formType: string;
@@ -15,17 +17,23 @@ const FormWrapper: React.FC<FormWrapperProps> = ({
   className = ""
 }) => {
   const { status, message, submitForm } = useFormSubmit();
+  const [turnstileToken, setTurnstileToken] = useState<string>('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.currentTarget));
     
     // Honeypot check
-    if (formData._honey) return;
+    if (formData._honey || formData._honey_trap) return;
 
-    const result = await submitForm(formData, formType);
+    if (!turnstileToken) {
+      return;
+    }
+
+    const result = await submitForm(formData, formType, turnstileToken);
     if (result.success && onSubmitSuccess) {
       onSubmitSuccess();
+      setTurnstileToken('');
     }
   };
 
@@ -49,14 +57,20 @@ const FormWrapper: React.FC<FormWrapperProps> = ({
           <input type="hidden" name="_template" value="table" />
           
           {/* Honeypot field for basic spam prevention */}
+          <HoneypotField />
           <input type="text" name="_honey" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
 
           {/* Form Fields injected here */}
           {children}
 
+          <HumanVerification 
+            onVerify={(token) => setTurnstileToken(token)} 
+            onExpire={() => setTurnstileToken('')} 
+          />
+
           <button 
             type="submit" 
-            disabled={status === 'loading'}
+            disabled={status === 'loading' || !turnstileToken}
             className="btn btn-primary w-full mt-4"
           >
             {status === 'loading' ? 'Sending...' : 'Submit'}
