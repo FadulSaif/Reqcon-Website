@@ -36,7 +36,7 @@ export const PlaceholderImage: React.FC<PlaceholderImageProps> = ({
           <Image className="w-6 h-6" />
         </div>
         <div className="flex flex-col gap-1">
-          <span className="font-mono text-xs uppercase tracking-wider text-text-primary font-bold">
+          <span className="font-mono text-xs tracking-wider text-text-primary font-bold">
             {label}
           </span>
           <span className="text-[10px] text-text-muted max-w-[200px] leading-relaxed">

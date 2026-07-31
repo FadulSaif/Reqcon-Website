@@ -28,7 +28,7 @@ export const Eyebrow: React.FC<EyebrowProps> = ({
   <span
     data-ui="eyebrow"
     style={responsivePillStyle}
-    className={`block w-fit select-none border border-brand-secondary/15 bg-brand-secondary/10 font-heading font-medium uppercase leading-[1.6] tracking-[0.12em] text-brand-secondary ${
+    className={`block w-fit select-none border border-brand-secondary/15 bg-brand-secondary/10 font-heading font-medium leading-[1.6] tracking-[0.12em] text-brand-secondary ${
       marginClasses[margin]
     } ${nowrap ? 'whitespace-nowrap' : ''}`}
   >

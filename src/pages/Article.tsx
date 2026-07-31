@@ -11,7 +11,7 @@ const Article: React.FC = () => {
   const article = slug ? getArticle(slug) : undefined;
   if (!article || (lng !== 'sv' && lng !== 'en')) return <NotFound />;
   const copy = article[lng];
-  const backLabel = lng === 'sv' ? 'Tillbaka till insikter' : 'Back to Insights';
+  const backLabel = lng === 'sv' ? 'Tillbaka till insikter' : 'Back to insights';
 
   return (
     <article className="bg-bg-page text-text-primary">
@@ -21,7 +21,7 @@ const Article: React.FC = () => {
           <ArrowLeft className="w-4 h-4" />{backLabel}
         </Link>
         <header className="mt-8 border-b border-border-custom pb-12">
-          <Eyebrow>REQCON Insights</Eyebrow>
+          <Eyebrow>REQCON insights</Eyebrow>
           <h1 className="mt-4 font-heading text-4xl md:text-5xl font-bold tracking-tight">{copy.title}</h1>
           <div className="mt-7 max-w-[65ch] space-y-5 text-[1.0625rem] md:text-lg leading-8 text-text-secondary">
             {copy.answer.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}

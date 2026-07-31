@@ -9,14 +9,14 @@
     "contact": "Kontakta oss"
   },
   "hero": {
-    "badge": "REQCON CONSULTING",
+    "badge": "REQCON consulting",
     "title": "Vi bygger smartare lösningar genom expertis och samarbete.",
     "subtitle": "Vi hjälper organisationer att omvandla komplexa krav till effektiva lösningar genom expertis inom kravhantering, teknik och agil utveckling.",
     "cta_primary": "Kontakta oss",
     "cta_secondary": "Våra tjänster"
   },
   "clients": {
-    "badge": "FÖRTROENDE & SAMARBETEN",
+    "badge": "Förtroende & samarbeten",
     "title": "Våra betrodda partners",
     "subtitle": "Vi är stolta över att samarbeta med ledande organisationer och myndigheter i Sverige."
   },
@@ -31,38 +31,38 @@
     "deliverables_label": "Våra leveranser inkluderar:",
     "items": {
       "krav": {
-        "title": "Kravanalys (Business Analysis)",
+        "title": "Kravanalys (business analysis)",
         "intro": "Grunden för varje framgångsrikt IT-projekt ligger i att förstå det verkliga affärsbehovet.",
         "desc": "Våra kravanalytiker är experter på att översätta komplexa visioner till strukturerade kravspecifikationer. Vi underlättar kommunikationen mellan verksamhet och IT, vilket eliminerar missförstånd och minskar risken för dyra felutvecklingar.",
         "bullets": ["Kravkartläggning & visualisering", "Verksamhetsanalys & processmodellering", "System- och dataanalys", "Kravhanteringsverktyg (t.ex. Jira, Azure DevOps)"],
-        "button_text": "Mer om Kravanalys"
+        "button_text": "Mer om kravanalys"
       },
       "test": {
         "title": "Testning & QA",
         "intro": "Kvalitetssäkring är inte ett slutsteg – det är en integrerad del av hela livscykeln.",
         "desc": "Vi hjälper er att sätta upp strukturerade testprocesser och utför grundliga funktionella tester, användbarhetstester samt acceptanstester. Vi säkerställer att systemet presterar säkert, snabbt och exakt som förväntat.",
         "bullets": ["Testplanering & testledning", "Manuella och automatiserade funktionstester", "Acceptanstester (UAT) med slutanvändare", "Felrapportering och buggspårning"],
-        "button_text": "Mer om Testning & QA"
+        "button_text": "Mer om testning & QA"
       },
       "pm": {
         "title": "Projektledning",
         "intro": "Vi styr projektet mot era affärsmål, oavsett om ni arbetar agilt eller traditionellt.",
         "desc": "Med ett tryggt och metodiskt ledarskap ser vi till att tidplaner, budgetar och kvalitetskrav efterlevs. Vi koordinerar teamet, hanterar intressenter och skapar transparens under hela utvecklingens gång.",
-        "bullets": ["Agil projektledning (Scrum Master, RTE)", "Traditionell projektledning", "Budget- och riskhantering", "Intressenthantering & rapportering"],
-        "button_text": "Mer om Projektledning"
+        "bullets": ["Agil projektledning (Scrum master, RTE)", "Traditionell projektledning", "Budget- och riskhantering", "Intressenthantering & rapportering"],
+        "button_text": "Mer om projektledning"
       },
       "info": {
         "title": "Informationshantering",
         "intro": "Skapa struktur, säkerhet och tillgänglighet i organisationens informationsflöden.",
         "desc": "Vi hjälper er att strukturera, organisera och lagra kritisk projektinformation. Med expertis inom datasamordning och dokumenthantering (t.ex. i SharePoint) ser vi till att rätt information når rätt person i rätt tid.",
         "bullets": ["Datasamordning & metadata-struktur", "SharePoint-arkitektur & administration", "Behörighets- och säkerhetsstruktur", "Digitaliserings- och arkiveringsstrategier"],
-        "button_text": "Mer om Informationshantering"
+        "button_text": "Mer om informationshantering"
       },
       "ux": {
         "title": "UX-design",
         "intro": "Användarvänliga lösningar skapas i skärningspunkten mellan form och funktion.",
         "desc": "Vi tar reda på vad era användare faktiskt behöver genom research och tester. Därefter designar vi intuitiva gränssnitt, flöden och interaktiva prototyper som engagerar, förenklar och levererar resultat.",
-        "bullets": ["Användarresearch & intervjuer", "Wireframes & interaktiva prototyper", "UI-design & grafiska gränssnitt", "Användbarhetstester (Usability Testing)"],
+        "bullets": ["Användarresearch & intervjuer", "Wireframes & interaktiva prototyper", "UI-design & grafiska gränssnitt", "Användbarhetstester (usability testing)"],
         "button_text": "Mer om UX-design"
       },
       "agile": {
@@ -70,7 +70,7 @@
         "intro": "Vi coachar och hjälper er organisation att anpassa agila principer efter era behov.",
         "desc": "Oavsett om ni vill implementera Scrum på teamnivå eller skala upp till SAFe (Scaled Agile Framework) på organisationsnivå, hjälper vi er att bygga effektiva, självstyrande team och transparenta arbetssätt.",
         "bullets": ["Införande av Scrum & Kanban", "Skalad agilitet (SAFe-konsultation)", "Agil coachning på individ- & teamnivå", "Facilitering av agila ceremonier"],
-        "button_text": "Mer om Agila metoder"
+        "button_text": "Mer om agila metoder"
       }
     }
   },
@@ -99,17 +99,17 @@
   },
   "process": {
     "badge": "Metodik",
-    "title": "Vår Arbetsprocess",
+    "title": "Vår arbetsprocess",
     "subtitle": "Med en strukturerad och beprövad arbetsmetodik säkerställer vi ordning och reda, minimerar risker och leder utvecklingen framåt.",
     "steps": [
       {
         "num": "01",
-        "title": "Discovery & Analys",
+        "title": "Discovery & analys",
         "desc": "Vi kartlägger affärsbehov, genomför intervjuer med nyckelpersoner och definierar det faktiska problemet."
       },
       {
         "num": "02",
-        "title": "Krav & Planering",
+        "title": "Krav & planering",
         "desc": "Vi specificerar funktionella och icke-funktionella krav, ritar upp informationsflöden och planerar testscenarier."
       },
       {
@@ -119,7 +119,7 @@
       },
       {
         "num": "04",
-        "title": "Målgång & Överlämning",
+        "title": "Målgång & överlämning",
         "desc": "Efter slutförda system- och acceptanstester kvalitetssäkrar vi driftsättningen och lämnar över en fungerande produkt."
       }
     ]
@@ -153,12 +153,12 @@
       {
         "quote": "REQCONs konsulter har visat en enastående förmåga att snabbt sätta sig in i vår verksamhet och strukturera upp våra kravprocesser.",
         "name": "Anders Larsson",
-        "position": "IT-arkitekt & Utvecklingsledare, Statlig myndighet"
+        "position": "IT-arkitekt & utvecklingsledare, statlig myndighet"
       },
       {
         "quote": "Deras kombination av djup kravmetodik och teknisk förståelse gjorde att vi kunde halvera tiden från specifikation till färdig testad kod.",
         "name": "Maria Bergqvist",
-        "position": "Product Owner, Energisektorn"
+        "position": "Product owner, energisektorn"
       }
     ]
   },
@@ -323,7 +323,7 @@
           "text": "Vi uppmuntrar kontinuerligt lärande genom utbildningar, certifieringar och erfarenhetsutbyte. Varje medarbetare ansvarar för sin utveckling – vi stöttar genom tid och resurser."
         },
         "10": {
-          "title": "10. Lojalitet & Sekretess",
+          "title": "10. Lojalitet & sekretess",
           "text": "All information rörande bolaget, kollegor och kunder hanteras konfidentiellt. Konsultrollen innebär ofta tillgång till känslig information – sekretess ska alltid respekteras."
         },
         "11": {
@@ -379,7 +379,7 @@
     "subtitle": "Vill du diskutera ett potentiellt uppdrag, veta mer om våra konsulttjänster eller bli en del av teamet? Hör av dig till oss så hjälper vi dig vidare.",
     "hero_cta": "Skicka ett meddelande",
     "locations_badge": "Lokalkontor",
-    "locations_title": "Våra Kontor & Konsultchefer",
+    "locations_title": "Våra kontor & konsultchefer",
     "locations_subtitle": "Hör av dig direkt till ansvarig konsultchef på din ort.",
     "view_maps": "Visa på Google Maps",
     "form": {

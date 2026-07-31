@@ -333,7 +333,7 @@ export const Header: React.FC = () => {
             className={getButtonClassName({
               variant: isLinkActive(contactPath) ? 'secondary' : 'primary',
               size: 'sm',
-              className: `${isCompactHeader ? 'px-2.5 py-1 text-[10px]' : 'px-4 py-2 text-xs'} shrink-0 whitespace-nowrap rounded-full font-bold uppercase tracking-wider shadow-sm transition-all duration-300 hover:shadow-md`,
+              className: `${isCompactHeader ? 'px-2.5 py-1 text-[10px]' : 'px-4 py-2 text-xs'} shrink-0 whitespace-nowrap rounded-full font-bold tracking-wider shadow-sm transition-all duration-300 hover:shadow-md`,
             })}
           >
             <span>{t('nav.contact', { lng: routeLanguage })}</span>
@@ -399,7 +399,7 @@ export const Header: React.FC = () => {
                 </div>
 
                 <div className="flex flex-col gap-6 text-left">
-                  <span className="text-xs font-bold uppercase tracking-widest text-text-secondary opacity-70">
+                  <span className="text-xs font-bold tracking-widest text-text-secondary opacity-70">
                     {routeLanguage === 'en' ? 'Navigation' : 'Navigering'}
                   </span>
                   <nav className="flex flex-col gap-4">
@@ -425,8 +425,8 @@ export const Header: React.FC = () => {
                 
                 {/* Mobile Language Selection */}
                 <div className="flex flex-col gap-3 pt-4 border-t border-border-custom text-left">
-                  <span className="text-xs font-bold uppercase tracking-widest text-text-secondary opacity-70">
-                    Språk / Language
+                  <span className="text-xs font-bold tracking-widest text-text-secondary opacity-70">
+                    Språk / language
                   </span>
                   <div
                     className="flex gap-2"
@@ -461,7 +461,7 @@ export const Header: React.FC = () => {
                 </div>
 
                 <div className="flex items-center justify-between gap-4">
-                  <span className="text-xs font-bold uppercase tracking-widest text-text-secondary opacity-70">
+                  <span className="text-xs font-bold tracking-widest text-text-secondary opacity-70">
                     {routeLanguage === 'en' ? 'Theme' : 'Tema'}
                   </span>
                   <ThemeToggle />

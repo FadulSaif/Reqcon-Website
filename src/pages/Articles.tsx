@@ -16,7 +16,7 @@ const Articles: React.FC = () => {
     ? {
         title: 'Insikter om kravhantering | REQCON AB',
         description: 'Praktiska insikter om kravhantering, anbudsgranskning och spårbarhet i byggprojekt.',
-        eyebrow: 'REQCON Insikter',
+        eyebrow: 'REQCON insikter',
         heading: 'Insikter för tydligare krav och säkrare beslut',
         intro: 'Praktiska artiklar för team som granskar, följer upp och för vidare krav genom anbud och leverans.',
         readMore: 'Läs artikeln',
@@ -24,13 +24,13 @@ const Articles: React.FC = () => {
     : {
         title: 'Insights on requirements management | REQCON AB',
         description: 'Practical insights on requirements management, tender review, and traceability in construction projects.',
-        eyebrow: 'REQCON Insights',
+        eyebrow: 'REQCON insights',
         heading: 'Insights for clearer requirements and safer decisions',
         intro: 'Practical articles for teams that review, track, and carry requirements through tender and delivery.',
         readMore: 'Read article',
       };
 
-  const backHome = lng === 'sv' ? 'Till startsidan' : 'Back to Home';
+  const backHome = lng === 'sv' ? 'Till startsidan' : 'Back to home';
 
   return (
     <main className="relative overflow-hidden bg-slate-950 text-text-primary [&_.heading-display]:!text-white [&_.body-lg]:!text-slate-300">

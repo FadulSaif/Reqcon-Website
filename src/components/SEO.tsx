@@ -21,12 +21,12 @@ interface SEOProps {
 }
 
 const serviceNames: Record<string, Record<'sv' | 'en', string>> = {
-  'requirements-analysis': { sv: 'Kravanalys & Verksamhetsanalys', en: 'Requirements Analysis & Business Analysis' },
-  'testing-qa': { sv: 'Testning & Kvalitetssäkring', en: 'Testing & Quality Assurance' },
-  'project-management': { sv: 'Projektledning', en: 'Project Management' },
-  'information-management': { sv: 'Informationshantering', en: 'Information Management' },
-  'ux-design': { sv: 'UX-design', en: 'UX Design' },
-  'agile-methods': { sv: 'Agila metoder', en: 'Agile Methods' },
+  'requirements-analysis': { sv: 'Kravanalys & verksamhetsanalys', en: 'Requirements analysis & business analysis' },
+  'testing-qa': { sv: 'Testning & kvalitetssäkring', en: 'Testing & quality assurance' },
+  'project-management': { sv: 'Projektledning', en: 'Project management' },
+  'information-management': { sv: 'Informationshantering', en: 'Information management' },
+  'ux-design': { sv: 'UX-design', en: 'UX design' },
+  'agile-methods': { sv: 'Agila metoder', en: 'Agile methods' },
 };
 
 const organizationSchema = {
@@ -58,11 +58,11 @@ const copy = {
     articlesDescription: 'Praktiska insikter om kravhantering, anbudsgranskning och spårbarhet i byggprojekt.',
   },
   en: {
-    homeTitle: 'REQCON AB | IT Consultants in Requirements Analysis & Project Management',
+    homeTitle: 'REQCON AB | IT consultants in requirements analysis & project management',
     homeDescription: 'REQCON is a Swedish IT consulting firm offering senior expertise in requirements analysis, testing, UX, and agile project management.',
     services: 'Our specialist services | REQCON AB',
     servicesDescription: 'Explore REQCON services in requirements analysis, testing, UX, project management, information management, and agile methods.',
-    about: 'About REQCON AB | IT Consulting',
+    about: 'About REQCON AB | IT consulting',
     team: 'Our team | REQCON AB',
     careers: 'Careers at REQCON AB',
     contact: 'Contact us | REQCON AB',

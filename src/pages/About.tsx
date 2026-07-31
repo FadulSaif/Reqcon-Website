@@ -7,11 +7,12 @@ import Button from '../components/Button';
 import Eyebrow from '../components/Eyebrow';
 import SEO from '../components/SEO';
 import SubpageHero from '../components/SubpageHero';
+import TeamPortrait from '../components/TeamPortrait';
 import { toAbsoluteUrl } from '../config/site';
 import { teamMembers } from '../content/team';
 
 const About: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const stats = [
     { value: t('about.stats.0.value'), label: t('about.stats.0.label') },
@@ -69,7 +70,9 @@ const About: React.FC = () => {
   return (
     <div className="flex flex-col w-full">
       <SEO
-        title={t('about.title') + " | Svenskt IT-konsultbolag i Stockholm & Göteborg | REQCON AB"}
+        title={i18n.language === 'sv'
+          ? `${t('about.title')} | Svenskt IT-konsultbolag i Stockholm & Göteborg | REQCON AB`
+          : `${t('about.title')} | Swedish IT consulting firm | REQCON AB`}
         description={t('about.story_p1')}
         schema={{
           "@context": "https://schema.org",
@@ -86,14 +89,14 @@ const About: React.FC = () => {
       {/* Page Header */}
       <SubpageHero
         backgroundImage="/images/about_office.jpg"
-        backgroundAlt="REQCON Kontorsmiljö i Stockholm"
+        backgroundAlt="REQCON kontorsmiljö i Stockholm"
         imageClassName="opacity-35 brightness-90 contrast-105"
       >
           <Eyebrow>
             {t('about.badge')}
           </Eyebrow>
           
-          <h1 className="heading-display text-white uppercase text-center">
+          <h1 className="heading-display text-white text-center">
             {t('about.title')}
           </h1>
           
@@ -184,7 +187,7 @@ const About: React.FC = () => {
               }`}>
                 {/* Content box */}
                 <Card className="w-full md:w-[45%] text-left p-6 shadow-sm border border-border-custom hover:-translate-y-0.5 hover:shadow-md hover:border-accent-primary transition-[transform,box-shadow,border-color] duration-200 flex flex-col justify-center">
-                  <span className="text-xs font-bold text-brand-secondary uppercase tracking-widest md:hidden">{item.year}</span>
+                  <span className="text-xs font-bold text-brand-secondary tracking-widest md:hidden">{item.year}</span>
                   <h3 className="text-lg font-bold text-text-primary mt-1">{item.title}</h3>
                   <p className="text-sm text-text-secondary leading-relaxed mt-2">{item.description}</p>
                 </Card>
@@ -213,11 +216,10 @@ const About: React.FC = () => {
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
           <Card className="p-6 flex flex-col items-center text-center gap-4 shadow-sm">
-            <img
+            <TeamPortrait
               src={teamMembers[0].image}
               alt={teamMembers[0].name}
-              className="w-32 h-32 rounded-full object-cover border-2 border-brand-secondary/20 shadow-md"
-              loading="lazy"
+              className="object-[center_15%]"
             />
             <div className="flex flex-col">
               <h3 className="text-xl font-bold text-text-primary">{teamMembers[0].name}</h3>
@@ -229,11 +231,10 @@ const About: React.FC = () => {
           </Card>
 
           <Card className="p-6 flex flex-col items-center text-center gap-4 shadow-sm">
-            <img
+            <TeamPortrait
               src={teamMembers[1].image}
               alt={teamMembers[1].name}
-              className="w-32 h-32 rounded-full object-cover border-2 border-brand-secondary/20 shadow-md"
-              loading="lazy"
+              className="object-[center_15%]"
             />
             <div className="flex flex-col">
               <h3 className="text-xl font-bold text-text-primary">{teamMembers[1].name}</h3>

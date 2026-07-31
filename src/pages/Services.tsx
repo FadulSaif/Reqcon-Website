@@ -13,7 +13,7 @@ import { SITE_URL } from '../config/site';
 const servicesSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "serviceType": "IT Consulting",
+  "serviceType": "IT consulting",
   "provider": {
     "@type": "Organization",
     "name": "REQCON AB",
@@ -25,7 +25,7 @@ const servicesSchema = {
   },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "REQCON IT Services",
+    "name": "REQCON IT services",
     "itemListElement": [
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kravanalys" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Testning & QA" } },
@@ -136,8 +136,12 @@ const Services: React.FC = () => {
   return (
     <div className="flex flex-col w-full">
       <SEO
-        title="Våra specialisttjänster | Kravanalys, Testledning & Agil Projektledning | REQCON AB"
-        description="Utforska REQCONs tjänster inom kravanalys, testledning, UX, projektledning, informationshantering och agila metoder för organisationer i Stockholm, Göteborg och hela Sverige."
+        title={i18n.language === 'sv'
+          ? 'Våra specialisttjänster | Kravanalys, testledning & agil projektledning | REQCON AB'
+          : 'Our specialist services | Requirements analysis, testing & agile project management | REQCON AB'}
+        description={i18n.language === 'sv'
+          ? 'Utforska REQCONs tjänster inom kravanalys, testledning, UX, projektledning, informationshantering och agila metoder för organisationer i Stockholm, Göteborg och hela Sverige.'
+          : 'Explore REQCON services in requirements analysis, testing, UX, project management, information management, and agile methods for organizations throughout Sweden.'}
         schema={servicesSchema}
       />
       {/* Page Header */}
@@ -153,7 +157,7 @@ const Services: React.FC = () => {
           
           <h1
             lang={i18n.language === 'sv' ? 'sv' : 'en'}
-            className={`font-black tracking-tight text-white leading-tight uppercase text-center ${
+            className={`font-black tracking-tight text-white leading-tight text-center ${
               i18n.language === 'sv'
                 ? 'w-full min-w-0 text-[clamp(2rem,8.5vw,3.75rem)] [overflow-wrap:break-word] hyphens-auto'
                 : 'text-4xl md:text-6xl'
@@ -216,7 +220,7 @@ const Services: React.FC = () => {
 
                     {/* Deliverables / Bullets Checklist */}
                     <div className="mt-2 flex flex-col gap-3">
-                      <span className="text-xs md:text-sm font-bold uppercase tracking-wider text-text-primary">
+                      <span className="text-xs md:text-sm font-bold tracking-wider text-text-primary">
                         {t('services.deliverables_label')}
                       </span>
                       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm md:text-base text-text-secondary">

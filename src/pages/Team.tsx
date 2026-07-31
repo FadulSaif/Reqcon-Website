@@ -5,6 +5,7 @@ import SEO from '../components/SEO';
 import Section from '../components/Section';
 import Card from '../components/Card';
 import SubpageHero from '../components/SubpageHero';
+import TeamPortrait from '../components/TeamPortrait';
 import { teamPageMembers } from '../content/team';
 
 const Team: React.FC = () => {
@@ -17,7 +18,7 @@ const Team: React.FC = () => {
         backgroundImage="/images/about_office.jpg"
         imageClassName="opacity-25 brightness-75"
       >
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight uppercase">{t('team.page_title')}</h1>
+          <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight">{t('team.page_title')}</h1>
           <p className="text-base md:text-lg text-zinc-300 leading-relaxed max-w-2xl font-medium">{t('team.page_description')}</p>
       </SubpageHero>
 
@@ -30,25 +31,12 @@ const Team: React.FC = () => {
               aria-labelledby={`team-member-${member.id}`}
               className="min-w-0 h-full overflow-hidden flex flex-col shadow-sm"
             >
-              <div className="w-full aspect-[9/10] overflow-hidden">
-                {member.image.kind === 'photo' ? (
-                  <img
-                    src={member.image.src}
-                    alt={member.image.alt}
-                    className={`w-full h-full ${member.id === 'anton' ? 'object-contain p-12 bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200 dark:from-slate-900 dark:via-slate-950 dark:to-slate-800' : 'object-cover object-[center_15%]'}`}
-                    loading="lazy"
-                  />
-                ) : (
-                  <div
-                    role="img"
-                    aria-label={t(member.image.altKey)}
-                    className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200 text-slate-500 dark:from-slate-900 dark:via-slate-950 dark:to-slate-800 dark:text-slate-300"
-                  >
-                    <span className="flex h-32 w-32 items-center justify-center rounded-full border border-brand-secondary/25 bg-bg-surface text-4xl font-black tracking-[0.08em] text-brand-secondary shadow-md">
-                      {member.image.initials}
-                    </span>
-                  </div>
-                )}
+              <div className="flex justify-center px-6 pt-7">
+                <TeamPortrait
+                  src={member.image.src}
+                  alt={member.image.alt}
+                  className={member.id === 'anton' ? 'object-center' : 'object-[center_15%]'}
+                />
               </div>
               <div className="p-6 flex flex-col gap-5 grow">
                 <div>

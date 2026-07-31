@@ -84,27 +84,27 @@ const homeSchema = {
       "knowsAbout": [
         "Kravanalys",
         "Kravhantering",
-        "Business Analysis",
+        "Business analysis",
         "Testledning",
         "Kvalitetssäkring",
         "QA-tjänster",
         "Agil projektledning",
-        "Scrum Master",
+        "Scrum master",
         "Informationshantering",
         "SharePoint-konsultation",
-        "UX & Tjänstedesign",
+        "UX & tjänstedesign",
         "Verksamhetsanalys",
         "Digital transformation"
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "REQCON Specialisttjänster",
+        "name": "REQCON specialisttjänster",
         "itemListElement": [
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Kravanalys & Verksamhetsanalys",
+              "name": "Kravanalys & verksamhetsanalys",
               "description": "Strukturering, insamling och visualisering av funktionella och icke-funktionella krav för IT-system."
             }
           },
@@ -112,7 +112,7 @@ const homeSchema = {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Testledning & Kvalitetssäkring (QA)",
+              "name": "Testledning & kvalitetssäkring (QA)",
               "description": "Strukturerad testplanering, manuella och automatiserade tester samt acceptanstester (UAT)."
             }
           },
@@ -120,7 +120,7 @@ const homeSchema = {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Agil Projektledning & Scrum Leading",
+              "name": "Agil projektledning & Scrum leading",
               "description": "Agilt ledarskap och metodiskt projektstöd för leveranser i tid och enligt budget."
             }
           },
@@ -136,7 +136,7 @@ const homeSchema = {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "UX & Tjänstedesign",
+              "name": "UX & tjänstedesign",
               "description": "Användarcentrerad design, prototyper och användbarhetstester."
             }
           }
@@ -215,14 +215,14 @@ const Home: React.FC = () => {
   const featuredArticles = articles.slice(0, 3);
   const articlePreviewCopy = articleLocale === 'sv'
     ? {
-        badge: 'REQCON Insikter',
+        badge: 'REQCON insikter',
         title: 'Insikter för tydligare krav och säkrare beslut',
         subtitle: 'Praktiska artiklar om kravhantering, anbudsgranskning och spårbarhet.',
         readMore: 'Läs mer',
         viewAll: 'Se alla artiklar',
       }
     : {
-        badge: 'REQCON Insights',
+        badge: 'REQCON insights',
         title: 'Insights for clearer requirements and safer decisions',
         subtitle: 'Practical articles on requirements management, tender review, and traceability.',
         readMore: 'Read more',
@@ -242,7 +242,7 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col w-full">
       <SEO
-        title={i18n.language === 'sv' ? 'REQCON AB | IT-konsulter inom kravanalys, testledning & agil projektledning' : 'REQCON AB | IT Consultants in Requirements Analysis & Project Management'}
+        title={i18n.language === 'sv' ? 'REQCON AB | IT-konsulter inom kravanalys, testledning & agil projektledning' : 'REQCON AB | IT consultants in requirements analysis & project management'}
         description={i18n.language === 'sv' ? 'REQCON är ett svenskt IT-konsultbolag. Vi levererar seniora konsulter inom kravanalys, testledning, UX-design och agil projektledning i Stockholm, Göteborg och hela Sverige.' : 'REQCON is a Swedish IT consulting firm offering senior consultants in requirements analysis, testing, UX, and agile project management in Sweden.'}
         schema={homeSchema}
       />
@@ -314,7 +314,7 @@ const Home: React.FC = () => {
         containerClassName="max-w-[86rem]"
         className="!pb-6 !pt-12 text-center border-b border-border-custom overflow-hidden md:!pb-8 md:!pt-16"
       >
-        {/* Custom uppercase header label and line dividers with a center dot indicator */}
+        {/* Custom header label and line dividers with a center dot indicator */}
         <div className="flex w-full items-center justify-center gap-2 sm:gap-4 mb-5 px-0 sm:px-6 max-w-5xl mx-auto select-none">
           <div className="flex-1 h-[1px] bg-border-custom" />
           <div className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />

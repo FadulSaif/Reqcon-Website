@@ -123,7 +123,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
               </div>
               <div className="flex flex-col">
                 <span className="font-semibold text-text-primary">Klicka för att ladda upp CV</span>
-                <span className="text-xs text-text-muted mt-0.5">Endast PDF, DOC, DOCX (Max 5MB)</span>
+                <span className="text-xs text-text-muted mt-0.5">Endast PDF, DOC, DOCX (max 5MB)</span>
               </div>
             </div>
           )}

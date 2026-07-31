@@ -18,17 +18,10 @@ type TeamProfileBioKey =
   | TeamMember['bioKey']
   | 'team.anton_desc';
 
-type TeamProfileImage =
-  | {
-      kind: 'photo';
-      src: string;
-      alt: string;
-    }
-  | {
-      kind: 'placeholder';
-      initials: string;
-      altKey: 'team.anton_image_alt';
-    };
+interface TeamProfileImage {
+  src: string;
+  alt: string;
+}
 
 export interface TeamProfileMember {
   id: string;
@@ -77,7 +70,6 @@ export const teamPageMembers: TeamProfileMember[] = [
     id: 'anel',
     phoneHref: 'tel:+46708531921',
     image: {
-      kind: 'photo',
       src: anel.image,
       alt: anel.name,
     },
@@ -88,7 +80,6 @@ export const teamPageMembers: TeamProfileMember[] = [
     titleKey: 'team.fadi_team_title',
     phoneHref: 'tel:+46709395111',
     image: {
-      kind: 'photo',
       src: fadi.image,
       alt: fadi.name,
     },
@@ -104,7 +95,6 @@ export const teamPageMembers: TeamProfileMember[] = [
     address: fadi.address,
     mapUrl: fadi.mapUrl,
     image: {
-      kind: 'photo',
       src: '/images/team/anton_af_bjur.png',
       alt: 'Anton af Bjur',
     },

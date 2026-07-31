@@ -290,7 +290,6 @@
 .nav-link {
   font-family: var(--font-heading);
   letter-spacing: var(--letter-spacing-nav);
-  text-transform: uppercase;
   font-size: 0.875rem;
   font-weight: var(--font-weight-semibold);
 }
@@ -304,7 +303,6 @@
 .btn-typography {
   font-family: var(--font-body);
   letter-spacing: var(--letter-spacing-btn);
-  text-transform: uppercase;
   font-size: var(--font-size-btn);
   font-weight: var(--font-weight-semibold);
 }
@@ -312,7 +310,6 @@
 .form-label {
   font-family: var(--font-body);
   letter-spacing: var(--letter-spacing-label);
-  text-transform: uppercase;
   font-size: var(--font-size-label);
   font-weight: var(--font-weight-semibold);
   margin-bottom: 8px;

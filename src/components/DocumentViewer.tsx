@@ -44,7 +44,7 @@ export const DocumentViewer: React.FC = () => {
     <div className="w-full flex flex-col gap-6 select-none">
       {/* Title Header */}
       <div className="flex justify-between items-center max-w-4xl mx-auto w-full px-2">
-        <h3 className="text-xl md:text-2xl font-black text-text-primary uppercase tracking-tight flex items-center gap-3">
+        <h3 className="text-xl md:text-2xl font-black text-text-primary tracking-tight flex items-center gap-3">
           <FileText className="w-6 h-6 text-brand-secondary" />
           {i18n.language === 'sv' ? 'Läs vår personalpolicy' : 'Read our personnel policy'}
         </h3>
@@ -71,12 +71,12 @@ export const DocumentViewer: React.FC = () => {
             >
               {/* Top Envelope ID */}
               <div className="text-[8px] font-mono text-slate-400 absolute top-4 left-6 select-none">
-                Docusign Envelope ID: 0E3D7155-B38D-48C3-9393-C5186A76E440
+                Docusign envelope ID: 0E3D7155-B38D-48C3-9393-C5186A76E440
               </div>
 
               {/* Logo block */}
               <div className="flex items-center gap-2 mt-2">
-                <img src="/images/logo.png" alt="REQCON Logo" className="h-8 object-contain" />
+                <img src="/images/logo.png" alt="REQCON logo" className="h-8 object-contain" />
               </div>
 
               {/* Document Title Header */}
@@ -133,12 +133,12 @@ export const DocumentViewer: React.FC = () => {
             >
               {/* Top Envelope ID */}
               <div className="text-[8px] font-mono text-slate-400 absolute top-4 left-6 select-none">
-                Docusign Envelope ID: 0E3D7155-B38D-48C3-9393-C5186A76E440
+                Docusign envelope ID: 0E3D7155-B38D-48C3-9393-C5186A76E440
               </div>
 
               {/* Logo block */}
               <div className="flex items-center gap-2 mt-2">
-                <img src="/images/logo.png" alt="REQCON Logo" className="h-8 object-contain" />
+                <img src="/images/logo.png" alt="REQCON logo" className="h-8 object-contain" />
               </div>
 
               {/* Page 2 Sections */}
@@ -168,7 +168,7 @@ export const DocumentViewer: React.FC = () => {
                     </div>
                     {/* DocuSign Frame Box */}
                     <div className="p-3 rounded-lg border border-blue-200 bg-blue-50/20 flex flex-col items-center gap-1 w-full max-w-[210px] relative overflow-hidden select-none">
-                      <div className="absolute top-0.5 left-1 text-[6px] font-bold text-blue-500 uppercase tracking-widest">{t('careers.policy.docusigned')}</div>
+                      <div className="absolute top-0.5 left-1 text-[6px] font-bold text-blue-500 tracking-widest">{t('careers.policy.docusigned')}</div>
                       <span className="font-serif italic font-extrabold text-lg text-blue-600 my-0.5 transform -rotate-1">Fadi Rabah</span>
                       <div className="text-[5px] font-mono text-blue-400 uppercase tracking-tighter">8AD93820CB55443...</div>
                     </div>
@@ -182,7 +182,7 @@ export const DocumentViewer: React.FC = () => {
                     </div>
                     {/* Signed Frame Box */}
                     <div className="p-3 rounded-lg border border-purple-200 bg-purple-50/20 flex flex-col items-center gap-1 w-full max-w-[210px] relative overflow-hidden select-none">
-                      <div className="absolute top-0.5 left-1 text-[6px] font-bold text-purple-500 uppercase tracking-widest">{t('careers.policy.signed')}</div>
+                      <div className="absolute top-0.5 left-1 text-[6px] font-bold text-purple-500 tracking-widest">{t('careers.policy.signed')}</div>
                       <span className="font-serif italic font-extrabold text-lg text-purple-600 my-0.5 transform -rotate-1">Anel Pasic</span>
                       <div className="text-[5px] font-mono text-purple-400 uppercase tracking-tighter">DE7160BBD22D419...</div>
                     </div>
@@ -216,7 +216,7 @@ export const DocumentViewer: React.FC = () => {
             <button 
               onClick={handleResetZoom}
               className="px-2 py-0.5 rounded hover:bg-white/10 transition-colors text-[10px]"
-              title="Reset Zoom"
+              title="Reset zoom"
             >
               {Math.round(zoom * 100)}%
             </button>

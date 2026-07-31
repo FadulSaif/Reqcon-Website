@@ -1,81 +1,81 @@
 {
   "nav": {
     "home": "Home",
-    "services": "Our Services",
-    "about": "About Us",
-    "team": "Our Team",
+    "services": "Our services",
+    "about": "About us",
+    "team": "Our team",
     "articles": "Articles",
     "careers": "Work with us",
-    "contact": "Contact Us"
+    "contact": "Contact us"
   },
   "hero": {
-    "badge": "REQCON CONSULTING",
+    "badge": "REQCON consulting",
     "title": "Building smarter solutions through expertise and collaboration.",
     "subtitle": "We help organizations turn complex requirements into effective solutions through expertise in requirements management, technology, and agile development.",
-    "cta_primary": "Contact Us",
-    "cta_secondary": "Our Services"
+    "cta_primary": "Contact us",
+    "cta_secondary": "Our services"
   },
   "clients": {
-    "badge": "TRUSTED BY ORGANIZATIONS",
-    "title": "Our Trusted Partners",
+    "badge": "Trusted by organizations",
+    "title": "Our trusted partners",
     "subtitle": "We are proud to collaborate with leading organizations and authorities in Sweden."
   },
   "services": {
     "badge": "Expertise",
     "title": "Our competence areas",
     "subtitle": "REQCON offers specialists across the entire IT development lifecycle, from the first strategic visions to continuous testing and QA.",
-    "hero_cta": "Learn About Our Services",
+    "hero_cta": "Learn about our services",
     "cta_discuss": "Discuss your needs",
     "cta_more": "Read more",
-    "learn_more": "Learn More",
+    "learn_more": "Learn more",
     "deliverables_label": "Our deliverables include:",
     "items": {
       "krav": {
-        "title": "Requirements Analysis (Business Analysis)",
+        "title": "Requirements analysis (business analysis)",
         "intro": "The foundation of every successful IT project lies in understanding the true business needs.",
         "desc": "Our requirements analysts are experts at translating complex visions into structured requirements documentation. We facilitate communication between business and IT, eliminating misunderstandings and reducing the risk of expensive errors.",
         "bullets": ["Requirements mapping & visualization", "Business analysis & process modeling", "System and data analysis", "Requirements management tools (e.g., Jira, Azure DevOps)"],
-        "button_text": "More Requirements Analysis services"
+        "button_text": "More requirements analysis services"
       },
       "test": {
         "title": "Testing & QA",
         "intro": "Quality assurance is not a final step – it is an integrated part of the entire lifecycle.",
         "desc": "We help you set up structured testing processes and perform thorough functional, usability, and acceptance tests. We ensure that the system performs safely, quickly, and exactly as expected.",
-        "bullets": ["Test planning & test management", "Manual and automated functional testing", "User Acceptance Testing (UAT)", "Defect reporting and bug tracking"],
-        "button_text": "More Testing & QA services"
+        "bullets": ["Test planning & test management", "Manual and automated functional testing", "User acceptance testing (UAT)", "Defect reporting and bug tracking"],
+        "button_text": "More testing & QA services"
       },
       "pm": {
-        "title": "Project Management",
+        "title": "Project management",
         "intro": "We guide your project towards business goals, whether you work agile or traditionally.",
         "desc": "With steady and methodical leadership, we ensure that schedules, budgets, and quality requirements are met. We coordinate teams, manage stakeholders, and establish transparency throughout development.",
-        "bullets": ["Agile project management (Scrum Master, RTE)", "Traditional project management", "Budget & risk management", "Stakeholder management & reporting"],
-        "button_text": "More Project Management services"
+        "bullets": ["Agile project management (Scrum master, RTE)", "Traditional project management", "Budget & risk management", "Stakeholder management & reporting"],
+        "button_text": "More project management services"
       },
       "info": {
-        "title": "Information Management",
+        "title": "Information management",
         "intro": "Create structure, security, and accessibility in your organization's information flows.",
         "desc": "We help you structure, organize, and store critical project information. With expertise in data coordination and document management (e.g., in SharePoint), we ensure that the right information reaches the right person on time.",
         "bullets": ["Data coordination & metadata structure", "SharePoint architecture & administration", "Permission & security structure", "Digitalization & archiving strategies"],
-        "button_text": "More Information Management services"
+        "button_text": "More information management services"
       },
       "ux": {
-        "title": "UX Design",
+        "title": "UX design",
         "intro": "User-friendly solutions are created at the intersection of form and function.",
         "desc": "We find out what your users actually need through research and testing. Then, we design intuitive interfaces, user flows, and interactive prototypes that engage, simplify, and deliver results.",
         "bullets": ["User research & interviews", "Wireframes & interactive prototypes", "UI design & graphical interfaces", "Usability testing"],
-        "button_text": "More UX Design services"
+        "button_text": "More UX design services"
       },
       "agile": {
-        "title": "Agile Methods",
+        "title": "Agile methods",
         "intro": "We coach and help your organization adapt agile principles to your needs.",
         "desc": "Whether you want to implement Scrum at the team level or scale up to SAFe (Scaled Agile Framework) at the organizational level, we help you build efficient, self-organizing teams and transparent workflows.",
         "bullets": ["Scrum & Kanban adoption", "Scaled agility (SAFe consulting)", "Agile coaching on individual & team levels", "Agile ceremonies facilitation"],
-        "button_text": "More Agile Methods services"
+        "button_text": "More agile methods services"
       }
     }
   },
   "why": {
-    "badge": "Value Add",
+    "badge": "Value add",
     "title": "Why choose REQCON?",
     "subtitle": "We are not just consultants; we are your partner. We ensure structure, safety, and deliver real business value to every project.",
     "items": [
@@ -99,47 +99,47 @@
   },
   "process": {
     "badge": "Methodology",
-    "title": "Our Work Process",
+    "title": "Our work process",
     "subtitle": "With a structured and proven working methodology, we ensure order, minimize risks, and drive development forward.",
     "steps": [
       {
         "num": "01",
-        "title": "Discovery & Analysis",
+        "title": "Discovery & analysis",
         "desc": "We map business needs, conduct interviews with key stakeholders, and define the actual problem."
       },
       {
         "num": "02",
-        "title": "Requirements & Planning",
+        "title": "Requirements & planning",
         "desc": "We specify functional and non-functional requirements, map out information flows, and plan test scenarios."
       },
       {
         "num": "03",
-        "title": "Quality Assured Execution",
+        "title": "Quality assured execution",
         "desc": "We lead the development team, perform continuous reviews, and execute tests to fix bugs dynamically."
       },
       {
         "num": "04",
-        "title": "Delivery & Handover",
+        "title": "Delivery & handover",
         "desc": "After completing system and user acceptance testing, we ensure deployment and hand over a functioning product."
       }
     ]
   },
   "team": {
-    "page_title": "Our Team",
+    "page_title": "Our team",
     "page_description": "Speak directly with our consultant managers.",
-    "contact_title": "Our Team",
+    "contact_title": "Our team",
     "contact_subtitle": "Speak directly with our consultant managers.",
     "fadi_title": "CEO",
     "fadi_team_title": "CEO",
-    "anel_title": "Consultant Manager - Gothenburg",
-    "anton_title": "Operations Coordinator",
+    "anel_title": "Consultant manager - Gothenburg",
+    "anton_title": "Operations coordinator",
     "cta_title": "Have a question?",
     "cta_subtitle": "For general inquiries, send us a message through our contact page and the right person will get back to you.",
-    "cta_action": "Contact Us",
+    "cta_action": "Contact us",
     "badge": "Leadership",
-    "title": "Our Leadership Team",
+    "title": "Our leadership team",
     "subtitle": "Meet our consultant managers who guide our regional operations and lead our specialist teams.",
-    "hero_cta": "Meet Our Team",
+    "hero_cta": "Meet our team",
     "fadi_desc": "Fadi leads the Stockholm office and is responsible for strategic partnerships as well as recruiting senior requirements analysts.",
     "anel_desc": "Anel is responsible for Western Sweden and matches complex client needs with the right testing and project management expertise.",
     "anton_desc": "Profile description coming soon.",
@@ -153,29 +153,29 @@
       {
         "quote": "REQCON's consultants have shown an outstanding ability to quickly understand our operations and structure our requirements processes.",
         "name": "Anders Larsson",
-        "position": "IT Architect & Dev Lead, State Agency"
+        "position": "IT architect & dev lead, state agency"
       },
       {
         "quote": "Their combination of deep requirements methodology and technical understanding allowed us to halve the time from spec to tested code.",
         "name": "Maria Bergqvist",
-        "position": "Product Owner, Energy Sector"
+        "position": "Product owner, energy sector"
       }
     ]
   },
   "about": {
-    "badge": "Our History",
-    "title": "About Us",
+    "badge": "Our history",
+    "title": "About us",
     "subtitle": "It started with a vision to gather expert specialists and build proven models and processes to deliver real value to our clients.",
-    "hero_cta": "Learn More",
+    "hero_cta": "Learn more",
     "story_title": "It started with a vision.",
     "story_p1": "Reqcon was founded in 2020 and is headquartered in central Stockholm. The vision has been to gather a team of knowledgeable experts to build proven models and processes internally based on our know-how and many years of experience to deliver real value to our clients – regardless of industry.",
     "story_p2": "Reqcon's cornerstone lies in requirements analysis (business analysis), but as a company we have recently expanded our competence areas. The goal is to turn that vision into reality. Today, Reqcon has expanded its operations to Gothenburg and has the ambition to deliver its services throughout Sweden.",
     "tagline": "When you invest in us, we invest in you",
     "stats": [
       {"value": "2020", "label": "Founded in Stockholm"},
-      {"value": "2", "label": "Established Offices (Sthlm & Gbg)"},
-      {"value": "100%", "label": "Quality Focus in All Steps"},
-      {"value": "Senior", "label": "Consultant Competence Level"}
+      {"value": "2", "label": "Established offices (Sthlm & Gbg)"},
+      {"value": "100%", "label": "Quality focus in all steps"},
+      {"value": "Senior", "label": "Consultant competence level"}
     ],
     "milestones": {
       "badge": "Journey",
@@ -210,7 +210,7 @@
     "title": "Work with us",
     "hero_badge": "We want to grow!",
     "hero_subtitle": "Is Reqcon the right company for you? Read below and decide",
-    "hero_cta": "Submit an Application",
+    "hero_cta": "Submit an application",
     "tagline": "When you invest in us, we invest in you.",
     "benefits": {
       "1": {
@@ -222,7 +222,7 @@
         "desc": "We work as an extension of your team, pairing agile ways of working with a sharp focus on the people who'll actually use what gets built."
       }
     },
-    "offer_badge": "Our Offering",
+    "offer_badge": "Our offering",
     "offer_title": "What we offer you",
     "offer_p1": "At Reqcon, we value our employees highly and strive to create an environment where you thrive, develop, and have the opportunity to make an impact. We offer competitive salaries and flexible working hours based on the principle of \"freedom with responsibility\" – giving you the freedom to manage your own workday as long as we achieve our goals together.",
     "offer_p2": "We actively focus on professional development and offer both internal training sessions and external courses/certifications to help you grow in your role and stay up-to-date in your professional development. We also provide excellent opportunities to take on greater responsibility and grow within the company as you develop and contribute.",
@@ -258,24 +258,24 @@
       "phone_error": "Please enter your phone number",
       "cv": "Upload your CV (documents only) *",
       "cv_error": "Please attach your CV",
-      "submit": "Submit Application",
-      "success_title": "Application Received!",
+      "submit": "Submit application",
+      "success_title": "Application received!",
       "success_desc": "Thank you for your interest in REQCON. We will review your application and get back to you shortly.",
-      "success_btn": "Submit Another Application",
+      "success_btn": "Submit another application",
       "cv_type_error": "Upload a PDF, DOC, or DOCX file.",
       "cv_size_error": "Your CV must be 5 MB or smaller."
     },
     "policy": {
       "badge": "Policy",
-      "title": "Personnel Policy",
+      "title": "Personnel policy",
       "subtitle": "We prioritize a safe, professional, and balanced workplace. Read or download our official policy document.",
-      "read_btn": "Read Policy Online",
+      "read_btn": "Read policy online",
       "download_btn": "Download PDF",
-      "close_btn": "Close Document",
+      "close_btn": "Close document",
       "signed_by": "Signed by",
       "ceo": "CEO",
       "manager": "Manager",
-      "effective_date": "Effective From: 2025-06-03",
+      "effective_date": "Effective from: 2025-06-03",
       "docusigned": "DocuSigned",
       "signed": "Signed",
       "sections": {
@@ -288,11 +288,11 @@
           "text": "The policy applies to all employees, consultants, interns, and hired staff at Reqcon."
         },
         "3": {
-          "title": "3. Our Goal",
+          "title": "3. Our goal",
           "text": "Reqcon shall be a workplace where everyone feels safe, respected, and has good conditions to perform their work. We strive for a work environment free from illness, accidents, discrimination, and harassment."
         },
         "4": {
-          "title": "4. Core Values",
+          "title": "4. Core values",
           "text": "We operate on the following 5 fundamental principles in all our work:",
           "bullets": [
             "<strong>Professionalism:</strong> We represent our company and our clients with respect, punctuality, and quality.",
@@ -303,7 +303,7 @@
           ]
         },
         "5": {
-          "title": "5. Work Environment",
+          "title": "5. Work environment",
           "text": "We strive for an inclusive and safe work environment where everyone is treated with respect - regardless of gender, age, ethnicity, religion, functional diversity, or sexual orientation. Offensive treatment, bullying, harassment, or manipulation (\"toxic behavior\") is not accepted."
         },
         "6": {
@@ -311,19 +311,19 @@
           "text": "We encourage open, direct, and respectful communication – both internally and externally. Views, suggestions for improvement, or concerns should be raised without fear of retaliation."
         },
         "7": {
-          "title": "7. Working Hours & Flexibility",
+          "title": "7. Working hours & flexibility",
           "text": "We apply flexible working hours as far as the assignment allows. Consultants primarily follow the client's hours, but we strive for balance and recovery."
         },
         "8": {
-          "title": "8. Remote Work",
+          "title": "8. Remote work",
           "text": "Remote work is permitted upon agreement with the immediate manager, in dialogue with the client, and as contractually agreed. We expect accessibility and professional conduct regardless of the workplace."
         },
         "9": {
-          "title": "9. Professional Development",
+          "title": "9. Professional development",
           "text": "We encourage continuous learning through training, certifications, and experience sharing. Each employee is responsible for their own development – we support them with time and resources."
         },
         "10": {
-          "title": "10. Loyalty & Confidentiality",
+          "title": "10. Loyalty & confidentiality",
           "text": "All information regarding the company, colleagues, and clients is handled confidentially. The consultant role often entails access to sensitive information – confidentiality must always be respected."
         },
         "11": {
@@ -340,11 +340,11 @@
       "title": "Join REQCON",
       "subtitle": "We are always looking for driven and committed talents who want to grow with us.",
       "bullets": [
-        "<strong>Exciting Assignments:</strong> Work with market-leading clients and modern technologies.",
-        "<strong>Flexible Environment:</strong> We value your balance between work and personal life with flexible hybrid choices.",
-        "<strong>Skills Development:</strong> We support you with courses, certifications, and internal training sessions."
+        "<strong>Exciting assignments:</strong> Work with market-leading clients and modern technologies.",
+        "<strong>Flexible environment:</strong> We value your balance between work and personal life with flexible hybrid choices.",
+        "<strong>Skills development:</strong> We support you with courses, certifications, and internal training sessions."
       ],
-      "motto_title": "Our Promise",
+      "motto_title": "Our promise",
       "motto_text": "When you invest your time and commitment in us, we invest in your future and your development – both competence-wise and financially."
     },
     "form": {
@@ -377,9 +377,9 @@
     "badge": "Contact",
     "title": "Contact us",
     "subtitle": "Want to discuss a potential project, know more about our services, or join the team? Get in touch and we'll help you further.",
-    "hero_cta": "Send a Message",
-    "locations_badge": "Local Offices",
-    "locations_title": "Our Offices & Managers",
+    "hero_cta": "Send a message",
+    "locations_badge": "Local offices",
+    "locations_title": "Our offices & managers",
     "locations_subtitle": "Reach out directly to the manager responsible in your area.",
     "view_maps": "Show on Google Maps",
     "form": {
@@ -400,7 +400,7 @@
       "message_placeholder": "Write your message here...",
       "message_error": "Please enter your message",
       "service_context": "Your inquiry concerns: {{service}}",
-      "submit": "Send Message",
+      "submit": "Send message",
       "success_title": "Message sent!",
       "success_desc": "Thank you for contacting REQCON. We have received your message and will reply within 24–48 hours on business days.",
       "success_btn": "Send another message",
@@ -410,15 +410,15 @@
   "footer": {
     "tagline": "Your obvious choice to take you from vision to product. We combine deep competence in requirements management with broad business understanding.",
     "navigation": "Navigation",
-    "follow_us": "Follow Us",
+    "follow_us": "Follow us",
     "email": "Email",
     "phone": "Phone",
     "contact": "Contact us",
     "services": "Services",
     "company": "Company",
     "offices": "Offices",
-    "policy_staff": "Staff Policy",
-    "policy_privacy": "Privacy Policy",
+    "policy_staff": "Staff policy",
+    "policy_privacy": "Privacy policy",
     "rights": "All rights reserved."
   },
   "not_found": {
@@ -428,7 +428,7 @@
     "services": "View services"
   },
   "personal_policy": {
-    "title": "Personnel Policy",
+    "title": "Personnel policy",
     "description": "Read REQCON's personnel policy."
   },
   "privacy": {

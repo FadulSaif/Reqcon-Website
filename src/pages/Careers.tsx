@@ -22,7 +22,7 @@ interface CareerFormInputs {
 }
 
 const Careers: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(
     () => new URLSearchParams(location.search).get('formsubmit') === 'success'
@@ -78,8 +78,12 @@ const Careers: React.FC = () => {
   return (
     <div className="flex flex-col w-full">
       <SEO
-        title="Arbeta hos oss | Karriär som IT-konsult i Stockholm & Göteborg | REQCON AB"
-        description="Bli en del av REQCON AB. Vi söker drivna IT-konsulter, kravanalytiker, testledare och agila projektledare i Stockholm och Göteborg."
+        title={i18n.language === 'sv'
+          ? 'Arbeta hos oss | Karriär som IT-konsult i Stockholm & Göteborg | REQCON AB'
+          : 'Work with us | IT consulting careers in Stockholm & Gothenburg | REQCON AB'}
+        description={i18n.language === 'sv'
+          ? 'Bli en del av REQCON AB. Vi söker drivna IT-konsulter, kravanalytiker, testledare och agila projektledare i Stockholm och Göteborg.'
+          : 'Join REQCON AB. We welcome driven IT consultants, requirements analysts, test managers, and agile project managers in Stockholm and Gothenburg.'}
       />
 
       {/* 1. HERO SECTION */}
@@ -91,7 +95,7 @@ const Careers: React.FC = () => {
             {t('careers.hero_badge')}
           </Eyebrow>
           
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-tight uppercase text-center">
+          <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-tight text-center">
             {t('careers.title')}
           </h1>
           
@@ -197,7 +201,7 @@ const Careers: React.FC = () => {
               <Eyebrow margin="compact">
                 {t('careers.form.badge')}
               </Eyebrow>
-              <h3 className="text-2xl md:text-3xl font-black text-text-primary uppercase tracking-tight">
+              <h3 className="text-2xl md:text-3xl font-black text-text-primary tracking-tight">
                 {t('careers.form.title')}
               </h3>
               <p className="text-sm text-text-secondary leading-relaxed">

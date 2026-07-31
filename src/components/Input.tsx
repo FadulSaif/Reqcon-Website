@@ -71,7 +71,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="text-xs font-semibold uppercase tracking-wider text-text-primary select-none"
+            className="text-xs font-semibold tracking-wider text-text-primary select-none"
           >
             {label}
           </label>
