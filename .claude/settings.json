@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\gamer\\\\Reqcon-Website\\\\agila-landing\" -File | Where-Object { $_.Name -match 'tailwind|postcss|package.json' } | Select-Object Name; Write-Output \"--- deps ---\"; \\(Get-Content \"c:\\\\Users\\\\gamer\\\\Reqcon-Website\\\\agila-landing\\\\package.json\" -Raw | ConvertFrom-Json\\).dependencies; Write-Output \"--- devDeps ---\"; \\(Get-Content \"c:\\\\Users\\\\gamer\\\\Reqcon-Website\\\\agila-landing\\\\package.json\" -Raw | ConvertFrom-Json\\).devDependencies)"
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\gamer\\\\Reqcon-Website\\\\agila-landing\" -File | Where-Object { $_.Name -match 'tailwind|postcss|package.json' } | Select-Object Name; Write-Output \"--- deps ---\"; \\(Get-Content \"c:\\\\Users\\\\gamer\\\\Reqcon-Website\\\\agila-landing\\\\package.json\" -Raw | ConvertFrom-Json\\).dependencies; Write-Output \"--- devDeps ---\"; \\(Get-Content \"c:\\\\Users\\\\gamer\\\\Reqcon-Website\\\\agila-landing\\\\package.json\" -Raw | ConvertFrom-Json\\).devDependencies)",
+      "PowerShell($a = \"c:\\\\Users\\\\gamer\\\\Downloads\\\\Reqcon-Website-Prototype\\\\agila-landing\\\\public\\\\assets\"; Move-Item \"$a\\\\service-recruitment-new.jpg\" \"$a\\\\service-recruitment.jpg\" -Force; Get-ChildItem \"$a\\\\service-recruitment.jpg\",\"$a\\\\hero-home.jpg\" | Select-Object Name,@{n='KB';e={[math]::Round\\($_.Length/1KB\\)}} | Format-Table -AutoSize)",
+      "PowerShell(node \"C:\\\\Users\\\\gamer\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-gamer-Downloads-Reqcon-Website-Prototype\\\\a1750263-3115-4ac2-8bbb-cd29ca297cff\\\\scratchpad\\\\team.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\gamer\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-gamer-Downloads-Reqcon-Website-Prototype\\\\a1750263-3115-4ac2-8bbb-cd29ca297cff\\\\scratchpad\\\\services.mjs\")"
     ]
   }
 }
