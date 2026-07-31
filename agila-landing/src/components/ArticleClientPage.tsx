@@ -59,7 +59,7 @@ const ARTICLE_BODIES: Record<string, { sv: React.ReactNode; en: React.ReactNode 
                 <p className="lead-text">
                   As digital transformation accelerates, Swedish companies are moving away from rigid hiring models. 2026 has brought unprecedented demands for IT expertise: not just raw talent, but the ability to scale specialised teams up and down with pinpoint accuracy.
                 </p>
-                <h2>The End of the Traditional IT Department</h2>
+                <h2>The end of the traditional IT department</h2>
                 <p>
                   For decades, the standard approach was a large, static IT department of generalists handling everything from password resets to enterprise architecture. Today, that model is failing. The velocity of technological advancement, particularly in AI and cloud computing, means that deploying temporary specialists exactly when a project demands them is far more effective than maintaining a permanent generalist team.
                 </p>
@@ -72,7 +72,7 @@ const ARTICLE_BODIES: Record<string, { sv: React.ReactNode; en: React.ReactNode 
                   </div>
                   <figcaption>Agile IT teams can be deployed rapidly to tackle complex infrastructure projects.</figcaption>
                 </figure>
-                <h2>Artificial Intelligence as a Catalyst</h2>
+                <h2>Artificial intelligence as a catalyst</h2>
                 <p>
                   AI integration into enterprise software is restructuring how Swedish organisations operate. However, the engineers capable of building and maintaining these systems are rare. A rigid hiring model attempts to secure these engineers full-time, creating massive overhead once the heavy integration work is complete.
                 </p>
@@ -133,7 +133,7 @@ const ARTICLE_BODIES: Record<string, { sv: React.ReactNode; en: React.ReactNode 
                 <p>
                   Leading logistics companies in Sweden are increasingly turning to <strong>agile talent deployment</strong>, a flexible strategy that dynamically aligns labour resources with real operational demand.
                 </p>
-                <h2>The Challenge of Peak Season Volatility</h2>
+                <h2>The challenge of peak season volatility</h2>
                 <p>
                   During peak periods, order volumes can surge by 2 to 5 times normal levels. Traditional staffing models struggle to adapt. Common challenges include labour shortages during demand spikes, inefficient task allocation, bottlenecks in critical zones such as picking or packing, and increased error rates due to fatigue.
                 </p>
@@ -143,7 +143,7 @@ const ARTICLE_BODIES: Record<string, { sv: React.ReactNode; en: React.ReactNode 
                   </div>
                   <figcaption>Surging volumes demand dynamic labour allocation to prevent bottlenecks.</figcaption>
                 </figure>
-                <h2>What is Agile Talent Deployment?</h2>
+                <h2>What is agile talent deployment?</h2>
                 <p>
                   Agile talent deployment refers to a workforce strategy that emphasises <strong>flexibility, scalability, and responsiveness</strong>. Instead of assigning workers to fixed roles, employees are managed as a dynamic resource pool that can be redeployed based on real-time operational needs.
                 </p>
@@ -302,9 +302,9 @@ export default function ArticleClientPage({ slug }: { slug: string }) {
         <Navbar />
         <main style={{ padding: "200px 0", minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div className="container" style={{ textAlign: "center" }}>
-            <h1>{language === "sv" ? "Artikel hittades inte" : "Article Not Found"}</h1>
+            <h1>{language === "sv" ? "Artikel hittades inte" : "Article not found"}</h1>
             <Link href="/" className="btn btn-primary" style={{ marginTop: 32, display: "inline-block" }}>
-              {language === "sv" ? "Tillbaka till startsidan" : "Return Home"}
+              {language === "sv" ? "Tillbaka till startsidan" : "Return home"}
             </Link>
           </div>
         </main>

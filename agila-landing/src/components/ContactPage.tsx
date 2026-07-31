@@ -358,7 +358,7 @@ export default function ContactPage() {
                       allowFullScreen
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
-                      title="Agil Arbetskraft Office Location"
+                      title="Agil Arbetskraft office location"
                     />
                     <button
                       onClick={() => setIsFlipped(false)}
@@ -464,7 +464,7 @@ export default function ContactPage() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Agil Arbetskraft Office Location"
+                  title="Agil Arbetskraft office location"
                 />
               </motion.div>
             </div>
@@ -538,6 +538,8 @@ export default function ContactPage() {
           display: flex;
           flex-direction: column;
           height: 100%;
+          align-items: flex-start;
+          padding: 24px;
         }
         .cp-team-card:hover {
           transform: translateY(-4px);
@@ -563,16 +565,18 @@ export default function ContactPage() {
 
         .cp-team-image {
           position: relative;
-          width: 100%;
-          /* Square matches the source headshots, so nothing is cropped away.
-             The old 4/3.2 letterbox cut roughly a fifth off top and bottom. */
+          width: 88px;
+          height: 88px;
           aspect-ratio: 1 / 1;
+          border-radius: 50%;
           overflow: hidden;
           flex-shrink: 0;
+          margin-bottom: 24px;
         }
         .cp-team-photo {
           object-fit: cover;
-          object-position: center top;
+          object-position: center;
+          border-radius: 50%;
           transition: transform 0.4s ease;
         }
         .cp-team-card:hover .cp-team-photo {
@@ -580,17 +584,33 @@ export default function ContactPage() {
         }
 
         .cp-team-body {
-          padding: 24px 24px 28px;
+          width: 100%;
+          padding: 0;
           display: flex;
           flex-direction: column;
+          align-items: flex-start;
           flex: 1;
+        }
+
+        @media (min-width: 768px) {
+          .cp-team-image {
+            width: 100px;
+            height: 100px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .cp-team-image {
+            width: 112px;
+            height: 112px;
+          }
         }
 
         .cp-team-role {
           font-size: 0.8125rem;
           font-weight: 600;
           color: var(--brand-primary);
-          text-transform: uppercase;
+          text-transform: none;
           letter-spacing: 0.06em;
           margin: 4px 0 12px;
         }
@@ -647,7 +667,7 @@ export default function ContactPage() {
           font-size: 0.75rem;
           font-weight: 600;
           color: var(--brand-red-orange);
-          text-transform: uppercase;
+          text-transform: none;
           letter-spacing: 0.06em;
         }
 
@@ -691,7 +711,7 @@ export default function ContactPage() {
           font-size: 0.625rem;
           font-weight: 600;
           letter-spacing: 0.1em;
-          text-transform: uppercase;
+          text-transform: none;
           color: rgba(255,255,255,0.45);
         }
         /* min-width:0 lets the flex child shrink; without it a long address
@@ -808,7 +828,7 @@ export default function ContactPage() {
           font-size: 0.6875rem;
           font-weight: 700;
           letter-spacing: 0.1em;
-          text-transform: uppercase;
+          text-transform: none;
           color: var(--brand-primary);
           white-space: nowrap;
         }
@@ -894,7 +914,7 @@ export default function ContactPage() {
         }
         .cp-info-label {
           font-weight: 700;
-          text-transform: uppercase;
+          text-transform: none;
           letter-spacing: 0.06em;
           font-size: 0.75rem;
           color: rgba(255,255,255,0.5);
@@ -988,7 +1008,7 @@ export default function ContactPage() {
           font-size: 0.625rem;
           font-weight: 700;
           letter-spacing: 0.12em;
-          text-transform: uppercase;
+          text-transform: none;
           color: var(--text-muted);
           margin-bottom: 2px;
         }

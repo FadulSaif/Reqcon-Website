@@ -302,7 +302,7 @@ function FullTeamStyles() {
         font-size: 0.75rem;
         font-weight: 700;
         letter-spacing: 0.1em;
-        text-transform: uppercase;
+        text-transform: none;
         color: var(--text-muted);
       }
 
@@ -429,7 +429,7 @@ function FullTeamStyles() {
         font-size: 0.8125rem;
         font-weight: 600;
         letter-spacing: 0.12em;
-        text-transform: uppercase;
+        text-transform: none;
         color: var(--brand-primary);
         margin-bottom: 12px;
       }

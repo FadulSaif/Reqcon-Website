@@ -13,14 +13,14 @@ function safeJsonLd(data: object): string {
 }
 
 export const metadata: Metadata = {
-  title: "Våra Tjänster – Bemanning & Rekrytering inom IT, Bygg, Logistik och Transport",
+  title: "Våra tjänster – bemanning & rekrytering inom IT, bygg, logistik och transport",
   description:
     "Agil Arbetskraft erbjuder bemanning och rekrytering inom fem branscher: IT, bygg och anläggning, lager och logistik, transport samt flytt och montage. Snabb leverans i hela Sverige.",
   alternates: {
     canonical: "/services",
   },
   openGraph: {
-    title: "Våra Tjänster – Agil Arbetskraft | Bemanning i Sverige",
+    title: "Våra tjänster – Agil Arbetskraft | bemanning i Sverige",
     description:
       "Fem specialiserade tjänsteområden. En partner. Vi levererar rätt personal till ditt företag oavsett bransch.",
     type: "website",
@@ -35,7 +35,7 @@ export default function Services() {
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Våra Tjänster",
+    "name": "Våra tjänster",
     "url": absoluteUrl("/services"),
     "isPartOf": { "@type": "WebSite", "name": SITE_CONFIG.companyName, "url": SITE_CONFIG.domain },
     "mainEntity": {

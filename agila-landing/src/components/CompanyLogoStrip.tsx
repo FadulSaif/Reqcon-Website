@@ -73,7 +73,7 @@ export default function CompanyLogoStrip() {
           font-size: 0.72rem;
           font-weight: 600;
           letter-spacing: 0.14em;
-          text-transform: uppercase;
+          text-transform: none;
           white-space: nowrap;
         }
 

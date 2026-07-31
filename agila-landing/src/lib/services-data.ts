@@ -37,17 +37,17 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
         "IT-arkitekt"
       ],
       en: [
-        "Business Analyst",
-        "Test Lead",
+        "Business analyst",
+        "Test lead",
         "Scrum Master",
-        "Product Owner",
+        "Product owner",
         "UX/UI",
-        "Data Coordinator",
-        "Project Engineer",
-        "Project Management",
-        "Software Development",
+        "Data coordinator",
+        "Project engineer",
+        "Project management",
+        "Software development",
         "Administration",
-        "IT Architect"
+        "IT architect"
       ]
     },
     specDescriptions: {
@@ -144,17 +144,17 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
         "Lagerchefer och logistikchefer"
       ],
       en: [
-        "Warehouse Work and Order Picking",
-        "Inbound Deliveries and Goods Receiving",
-        "Outbound Deliveries and Dispatch",
-        "Packing and Packaging",
-        "Forklift Operation",
-        "Terminal Work",
-        "Loading and Unloading",
-        "Inventory Control",
-        "Returns Handling",
-        "Team Leadership and Supervision",
-        "Warehouse Managers and Logistics Managers"
+        "Warehouse work and order picking",
+        "Inbound deliveries and goods receiving",
+        "Outbound deliveries and dispatch",
+        "Packing and packaging",
+        "Forklift operation",
+        "Terminal work",
+        "Loading and unloading",
+        "Inventory control",
+        "Returns handling",
+        "Team leadership and supervision",
+        "Warehouse managers and logistics managers"
       ]
     },
     specDescriptions: {
@@ -250,16 +250,16 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
         "Arbetsledning och platschefer"
       ],
       en: [
-        "Carpenters and Woodworkers",
-        "Concrete and Reinforcement",
-        "Groundwork and Civil Construction",
-        "Machine Operators",
-        "Painters, Flooring, and Tiling",
-        "Roofing and Facades",
-        "Demolition and Remediation",
+        "Carpenters and woodworkers",
+        "Concrete and reinforcement",
+        "Groundwork and civil construction",
+        "Machine operators",
+        "Painters, flooring, and tiling",
+        "Roofing and facades",
+        "Demolition and remediation",
         "Installers",
-        "Scaffolding and Core Drilling",
-        "Site Supervisors and Site Managers"
+        "Scaffolding and core drilling",
+        "Site supervisors and site managers"
       ]
     },
     specDescriptions: {
@@ -352,15 +352,15 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
         "Budbil & expressleveranser"
       ],
       en: [
-        "Category B Drivers",
-        "Category C Drivers",
-        "Category CE Drivers",
-        "ADR Drivers",
-        "Distribution Drivers",
-        "Long-Distance Drivers",
-        "Refrigerated and Frozen Transport",
-        "Construction and Crane Truck Drivers",
-        "Courier and Express Deliveries"
+        "Category B drivers",
+        "Category C drivers",
+        "Category CE drivers",
+        "ADR drivers",
+        "Distribution drivers",
+        "Long-distance drivers",
+        "Refrigerated and frozen transport",
+        "Construction and crane truck drivers",
+        "Courier and express deliveries"
       ]
     },
     specDescriptions: {
@@ -447,11 +447,11 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
         "Arbetsledare flytt & montage"
       ],
       en: [
-        "Moving Staff",
-        "Moving Drivers",
-        "Packing and Moving Logistics",
+        "Moving staff",
+        "Moving drivers",
+        "Packing and moving logistics",
         "Installers",
-        "Moving and Assembly Supervisors"
+        "Moving and assembly supervisors"
       ]
     },
     specDescriptions: {

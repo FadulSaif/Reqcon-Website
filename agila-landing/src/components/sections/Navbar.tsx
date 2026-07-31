@@ -450,7 +450,7 @@ export default function Navbar({ forceTransparentWhite = false }: { forceTranspa
           font-size: 0.875rem;
           font-weight: 600;
           letter-spacing: 0.05em;
-          text-transform: uppercase;
+          text-transform: none;
           transition: color var(--duration-fast) var(--ease-out);
         }
         .nav-link:hover {

@@ -13,7 +13,7 @@ export default function LogoReversed({ className = "", style }: { className?: st
             Only the text color stays theme-aware (dark/light/white navbar). */}
         <style>{`
           .lr-1 { fill: #FAA632; stroke-width: 0px; }
-          /* Wordmark is live text so it follows the site typeface: Konnect
+          /* Wordmark is live text so it follows the site typeface: Outfit
              once the licensed files land, Outfit until then. Sized to sit on
              the original artwork's cap-height and baselines. */
           .lr-word {

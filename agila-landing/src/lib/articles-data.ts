@@ -53,14 +53,14 @@ export const ARTICLES: ArticleMeta[] = [
     // server-safe. Card titles are intentionally shorter, hence a separate set.
     page: {
       titleSv: "Framtiden för flexibel IT-bemanning i Sverige 2026",
-      titleEn: "The Future of Flexible IT Staffing in Sweden 2026",
+      titleEn: "The future of flexible IT staffing in Sweden 2026",
       metaDescSv: "I takt med att den digitala transformationen accelererar rör sig svenska företag bort från stela anställningsmodeller. Läs om hur flexibel IT-bemanning förändrar den svenska arbetsmarknaden.",
       metaDescEn: "As digital transformation accelerates, Swedish companies are moving away from rigid hiring models. Read about how flexible IT staffing is reshaping the Swedish labour market.",
       categorySv: "Teknik",
       categoryEn: "Technology",
       author: "Anel Pasic",
       authorRoleSv: "IT-chef, Agil Arbetskraft",
-      authorRoleEn: "IT Manager, Agil Arbetskraft",
+      authorRoleEn: "IT manager, Agil Arbetskraft",
     },
   },
   {
@@ -77,7 +77,7 @@ export const ARTICLES: ArticleMeta[] = [
     // server-safe. Card titles are intentionally shorter, hence a separate set.
     page: {
       titleSv: "Optimera lagerdriften med agil personalhantering",
-      titleEn: "Optimizing Warehouse Operations with Agile Talent",
+      titleEn: "Optimizing warehouse operations with agile talent",
       metaDescSv: "Högsäsonger testar personalstyrkan till det yttersta. Så hjälper agil personalhantering svenska logistikföretag att möta efterfrågetoppar utan att riskera driftsstörningar.",
       metaDescEn: "Peak seasons push workforce capacity to its limits. How agile talent deployment helps Swedish logistics companies meet demand surges without operational disruption.",
       categorySv: "Logistik",
@@ -101,14 +101,14 @@ export const ARTICLES: ArticleMeta[] = [
     // server-safe. Card titles are intentionally shorter, hence a separate set.
     page: {
       titleSv: "Kompetensbristen inom byggsektorn i Sverige och hur du löser den",
-      titleEn: "The Skills Shortage in Sweden's Construction Sector and How to Solve It",
+      titleEn: "The skills shortage in Sweden's construction sector and how to solve it",
       metaDescSv: "Den svenska byggsektorn upplever en strukturell kompetensbrist. Agil Arbetskraft förklarar varför det händer, vilka roller som drabbas hårdast och hur bemanning kan vara lösningen.",
       metaDescEn: "Sweden's construction sector faces a structural skills shortage. Agil Arbetskraft explains why it's happening, which roles are hardest hit, and how staffing can be the solution.",
-      categorySv: "Bygg & Anläggning",
+      categorySv: "Bygg & anläggning",
       categoryEn: "Construction",
       author: "Markus Nyberg",
       authorRoleSv: "Konsultchef, Agil Arbetskraft",
-      authorRoleEn: "Consultant Manager, Agil Arbetskraft",
+      authorRoleEn: "Consultant manager, Agil Arbetskraft",
     },
   },
   {
@@ -125,14 +125,14 @@ export const ARTICLES: ArticleMeta[] = [
     // server-safe. Card titles are intentionally shorter, hence a separate set.
     page: {
       titleSv: "Att rekrytera städpersonal i Sverige: krav, utmaningar och smarta lösningar",
-      titleEn: "Recruiting Cleaning Staff in Sweden: Demands, Challenges, and Smart Solutions",
+      titleEn: "Recruiting cleaning staff in Sweden: demands, challenges, and smart solutions",
       metaDescSv: "Hög personalomsättning och ökade kompetensskrav gör rekrytering av städpersonal svårare än det ser ut. Agil Arbetskraft hjälper dig hitta pålitliga kandidater snabbt.",
       metaDescEn: "High turnover and increasing competency demands make recruiting cleaning staff harder than it looks. Agil Arbetskraft helps you find reliable candidates quickly.",
-      categorySv: "Städ & Fastighet",
-      categoryEn: "Cleaning & Facilities",
+      categorySv: "Städ & fastighet",
+      categoryEn: "Cleaning & facilities",
       author: "Anton af Bjur",
       authorRoleSv: "Verksamhetskoordinator, Agil Arbetskraft",
-      authorRoleEn: "Operations Coordinator, Agil Arbetskraft",
+      authorRoleEn: "Operations coordinator, Agil Arbetskraft",
     },
   },
 ];

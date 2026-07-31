@@ -165,10 +165,19 @@ export default function Footer() {
         }
 
         @media (min-width: 1024px) {
-          .footer-grid, .footer-bottom-grid {
-            grid-template-columns: 30% 1fr 1fr 1fr;
-            gap: 40px;
+          .footer-grid {
+            grid-template-columns: minmax(0, 34%) minmax(0, 25%) minmax(0, 27%) minmax(0, 14%);
+            gap: 0;
             align-items: flex-start;
+          }
+
+          .footer-bottom-grid {
+            grid-template-columns: 34% 25% 27% 14%;
+            gap: 0;
+          }
+
+          .footer-grid > .footer-col:not(.brand-col) {
+            padding-left: clamp(24px, 2.25vw, 36px);
           }
         }
 
@@ -178,7 +187,7 @@ export default function Footer() {
         }
 
         .brand-col {
-          padding-right: 20px;
+          padding-right: clamp(40px, 5vw, 72px);
         }
 
         .footer-slogan {
@@ -207,14 +216,15 @@ export default function Footer() {
           color: #FAFAFA;
           font-size: 1.125rem;
           font-weight: 600;
-          margin: 0 0 24px 0;
+          margin: 0 0 20px 0;
           padding: 0;
           line-height: 1.2;
           letter-spacing: 0.02em;
         }
 
         .contact-heading {
-          padding-left: 52px;
+          /* Match the text after the 36px icon and 12px gap below. */
+          padding-left: 48px;
         }
 
         .social-heading {
@@ -224,7 +234,7 @@ export default function Footer() {
         .footer-nav-list {
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 0;
         }
 
         .footer-link {
@@ -235,7 +245,7 @@ export default function Footer() {
           text-decoration: none;
           font-size: 0.9375rem;
           font-weight: 500;
-          height: 36px;
+          min-height: 52px;
           border-bottom: 1px solid rgba(255, 255, 255, 0.08);
           transition: all 0.3s ease;
         }
@@ -259,14 +269,12 @@ export default function Footer() {
 
         .contact-link {
           justify-content: flex-start;
-          gap: 16px;
-          border-bottom: none;
-          padding-bottom: 0;
+          gap: 12px;
         }
 
         .contact-link:hover {
           padding-left: 0;
-          transform: translateX(8px);
+          transform: translateX(4px);
         }
 
         .contact-icon-wrapper {
@@ -292,7 +300,7 @@ export default function Footer() {
         .footer-socials-flat {
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 0;
         }
 
         .social-link-flat {
@@ -303,7 +311,8 @@ export default function Footer() {
           text-decoration: none;
           font-size: 0.9375rem;
           font-weight: 500;
-          height: 36px;
+          min-height: 52px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
           transition: color 0.3s ease;
         }
 

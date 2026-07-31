@@ -127,7 +127,7 @@ export default function ArticleCard({
           border-radius: 100px;
           font-size: 0.75rem;
           font-weight: 700;
-          text-transform: uppercase;
+          text-transform: none;
           letter-spacing: 0.05em;
         }
 

@@ -39,7 +39,7 @@ export default function FloatingCTA() {
           <Link
             href="/contact#contact-form"
             className="floating-cta-pill hover-lift"
-            aria-label="Need Staff? Go to the contact form"
+            aria-label="Need staff? Go to the contact form"
           >
             {/* Phone icon */}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

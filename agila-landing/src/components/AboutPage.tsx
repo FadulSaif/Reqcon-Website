@@ -41,14 +41,6 @@ export default function AboutPage() {
             </motion.div>
           </div>
 
-          <div className="container-wide hero-divider-slot">
-            <motion.hr
-              className="hero-divider"
-              initial={{ opacity: 0, scaleX: 0.7 }}
-              animate={{ opacity: 1, scaleX: 1 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            />
-          </div>
         </section>
 
         {/* Section 2: Vision & History */}
@@ -64,18 +56,19 @@ export default function AboutPage() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
               >
-                <h2 className="heading-lg mb-32">
+                <span className="section-eyebrow vision-eyebrow">
+                  {t("about.eyebrow")}
+                </span>
+                <h2 className="vision-heading">
                   {t("about.page.vision.title")}
                 </h2>
                 <div className="body-punchy">
                   <p>
                     {t("about.page.vision.p1")}
                   </p>
-                  <br />
                   <p>
                     {t("about.page.vision.p2")}
                   </p>
-                  <br />
                   <p>
                     {t("about.page.vision.p3")}
                   </p>
@@ -90,15 +83,15 @@ export default function AboutPage() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
               >
-                <div className="vision-logo-panel glass-panel">
+                <div className="vision-logo-wrap">
                   {/* unoptimized: the optimizer refuses SVG unless
                       dangerouslyAllowSVG is set, and a vector mark has
                       nothing to gain from it anyway. */}
                   <Image
                     src="/assets/agil-mark.svg"
-                    alt="Agil Arbetskrafts logotyp"
-                    width={240}
-                    height={243}
+                    alt="Agil Arbetskraft logo"
+                    width={520}
+                    height={526}
                     unoptimized
                     className="vision-logo"
                   />
@@ -198,7 +191,7 @@ export default function AboutPage() {
               {TEAM_MEMBERS.map((member, idx) => (
                 <motion.div
                   key={member.id}
-                  className="about-team-card glass-panel"
+                  className="about-team-card"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
@@ -216,6 +209,9 @@ export default function AboutPage() {
                   <div className="about-team-info">
                     <h3 className="heading-sm">{member.name}</h3>
                     <p className="about-team-role">{t(member.titleKey)}</p>
+                    <a className="about-team-email" href={`mailto:${member.email}`}>
+                      {member.email}
+                    </a>
                     <p className="body-md text-secondary mb-12">{t(member.bioKey)}</p>
                     <div className="about-team-tags">
                       {member.services.map((slug) => {
@@ -297,7 +293,7 @@ export default function AboutPage() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Agil Arbetskraft Location"
+                  title="Agil Arbetskraft location"
                 ></iframe>
               </motion.div>
               
@@ -364,23 +360,6 @@ export default function AboutPage() {
           padding: 0 16px;
         }
 
-        /* Closes out the hero where the team banner used to sit, so the intro
-           still reads as its own block before the vision section. */
-        /* margin-bottom + the section's own padding-bottom add up to roughly
-           the space above, so the rule sits centred between the two sections. */
-        .hero-divider-slot {
-          margin-top: clamp(40px, 6vw, 72px);
-          margin-bottom: clamp(16px, 2vw, 32px);
-        }
-
-        .hero-divider {
-          width: 100%;
-          height: 1px;
-          margin: 0;
-          border: none;
-          background: var(--border-subtle);
-        }
-
         .mb-8 { margin-bottom: 8px; }
         .mb-16 { margin-bottom: 16px; }
         .mb-24 { margin-bottom: 24px; }
@@ -396,55 +375,105 @@ export default function AboutPage() {
         .z-10 { z-index: 10; }
 
         /* Vision Section */
-        .pt-0 { padding-top: 0 !important; }
+        .about-vision-section {
+          background: #f4f5f7;
+          padding: clamp(72px, 8vw, 128px) 0 !important;
+        }
 
         .vision-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: clamp(40px, 6vw, 60px);
+          gap: clamp(48px, 7vw, 96px);
           align-items: center;
         }
 
-        @media (min-width: 1024px) {
-          /* No eyebrow here, so the heading is the column's first line and
-             start-alignment lands the image top on it without an offset. */
+        @media (min-width: 768px) {
           .vision-grid {
-            grid-template-columns: 1fr 1fr;
-            align-items: start;
+            grid-template-columns: minmax(0, 1.45fr) minmax(260px, 1fr);
           }
         }
 
         .vision-content {
-          max-width: 600px;
+          max-width: 760px;
+        }
+
+        .vision-eyebrow {
+          display: block;
+          margin-bottom: clamp(18px, 2vw, 28px);
+        }
+
+        .vision-heading {
+          max-width: 720px;
+          margin: 0 0 clamp(28px, 3vw, 40px);
+          color: var(--text-primary);
+          font-family: var(--font-heading);
+          font-size: clamp(2.5rem, 4.6vw, 4.75rem);
+          font-weight: 700;
+          line-height: 1.05;
+          letter-spacing: -0.03em;
         }
 
         .body-punchy {
-          font-size: 1.0625rem;
+          max-width: 720px;
+          font-family: var(--font-body);
+          font-size: clamp(1rem, 1.15vw, 1.125rem);
           color: var(--text-secondary);
-          line-height: 1.8;
+          line-height: 1.85;
+        }
+
+        .body-punchy p {
+          margin: 0;
+        }
+
+        .body-punchy p + p {
+          margin-top: clamp(20px, 2vw, 28px);
         }
 
         .vision-visual {
           width: 100%;
           display: flex;
           justify-content: center;
+          align-items: center;
         }
 
-        /* 7/5 keeps roughly the height the two staggered photo cards had, so
-           swapping them for the mark does not shorten the section. */
-        .vision-logo-panel {
-          display: grid;
-          place-items: center;
+        .vision-logo-wrap {
           width: 100%;
-          max-width: 500px;
-          aspect-ratio: 7 / 5;
-          padding: clamp(32px, 6vw, 56px);
-          border-radius: var(--radius-lg);
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
 
         .vision-logo {
-          width: min(100%, 240px);
+          width: min(100%, 520px);
           height: auto;
+        }
+
+        @media (max-width: 1023px) {
+          .vision-heading {
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+          }
+
+          .vision-logo {
+            width: min(100%, 360px);
+          }
+        }
+
+        @media (max-width: 767px) {
+          .about-vision-section {
+            padding: 64px 0 56px !important;
+          }
+
+          .vision-grid {
+            gap: 40px;
+          }
+
+          .vision-heading {
+            font-size: clamp(2.25rem, 11vw, 3.25rem);
+          }
+
+          .vision-logo {
+            width: min(78vw, 300px);
+          }
         }
 
         /* Pillars Section */
@@ -608,56 +637,66 @@ export default function AboutPage() {
         @media (min-width: 768px) {
           .about-team-grid { grid-template-columns: repeat(2, 1fr); }
         }
-        /* Four members: 2x2 then 1x4. A 3-col step would strand a lone card. */
-        @media (min-width: 1280px) {
-          .about-team-grid { grid-template-columns: repeat(4, 1fr); }
+        @media (min-width: 1024px) {
+          .about-team-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         .about-team-card {
-          border-radius: var(--radius-xl);
-          overflow: hidden;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
           display: flex;
           flex-direction: column;
-          height: 100%; /* fill the equal-height grid cell so every card (and button) aligns */
-        }
-        .about-team-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+          align-items: flex-start;
+          min-width: 0;
+          height: 100%;
+          padding: clamp(12px, 1.5vw, 20px) 0;
         }
 
         .about-team-img {
           position: relative;
-          width: 100%;
-          /* Square matches the source headshots, so nothing is cropped away.
-             The old 4/3.2 letterbox cut roughly a fifth off top and bottom. */
+          width: 88px;
+          height: 88px;
           aspect-ratio: 1 / 1;
+          border-radius: 50%;
           overflow: hidden;
-          flex-shrink: 0; /* keep the photo its natural size as the card stretches */
+          flex-shrink: 0;
+          margin-bottom: 24px;
         }
         .about-team-photo {
           object-fit: cover;
-          object-position: center top;
-          transition: transform 0.4s ease;
-        }
-        .about-team-card:hover .about-team-photo {
-          transform: scale(1.03);
+          object-position: center;
         }
 
         .about-team-info {
-          padding: 24px 24px 28px;
+          width: 100%;
+          padding: 0;
           display: flex;
           flex-direction: column;
-          flex: 1; /* grow to fill the card so the button can pin to the bottom */
+          align-items: flex-start;
+          flex: 1;
         }
 
         .about-team-role {
           font-size: 0.8125rem;
           font-weight: 600;
           color: var(--brand-primary);
-          text-transform: uppercase;
+          text-transform: none;
           letter-spacing: 0.06em;
-          margin: 4px 0 12px;
+          margin: 6px 0 8px;
+        }
+
+        .about-team-email {
+          margin-bottom: 16px;
+          color: var(--brand-primary);
+          font-size: 0.875rem;
+          font-weight: 500;
+          line-height: 1.5;
+          text-decoration: none;
+          overflow-wrap: anywhere;
+          transition: color 0.2s ease;
+        }
+
+        .about-team-email:hover {
+          color: var(--brand-accent);
+          text-decoration: underline;
         }
 
         .about-team-tags {
@@ -677,8 +716,22 @@ export default function AboutPage() {
         }
 
         .about-team-btn {
-          margin-top: auto; /* pin the button to the card bottom so every card's button aligns */
-          align-self: stretch; /* keep the existing full-width button look */
+          margin-top: auto;
+          align-self: flex-start;
+        }
+
+        @media (min-width: 768px) {
+          .about-team-img {
+            width: 100px;
+            height: 100px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .about-team-img {
+            width: 112px;
+            height: 112px;
+          }
         }
 
         .mt-16 { margin-top: 16px; }

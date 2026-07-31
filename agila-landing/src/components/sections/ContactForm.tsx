@@ -226,18 +226,18 @@ export default function ContactForm({
     const structuredPayload: Record<string, string> = {
       _subject: dynamicSubject,
       
-      "─────── 🟧 CLIENT INFORMATION ───────": "",
-      "Full Name": nameStr,
-      "Email Address": emailStr,
-      "Company / Organization": companyStr || "Not provided",
-      "Phone Number": phoneStr || "Not provided",
+      "─────── 🟧 Client information ───────": "",
+      "Full name": nameStr,
+      "Email address": emailStr,
+      "Company / organization": companyStr || "Not provided",
+      "Phone number": phoneStr || "Not provided",
 
-      "─────── 🟧 REQUEST DETAILS ───────": "",
-      "Service Requested": serviceLabel,
-      ...(isFullTeam ? { "Request Type": language === "sv" ? "Komplett team" : "Full team" } : {}),
-      ...(rolesStr ? { "Specific Roles": rolesStr } : {}),
+      "─────── 🟧 Request details ───────": "",
+      "Service requested": serviceLabel,
+      ...(isFullTeam ? { "Request type": language === "sv" ? "Komplett team" : "Full team" } : {}),
+      ...(rolesStr ? { "Specific roles": rolesStr } : {}),
 
-      "─────── 🟧 ADDITIONAL NOTES ───────": "",
+      "─────── 🟧 Additional notes ───────": "",
       "Message": message,
     };
 
@@ -938,7 +938,7 @@ export default function ContactForm({
           font-size: 0.6875rem;
           font-weight: 700;
           letter-spacing: 0.1em;
-          text-transform: uppercase;
+          text-transform: none;
           color: var(--brand-primary);
           white-space: nowrap;
         }

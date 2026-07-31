@@ -12,14 +12,14 @@ function safeJsonLd(data: object): string {
 }
 
 export const metadata: Metadata = {
-  title: "Artiklar & Branschinsikter – Bemanning och Rekrytering i Sverige",
+  title: "Artiklar & branschinsikter – bemanning och rekrytering i Sverige",
   description:
     "Läs artiklar och branschinsikter från Agil Arbetskraft om bemanning och rekrytering inom IT, bygg, logistik, transport och städ i Sverige.",
   alternates: {
     canonical: "/articles",
   },
   openGraph: {
-    title: "Artiklar & Branschinsikter – Agil Arbetskraft",
+    title: "Artiklar & branschinsikter – Agil Arbetskraft",
     description:
       "Insikter om bemanning och rekrytering inom IT, bygg, logistik, transport och städ i Sverige.",
     type: "website",
@@ -34,7 +34,7 @@ export default function ArticlesIndex() {
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Artiklar & Branschinsikter",
+    "name": "Artiklar & branschinsikter",
     "url": absoluteUrl("/articles"),
     "isPartOf": { "@type": "WebSite", "name": SITE_CONFIG.companyName, "url": SITE_CONFIG.domain },
     "mainEntity": {

@@ -1,29 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../components/theme-provider";
 import { LanguageProvider } from "../contexts/LanguageContext";
 import StyledJsxRegistry from "../components/StyledJsxRegistry";
 import { SITE_CONFIG, absoluteUrl } from "../lib/site-config";
 
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-});
-
-// Interim stand-in for Konnect, which is licensed and not yet supplied by the
-// client. Geometric sans, closest free match. Konnect precedes it in the
-// --font-brand/--font-body stacks, so it takes over once the files land.
-const outfit = Outfit({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-outfit",
-});
-
 export const metadata: Metadata = {
   title: {
-    default: "Agil Arbetskraft – Bemanningsföretag i Sverige",
+    default: "Agil Arbetskraft – bemanningsföretag i Sverige",
     template: "%s – Agil Arbetskraft",
   },
   description:
@@ -43,7 +27,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     siteName: SITE_CONFIG.companyName,
-    title: "Agil Arbetskraft – Bemanningsföretag i Sverige",
+    title: "Agil Arbetskraft – bemanningsföretag i Sverige",
     description:
       "Vi hjälper svenska företag att hitta rätt personal inom IT, bygg, lager och logistik, transport samt flytt och montage.",
     type: "website",
@@ -53,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Agil Arbetskraft – Bemanningsföretag i Sverige",
+    title: "Agil Arbetskraft – bemanningsföretag i Sverige",
     description: "Bemannings- och rekryteringsföretag. IT, bygg, logistik och transport i hela Sverige.",
     images: [SITE_CONFIG.ogImagePath],
   },
@@ -111,7 +95,7 @@ const organizationSchema = {
   "knowsAbout": [
     "IT-bemanning", "IT-rekrytering", "Byggbemanning", "Logistikbemanning",
     "Transportbemanning", "Flytt och montage", "Direktrekrytering",
-    "Hyrköp av personal", "Bemanningslösningar Sverige"
+    "Hyrköp av personal", "bemanningslösningar Sverige"
   ],
   "sameAs": [
     SITE_CONFIG.socials.linkedin,
@@ -135,12 +119,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // The font vars belong on <html>, not <body>: :root declares --font-brand and
-  // --font-body in terms of them, and a var() that is undefined on the element
-  // being resolved voids the whole declaration.
   return (
-    <html lang="sv" className={`${inter.variable} ${outfit.variable}`} data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html lang="sv" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
+        <link
+          rel="preload"
+          href="/fonts/outfit/outfit-latin-v1.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         {/* Swedish-only site (English is a client-side translation toggle, not a
             separately indexed URL), so no hreflang — just the canonical in metadata. */}
 
@@ -150,9 +138,6 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: safeJsonLd(organizationSchema) }}
         />
 
-        {/* TODO: Client must supply licensed Konnect woff2 files (400/500/600/700).
-            Drop them in, add a next/font/local block exposing --font-konnect, and
-            Outfit stops being used — no other change needed. */}
       </head>
       <body className="antialiased">
         <StyledJsxRegistry>

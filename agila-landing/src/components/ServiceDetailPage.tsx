@@ -44,8 +44,8 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
   const specDescriptions = data.specDescriptions?.[language] || data.specDescriptions?.["sv"];
   const faqItems = data.faq?.[language] || data.faq?.["sv"];
 
-  const faqLabel = language === "sv" ? "VANLIGA FRÅGOR" : "FREQUENTLY ASKED QUESTIONS";
-  const faqHeading = language === "sv" ? "Frågor och svar" : "Questions & Answers";
+  const faqLabel = language === "sv" ? "Vanliga frågor" : "Frequently asked questions";
+  const faqHeading = language === "sv" ? "Frågor och svar" : "Questions & answers";
 
   const requestSpec = (spec: string) => {
     setPreSelectedSpecs([spec]);
@@ -98,7 +98,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
               marginBottom: 24,
               textDecoration: "none",
               fontSize: "0.875rem",
-              textTransform: "uppercase",
+              textTransform: "none",
               letterSpacing: "0.05em"
             }} className="hover-lift">
               <span style={{ fontSize: "1.2rem" }}>←</span> {t("services.btn.back")}
@@ -473,7 +473,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
           font-size: 0.6875rem;
           font-weight: 700;
           letter-spacing: 0.08em;
-          text-transform: uppercase;
+          text-transform: none;
           padding: 4px 10px;
           border-radius: 100px;
           white-space: nowrap;
@@ -579,7 +579,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
           font-size: 0.75rem;
           font-weight: 700;
           letter-spacing: 0.12em;
-          text-transform: uppercase;
+          text-transform: none;
           color: var(--brand-orange);
           margin-bottom: 10px;
         }
@@ -719,8 +719,9 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
         }
 
         .sdp-member-avatar-wrap {
-          width: 80px;
-          height: 80px;
+          width: 88px;
+          height: 88px;
+          aspect-ratio: 1 / 1;
           border-radius: 50%;
           overflow: hidden;
           border: 3px solid var(--brand-red-orange);
@@ -733,7 +734,22 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          object-position: center;
           border-radius: 50%;
+        }
+
+        @media (min-width: 768px) {
+          .sdp-member-avatar-wrap {
+            width: 100px;
+            height: 100px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .sdp-member-avatar-wrap {
+            width: 112px;
+            height: 112px;
+          }
         }
 
         .sdp-member-name {
@@ -750,7 +766,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
           font-size: 0.75rem;
           font-weight: 600;
           color: var(--brand-red-orange);
-          text-transform: uppercase;
+          text-transform: none;
           letter-spacing: 0.06em;
           margin-bottom: 12px;
           position: relative;
@@ -810,7 +826,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
           font-size: 0.5625rem;
           font-weight: 600;
           letter-spacing: 0.1em;
-          text-transform: uppercase;
+          text-transform: none;
           color: rgba(255,255,255,0.4);
         }
 
