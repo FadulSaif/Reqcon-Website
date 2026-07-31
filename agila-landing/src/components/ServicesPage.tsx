@@ -27,11 +27,12 @@ export default function ServicesPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
+              <span className="section-eyebrow">{t("services.page.eyebrow")}</span>
               <h1 className="heading-xl mb-24">
                 {t("services.page.title")}
               </h1>
               <p className="body-lg text-secondary mx-auto" style={{ maxWidth: "800px" }}>
-                {t("hero.subtitle")}
+                {t("services.page.subtitle")}
               </p>
             </motion.div>
           </div>

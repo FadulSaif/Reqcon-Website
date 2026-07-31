@@ -24,6 +24,12 @@ export default function ServiceBlocks() {
           const allSpecs = service.specs[language as keyof typeof service.specs] || [];
           const remainingCount = Math.max(0, allSpecs.length - 4);
 
+          // Services word this list differently — IT lists roles, the others
+          // list areas of work. t() echoes the key back when it is missing, so
+          // any service without an override falls back to the shared heading.
+          const headerKey = `services.${service.slug}.rolesHeader`;
+          const rolesHeader = t(headerKey) === headerKey ? t("services.roles.header") : t(headerKey);
+
           return (
             <motion.div
               key={service.slug}
@@ -48,7 +54,7 @@ export default function ServiceBlocks() {
                 <p className="body-lg" style={{ marginBottom: "14px" }}>{t(`services.${service.slug}.cardDesc`)}</p>
 
                 <p className="text-muted" style={{ fontSize: "0.8125rem", fontWeight: 500, marginBottom: "8px" }}>
-                  {t("services.roles.header")}
+                  {rolesHeader}
                 </p>
 
                 <ul className="service-bullets">

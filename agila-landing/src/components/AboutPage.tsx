@@ -32,8 +32,11 @@ export default function AboutPage() {
               <h1 className="heading-xl mb-24">
                 {t("about.page.hero.title")}
               </h1>
-              <p className="body-lg text-secondary mx-auto" style={{ maxWidth: "800px" }}>
+              <p className="body-lg text-secondary mx-auto mb-16" style={{ maxWidth: "800px" }}>
                 {t("about.page.hero.desc")}
+              </p>
+              <p className="body-lg text-secondary mx-auto" style={{ maxWidth: "800px" }}>
+                {t("about.page.hero.desc2")}
               </p>
             </motion.div>
           </div>
@@ -115,7 +118,8 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              <h2 className="heading-lg">{t("about.page.why.eyebrow")}</h2>
+              <span className="section-eyebrow">{t("about.page.why.eyebrow")}</span>
+              <h2 className="heading-lg">{t("about.page.why.title")}</h2>
               <p className="body-lg text-secondary mx-auto mt-16" style={{ maxWidth: "600px" }}>
                 {t("about.page.why.subtitle")}
               </p>

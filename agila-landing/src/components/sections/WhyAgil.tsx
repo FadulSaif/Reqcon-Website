@@ -62,8 +62,11 @@ export default function WhyAgil() {
               <br />
               <span className="text-brand">{t("why.title2")}</span>
               </h2>
-              <p className="body-lg" style={{ maxWidth: 400 }}>
+              <p className="body-lg mb-16" style={{ maxWidth: 400 }}>
                 {t("why.desc")}
+              </p>
+              <p className="body-lg" style={{ maxWidth: 400 }}>
+                {t("why.desc2")}
               </p>
             </motion.div>
           </div>

@@ -15,7 +15,7 @@ export const SITE_CONFIG = {
 
   email: "info@agilarbetskraft.se",
 
-  phone: "070-554 81 47",
+  phone: "+46 70 554 81 47",
   /** E.164 for the tel: link — national 0 dropped, +46 prefixed. */
   phoneHref: "tel:+46705548147",
 

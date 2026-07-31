@@ -31,6 +31,10 @@ export default function AboutBrief() {
               <p>
                 {t("about.p2")}
               </p>
+              <br />
+              <p>
+                {t("about.p3")}
+              </p>
             </div>
             <div className="btn-wrapper">
               <a href="/about" className="btn btn-secondary hover-lift">

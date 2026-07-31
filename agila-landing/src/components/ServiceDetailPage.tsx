@@ -20,6 +20,17 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
   const [fullTeamSignal, setFullTeamSignal] = useState(0);
   const data = SERVICES_CONFIG[slug];
 
+  /**
+   * Shared detail-page string, unless this service overrides it. The client's
+   * copy is near-identical per service but not always word-for-word (Transport
+   * says "behörigheter" where the others say "kunskap"). t() echoes the key
+   * back when it is missing, which is how we detect the absence of an override.
+   */
+  const tSvc = (base: string) => {
+    const key = `services.${slug}.${base}`;
+    return t(key) === key ? t(`services.detail.${base}`) : t(key);
+  };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -137,8 +148,8 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
                         <CheckCircle2 size={18} />
                       </div>
                       <div>
-                        <h4 className="highlight-title">{t(`services.detail.hl${num}Title`)}</h4>
-                        <p className="highlight-desc text-secondary">{t(`services.detail.hl${num}Desc`)}</p>
+                        <h4 className="highlight-title">{tSvc(`hl${num}Title`)}</h4>
+                        <p className="highlight-desc text-secondary">{tSvc(`hl${num}Desc`)}</p>
                       </div>
                     </div>
                   ))}
@@ -166,9 +177,17 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
                   </div>
                   <div className="psc-content">
                     <h3 className="heading-md mb-16 text-white">{t(`services.${slug}.title`)}</h3>
-                    <p className="body-md text-white mb-32" style={{ opacity: 0.9, lineHeight: 1.7 }}>
+                    <p className="body-md text-white mb-16" style={{ opacity: 0.9, lineHeight: 1.7 }}>
                       {t(`services.${slug}.intro`)}
                     </p>
+                    {/* Only some services have a second intro paragraph; t()
+                        echoes the key back when it is not defined. */}
+                    {t(`services.${slug}.intro2`) !== `services.${slug}.intro2` && (
+                      <p className="body-md text-white mb-16" style={{ opacity: 0.9, lineHeight: 1.7 }}>
+                        {t(`services.${slug}.intro2`)}
+                      </p>
+                    )}
+                    <div style={{ height: 16 }} />
                     <div className="psc-badge">
                       <span>{t("services.detail.specsCount").replace("{count}", specializations.length.toString())}</span>
                     </div>

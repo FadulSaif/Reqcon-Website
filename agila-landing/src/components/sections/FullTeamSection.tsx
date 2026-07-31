@@ -23,9 +23,15 @@ const ROLES = [
   { icon: CheckCircle2, key: "fullteam.role5" },
 ];
 
-const VALUES = [
+/** The two variants share the first and third value, but the client's copy
+ *  words the second one differently on the home page and the services page. */
+const valuesFor = (variant: "full" | "compact") => [
   { icon: Layers, titleKey: "fullteam.v1Title", descKey: "fullteam.v1Desc" },
-  { icon: Zap, titleKey: "fullteam.v2Title", descKey: "fullteam.v2Desc" },
+  {
+    icon: Zap,
+    titleKey: "fullteam.v2Title",
+    descKey: variant === "compact" ? "fullteam.compact.v2Desc" : "fullteam.v2Desc",
+  },
   { icon: TrendingUp, titleKey: "fullteam.v3Title", descKey: "fullteam.v3Desc" },
 ];
 
@@ -36,6 +42,7 @@ interface FullTeamSectionProps {
 
 export default function FullTeamSection({ variant = "full" }: FullTeamSectionProps) {
   const { t } = useLanguage();
+  const VALUES = valuesFor(variant);
 
   if (variant === "compact") {
     return (
@@ -51,7 +58,7 @@ export default function FullTeamSection({ variant = "full" }: FullTeamSectionPro
             <div className="ft-compact-text">
               <span className="ftc-eyebrow">{t("fullteam.eyebrow")}</span>
               <h3 className="ft-compact-title">{t("fullteam.title")}</h3>
-              <p className="ft-compact-desc">{t("fullteam.desc")}</p>
+              <p className="ft-compact-desc">{t("fullteam.compact.desc")}</p>
 
               <div className="ftc-chips">
                 {ROLES.map((role, idx) => {
@@ -118,7 +125,8 @@ export default function FullTeamSection({ variant = "full" }: FullTeamSectionPro
           >
             <span className="section-eyebrow">{t("fullteam.eyebrow")}</span>
             <h2 className="ft-heading mb-24">{t("fullteam.title")}</h2>
-            <p className="ft-desc mb-40">{t("fullteam.desc")}</p>
+            <p className="ft-desc mb-24">{t("fullteam.desc")}</p>
+            <p className="ft-desc mb-40">{t("fullteam.desc2")}</p>
 
             <div className="ft-values mb-40">
               {VALUES.map((v, idx) => {

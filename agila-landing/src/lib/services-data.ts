@@ -25,7 +25,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
     specs: {
       sv: [
         "Kravanalytiker",
-        "Test Management",
+        "Testledare",
         "Scrum Master",
         "Produktägare",
         "UX/UI",
@@ -38,7 +38,7 @@ export const SERVICES_CONFIG: Record<string, ServiceData> = {
       ],
       en: [
         "Business Analyst",
-        "Test Management",
+        "Test Lead",
         "Scrum Master",
         "Product Owner",
         "UX/UI",
